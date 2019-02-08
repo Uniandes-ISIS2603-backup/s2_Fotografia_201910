@@ -26,13 +26,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *      "nombre": string,
  *      "apellido": String,
  *      "fechaNacimiento": date,
- *      "edad":int,
+ *      "edad":number,
  *      "correo": String,
- *      "telefono": int,
+ *      "telefono": number,
  *      "pais":String,
- *      "telefono": int,
+ *      "telefono": number,
  *      "pais": String,
- *      "id": long
+ *      "id": number
  * 
  *   }
  * </pre> Por ejemplo un autor se representa asi:<br>
@@ -59,8 +59,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author s.acostav
  */
 public class FotografoDTO implements Serializable  {
-    
-    private ArrayList<String> interesesFotograficos;
     private String nombre;
     private String apellido;
     @XmlJavaTypeAdapter(DateAdapter.class)
@@ -79,22 +77,6 @@ public class FotografoDTO implements Serializable  {
         
     }
     
-    /**
-     * obtiene el atributo interesesFotograficos
-     * @return atributo interesesFotograficos
-     */
-    
-    public ArrayList<String> getInteresesFotograficos(){
-        return interesesFotograficos;
-    }
-    
-    /**
-     * Establece un valor para el atributo interesesFotograficos
-     * @param pIntereses nuevo valor para el atributo
-     */
-    public void setInteresesFotograficos(ArrayList<String> pIntereses){
-        interesesFotograficos = pIntereses;
-    }
     
     /**
      * Obtiene el atributo nombre
