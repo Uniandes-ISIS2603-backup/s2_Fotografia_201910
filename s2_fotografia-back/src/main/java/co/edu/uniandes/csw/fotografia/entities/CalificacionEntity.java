@@ -18,6 +18,11 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     private Long puntaje;
     private String comentario;
 
+/**
+* Constructor de la clase
+*/
+    public CalificacionEntity(){}
+    
  /**
      * Devuelve el puntaje de la calificación.
      *
