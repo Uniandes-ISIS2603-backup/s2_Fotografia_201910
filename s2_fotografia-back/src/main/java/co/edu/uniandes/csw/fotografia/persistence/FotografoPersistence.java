@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import java.util.List;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author s.acostav
@@ -32,5 +33,32 @@ public class FotografoPersistence {
         return fotografoEntity;
     }
     
+    public List<FotografoEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos los fotografos");
+        // Se crea un query para buscar todos los fotografos en la base de datos.
+        TypedQuery query = em.createQuery("select u from FotografoEntity u", FotografoEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de fotografos.
+        return query.getResultList();
+    }
     
+    public FotografoEntity find(Long fotografoId) {
+        LOGGER.log(Level.INFO, "Consultando el fotografo con id={0}", fotografoId);
+       
+        return em.find(FotografoEntity.class, fotografoId);
+    }
+    
+     public FotografoEntity update(FotografoEntity fotografoEntity) {
+        LOGGER.log(Level.INFO, "Actualizando el fotografo con id={0}", fotografoEntity.getId());
+       
+        return em.merge(fotografoEntity);
+    }
+     
+     public void delete(Long fId) {
+
+        LOGGER.log(Level.INFO, "Borrando el fotografo con id={0}", fId);
+        FotografoEntity fotografoEntity = em.find(FotografoEntity.class, fId);
+        em.remove(fotografoEntity);
+    }
+     
+     
 }
