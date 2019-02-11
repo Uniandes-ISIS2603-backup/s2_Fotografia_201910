@@ -5,26 +5,23 @@
  */
 package co.edu.uniandes.csw.fotografia.entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+
 /**
  *
  * @author s.acostav
  */
-public class InteresFotograficoEntity {
+@Entity
+public class InteresFotograficoEntity extends BaseEntity implements Serializable{
     
-    private long id;
     private String interes;
     
     public InteresFotograficoEntity(){
         
     }
     
-    public Long getId(){
-        return id;
-    }
-    
-    public void setId(long pId){
-        id = pId;
-    }
+  
     
     public String getInteres(){
         return interes;

@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.dtos;
 
 import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
+import java.io.Serializable;
 
 /**
  *
@@ -34,9 +35,9 @@ import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
  *
  * @author s.acostav
  */
-public class InteresFotograficoDTO {
+public class InteresFotograficoDTO implements Serializable{
     
-    private long id;
+    private Long id;
     private String interes;
     /**
      * Constructor vacio
