@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 import co.edu.uniandes.csw.fotografia.adapters.DateAdapter;
+import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,13 +62,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class FotografoDTO implements Serializable  {
     private String nombre;
     private String apellido;
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private int edad;
     private String correo;
     private int telefono;
     private String pais;
-    private long id;
+    private Long id;
     
     
     /**
@@ -76,7 +76,42 @@ public class FotografoDTO implements Serializable  {
     public FotografoDTO(){
         
     }
+    /**
+     * Constructor 
+     * @param fotografoEntity 
+     */
+    public FotografoDTO(FotografoEntity fotografoEntity) {
+        if (fotografoEntity != null) {
+            this.id = fotografoEntity.getId();
+            this.nombre = fotografoEntity.getNombre();
+            this.apellido = fotografoEntity.getApellido();
+            this.fechaNacimiento = fotografoEntity.getFechaNacimiento();
+            this.edad = fotografoEntity.getEdad();
+            this.correo = fotografoEntity.getCorreo();
+             this.telefono = fotografoEntity.getTelefono();
+            this.pais= fotografoEntity.getPais();
+            
+           
+        }
+    }
     
+    /**
+     * Metodo para transformar el DTO a una entidad
+     * @return nueva entidad 
+     */
+    
+    public FotografoEntity toEntity(){
+        FotografoEntity fotografo = new FotografoEntity();
+        fotografo.setNombre(nombre);
+        fotografo.setApellido(apellido);
+        fotografo.setId(id);
+        fotografo.setFechaNacimiento(fechaNacimiento);
+        fotografo.setEdad(edad);
+        fotografo.setCorreo(correo);
+        fotografo.setTelefono(telefono);
+        fotografo.setPais(pais);
+        return fotografo;
+    }
     
     /**
      * Obtiene el atributo nombre
@@ -112,7 +147,7 @@ public class FotografoDTO implements Serializable  {
      * Obtiene el atributo fechaNacimiento
      * @return atributo fechaNacimiento
      */
-    public Date getFechaNacimiento(){
+    public String  getFechaNacimiento(){
         return fechaNacimiento;
     }
     
@@ -120,7 +155,7 @@ public class FotografoDTO implements Serializable  {
      * Establece un valor para el atributo fecha nacimiento
      * @param pFecha nuevo valor para el atributo 
      */
-    public void setFechaNacimiento(Date pFecha){
+    public void setFechaNacimiento(String pFecha){
         fechaNacimiento = pFecha;
     }
     /**
@@ -191,14 +226,14 @@ public class FotografoDTO implements Serializable  {
      * @return atributo id
      */
     
-    public long getId(){
+    public Long getId(){
         return id;
     }
     /**
      * Establece un valor para el atributoid
      * @param pId nuevo valor del atributo 
      */
-    public void setId(long pId){
+    public void setId(Long pId){
         id = pId;
     }
       @Override
