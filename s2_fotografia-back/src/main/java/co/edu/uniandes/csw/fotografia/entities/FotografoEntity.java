@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.fotografia.entities;
 
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 public class FotografoEntity {
     private String nombre;
