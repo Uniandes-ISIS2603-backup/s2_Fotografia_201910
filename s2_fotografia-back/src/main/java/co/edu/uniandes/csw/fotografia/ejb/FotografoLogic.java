@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author s.acostav
  */
 public class FotografoLogic {
     

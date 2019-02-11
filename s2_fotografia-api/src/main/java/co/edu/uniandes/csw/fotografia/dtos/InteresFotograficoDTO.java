@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
+
 /**
  *
  * @author s.acostav
@@ -42,6 +44,29 @@ public class InteresFotograficoDTO {
     public InteresFotograficoDTO(){
         
     }
+    
+    /**
+     * Constructor 
+     * @param fotografoEntity 
+     */
+    public InteresFotograficoDTO(InteresFotograficoEntity interesEntity) {
+        if (interesEntity != null) {
+            this.id = interesEntity.getId();
+            this.interes = interesEntity.getInteres();
+        }
+    }
+    
+    /**
+     * Metodo para transformar el DTO a una entidad
+     * @return nueva entidad 
+     */
+    
+    public InteresFotograficoEntity toEntity(){
+        InteresFotograficoEntity interes = new InteresFotograficoEntity();
+        interes.setId(id);
+        interes.setInteres(this.interes);
+    return interes;
+}
     
     /**
      * Obtiene el atributo id
