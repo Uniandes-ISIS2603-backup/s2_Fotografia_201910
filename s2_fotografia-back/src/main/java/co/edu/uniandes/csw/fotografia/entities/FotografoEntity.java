@@ -5,19 +5,22 @@
  */
 package co.edu.uniandes.csw.fotografia.entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+
 /**
  *
  * @author s.acostav
  */
-public class FotografoEntity {
+@Entity
+public class FotografoEntity extends BaseEntity implements Serializable{
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
-    private int edad;
+    private Integer edad;
     private String correo;
-    private int telefono;
+    private Integer telefono;
     private String pais;
-    private Long id;
     
     public String getNombre(){
         return nombre;
@@ -41,10 +44,10 @@ public class FotografoEntity {
     public void setFechaNacimiento(String fecha){
         fechaNacimiento = fecha;
     }
-    public int getEdad(){
+    public Integer getEdad(){
         return edad;
     }
-    public void setEdad(int ed){
+    public void setEdad(Integer ed){
         edad = ed;
     }
     public String getCorreo(){
@@ -53,10 +56,10 @@ public class FotografoEntity {
     public void setCorreo(String pCorreo){
         correo = pCorreo;
     }
-    public int getTelefono(){
+    public Integer getTelefono(){
         return telefono;
     }
-    public void setTelefono(int pTelefono){
+    public void setTelefono(Integer pTelefono){
         telefono = pTelefono;
     }
     public String getPais(){
@@ -65,12 +68,6 @@ public class FotografoEntity {
     
     public void setPais(String pPais){
         pais = pPais;
-    }
-    public Long getId(){
-        return id;
-    }
-    public void setId(Long pId){
-        id = pId;
     }
     
 }
