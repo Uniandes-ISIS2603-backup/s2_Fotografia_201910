@@ -33,7 +33,7 @@ public class CalificacionPersistence {
     public CalificacionEntity create(CalificacionEntity calificacionEntity) {
         LOGGER.log(Level.INFO, "Creando una calificacion nueva");
         em.persist(calificacionEntity);
-        LOGGER.log(Level.INFO, "Autor creado");
+        LOGGER.log(Level.INFO, "Calificacion creado");
         return calificacionEntity;
     }
 
