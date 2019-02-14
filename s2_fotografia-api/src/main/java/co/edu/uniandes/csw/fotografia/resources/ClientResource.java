@@ -40,12 +40,13 @@ public class ClientResource
     }
     
     @GET
+    @Path ("{usuario:\\d+}")
     public ClientDTO getClient (@PathParam ("usuario")String usuario)
     {
         return null;
     }
     
-        @GET
+    @GET
     public List<ClientDTO> getClients ()
     {
         return null;
@@ -58,6 +59,7 @@ public class ClientResource
     }    
     
     @DELETE
+    @Path ("{usuario:\\d+}")
     public ClientDTO deleteClient(@PathParam ("usuario")String usuario)
     {
         return null;
