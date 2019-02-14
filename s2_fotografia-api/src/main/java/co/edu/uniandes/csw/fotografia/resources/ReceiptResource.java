@@ -42,6 +42,7 @@ public class ReceiptResource
     }
     
     @GET
+    @Path ("{numero:\\d+}")
     public ReceiptDTO getReceipt (@PathParam ("numero")int numero)
     {
         return null;
@@ -60,6 +61,7 @@ public class ReceiptResource
     }    
     
     @DELETE
+    @Path ("{numero:\\d+}")
     public ReceiptDTO deleteReceipt(@PathParam ("numero")int numero)
     {
         return null;
