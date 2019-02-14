@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author da.benavides
  */
 public class PhotoDetailDTO extends PhotoDTO {
     

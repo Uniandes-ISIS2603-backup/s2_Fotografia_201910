@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.fotografia.dtos;
+package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.persistence.Entity;
+
 /**
  *
  * @author da.benavides
  */
-public class PhotoDTO implements Serializable{
-    
+@Entity
+public class PhotoEntity extends BaseEntity implements Serializable{
     private String name;
     
     private Date date;
@@ -21,26 +24,14 @@ public class PhotoDTO implements Serializable{
     
     private String description;
     
-    private double price;
+    private Double price;
     
-    private ArrayList<String> comments;
+   // private ArrayList<String> comments;
     
-    private boolean winner;
+    private Boolean winner;
     
-    private boolean published;
+    private Boolean published;
 
-    //Create getters and setters
-    //private Photgrapher participant;
-    
-    //Create getters and setters
-    //private Photographer photographer;
-    
-    /**
-     * Constructor vacío
-     */
-    public PhotoDTO(){
-        
-    }
     /**
      * @return the name
      */
@@ -100,59 +91,57 @@ public class PhotoDTO implements Serializable{
     /**
      * @return the price
      */
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
     /**
      * @return the comments
      */
-    public ArrayList<String> getComments() {
-        return comments;
-    }
+   // public ArrayList<String> getComments() {
+   //     return comments;
+   // }
 
     /**
-     * @param comments the comments to set
+     * @pasram comments the comments to set
      */
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
-    }
+   // public void setComments(ArrayList<String> comments) {
+   //     this.comments = comments;
+   // }
 
     /**
      * @return the winner
      */
-    public boolean isWinner() {
+    public Boolean getWinner() {
         return winner;
     }
 
     /**
      * @param winner the winner to set
      */
-    public void setWinner(boolean winner) {
+    public void setWinner(Boolean winner) {
         this.winner = winner;
     }
 
     /**
      * @return the published
      */
-    public boolean isPublished() {
+    public Boolean getPublished() {
         return published;
     }
 
     /**
      * @param published the published to set
      */
-    public void setPublished(boolean published) {
+    public void setPublished(Boolean published) {
         this.published = published;
     }
-    
-    
-    
+
 }
