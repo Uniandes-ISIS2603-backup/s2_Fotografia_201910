@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.resources;
 
 import co.edu.uniandes.csw.fotografia.dtos.ReceiptDTO;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -19,7 +20,7 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author estudiante
+ * @author Valentina Duarte
  */
 
 @Path ("receipts")
@@ -41,19 +42,25 @@ public class ReceiptResource
     }
     
     @GET
-    public ReceiptDTO getReceipt (@PathParam ("id")int id)
+    public ReceiptDTO getReceipt (@PathParam ("numero")int numero)
+    {
+        return null;
+    }
+    
+       @GET
+    public List<ReceiptDTO> getReceipts ()
     {
         return null;
     }
     
     @PUT
-    public ReceiptDTO updateReceipt(@PathParam ("id")int id)
+    public ReceiptDTO updateReceipt(@PathParam ("numero")int numero, ReceiptDTO receipt)
     {
         return null;
     }    
     
     @DELETE
-    public ReceiptDTO deleteReceipt(@PathParam ("id")int id)
+    public ReceiptDTO deleteReceipt(@PathParam ("numero")int numero)
     {
         return null;
     }  
