@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.resources;
 
-import co.edu.uniandes.csw.fotografia.dtos.ClientDTO;
+import co.edu.uniandes.csw.fotografia.dtos.ClienteDTO;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -28,39 +28,39 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 
-public class ClientResource 
+public class ClienteResource 
 {
-    private static final Logger LOGGER = Logger.getLogger(ClientResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClienteResource.class.getName());
     
     @POST
-    public ClientDTO createClient (ClientDTO client)
+    public ClienteDTO createCliente (ClienteDTO cliente)
     {
-        return client;
+        return cliente;
         
     }
     
     @GET
     @Path ("{usuario:\\d+}")
-    public ClientDTO getClient (@PathParam ("usuario")String usuario)
+    public ClienteDTO getCliente (@PathParam ("usuario")String usuario)
     {
         return null;
     }
     
     @GET
-    public List<ClientDTO> getClients ()
+    public List<ClienteDTO> getClientes ()
     {
         return null;
     }
     
     @PUT
-    public ClientDTO updateClient(@PathParam ("usuario")String usuario, ClientDTO client )
+    public ClienteDTO updateCliente(@PathParam ("usuario")String usuario, ClienteDTO cliente )
     {
         return null;
     }    
     
     @DELETE
     @Path ("{usuario:\\d+}")
-    public ClientDTO deleteClient(@PathParam ("usuario")String usuario)
+    public ClienteDTO deleteCliente(@PathParam ("usuario")String usuario)
     {
         return null;
     }   

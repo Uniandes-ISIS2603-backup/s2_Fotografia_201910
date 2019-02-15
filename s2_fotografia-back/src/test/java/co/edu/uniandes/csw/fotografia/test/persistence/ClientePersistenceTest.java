@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.fotografia.test.persistence;
 
-import co.edu.uniandes.csw.fotografia.entities.ClientEntity;
-import co.edu.uniandes.csw.fotografia.persistence.ClientPersistence;
+import co.edu.uniandes.csw.fotografia.entities.ClienteEntity;
+import co.edu.uniandes.csw.fotografia.persistence.ClientePersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,10 +25,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Valentina Duarte
  */
 @RunWith(Arquillian.class)
-public class ClientPersistenceTest {
+public class ClientePersistenceTest {
 
     @Inject
-    private ClientPersistence cp;
+    private ClientePersistence cp;
     
     @PersistenceContext
     private EntityManager em;
@@ -36,8 +36,8 @@ public class ClientPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ClientEntity.class.getPackage())
-                .addPackage(ClientPersistence.class.getPackage())
+                .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -45,11 +45,11 @@ public class ClientPersistenceTest {
     @Test
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ClientEntity newEntity = factory.manufacturePojo(ClientEntity.class);
-        ClientEntity result = cp.create(newEntity);
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity result = cp.create(newEntity);
         Assert.assertNotNull(result);
         
-        ClientEntity entity = em.find(ClientEntity.class, result.getId());
+        ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 }
