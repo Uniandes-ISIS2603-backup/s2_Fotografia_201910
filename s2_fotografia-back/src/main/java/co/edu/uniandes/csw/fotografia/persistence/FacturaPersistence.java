@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.persistence;
 
-import co.edu.uniandes.csw.fotografia.entities.ReceiptEntity;
+import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,14 +19,14 @@ import javax.persistence.TypedQuery;
  * @author Valentina Duarte
  */
 @Stateless
-public class ReceiptPersistence {
+public class FacturaPersistence {
 
-    private static final Logger LOGGER = Logger.getLogger(ClientPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
 
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
 
-    public ReceiptEntity create(ReceiptEntity receiptEntity) {
+    public FacturaEntity create(FacturaEntity receiptEntity) {
         LOGGER.log(Level.INFO, "Creando una factura nuevo");
 
         em.persist(receiptEntity);
@@ -34,20 +34,20 @@ public class ReceiptPersistence {
         return receiptEntity;
     }
 
-    public ReceiptEntity get(Long receiptId) {
+    public FacturaEntity get(Long receiptId) {
 
         LOGGER.log(Level.INFO, "Consultando la factura con id{0}", receiptId);
-        return em.find(ReceiptEntity.class, receiptId);
+        return em.find(FacturaEntity.class, receiptId);
     }
 
-    public List<ReceiptEntity> getAll() {
+    public List<FacturaEntity> getAll() {
         LOGGER.log(Level.INFO, "Consultando todas las facturas");
-        TypedQuery<ReceiptEntity> query = em.createQuery("select u from ReceiptEntity u", ReceiptEntity.class);
+        TypedQuery<FacturaEntity> query = em.createQuery("select u from ReceiptEntity u", FacturaEntity.class);
         return query.getResultList();
 
     }
 
-    public ReceiptEntity set(ReceiptEntity receiptEntity) {
+    public FacturaEntity set(FacturaEntity receiptEntity) {
         LOGGER.log(Level.INFO, "Actualizando la factura con id={0}", receiptEntity.getId());
 
         return em.merge(receiptEntity);
@@ -57,7 +57,7 @@ public class ReceiptPersistence {
 
         LOGGER.log(Level.INFO, "Borrando la factura con id={0}", receiptId);
         // Se hace uso de mismo método que esta explicado en public AuthorEntity find(Long id) para obtener la author a borrar.
-        ReceiptEntity receiptEntity = em.find(ReceiptEntity.class, receiptId);
+        FacturaEntity receiptEntity = em.find(FacturaEntity.class, receiptId);
 
         em.remove(receiptEntity);
     }

@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.fotografia.test.persistence;
 
-import co.edu.uniandes.csw.fotografia.entities.ReceiptEntity;
-import co.edu.uniandes.csw.fotografia.persistence.ReceiptPersistence;
+import co.edu.uniandes.csw.fotografia.entities.FormaDePagoEntity;
+import co.edu.uniandes.csw.fotografia.persistence.FormaDePagoPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,34 +24,33 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Valentina Duarte
  */
-
-@RunWith (Arquillian.class)
-public class ReceiptPersistenceTest 
+@RunWith(Arquillian.class)
+public class FormaDePagoPersistenceTest 
 {
+    
     @Inject
-    private ReceiptPersistence rp; 
+    private FormaDePagoPersistence fdpp;
     
     @PersistenceContext
     private EntityManager em;
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ReceiptEntity.class.getPackage())
-                .addPackage(ReceiptPersistence.class.getPackage())
+                .addPackage(FormaDePagoEntity.class.getPackage())
+                .addPackage(FormaDePagoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-        @Test
+
+    @Test
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        ReceiptEntity newEntity = factory.manufacturePojo(ReceiptEntity.class);
-        ReceiptEntity result = rp.create(newEntity);
+        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
+        FormaDePagoEntity result = fdpp.create(newEntity);
         Assert.assertNotNull(result);
         
-        ReceiptEntity entity = em.find(ReceiptEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
-        
+        FormaDePagoEntity entity = em.find(FormaDePagoEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 }

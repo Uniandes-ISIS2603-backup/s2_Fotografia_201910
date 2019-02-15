@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-public class ReceiptEntity extends BaseEntity implements Serializable
+public class FacturaEntity extends BaseEntity implements Serializable
 {
     private Integer numero;
     
@@ -28,7 +28,7 @@ public class ReceiptEntity extends BaseEntity implements Serializable
     @Temporal (TemporalType.DATE)
     private Date fechaCompra;
     
-    public ReceiptEntity()
+    public FacturaEntity()
             {
     }
 

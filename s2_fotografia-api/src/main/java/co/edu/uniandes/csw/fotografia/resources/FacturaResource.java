@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.resources;
 
-import co.edu.uniandes.csw.fotografia.dtos.ReceiptDTO;
+import co.edu.uniandes.csw.fotografia.dtos.FacturaDTO;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -23,46 +23,46 @@ import javax.ws.rs.Produces;
  * @author Valentina Duarte
  */
 
-@Path ("receipts")
+@Path ("facturas")
 @Produces ("application/json")
 @Consumes("application/json")
 @RequestScoped
 
 
-public class ReceiptResource
+public class FacturaResource
 {
     
-    private static final Logger LOGGER = Logger.getLogger(ReceiptResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
     
     @POST
-    public ReceiptDTO createReceipt (ReceiptDTO receipt)
+    public FacturaDTO createFactura (FacturaDTO factura)
     {
-        return receipt;
+        return factura;
         
     }
     
     @GET
     @Path ("{numero:\\d+}")
-    public ReceiptDTO getReceipt (@PathParam ("numero")int numero)
+    public FacturaDTO getFactura (@PathParam ("numero")int numero)
     {
         return null;
     }
     
        @GET
-    public List<ReceiptDTO> getReceipts ()
+    public List<FacturaDTO> getFacturas ()
     {
         return null;
     }
     
     @PUT
-    public ReceiptDTO updateReceipt(@PathParam ("numero")int numero, ReceiptDTO receipt)
+    public FacturaDTO updateFactura(@PathParam ("numero")int numero, FacturaDTO factura)
     {
         return null;
     }    
     
     @DELETE
     @Path ("{numero:\\d+}")
-    public ReceiptDTO deleteReceipt(@PathParam ("numero")int numero)
+    public FacturaDTO deleteFactura(@PathParam ("numero")int numero)
     {
         return null;
     }  

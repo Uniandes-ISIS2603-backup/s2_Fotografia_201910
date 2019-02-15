@@ -12,20 +12,18 @@ import javax.persistence.Entity;
  *
  * @author Valentina Duarte
  */
-
 @Entity
-public class ClientEntity extends BaseEntity implements Serializable
-{
+public class ClienteEntity extends BaseEntity implements Serializable {
+
     private String usuario;
     private String nombre;
     private String correo;
     //private FormaDePago formaDePago;
 
-    
-    public ClientEntity()
-            {
+    //Constructor vacio
+    public ClienteEntity() {
     }
-    
+
     /**
      * @return the usuario
      */
@@ -67,6 +65,5 @@ public class ClientEntity extends BaseEntity implements Serializable
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-    
+
 }
