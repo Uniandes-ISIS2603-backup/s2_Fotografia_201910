@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author a.trujilloa1
  */
+@Entity
 public class JuradoEntity extends BaseEntity implements Serializable{
     private String nombre;
     private String apellido;
@@ -18,6 +20,11 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     private Long cedula;
     private String pais;
     private String ciudad;
+    
+    /**
+* Constructor de la clase
+*/
+    public JuradoEntity(){}
     
      /**
      * Devuelve el nombre del jurado.

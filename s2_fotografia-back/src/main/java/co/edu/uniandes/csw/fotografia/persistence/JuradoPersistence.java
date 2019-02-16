@@ -30,7 +30,7 @@ public class JuradoPersistence {
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public JuradoEntity create(JuradoEntity juradoEntity) {
-        LOGGER.log(Level.INFO, "Creando un jurado nueva");
+        LOGGER.log(Level.INFO, "Creando un jurado nuevo");
         em.persist(juradoEntity);
         LOGGER.log(Level.INFO, "Jurado creado");
         return juradoEntity;
@@ -44,7 +44,7 @@ public class JuradoPersistence {
      * JuradoEntity;" - "SELECT * FROM table_name" en SQL.
      */
     public List<JuradoEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando tods las jurados");
+        LOGGER.log(Level.INFO, "Consultando tods los jurados");
         // Se crea un query para buscar todas las jurados en la base de datos.
         TypedQuery query = em.createQuery("select u from JuradoEntity u", JuradoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de jurados.
