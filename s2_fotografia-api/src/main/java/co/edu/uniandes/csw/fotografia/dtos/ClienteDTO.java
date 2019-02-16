@@ -7,16 +7,12 @@ package co.edu.uniandes.csw.fotografia.dtos;
 
 import java.io.Serializable;
 
-enum FormaDePago
-{
-    TARJETACREDITO, PSE, PAYPAL
-}
 
 /**
  *
  * @author estudiante
  */
-public class ClientDTO implements Serializable
+public class ClienteDTO implements Serializable
 {
     private String usuario;
     
@@ -24,26 +20,12 @@ public class ClientDTO implements Serializable
     
     private String correo;
     
-    private FormaDePago formaDePago;
+   // private FormaDePago formaDePago;
     
-     public ClientDTO()
+     public ClienteDTO()
      {
          
      }
-
-    /**
-     * @return the formaDePago
-     */
-    public FormaDePago getFormaDePago() {
-        return formaDePago;
-    }
-
-    /**
-     * @param formaDePago the formaDePago to set
-     */
-    public void setFormaDePago(FormaDePago formaDePago) {
-        this.formaDePago = formaDePago;
-    }
 
     /**
      * @return the nombre

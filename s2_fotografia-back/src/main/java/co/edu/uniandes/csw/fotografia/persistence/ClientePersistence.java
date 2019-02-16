@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.persistence;
 
-import co.edu.uniandes.csw.fotografia.entities.ClientEntity;
+import co.edu.uniandes.csw.fotografia.entities.ClienteEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,14 +19,14 @@ import javax.persistence.TypedQuery;
  * @author Valentina Duarte
  */
 @Stateless
-public class ClientPersistence {
+public class ClientePersistence {
 
-    private static final Logger LOGGER = Logger.getLogger(ClientPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
 
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
 
-    public ClientEntity create(ClientEntity clientEntity) {
+    public ClienteEntity create(ClienteEntity clientEntity) {
         LOGGER.log(Level.INFO, "Creando un cliente nuevo");
 
         em.persist(clientEntity);
@@ -34,20 +34,20 @@ public class ClientPersistence {
         return clientEntity;
     }
 
-    public ClientEntity get(Long clientId) {
+    public ClienteEntity get(Long clientId) {
 
         LOGGER.log(Level.INFO, "Consultando el cliente con id{0}", clientId);
-        return em.find(ClientEntity.class, clientId);
+        return em.find(ClienteEntity.class, clientId);
     }
 
-    public List<ClientEntity> getAll() {
+    public List<ClienteEntity> getAll() {
         LOGGER.log(Level.INFO, "Consultando todos los clientes");
-        TypedQuery<ClientEntity> query = em.createQuery("select u from ClientEntity u", ClientEntity.class);
+        TypedQuery<ClienteEntity> query = em.createQuery("select u from ClientEntity u", ClienteEntity.class);
         return query.getResultList();
 
     }
 
-    public ClientEntity set(ClientEntity clientEntity) {
+    public ClienteEntity set(ClienteEntity clientEntity) {
         LOGGER.log(Level.INFO, "Actualizando el cliente con id={0}", clientEntity.getId());
 
         return em.merge(clientEntity);
@@ -55,9 +55,9 @@ public class ClientPersistence {
 
     public void delete(Long clientId) {
 
-        LOGGER.log(Level.INFO, "Borrando la factura con id={0}", clientId);
+        LOGGER.log(Level.INFO, "Borrando el cliente con id={0}", clientId);
         // Se hace uso de mismo método que esta explicado en public AuthorEntity find(Long id) para obtener la author a borrar.
-        ClientEntity clientEntity = em.find(ClientEntity.class, clientId);
+        ClienteEntity clientEntity = em.find(ClienteEntity.class, clientId);
 
         em.remove(clientEntity);
     }
