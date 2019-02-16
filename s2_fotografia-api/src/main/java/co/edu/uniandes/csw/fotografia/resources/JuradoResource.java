@@ -124,8 +124,7 @@ public class JuradoResource {
      *
      * @param juradosId Identificador del jurado que se desea borrar. Este debe
      * ser una cadena de dígitos.
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     * si el jurado tiene libros asociados
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
      * Error de lógica que se genera cuando no se encuentra el jurado a borrar.
      */

@@ -15,7 +15,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author a.trujilloa1
  */
 public class JuradoDetailDTO extends JuradoDTO implements Serializable {
-     public JuradoDetailDTO() {
+     
+    public JuradoDetailDTO() {
         super();
     }
 
@@ -38,6 +39,7 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
      * @return Nueva objeto JuradoEntity.
      *
      */
+    @Override
     public JuradoEntity toEntity() {
         JuradoEntity juradoEntity = super.toEntity();
         return juradoEntity;
