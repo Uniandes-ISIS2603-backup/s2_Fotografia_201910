@@ -26,8 +26,8 @@ public class CalificacionPersistence {
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
     
-     /* Crea una calificacion en la base de dato
-     * @param calificacionEntity objeto author que se creará en la base de datos
+     /* Crea una calificacion en la base de datos
+     * @param calificacionEntity objeto calificacion que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public CalificacionEntity create(CalificacionEntity calificacionEntity) {
@@ -38,7 +38,7 @@ public class CalificacionPersistence {
     }
 
     /**
-     * Devuelve todas las authores de la base de datos.
+     * Devuelve todas las calificaciones de la base de datos.
      *
      * @return una lista con todas las calificaciones que encuentre en la base de
      * datos, "select u from CalificacionEntity u" es como un "select * from
@@ -46,7 +46,7 @@ public class CalificacionPersistence {
      */
     public List<CalificacionEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todas las calificaciones");
-        // Se crea un query para buscar todas las authores en la base de datos.
+        // Se crea un query para buscar todas las calificaciones en la base de datos.
         TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de calificaciones.
         return query.getResultList();
@@ -59,7 +59,7 @@ public class CalificacionPersistence {
      * @return un calificacion.
      */
     public CalificacionEntity find(Long calificacionId) {
-        LOGGER.log(Level.INFO, "Consultando el calificacion con id={0}", calificacionId);
+        LOGGER.log(Level.INFO, "Consultando la calificacion con id={0}", calificacionId);
         return em.find(CalificacionEntity.class, calificacionId);
     }
 
@@ -69,7 +69,7 @@ public class CalificacionPersistence {
      * @param calificacionEntity: la calificacion que viene con los nuevos cambios. Por
      * ejemplo el nombre pudo cambiar. En ese caso, se haria uso del método
      * update.
-     * @return una author con los cambios aplicados.
+     * @return una calificacion con los cambios aplicados.
      */
     public CalificacionEntity update(CalificacionEntity calificacionEntity) {
         LOGGER.log(Level.INFO, "Actualizando la calificacion con id={0}", calificacionEntity.getId());

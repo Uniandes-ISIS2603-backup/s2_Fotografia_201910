@@ -42,16 +42,16 @@ public class CalificacionResource {
     private CalificacionLogic calificacionLogic;
 
     /**
-     * Crea un nuevo autor con la informacion que se recibe en el cuerpo de la
+     * Crea una nueva calificacion con la informacion que se recibe en el cuerpo de la
      * petición y se regresa un objeto identico con un id auto-generado por la
      * base de datos.
      *
-     * @param calificacion {@link CalificacionDTO} - EL autor que se desea guardar.
-     * @return JSON {@link CalificacionDTO} - El autor guardado con el atributo id
+     * @param calificacion {@link CalificacionDTO} - La calificacion que se desea guardar.
+     * @return JSON {@link CalificacionDTO} - La calificacion guardada con el atributo id
      * autogenerado.
      */
     @POST
-    public CalificacionDTO createAuthor(CalificacionDTO calificacion) {
+    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) {
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: input: {0}", calificacion);
         CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: output: {0}", calificacionDTO);
@@ -59,13 +59,13 @@ public class CalificacionResource {
     }
 
     /**
-     * Busca y devuelve todos los autores que existen en la aplicacion.
+     * Busca y devuelve todas las calificaciones que existen en la aplicacion.
      *
-     * @return JSONArray {@link CalificacionDetailDTO} - Los autores encontrados en la
-     * aplicación. Si no hay ninguno retorna una lista vacía.
+     * @return JSONArray {@link CalificacionDetailDTO} - Las calificaciones encontradas en la
+     * aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<CalificacionDetailDTO> getAuthors() {
+    public List<CalificacionDetailDTO> getCalificaciones() {
         LOGGER.info("CalificacionResource getCalificaciones: input: void");
         List<CalificacionDetailDTO> listaCalificaciones = listEntity2DTO(calificacionLogic.getCalificaciones());
         LOGGER.log(Level.INFO, "CalificacionResource getCalificaciones: output: {0}", listaCalificaciones);
@@ -73,13 +73,13 @@ public class CalificacionResource {
     }
 
     /**
-     * Busca el autor con el id asociado recibido en la URL y lo devuelve.
+     * Busca la calificacion con el id asociado recibido en la URL y la devuelve.
      *
-     * @param calificacionesId Identificador del autor que se esta buscando. Este debe
+     * @param calificacionesId Identificador de la calificacion que se esta buscando. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link CalificacionDetailDTO} - El autor buscado
+     * @return JSON {@link CalificacionDetailDTO} - La calificacion buscada
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra la calificacion.
      */
     @GET
     @Path("{calificacionesId: \\d+}")
@@ -95,55 +95,54 @@ public class CalificacionResource {
     }
 
     /**
-     * Actualiza el autor con el id recibido en la URL con la información que se
+     * Actualiza la calificacion con el id recibido en la URL con la información que se
      * recibe en el cuerpo de la petición.
      *
-     * @param calificacionesId Identificador del autor que se desea actualizar. Este
+     * @param calificacionesId Identificador de la calificacion que se desea actualizar. Este
      * debe ser una cadena de dígitos.
-     * @param calificacion {@link CalificacionDetailDTO} El autor que se desea guardar.
-     * @return JSON {@link CalificacionDetailDTO} - El autor guardado.
+     * @param calificacion {@link CalificacionDetailDTO} La calificacion que se desea guardar.
+     * @return JSON {@link CalificacionDetailDTO} - La calificacion guardada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el autor a
+     * Error de lógica que se genera cuando no se encuentra la calificacion a
      * actualizar.
      */
     @PUT
     @Path("{calificacionesId: \\d+}")
-    public CalificacionDetailDTO updateAuthor(@PathParam("calificacionesId") Long calificacionesId, CalificacionDetailDTO calificacion) {
-        LOGGER.log(Level.INFO, "CalificacionResource updateAuthor: input: calificacionesId: {0} , calificacion: {1}", new Object[]{calificacionesId, calificacion});
+    public CalificacionDetailDTO updateCalificacion(@PathParam("calificacionesId") Long calificacionesId, CalificacionDetailDTO calificacion) {
+        LOGGER.log(Level.INFO, "CalificacionResource updateCalificacion: input: calificacionesId: {0} , calificacion: {1}", new Object[]{calificacionesId, calificacion});
         calificacion.setId(calificacionesId);
         if (calificacionLogic.getCalificacion(calificacionesId) == null) {
             throw new WebApplicationException("El recurso /calificaciones/" + calificacionesId + " no existe.", 404);
         }
         CalificacionDetailDTO detailDTO = new CalificacionDetailDTO(calificacionLogic.updateCalificacion(calificacionesId, calificacion.toEntity()));
-        LOGGER.log(Level.INFO, "CalificacionResource updateAuthor: output: {0}", detailDTO);
+        LOGGER.log(Level.INFO, "CalificacionResource updateCalificacion: output: {0}", detailDTO);
         return detailDTO;
     }
 
     /**
-     * Borra el autor con el id asociado recibido en la URL.
+     * Borra el calificacion con el id asociado recibido en la URL.
      *
-     * @param calificacionesId Identificador del autor que se desea borrar. Este debe
+     * @param calificacionesId Identificador de la calificacion que se desea borrar. Este debe
      * ser una cadena de dígitos.
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     * si el autor tiene libros asociados
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
-     * Error de lógica que se genera cuando no se encuentra el autor a borrar.
+     * Error de lógica que se genera cuando no se encuentra la calificacion a borrar.
      */
     @DELETE
     @Path("{calificacionesId: \\d+}")
-    public void deleteAuthor(@PathParam("calificacionesId") Long calificacionesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "CalificacionResource deleteAuthor: input: {0}", calificacionesId);
+    public void deleteCalificacion(@PathParam("calificacionesId") Long calificacionesId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "CalificacionResource deleteCalificacion: input: {0}", calificacionesId);
         if (calificacionLogic.getCalificacion(calificacionesId) == null) {
             throw new WebApplicationException("El recurso /calificaciones/" + calificacionesId + " no existe.", 404);
         }
         calificacionLogic.deleteCalificacion(calificacionesId);
-        LOGGER.info("CalificacionResource deleteAuthor: output: void");
+        LOGGER.info("CalificacionResource deleteCalificacion: output: void");
     }
 
     /**
-     * Convierte una lista de AuthorEntity a una lista de CalificacionDetailDTO.
+     * Convierte una lista de CalificacionEntity a una lista de CalificacionDetailDTO.
      *
-     * @param entityList Lista de AuthorEntity a convertir.
+     * @param entityList Lista de CalificacionEntity a convertir.
      * @return Lista de CalificacionDetailDTO convertida.
      */
     private List<CalificacionDetailDTO> listEntity2DTO(List<CalificacionEntity> entityList) {
