@@ -32,9 +32,9 @@ public class FacturaEntity extends BaseEntity implements Serializable
     @ManyToOne
     private ClienteEntity cliente;
     
-    @PodamExclude
-    @ManyToOne
-    private PhotoEntity fotoComprada;
+    //@PodamExclude
+    //@ManyToOne
+   // private PhotoEntity fotoComprada;
     
     private FormaDePagoEntity formaDePagoFactura;
     
@@ -101,16 +101,16 @@ public class FacturaEntity extends BaseEntity implements Serializable
     /**
      * @return the fotoComprada
      */
-    public PhotoEntity getFotoComprada() {
-        return fotoComprada;
-    }
+    //public PhotoEntity getFotoComprada() {
+     //   return fotoComprada;
+  //  }
 
     /**
      * @param fotoComprada the fotoComprada to set
      */
-    public void setFotoComprada(PhotoEntity fotoComprada) {
-        this.fotoComprada = fotoComprada;
-    }
+   // public void setFotoComprada(PhotoEntity fotoComprada) {
+      //  this.fotoComprada = fotoComprada;
+   // }
 
     /**
      * @return the formaDePagoFactura

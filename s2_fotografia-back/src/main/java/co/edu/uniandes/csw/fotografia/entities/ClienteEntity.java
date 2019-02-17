@@ -26,11 +26,11 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy="cliente", fetch = FetchType.LAZY)
-    private List <FacturaEntity> facturas = new ArrayList<>();
+    private List <FacturaEntity> facturas = new ArrayList<FacturaEntity>();
     
-    @PodamExclude
-    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
-    private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<>();
+   // @PodamExclude
+    //@OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
+   // private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
     
     private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
     
@@ -97,19 +97,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.facturas = facturas;
     }
 
-    /**
-     * @return the calificacionesPorCliente
-     */
-    public List<CalificacionEntity> getCalificacionesPorCliente() {
-        return calificacionesPorCliente;
-    }
-
-    /**
-     * @param calificacionesPorCliente the calificacionesPorCliente to set
-     */
-    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
-        this.calificacionesPorCliente = calificacionesPorCliente;
-    }
+   
 
     /**
      * @return the formasDePago
