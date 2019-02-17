@@ -19,7 +19,8 @@ import javax.persistence.TypedQuery;
  * @author Valentina Duarte
  */
 @Stateless
-public class FacturaPersistence {
+public class FacturaPersistence 
+{
 
     private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
 
