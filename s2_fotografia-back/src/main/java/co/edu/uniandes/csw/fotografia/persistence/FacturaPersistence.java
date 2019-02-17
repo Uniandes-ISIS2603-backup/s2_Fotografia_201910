@@ -18,48 +18,48 @@ import javax.persistence.TypedQuery;
  *
  * @author Valentina Duarte
  */
+
 @Stateless
 public class FacturaPersistence 
 {
-
-    private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
+     private static final Logger LOGGER = Logger.getLogger(FacturaPersistence.class.getName());
 
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
 
-    public FacturaEntity create(FacturaEntity receiptEntity) {
-        LOGGER.log(Level.INFO, "Creando una factura nuevo");
+    public FacturaEntity create(FacturaEntity facturaEntity) {
+        LOGGER.log(Level.INFO, "Creando una nueva factura");
 
-        em.persist(receiptEntity);
-        LOGGER.log(Level.INFO, "Saliendo de crear una factura nuevo");
-        return receiptEntity;
+        em.persist(facturaEntity);
+        LOGGER.log(Level.INFO, "Saliendo de crear una nueva factura");
+        return facturaEntity;
     }
 
-    public FacturaEntity get(Long receiptId) {
+    public FacturaEntity get(Long facturaId) {
 
-        LOGGER.log(Level.INFO, "Consultando la factura con id{0}", receiptId);
-        return em.find(FacturaEntity.class, receiptId);
+        LOGGER.log(Level.INFO, "Consultando la factura con id{0}", facturaId);
+        return em.find(FacturaEntity.class, facturaId);
     }
 
     public List<FacturaEntity> getAll() {
         LOGGER.log(Level.INFO, "Consultando todas las facturas");
-        TypedQuery<FacturaEntity> query = em.createQuery("select u from ReceiptEntity u", FacturaEntity.class);
+        TypedQuery<FacturaEntity> query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
         return query.getResultList();
 
     }
 
-    public FacturaEntity set(FacturaEntity receiptEntity) {
-        LOGGER.log(Level.INFO, "Actualizando la factura con id={0}", receiptEntity.getId());
+    public FacturaEntity set(FacturaEntity facturaEntity) {
+        LOGGER.log(Level.INFO, "Actualizando la factura con id={0}", facturaEntity.getId());
 
-        return em.merge(receiptEntity);
+        return em.merge(facturaEntity);
     }
 
-    public void delete(Long receiptId) {
+    public void delete(Long facturaId) {
 
-        LOGGER.log(Level.INFO, "Borrando la factura con id={0}", receiptId);
+        LOGGER.log(Level.INFO, "Borrando la factura con id={0}", facturaId);
         // Se hace uso de mismo método que esta explicado en public AuthorEntity find(Long id) para obtener la author a borrar.
-        FacturaEntity receiptEntity = em.find(FacturaEntity.class, receiptId);
+        FacturaEntity facturaEntity = em.find(FacturaEntity.class, facturaId);
 
-        em.remove(receiptEntity);
+        em.remove(facturaEntity);
     }
 }

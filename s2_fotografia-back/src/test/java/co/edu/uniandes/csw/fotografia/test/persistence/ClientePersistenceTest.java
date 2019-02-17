@@ -29,8 +29,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Valentina Duarte
  */
 @RunWith(Arquillian.class)
-public class ClientePersistenceTest {
-
+public class ClientePersistenceTest 
+{
     @Inject
     private ClientePersistence cp;
     
@@ -67,7 +67,8 @@ public class ClientePersistenceTest {
             }
         }
     }
-    /**
+    
+     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
@@ -86,6 +87,9 @@ public class ClientePersistenceTest {
             data.add(entity);
         }
     }
+    
+    
+    
     @Test
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -110,7 +114,7 @@ public class ClientePersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     /**
-     * Prueba para consultar la lista de Calificaciones.
+     * Prueba para consultar la lista de clientes.
      */
     @Test
     public void getClientesTest() {
@@ -127,18 +131,19 @@ public class ClientePersistenceTest {
         }
     }
     /**
-     * Prueba para consultar un cliente.
+     * Prueba para consultar una forma de pago.
      */
     @Test
-    public void getClienteTest() {
+    public void getFormaDePagoTest() {
         ClienteEntity entity = data.get(0);
         ClienteEntity newEntity = cp.get(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
-        Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+     
     }
     /**
-     * Prueba para actualizar un Cliente.
+     * Prueba para actualizar un cliente.
      */
     @Test
     public void setClienteTest() {
@@ -151,7 +156,7 @@ public class ClientePersistenceTest {
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     /**
-     * Prueba para eliminar un Cliente.
+     * Prueba para eliminar uncliente.
      */
     @Test
     public void deleteClienteTest() {

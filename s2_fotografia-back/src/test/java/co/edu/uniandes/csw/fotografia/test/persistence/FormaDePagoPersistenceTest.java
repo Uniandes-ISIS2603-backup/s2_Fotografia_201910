@@ -73,7 +73,7 @@ public class FormaDePagoPersistenceTest
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from FormaDePagoEntity").executeUpdate();
     }
     
       /**
@@ -99,7 +99,7 @@ public class FormaDePagoPersistenceTest
         Assert.assertNotNull(result);
         
         FormaDePagoEntity entity = em.find(FormaDePagoEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     
     /**

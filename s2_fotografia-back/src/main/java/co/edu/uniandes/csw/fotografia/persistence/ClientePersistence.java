@@ -18,48 +18,48 @@ import javax.persistence.TypedQuery;
  *
  * @author Valentina Duarte
  */
-@Stateless
-public class ClientePersistence {
 
-    private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
+@Stateless
+public class ClientePersistence 
+{
+     private static final Logger LOGGER = Logger.getLogger(ClientePersistence.class.getName());
 
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
 
-    public ClienteEntity create(ClienteEntity clientEntity) {
-        LOGGER.log(Level.INFO, "Creando un cliente nuevo");
+    public ClienteEntity create(ClienteEntity clienteEntity) {
+        LOGGER.log(Level.INFO, "Creando un nuevo cliente");
 
-        em.persist(clientEntity);
-        LOGGER.log(Level.INFO, "Saliendo de crear un cliente nuevo");
-        return clientEntity;
+        em.persist(clienteEntity);
+        LOGGER.log(Level.INFO, "Saliendo de crear un nuevo cliente");
+        return clienteEntity;
     }
 
-    public ClienteEntity get(Long clientId) {
+    public ClienteEntity get(Long clienteId) {
 
-        LOGGER.log(Level.INFO, "Consultando el cliente con id{0}", clientId);
-        return em.find(ClienteEntity.class, clientId);
+        LOGGER.log(Level.INFO, "Consultando el cliente con id{0}", clienteId);
+        return em.find(ClienteEntity.class, clienteId);
     }
 
     public List<ClienteEntity> getAll() {
         LOGGER.log(Level.INFO, "Consultando todos los clientes");
-        TypedQuery<ClienteEntity> query = em.createQuery("select u from ClientEntity u", ClienteEntity.class);
+        TypedQuery<ClienteEntity> query = em.createQuery("select u from ClienteEntity u", ClienteEntity.class);
         return query.getResultList();
 
     }
 
-    public ClienteEntity set(ClienteEntity clientEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el cliente con id={0}", clientEntity.getId());
+    public ClienteEntity set(ClienteEntity clienteEntity) {
+        LOGGER.log(Level.INFO, "Actualizando el cliente id={0}", clienteEntity.getId());
 
-        return em.merge(clientEntity);
+        return em.merge(clienteEntity);
     }
 
-    public void delete(Long clientId) {
+    public void delete(Long clienteId) {
 
-        LOGGER.log(Level.INFO, "Borrando el cliente con id={0}", clientId);
+        LOGGER.log(Level.INFO, "Borrando el cliente con id={0}", clienteId);
         // Se hace uso de mismo método que esta explicado en public AuthorEntity find(Long id) para obtener la author a borrar.
-        ClienteEntity clientEntity = em.find(ClienteEntity.class, clientId);
+        ClienteEntity clienteEntity = em.find(ClienteEntity.class, clienteId);
 
-        em.remove(clientEntity);
+        em.remove(clienteEntity);
     }
-
 }
