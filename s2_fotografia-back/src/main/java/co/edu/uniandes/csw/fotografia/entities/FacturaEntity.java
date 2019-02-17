@@ -8,8 +8,10 @@ package co.edu.uniandes.csw.fotografia.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,10 +25,18 @@ public class FacturaEntity extends BaseEntity implements Serializable
     
     private Double precio;
     
-    //private ClienteDTO cliente;
-    
     @Temporal (TemporalType.DATE)
     private Date fechaCompra;
+    
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
+    
+    @PodamExclude
+    @ManyToOne
+    private PhotoEntity fotoComprada;
+    
+    private FormaDePagoEntity formaDePagoFactura;
     
     public FacturaEntity()
             {
@@ -73,8 +83,49 @@ public class FacturaEntity extends BaseEntity implements Serializable
     public void setFechaCompra(Date fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
-    
-    
-    
+
+    /**
+     * @return the cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the fotoComprada
+     */
+    public PhotoEntity getFotoComprada() {
+        return fotoComprada;
+    }
+
+    /**
+     * @param fotoComprada the fotoComprada to set
+     */
+    public void setFotoComprada(PhotoEntity fotoComprada) {
+        this.fotoComprada = fotoComprada;
+    }
+
+    /**
+     * @return the formaDePagoFactura
+     */
+    public FormaDePagoEntity getFormaDePagoFactura() {
+        return formaDePagoFactura;
+    }
+
+    /**
+     * @param formaDePagoFactura the formaDePagoFactura to set
+     */
+    public void setFormaDePagoFactura(FormaDePagoEntity formaDePagoFactura) {
+        this.formaDePagoFactura = formaDePagoFactura;
+    }
+
+
     
 }
