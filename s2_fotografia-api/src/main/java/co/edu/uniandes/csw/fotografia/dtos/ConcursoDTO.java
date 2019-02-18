@@ -149,8 +149,8 @@ public class ConcursoDTO implements Serializable  {
 	 * Establece un valor para el atributo fecha concurso
 	 * @param pFecha nuevo valor para el atributo 
 	 */
-	public void setFechaConcursoString(String fechaConcurso){
-
+	public void setFechaConcursoString(Date pFechaConcurso){
+                fechaDelConcurso = pFechaConcurso;
 	}
 
 
@@ -196,7 +196,7 @@ public class ConcursoDTO implements Serializable  {
 	}
 	/**
 	 * Establece un valor para el atributo premio
-	 * @param pPais nuevo valor del premio
+	 * @param pPremio nuevo valor del premio
 	 */
 	public void setPremioCantidad(int pPremio){
 		premioCantidad = pPremio;

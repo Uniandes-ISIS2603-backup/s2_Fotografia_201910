@@ -5,12 +5,15 @@
  */
 package co.edu.uniandes.csw.fotografia.persistence;
 
+import co.edu.uniandes.csw.fotografia.entities.ClienteEntity;
 import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
+import java.util.List;
 import java.util.logging.Level;
 import javax.persistence.PersistenceContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import java.util.logging.Logger;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author n.rincond
@@ -41,7 +44,21 @@ public class ConcursoPersistence {
         LOGGER.log(Level.INFO, "Borrando concurso con id = {0}", concursoID);
         ConcursoEntity entity = em.find(ConcursoEntity.class, concursoID);
         em.remove(entity);
-        LOGGER.log(Level.INFO, "Saliendo de borrar el concurso con id = {0}", concursoID);
     }
     
+    public ConcursoEntity get(Long concursoId){
+                LOGGER.log(Level.INFO, "Consultando el cliente con id{0}", concursoId);
+        return em.find(ConcursoEntity.class, concursoId);
+    }
+    
+    public ConcursoEntity set(ConcursoEntity concursoEntity){
+        LOGGER.log(Level.INFO, "Actualizando el concurso con id={0}", concursoEntity.getId());
+        return em.merge(concursoEntity);
+    }
+    
+    public List<ConcursoEntity> getAll(){
+        LOGGER.log(Level.INFO,"Consultando todos los concursos");
+        TypedQuery<ConcursoEntity> query = em.createQuery("Select u from ConcursoEntity u", ConcursoEntity.class);
+        return query.getResultList();
+    }
 }
