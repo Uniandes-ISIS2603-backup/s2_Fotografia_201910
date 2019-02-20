@@ -53,7 +53,7 @@ public class ConcursoResource {
      * autogenerado.
      */
     @POST
-    public ConcursoDTO createConcurso(ConcursoDTO Concurso) {
+    public ConcursoDTO createConcurso(ConcursoDTO Concurso) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ConcursoResource createConcurso: input: {0}", Concurso);
         ConcursoDTO ConcursoDTO = new ConcursoDTO(ConcursoLogic.createConcurso(Concurso.toEntity()));
         LOGGER.log(Level.INFO, "ConcursoResource createConcurso: output: {0}", ConcursoDTO);
