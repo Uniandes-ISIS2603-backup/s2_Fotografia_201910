@@ -30,12 +30,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *      "apellido": String,
  *      "fechaNacimiento": date,
  *      "edad":number,
- *      "correo": String,
- *      "telefono": number,
- *      "pais":String,
- *      "telefono": number,
- *      "pais": String,
- *      "id": number
+ *      "edadDeLaFoto": number,
+ *      "maxFotos": number,
+ *      "fechaDeLConcurso":String,
  * 
  *   }
  * </pre> 
@@ -45,10 +42,10 @@ public class ConcursoDTO implements Serializable  {
 	private Long id;
 	private String tema;
 	private List<String> restricciones ;
-	private int edadDeLaFoto;
-	private int maxFotos;
+	private Integer edadDeLaFoto;
+	private Integer maxFotos;
 	private Date fechaDelConcurso;
-	private int premioCantidad;
+	private Integer premioCantidad;
 
 	//private OrganizadorDTO organizador
 
@@ -149,7 +146,7 @@ public class ConcursoDTO implements Serializable  {
 	 * Establece un valor para el atributo fecha concurso
 	 * @param pFecha nuevo valor para el atributo 
 	 */
-	public void setFechaConcursoString(Date pFechaConcurso){
+	public void setFechaConcurso(Date pFechaConcurso){
                 fechaDelConcurso = pFechaConcurso;
 	}
 
@@ -158,7 +155,7 @@ public class ConcursoDTO implements Serializable  {
 	 * Obtiene el atributo edad de la foto
 	 * @return atributo edad de la foto
 	 */
-	public int getEdadFoto(){
+	public int getEdadDeLaFoto(){
 		return edadDeLaFoto;
 	}
 
@@ -166,7 +163,7 @@ public class ConcursoDTO implements Serializable  {
 	 * Establece un valor para el atributo edad de la fotografia
 	 * @param pEdad nuevo valor para el atributo edadDeLaFoto
 	 */
-	public void setEdadFoto(int pEdad) {
+	public void setEdadDeLaFoto(int pEdad) {
 		edadDeLaFoto = pEdad;
 	}
 

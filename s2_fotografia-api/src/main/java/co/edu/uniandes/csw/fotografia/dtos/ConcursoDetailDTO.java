@@ -7,12 +7,7 @@ import java.util.List;
 public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
 	
 	private List<JuradoDTO> jurados;
-	/*private List<RondasDTO> rondas;
-	
-	*
-	*
-	*
-	*/
+	//private List<RondasDTO> rondas;
         private List<PhotoDTO> fotos;
         
         private List<FotografoDTO> fotografos;
@@ -23,7 +18,9 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         
         public ConcursoDetailDTO(ConcursoEntity concursoEntity){
             super(concursoEntity);
-            //TODO
+            if(concursoEntity != null){
+                //TODO
+            }
         }
         
         @Override
@@ -39,5 +36,20 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         public void setJurados(List<JuradoDTO> pJurados){
             jurados = pJurados;
         }
-
+        
+        public List<PhotoDTO> getFotos(){
+            return fotos;
+        }
+        
+        public void setFotos(List<PhotoDTO> pFotos){
+            fotos = pFotos;
+        }
+        
+        public List<FotografoDTO> getFotografos(){
+            return fotografos;
+        }
+        
+        public void setFotogorafos(List<FotografoDTO> pFotografos){
+            fotografos = pFotografos;
+        }
 }

@@ -20,13 +20,13 @@ import javax.persistence.TemporalType;
 public class ConcursoEntity extends BaseEntity implements Serializable{
     private String tema;
     private List<String> restricciones;
-    private int edadFoto;
-    private int maximasFotos;
+    private Integer edadFoto;
+    private Integer maximasFotos;
     
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    private int cantidadPremio;
+    private Integer cantidadPremio;
     /**
      * AQUI ESTARAN LAS RELACIONES CON LAS DEMAS CLASES
      */
