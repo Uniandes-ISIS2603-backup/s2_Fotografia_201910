@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
+import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.ConcursoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,11 +27,16 @@ public class ConcursoLogic {
     @Inject
     private ConcursoPersistence persistence;
     
-    public ConcursoEntity createConcurso(ConcursoEntity concurso){
+    public ConcursoEntity createConcurso(ConcursoEntity concurso) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del concurso");
-        ConcursoEntity newConcursoEntity = persistence.create(concurso);
+        if(concurso.getEdadFoto() < 0){
+            throw new BusinessLogicException("La edad de la foto es inválida");
+        }
+        if(concurso.getTema() == null || concurso.getTema().length() == 0){
+            throw new BusinessLogicException("Tema invalido");
+        }
         LOGGER.log(Level.INFO, "Termina proceso de creación del concurso");
-        return newConcursoEntity;
+        return concurso;
     }
     
     public ConcursoEntity getConcurso(long pId){

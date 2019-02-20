@@ -13,6 +13,10 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
 	*
 	*
 	*/
+        private List<PhotoDTO> fotos;
+        
+        private List<FotografoDTO> fotografos;
+        
 	public ConcursoDetailDTO() {
             super();
 	}
