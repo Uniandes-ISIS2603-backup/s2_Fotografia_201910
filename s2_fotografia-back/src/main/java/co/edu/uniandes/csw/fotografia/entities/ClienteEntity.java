@@ -29,11 +29,18 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
 
-    // @PodamExclude
-    //@OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
-    // private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
-    // private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
-    // private List<ConcursoEntity> concursosCliente= new ArrayList<>();
+    @PodamExclude
+    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
+     private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
+     private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
+     
+    @PodamExclude
+    @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
+    private List<ConcursoEntity> concursosCliente = new ArrayList<ConcursoEntity>();
+    
     /**
      * Constructor vacio
      */
@@ -109,6 +116,48 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    /**
+     * @return the calificacionesPorCliente
+     */
+    public List<CalificacionEntity> getCalificacionesPorCliente() {
+        return calificacionesPorCliente;
+    }
+
+    /**
+     * @param calificacionesPorCliente the calificacionesPorCliente to set
+     */
+    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
+        this.calificacionesPorCliente = calificacionesPorCliente;
+    }
+
+    /**
+     * @return the formasDePago
+     */
+    public List<FormaDePagoEntity> getFormasDePago() {
+        return formasDePago;
+    }
+
+    /**
+     * @param formasDePago the formasDePago to set
+     */
+    public void setFormasDePago(List<FormaDePagoEntity> formasDePago) {
+        this.formasDePago = formasDePago;
+    }
+
+    /**
+     * @return the concursosCliente
+     */
+    public List<ConcursoEntity> getConcursosCliente() {
+        return concursosCliente;
+    }
+
+    /**
+     * @param concursosCliente the concursosCliente to set
+     */
+    public void setConcursosCliente(List<ConcursoEntity> concursosCliente) {
+        this.concursosCliente = concursosCliente;
     }
 
 }
