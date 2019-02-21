@@ -39,6 +39,24 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      @PodamExclude
     @OneToMany(mappedBy = "fotoComprada", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
+     
+     
+   //@PodamExclude
+   //@ManyToOne
+   // private FotografoEntity concursante;
+     
+   //@PodamExclude
+   //@ManyToOne
+   // private FotografoEntity fotografo;
+     
+   //@PodamExclude
+   //@ManyToMany(mappedBy = "fotosCalificadas")
+   //private List<JuradoEntity> jurados = new ArrayList<>();
+     
+    //  @PodamExclude
+    //@OneToMany(mappedBy = "fotoCalificada", fetch = FetchType.LAZY)
+    //private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+ 
     /**
      * @return the name
      */
