@@ -54,11 +54,15 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
      * AQUI ESTARAN LAS RELACIONES CON LAS DEMAS CLASES
      */
     
+    
+    
+    
     public ConcursoEntity(){
     /**
      * 
      */
     }
+    
     public String getTema() {
         return tema;
     }
