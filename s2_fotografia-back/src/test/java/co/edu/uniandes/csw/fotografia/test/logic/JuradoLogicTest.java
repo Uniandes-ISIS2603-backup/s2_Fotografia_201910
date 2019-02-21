@@ -104,7 +104,7 @@ public class JuradoLogicTest {
      * Prueba para crear un Jurado.
      */
     @Test
-    public void createJuradoTest() {
+    public void createJuradoTest() throws BusinessLogicException {
         JuradoEntity newEntity = factory.manufacturePojo(JuradoEntity.class);
         JuradoEntity result = juradoLogic.createJurado(newEntity);
         Assert.assertNotNull(result);

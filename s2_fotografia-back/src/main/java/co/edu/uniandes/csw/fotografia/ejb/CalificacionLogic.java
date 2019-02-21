@@ -21,18 +21,31 @@ import javax.inject.Inject;
 @Stateless
 public class CalificacionLogic {
      private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
-
+     
     @Inject
     private CalificacionPersistence persistence;
 
+    
+    
+    
     /**
      * Se encarga de crear un Calificacion en la base de datos.
      *
      * @param calificacionEntity Objeto de CalificacionEntity con los datos nuevos
      * @return Objeto de CalificacionEntity con los datos nuevos y su ID.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
-    public CalificacionEntity createCalificacion (CalificacionEntity calificacionEntity) {
+    public CalificacionEntity createCalificacion (CalificacionEntity calificacionEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la calificacion");
+        
+        if(!persistence.verificarPuntaje(calificacionEntity.getPuntaje()))
+        {
+            throw new BusinessLogicException("El puntaje no esta bien definido" + calificacionEntity.getPuntaje());
+        }
+        else if (!persistence.verificarComentario(calificacionEntity.getComentario()))
+        {
+            throw new BusinessLogicException("El comentario no esta bien definido" + calificacionEntity.getComentario());
+        }
         CalificacionEntity newCalificacionEntity = persistence.create(calificacionEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la calificacion");
         return newCalificacionEntity;

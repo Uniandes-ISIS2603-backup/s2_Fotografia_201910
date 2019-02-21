@@ -19,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class CalificacionDTO implements Serializable {
     
     private Long id;
-    private Long puntaje;
+    private Double puntaje;
     private String comentario;  
 
     /**
@@ -83,7 +83,7 @@ public class CalificacionDTO implements Serializable {
      * @return atributo puntaje.
      *
      */
-    public Long getPuntaje() {
+    public double getPuntaje() {
         return puntaje;
     }
 
@@ -93,7 +93,7 @@ public class CalificacionDTO implements Serializable {
      * @param puntaje nuevo valor del atributo
      *
      */
-    public void setPuntaje(Long puntaje) {
+    public void setPuntaje(double puntaje) {
         this.puntaje = puntaje;
     }
 
