@@ -48,9 +48,12 @@ public class ConcursoResource {
      * petición y se regresa un objeto identico con un id auto-generado por la
      * base de datos.
      *
+     * @param concurso
      * @param Concurso {@link ConcursoDTO} - EL fotografo que se desea guardar.
      * @return JSON {@link ConcursoDTO} - El fotografo guardado con el atributo id
      * autogenerado.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException si 
+     * no concuerda con las reglas del negocio del concurso
      */
     @POST
     public ConcursoDTO createConcurso(ConcursoDTO concurso) throws BusinessLogicException {
