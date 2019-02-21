@@ -32,7 +32,9 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
      */
     
     public ConcursoEntity(){
-        
+    /**
+     * 
+     */
     }
     public String getTema() {
         return tema;

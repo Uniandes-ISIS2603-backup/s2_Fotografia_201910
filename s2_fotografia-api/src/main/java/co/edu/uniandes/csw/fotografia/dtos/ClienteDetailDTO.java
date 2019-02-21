@@ -10,31 +10,31 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Valentina Duarte
  */
-public class ClientDetailDTO extends ClientDTO implements Serializable
+public class ClienteDetailDTO extends ClienteDTO implements Serializable
 {
-    private List<ReceiptDTO> facturas;
+    private List<FacturaDTO> facturas;
     
-      public ClientDetailDTO()
+      public ClienteDetailDTO()
      {
          
      }
     /**
      * @return the facturas
      */
-    public List<ReceiptDTO> getFacturas() {
+    public List<FacturaDTO> getFacturas() {
         return facturas;
     }
 
     /**
      * @param facturas the facturas to set
      */
-    public void setFacturas(List<ReceiptDTO> facturas) {
+    public void setFacturas(List<FacturaDTO> facturas) {
         this.facturas = facturas;
     }
     
-    //private List<CalificationDTO> calificacionesPorCliente;
+   // private List<CalificacionDTO> calificacionesPorCliente;
     
-    //private List<CompetitionDTO> concursosCliente;
+    private List<ConcursoDTO> concursosCliente;
 }

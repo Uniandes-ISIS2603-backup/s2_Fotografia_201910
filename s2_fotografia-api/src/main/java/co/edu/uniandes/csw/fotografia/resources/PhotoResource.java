@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.resources;
 
 import co.edu.uniandes.csw.fotografia.dtos.PhotoDTO;
+import co.edu.uniandes.csw.fotografia.dtos.PhotoDetailDTO;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -30,18 +31,18 @@ public class PhotoResource {
     private static final Logger LOGGER = Logger.getLogger(PhotoResource.class.getName());
     
     @POST
-    public PhotoDTO createPhoto(PhotoDTO photo){
+    public PhotoDetailDTO createPhoto(PhotoDetailDTO photo){
         return photo;
     }
     @GET
         @Path("{id: \\d+}")
-        public PhotoDTO getPhoto(@PathParam("id") int id){
+        public PhotoDetailDTO getPhoto(@PathParam("id") int id){
             return null;
         }
         
     @DELETE
         @Path("{id: \\d+}")
-    public PhotoDTO deletePhoto(@PathParam("id") int id){
+    public PhotoDetailDTO deletePhoto(@PathParam("id") int id){
         return null;
     }
 }

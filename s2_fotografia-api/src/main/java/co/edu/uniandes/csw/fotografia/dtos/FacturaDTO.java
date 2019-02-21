@@ -12,17 +12,17 @@ import java.util.Date;
  *
  * @author estudiante
  */
-public class ReceiptDTO implements Serializable
+public class FacturaDTO implements Serializable
 {
     private Integer numero;
     
     private Double precio;
    // private PhotographerDTO fotografo;
-    private ClientDTO cliente;
+    //private ClientDTO cliente;
     //private PhotoDTO fotoComprada;
     private Date fechaCompra;
     
-    public ReceiptDTO()
+    public FacturaDTO()
     {
     }
 
@@ -43,16 +43,16 @@ public class ReceiptDTO implements Serializable
     /**
      * @return the cliente
      */
-    public ClientDTO getCliente() {
-        return cliente;
-    }
+   // public ClientDTO getCliente() {
+     //   return cliente;
+   // }
 
     /**
      * @param cliente the cliente to set
      */
-    public void setCliente(ClientDTO cliente) {
-        this.cliente = cliente;
-    }
+   // public void setCliente(ClientDTO cliente) {
+    //    this.cliente = cliente;
+   // }
 
     /**
      * @return the id
