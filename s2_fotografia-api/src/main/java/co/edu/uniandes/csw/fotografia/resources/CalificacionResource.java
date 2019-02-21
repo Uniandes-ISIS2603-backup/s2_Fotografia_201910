@@ -51,7 +51,7 @@ public class CalificacionResource {
      * autogenerado.
      */
     @POST
-    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) {
+    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: input: {0}", calificacion);
         CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: output: {0}", calificacionDTO);

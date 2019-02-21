@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +19,9 @@ import javax.persistence.Entity;
 public class InteresFotograficoEntity extends BaseEntity implements Serializable{
     
     private String interes;
+    @PodamExclude
+    @ManyToMany
+    private List<FotografoEntity>fotografos;
     
     public InteresFotograficoEntity(){
         

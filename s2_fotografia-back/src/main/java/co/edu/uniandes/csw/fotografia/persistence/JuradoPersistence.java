@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.persistence;
 
 import co.edu.uniandes.csw.fotografia.entities.JuradoEntity;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,4 +88,65 @@ public class JuradoPersistence {
         JuradoEntity juradoEntity = em.find(JuradoEntity.class, juradoId);
         em.remove(juradoEntity);
     }
+    
+    /**
+     * Verifica que el nombre este bien definido
+     * @param pNombre nombre del jurado
+     * @return booleano indicando si esta bien o mal definido
+     */
+    public boolean verificarNombre(String pNombre)
+    {
+        boolean bien = false;
+        if( pNombre != null)
+        {
+            bien = true;
+        }
+        return bien;
+    }
+    
+    /**
+     * Verifica si el apellido esta bien definido
+     * @param pApellido apellido del jurado
+     * @return booleano indicando si esta bien o mal
+     */
+    public boolean verificarApellido(String pApellido)
+    {
+        boolean bien = false;
+        if(pApellido != null)
+        {
+            bien = true;
+        }
+        return true;
+    }
+    
+    public boolean verificarCedula( Long pCedula)
+    {
+        boolean bien = false;
+        if( pCedula != null )
+        {
+            bien = true;
+        }
+        return bien;
+    }
+    
+    public boolean verificarPais(String pPais)
+    {
+        boolean bien = false;
+        if(pPais != null)
+        {
+            bien= true;
+        }
+        return bien;
+    }
+    
+    public boolean verificarCiudad(String pCiudad)
+    {
+        boolean bien = false;
+        if(pCiudad != null)
+        {
+            bien= true;
+        }
+        return bien;
+    }
+
 }

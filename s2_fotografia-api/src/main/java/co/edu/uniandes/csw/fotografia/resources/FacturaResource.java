@@ -34,6 +34,11 @@ public class FacturaResource
     
     private static final Logger LOGGER = Logger.getLogger(FacturaResource.class.getName());
     
+    /**
+     * Crea la factura que se ingresa por parametro
+     * @param factura la factura a crear
+     * @return la factura
+     */
     @POST
     public FacturaDTO createFactura (FacturaDTO factura)
     {
@@ -41,6 +46,11 @@ public class FacturaResource
         
     }
     
+    /**
+     * Devuelve la factura con el numero ingresado por parametro
+     * @param numero de la factura que se quiere traer
+     * @return null
+     */
     @GET
     @Path ("{numero:\\d+}")
     public FacturaDTO getFactura (@PathParam ("numero")int numero)
@@ -48,18 +58,33 @@ public class FacturaResource
         return null;
     }
     
+    /**
+     * Devuelve la lista de todas las facturas
+     * @return null
+     */
        @GET
     public List<FacturaDTO> getFacturas ()
     {
         return null;
     }
     
+    /**
+     * Actualiza la factura
+     * @param numero nunero de la factura a actualizar
+     * @param factura la informacion de la factura por la cual se va a actualizar
+     * @return null
+     */
     @PUT
     public FacturaDTO updateFactura(@PathParam ("numero")int numero, FacturaDTO factura)
     {
         return null;
     }    
-    
+   
+    /**
+     * Elimina la factura con el numero ingresado por parametro
+     * @param numero de la factura que se quiere eliminar
+     * @return null
+     */
     @DELETE
     @Path ("{numero:\\d+}")
     public FacturaDTO deleteFactura(@PathParam ("numero")int numero)

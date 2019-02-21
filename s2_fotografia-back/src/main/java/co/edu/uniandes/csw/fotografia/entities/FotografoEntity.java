@@ -1,4 +1,4 @@
-/*
+        /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,7 +6,12 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,6 +26,19 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private String correo;
     private Integer telefono;
     private String pais;
+    @PodamExclude
+    @OneToMany(mappedBy = "fotografo")
+    private List<PhotoEntity> fotos;
+    @PodamExclude
+    @OneToMany(mappedBy = "concursante")
+    private List<PhotoEntity> fotosConcurso;
+    @PodamExclude
+    @ManyToMany(mappedBy="fotografos")
+    private List<ConcursoEntity> concursos;
+    @PodamExclude
+    @ManyToMany(mappedBy="fotografos")
+    private List<InteresFotograficoEntity> intereses;
+    
     
     public String getNombre(){
         return nombre;
@@ -71,3 +89,4 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     }
     
 }
+

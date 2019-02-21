@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author Valentina Duarte
  */
 public class ClienteDetailDTO extends ClienteDTO implements Serializable
 {
@@ -34,7 +34,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
         this.facturas = facturas;
     }
     
-    //private List<CalificationDTO> calificacionesPorCliente;
+   // private List<CalificacionDTO> calificacionesPorCliente;
     
-    //private List<CompetitionDTO> concursosCliente;
+    private List<ConcursoDTO> concursosCliente;
 }

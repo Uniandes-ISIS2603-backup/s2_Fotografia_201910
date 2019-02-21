@@ -30,9 +30,22 @@ public class JuradoLogic {
      *
      * @param juradoEntity Objeto de JuradoEntity con los datos nuevos
      * @return Objeto de JuradoEntity con los datos nuevos y su ID.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
-    public JuradoEntity createJurado (JuradoEntity juradoEntity) {
+    public JuradoEntity createJurado (JuradoEntity juradoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del jurado");
+        if(!persistence.verificarNombre(juradoEntity.getNombre())&& !persistence.verificarApellido(juradoEntity.getApellido()))
+        {
+            throw new BusinessLogicException("El nombre y el apellido estan mal definidos" + juradoEntity.getNombre() + juradoEntity.getApellido());
+        }
+        else if( ! persistence.verificarCedula(juradoEntity.getCedula()))
+        {
+            throw new BusinessLogicException("La cedula no esta bien definida" + juradoEntity.getCedula());
+        }
+        else if ( ! persistence.verificarPais(juradoEntity.getPais()) && ! persistence.verificarCiudad(juradoEntity.getCiudad()))
+        {
+            throw new BusinessLogicException("El pais y la ciudad estan mal definidos" + juradoEntity.getPais() + juradoEntity.getCiudad());
+        }
         JuradoEntity newJuradoEntity = persistence.create(juradoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del jurado");
         return newJuradoEntity;

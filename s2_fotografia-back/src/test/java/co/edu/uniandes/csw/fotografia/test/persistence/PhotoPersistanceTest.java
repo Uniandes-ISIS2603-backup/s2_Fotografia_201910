@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -52,6 +52,8 @@ public class PhotoPersistanceTest {
     public void createAuthorTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
-        Assert.assertNotNull(newEntity);
+        PhotoEntity result = authorPersistence.create(newEntity);
+        Assert.assertNotNull(result);
+        
     }
 }
