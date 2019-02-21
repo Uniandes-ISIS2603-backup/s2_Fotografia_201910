@@ -31,6 +31,11 @@ public class FormaDePagoResource
 {
     private static final Logger LOGGER = Logger.getLogger(FormaDePagoResource.class.getName());
     
+    /**
+     * Crea una forma de pago
+     * @param formaDePago la forma de pago a crear
+     * @return la forma de pago
+     */
     @POST
     public FormaDePagoDTO createFormaDePago (FormaDePagoDTO formaDePago)
     {
@@ -38,25 +43,45 @@ public class FormaDePagoResource
         
     }
     
+    /**
+     * Devuelve la forma de pago con el nombre ingresado por parametro
+     * @param nombre de la forma de que se esta buscando
+     * @return null
+     */
     @GET
     @Path ("{nombre:\\d+}")
-    public FormaDePagoDTO getFormaDePago (@PathParam ("nombre")String usuario)
+    public FormaDePagoDTO getFormaDePago (@PathParam ("nombre")String nombre)
     {
         return null;
     }
     
+    /**
+     * Devuelve la lista con todas las formas de pago
+     * @return null
+     */
     @GET
     public List<FormaDePagoDTO> getFormasDePago ()
     {
         return null;
     }
     
+    /**
+     * Actualiza la forma de pago con el nombre ingresado por parametro
+     * @param nombre de la forma de pago a actualizar
+     * @param formaDePago la informacion de la forma de pago que se ingresara
+     * @return null
+     */
     @PUT
     public FormaDePagoDTO updateFormaDePago(@PathParam ("nombre")String nombre, FormaDePagoDTO formaDePago )
     {
         return null;
     }    
     
+    /**
+     * Elimina la forma de pago con el nombre ingresado por parametro
+     * @param nombre de la forma de pago a eliminar
+     * @return null
+     */
     @DELETE
     @Path ("{nombre:\\d+}")
     public FormaDePagoDTO deleteFormaDePago(@PathParam ("nombre")String nombre)
