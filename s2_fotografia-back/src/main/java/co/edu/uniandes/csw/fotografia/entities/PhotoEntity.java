@@ -8,7 +8,11 @@ package co.edu.uniandes.csw.fotografia.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -32,6 +36,9 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     
     private Boolean published;
 
+     @PodamExclude
+    @OneToMany(mappedBy = "fotoComprada", fetch = FetchType.LAZY)
+    private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
     /**
      * @return the name
      */
@@ -142,6 +149,20 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    /**
+     * @return the facturasAsociadas
+     */
+    public List<FacturaEntity> getFacturasAsociadas() {
+        return facturasAsociadas;
+    }
+
+    /**
+     * @param facturasAsociadas the facturasAsociadas to set
+     */
+    public void setFacturasAsociadas(List<FacturaEntity> facturasAsociadas) {
+        this.facturasAsociadas = facturasAsociadas;
     }
 
 }
