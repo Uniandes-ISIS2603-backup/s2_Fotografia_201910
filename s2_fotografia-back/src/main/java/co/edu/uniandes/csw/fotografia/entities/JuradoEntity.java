@@ -7,7 +7,14 @@ package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,6 +28,22 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     private Long cedula;
     private String pais;
     private String ciudad;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<PhotoEntity> fotosCalificadas = new ArrayList<PhotoEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "juradoCalificador", fetch = FetchType.LAZY)
+    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    
+    @PodamExclude
+    @ManyToOne
+    private ConcursoEntity concursoJurado;
+    
+    //@PodamExclude
+    //@OneToOne(mappedBy = "jurado", fetch=FetchType.LAZY)
+    //private RondaEntity ronda;
     
     /**
 * Constructor de la clase
