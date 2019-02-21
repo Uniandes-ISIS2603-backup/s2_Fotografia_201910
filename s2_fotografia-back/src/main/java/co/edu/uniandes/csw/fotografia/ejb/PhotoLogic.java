@@ -32,10 +32,6 @@ public class PhotoLogic {
     @Inject
     private PhotoPersistance persistence;
     
-    @PodamExclude
-    @OneToMany(mappedBy = "fotoComprada", fetch = FetchType.LAZY)
-    private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
-    
     public PhotoEntity createFoto(PhotoEntity photo) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la foto");
         Date today = new Date();      
