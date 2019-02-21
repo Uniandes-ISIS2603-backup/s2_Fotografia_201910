@@ -36,40 +36,40 @@ public class ClienteLogic
      */
     ClienteEntity createCliente (ClienteEntity cliente) throws BusinessLogicException
     {
-         //LOGGER.log(Level.INFO, "Inicia la creación del cliente");
+         LOGGER.log(Level.INFO, "Inicia la creación del cliente");
          
          //Verificar la regla de negocio que afirma que no deben haber dos usuarios con el mismo login
          
-        // if(cp.getByLogin(cliente.getLogin())!= null)
-        // {
-         //    throw new BusinessLogicException ("Ya existe un cliente con el login \"" + cliente.getLogin() + "\"");
-       //  }
+         if(cp.getByLogin(cliente.getLogin())!= null)
+         {
+             throw new BusinessLogicException ("Ya existe un cliente con el login \"" + cliente.getLogin() + "\"");
+         }
          
-      //  if(cliente.getCorreo().indexOf('@')<0 && cliente.getCorreo().indexOf('.')<0 && cliente.getCorreo()==null)
-       // {
-        //    throw new BusinessLogicException ("El correo\"" + cliente.getCorreo() + "no es valido\"");
-        //}
+        if(cliente.getCorreo().indexOf('@')<0 && cliente.getCorreo().indexOf('.')<0 && cliente.getCorreo()==null)
+        {
+            throw new BusinessLogicException ("El correo\"" + cliente.getCorreo() + "no es valido\"");
+        }
          
-       // boolean correctFormat = false;
-       // char[] letras = cliente.getContrasena().toCharArray();
-       // for (int i =0; i<cliente.getContrasena().length()&& !correctFormat;i++)
-       // {
-           // if(Character.isDigit(letras[i]))
-          //  {
-           //    correctFormat = true; 
-           // }
-       // }
+        boolean correctFormat = false;
+        char[] letras = cliente.getContrasena().toCharArray();
+        for (int i =0; i<cliente.getContrasena().length()&& !correctFormat;i++)
+        {
+            if(Character.isDigit(letras[i]))
+            {
+               correctFormat = true; 
+            }
+        }
         
-       // if(correctFormat == false && cliente.getContrasena().length()<8 && cliente.getContrasena()==null)
-       // {
-         //   throw new BusinessLogicException ("La contrasena\"" + cliente.getContrasena() + "no es valida\"");
-      //  }
+        if(correctFormat == false && cliente.getContrasena().length()<8 && cliente.getContrasena()==null)
+        {
+            throw new BusinessLogicException ("La contrasena\"" + cliente.getContrasena() + "no es valida\"");
+        }
          //Llama a la persistencia para crear el cliente
        
-        // cp.create(cliente);
-       // LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
-       // return cliente;
-        return null;
+         cp.create(cliente);
+        LOGGER.log(Level.INFO, "Termina proceso de creación del cliente");
+        return cliente;
+       
     }
     
     

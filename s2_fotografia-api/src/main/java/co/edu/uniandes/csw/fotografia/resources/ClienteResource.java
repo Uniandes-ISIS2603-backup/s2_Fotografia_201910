@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.resources;
 
 import co.edu.uniandes.csw.fotografia.dtos.ClienteDTO;
+import co.edu.uniandes.csw.fotografia.dtos.ClienteDetailDTO;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -51,7 +52,7 @@ public class ClienteResource
      */
     @GET
     @Path ("{login:\\d+}")
-    public ClienteDTO getCliente (@PathParam ("login")String login)
+    public ClienteDetailDTO getCliente (@PathParam ("login")String login)
     {
         return null;
     }
@@ -61,7 +62,7 @@ public class ClienteResource
      * @return null
      */
     @GET
-    public List<ClienteDTO> getClientes ()
+    public List<ClienteDetailDTO> getClientes ()
     {
         return null;
     }
@@ -73,7 +74,7 @@ public class ClienteResource
      * @return null
      */
     @PUT
-    public ClienteDTO updateCliente(@PathParam ("login")String login, ClienteDTO cliente )
+    public ClienteDetailDTO updateCliente(@PathParam ("login")String login, ClienteDetailDTO cliente )
     {
         return null;
     }    
