@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 
 /**

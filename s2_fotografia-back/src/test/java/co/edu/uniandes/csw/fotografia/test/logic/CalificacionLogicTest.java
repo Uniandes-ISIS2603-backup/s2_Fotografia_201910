@@ -104,13 +104,13 @@ public class CalificacionLogicTest {
      * Prueba para crear una Calificacion.
      */
     @Test
-    public void createCalificacionTest() {
+    public void createCalificacionTest() throws BusinessLogicException {
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
         CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getPuntaje(), entity.getPuntaje());
+        Assert.assertEquals(newEntity.getPuntaje(), entity.getPuntaje(), 0);
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
     }
 
@@ -141,7 +141,7 @@ public class CalificacionLogicTest {
         CalificacionEntity resultEntity = calificacionLogic.getCalificacion(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getPuntaje(), resultEntity.getPuntaje());
+        Assert.assertEquals(entity.getPuntaje(), resultEntity.getPuntaje(), 0);
         Assert.assertEquals(entity.getComentario(), resultEntity.getComentario());
     }
 
@@ -160,7 +160,7 @@ public class CalificacionLogicTest {
         CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getPuntaje(), resp.getPuntaje());
+        Assert.assertEquals(pojoEntity.getPuntaje(), resp.getPuntaje(), 0);
         Assert.assertEquals(pojoEntity.getComentario(), resp.getComentario());
     }
 

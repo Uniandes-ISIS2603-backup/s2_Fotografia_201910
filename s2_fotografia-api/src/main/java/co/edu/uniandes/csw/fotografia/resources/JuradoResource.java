@@ -51,7 +51,7 @@ public class JuradoResource {
      * autogenerado.
      */
     @POST
-    public JuradoDTO createJurado(JuradoDTO jurado) {
+    public JuradoDTO createJurado(JuradoDTO jurado) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "JuradoResourse createJurado: input: {0}", jurado);
         JuradoDTO juradoDTO = new JuradoDTO(juradoLogic.createJurado(jurado.toEntity()));
         LOGGER.log(Level.INFO, "JuradoResourse createJurado: output: {0}", juradoDTO);

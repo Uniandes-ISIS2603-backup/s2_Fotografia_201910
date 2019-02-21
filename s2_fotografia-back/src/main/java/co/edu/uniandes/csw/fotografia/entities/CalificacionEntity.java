@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
-    private Long puntaje;
+    private Double puntaje;
     private String comentario;
 
 /**
@@ -28,7 +28,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
      *
      * @return puntaje
      */
-    public Long getPuntaje() {
+    public double getPuntaje() {
         return puntaje;
     }
 
@@ -37,7 +37,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
      *
      * @param puntaje el puntaje asignado
      */
-    public void setPuntaje(Long puntaje) {
+    public void setPuntaje(double puntaje) {
         this.puntaje = puntaje;
     }
 
