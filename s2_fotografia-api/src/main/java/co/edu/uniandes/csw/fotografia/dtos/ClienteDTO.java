@@ -20,7 +20,7 @@ public class ClienteDTO implements Serializable
     
     private String correo;
     
-   // private FormaDePago formaDePago;
+    private String contrasena;
     
      public ClienteDTO()
      {
@@ -67,6 +67,20 @@ public class ClienteDTO implements Serializable
      */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    /**
+     * @return the contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
     
           

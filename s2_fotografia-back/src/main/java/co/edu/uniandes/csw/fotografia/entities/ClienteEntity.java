@@ -21,8 +21,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity extends BaseEntity implements Serializable {
 
     private String nombre;
-    private String usuario;
-    private String Correo;
+    private String login;
+    private String correo;
+    private String contrasena;
 
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
@@ -31,12 +32,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     // @PodamExclude
     //@OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
     // private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
-    
-      
-   // private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
-    
-   // private List<ConcursoEntity> concursosCliente= new ArrayList<>();
-    
+    // private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
+    // private List<ConcursoEntity> concursosCliente= new ArrayList<>();
     /**
      * Constructor vacio
      */
@@ -59,31 +56,31 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the usuario
+     * @return the login
      */
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param login the usuario to set
      */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     /**
-     * @return the Correo
+     * @return the correo
      */
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     /**
-     * @param Correo the Correo to set
+     * @param correo the correo to set
      */
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     /**
@@ -100,6 +97,18 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.facturas = facturas;
     }
 
- 
+    /**
+     * @return the contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
 }

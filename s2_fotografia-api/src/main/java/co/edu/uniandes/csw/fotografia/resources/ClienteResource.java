@@ -32,6 +32,11 @@ public class ClienteResource
 {
     private static final Logger LOGGER = Logger.getLogger(ClienteResource.class.getName());
     
+    /**
+     * Crea el cliente que entra como parametro
+     * @param cliente para ser creado
+     * @return el cliente creado
+     */
     @POST
     public ClienteDTO createCliente (ClienteDTO cliente)
     {
@@ -39,28 +44,48 @@ public class ClienteResource
         
     }
     
+    /**
+     * Busca el cliente con el id ingresado por parametro
+     * @param login del cliente buscado
+     * @return null
+     */
     @GET
-    @Path ("{usuario:\\d+}")
-    public ClienteDTO getCliente (@PathParam ("usuario")String usuario)
+    @Path ("{login:\\d+}")
+    public ClienteDTO getCliente (@PathParam ("login")String login)
     {
         return null;
     }
     
+    /**
+     * Devuelve la lista de clientes
+     * @return null
+     */
     @GET
     public List<ClienteDTO> getClientes ()
     {
         return null;
     }
     
+    /**
+     * Actualiza el cliente ingresado por parametro
+     * @param login del cliente a actualizar
+     * @param cliente el cliente por el cual se quiere actualizar
+     * @return null
+     */
     @PUT
-    public ClienteDTO updateCliente(@PathParam ("usuario")String usuario, ClienteDTO cliente )
+    public ClienteDTO updateCliente(@PathParam ("login")String login, ClienteDTO cliente )
     {
         return null;
     }    
     
+    /**
+     * Elimina el cliente ingresado como parametro
+     * @param login del usuario que se quiere eliminar 
+     * @return null
+     */
     @DELETE
-    @Path ("{usuario:\\d+}")
-    public ClienteDTO deleteCliente(@PathParam ("usuario")String usuario)
+    @Path ("{login:\\d+}")
+    public ClienteDTO deleteCliente(@PathParam ("login")String login)
     {
         return null;
     }   
