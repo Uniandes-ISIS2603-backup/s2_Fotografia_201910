@@ -15,7 +15,7 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 /**
  *
- * @author 
+ * @author nicolas melendez
  */
 
 @Stateless
@@ -48,7 +48,7 @@ public class OrganizadorPersistence {
     }
     
      public OrganizadorEntity update(OrganizadorEntity organizadorEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el fotografo con id={0}", organizadorEntity.getId());
+        LOGGER.log(Level.INFO, "Actualizando el organizador con id={0}", organizadorEntity.getId());
        
         return em.merge(organizadorEntity);
     }
@@ -56,8 +56,8 @@ public class OrganizadorPersistence {
      public void delete(Long oId) {
 
         LOGGER.log(Level.INFO, "Borrando el organizador con id={0}", oId);
-        OrganizadorEntity fotografoEntity = em.find(OrganizadorEntity.class, oId);
-        em.remove(fotografoEntity);
+        OrganizadorEntity organizadorEntity = em.find(OrganizadorEntity.class, oId);
+        em.remove(organizadorEntity);
     }
      
      

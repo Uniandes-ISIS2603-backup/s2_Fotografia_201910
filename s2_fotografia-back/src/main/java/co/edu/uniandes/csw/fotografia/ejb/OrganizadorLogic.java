@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.OrganizadorEntity;
+import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.OrganizadorPersistence;
 import java.util.List;
@@ -16,9 +17,9 @@ import javax.inject.Inject;
 
 /**
  * Clase que implementa la conexion con la persistencia para la entidad de
- * Author.
+ * Organizador.
  *
- * @author nicolas melendez
+ * @author Nicolas Melendez
  */
 @Stateless
 public class OrganizadorLogic {
@@ -34,9 +35,9 @@ public class OrganizadorLogic {
      * @param organizadorEntity Objeto de OrganizadorEntity con los datos nuevos
      * @return Objeto de OrganizadorEntity con los datos nuevos y su ID.
      */
-    public OrganizadorEntity createOrganizador(OrganizadorEntity organizadorEntity) {
+    public OrganizadorEntity createOrganizador(OrganizadorEntity authorEntity) {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del organizador");
-        OrganizadorEntity newOrganizadorEntity = persistence.create(organizadorEntity);
+        OrganizadorEntity newOrganizadorEntity = persistence.create(authorEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del organizador");
         return newOrganizadorEntity;
     }
@@ -46,7 +47,7 @@ public class OrganizadorLogic {
      *
      * @return Colección de objetos de OrganizadorEntity.
      */
-    public List<OrganizadorEntity> getOrganizador() {
+    public List<OrganizadorEntity> getOrganizadors() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los organizadores");
         List<OrganizadorEntity> lista = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los organizadores");
@@ -63,7 +64,7 @@ public class OrganizadorLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el organizador con id = {0}", organizadorsId);
         OrganizadorEntity organizadorEntity = persistence.find(organizadorsId);
         if (organizadorEntity == null) {
-            LOGGER.log(Level.SEVERE, "El organizador con el id = {0} no existe", organizadorsId);
+            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", organizadorsId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar el organizador con id = {0}", organizadorsId);
         return organizadorEntity;
@@ -87,15 +88,15 @@ public class OrganizadorLogic {
      * Elimina una instancia de Organizador de la base de datos.
      *
      * @param organizadorsId Identificador de la instancia a eliminar.
-     * @throws BusinessLogicException si el autor tiene libros asociados.
+     * @throws BusinessLogicException si el organizador tiene concursos asociados.
      */
-    public void deleteORganizador(Long organizadorsId) throws BusinessLogicException {
+    public void deleteOrganizador(Long organizadorsId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el organizador con id = {0}", organizadorsId);
-      //  List<ConcursoEntity> concursos = getOrganizdor(organizadorsId).getConcursos();
-       // if (concursos != null && !concursos.isEmpty()) {
-        //    throw new BusinessLogicException("No se puede borrar el organizador con id = " + organizadorsId + " porque tiene concursos asociados");
-       // }
-      
+        List<ConcursoEntity> concursos = getOrganizador(organizadorsId).getConcursos();
+        if (concursos != null && !concursos.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el autor con id = " + organizadorsId + " porque tiene concursos asociados");
+        }
+   
         persistence.delete(organizadorsId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el organizador con id = {0}", organizadorsId);
     }
