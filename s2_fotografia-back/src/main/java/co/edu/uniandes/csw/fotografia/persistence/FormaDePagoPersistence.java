@@ -27,6 +27,11 @@ public class FormaDePagoPersistence
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
 
+    /**
+     * Crea una nueva forma de pago
+     * @param formaDePagoEntity la forma de pago a crear
+     * @return la forma de pago creada
+     */
     public FormaDePagoEntity create(FormaDePagoEntity formaDePagoEntity) {
         LOGGER.log(Level.INFO, "Creando una nueva forma de pago");
 
@@ -35,12 +40,21 @@ public class FormaDePagoPersistence
         return formaDePagoEntity;
     }
 
+    /**
+     * Devuelve la forma de pago con el id ingresado
+     * @param formaDePagoId el id de la forma de pago buscada
+     * @return la forma de pago buscada
+     */
     public FormaDePagoEntity get(Long formaDePagoId) {
 
         LOGGER.log(Level.INFO, "Consultando la forma de pago con id{0}", formaDePagoId);
         return em.find(FormaDePagoEntity.class, formaDePagoId);
     }
 
+    /**
+     * Devuelve la lista de todas las formas de pago
+     * @return lista con todas las formas de pago
+     */
     public List<FormaDePagoEntity> getAll() {
         LOGGER.log(Level.INFO, "Consultando todas las formas de pago");
         TypedQuery<FormaDePagoEntity> query = em.createQuery("select u from FormaDePagoEntity u", FormaDePagoEntity.class);
@@ -48,12 +62,21 @@ public class FormaDePagoPersistence
 
     }
 
+    /**
+     * Actualiza la informa de la forma de pago 
+     * @param formaDePagoEntity informacion que actualizara
+     * @return la forma de pago actualizada
+     */
     public FormaDePagoEntity set(FormaDePagoEntity formaDePagoEntity) {
         LOGGER.log(Level.INFO, "Actualizando la forma de pago con id={0}", formaDePagoEntity.getId());
 
         return em.merge(formaDePagoEntity);
     }
 
+    /**
+     * Elimina la forma de pago con el id ingresado por parametro
+     * @param formaDePagoId id de la forma de pago a eliminar
+     */
     public void delete(Long formaDePagoId) {
 
         LOGGER.log(Level.INFO, "Borrando la forma de pago con id={0}", formaDePagoId);

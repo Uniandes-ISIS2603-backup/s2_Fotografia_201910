@@ -21,6 +21,8 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class CalificacionPersistence {
     
+    
+    
     private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
 
     @PersistenceContext(unitName = "fotografiaPU")
@@ -87,6 +89,40 @@ public class CalificacionPersistence {
         LOGGER.log(Level.INFO, "Borrando el author con id={0}", calificacionId);
         CalificacionEntity calificacionEntity = em.find(CalificacionEntity.class, calificacionId);
         em.remove(calificacionEntity);
+    }
+    
+   /**
+    * Verifica que el puntaje de la calificacion sea un número entre 1 y 5
+    * @param pPuntaje puntaje de la calificacion
+    * @return un booleano indicando si esta bien o mal definido el puntaje
+    */
+    public boolean verificarPuntaje(double pPuntaje)
+    {
+        boolean bien = false;
+        
+        if(0 <= pPuntaje && pPuntaje<= 5)
+        {
+            bien = true;
+        }
+        
+        return bien;
+    }
+    
+    /**
+     * Verifica que el comentario sea un String con un tamaño menor o igual a 500
+     * @param pComentario comentario de la calificacion
+     * @return boolean indicando si esta bien o mal definido el comentario
+     */
+    public boolean verificarComentario(String pComentario)
+    {
+        boolean bien = false;
+        String comentario = pComentario.replace(" ", "");
+        if( comentario.length()<= 500)
+        {
+            bien = true;
+        }
+        
+        return bien;
     }
 }
 

@@ -156,7 +156,7 @@ public class ClientePersistenceTest
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     /**
-     * Prueba para eliminar uncliente.
+     * Prueba para eliminar un cliente.
      */
     @Test
     public void deleteClienteTest() {
@@ -164,5 +164,19 @@ public class ClientePersistenceTest
         cp.delete(entity.getId());
         ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
         Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para consultar un cliente por login
+     */
+    @Test
+    public void findEditorialByNameTest() {
+        ClienteEntity entity = data.get(0);
+        ClienteEntity newEntity = cp.getByLogin(entity.getLogin());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getLogin(), newEntity.getLogin());
+
+        newEntity = cp.getByLogin(null);
+        Assert.assertNull(newEntity);
     }
 }

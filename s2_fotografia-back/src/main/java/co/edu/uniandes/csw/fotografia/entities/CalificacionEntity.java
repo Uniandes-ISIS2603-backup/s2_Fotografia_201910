@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,8 +17,24 @@ import javax.persistence.Entity;
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
-    private Long puntaje;
+    private Double puntaje;
     private String comentario;
+    
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity clienteCalificador;
+    
+    @PodamExclude
+    @ManyToOne
+    private PhotoEntity fotoCalificada;
+    
+    @PodamExclude
+    @ManyToOne
+    private JuradoEntity juradoCalificador;
+    
+    //@PodamExclude
+    //@ManyToOne
+    //private RondaEntity rondaCalificada;
 
 /**
 * Constructor de la clase
@@ -28,7 +46,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
      *
      * @return puntaje
      */
-    public Long getPuntaje() {
+    public double getPuntaje() {
         return puntaje;
     }
 
@@ -37,7 +55,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
      *
      * @param puntaje el puntaje asignado
      */
-    public void setPuntaje(Long puntaje) {
+    public void setPuntaje(double puntaje) {
         this.puntaje = puntaje;
     }
 

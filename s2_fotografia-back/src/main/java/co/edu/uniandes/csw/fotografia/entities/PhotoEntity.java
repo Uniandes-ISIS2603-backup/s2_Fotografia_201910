@@ -8,7 +8,13 @@ package co.edu.uniandes.csw.fotografia.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -32,6 +38,31 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     
     private Boolean published;
 
+     @PodamExclude
+    @OneToMany(mappedBy = "fotoComprada", fetch = FetchType.LAZY)
+    private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
+     
+     
+   @PodamExclude
+   @ManyToOne
+   private FotografoEntity concursante;
+     
+   @PodamExclude
+   @ManyToOne
+    private FotografoEntity fotografo;
+     
+   @PodamExclude
+   @ManyToMany(mappedBy = "fotosCalificadas")
+   private List<JuradoEntity> jurados = new ArrayList<>();
+    
+   @PodamExclude
+   @OneToMany(mappedBy = "fotoCalificada", fetch = FetchType.LAZY)
+   private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+     
+   @PodamExclude
+   @ManyToMany(mappedBy = "fotosEnConcurso")
+   private List<ConcursoEntity> concursos = new ArrayList<>();
+ 
     /**
      * @return the name
      */
@@ -142,6 +173,20 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    /**
+     * @return the facturasAsociadas
+     */
+    public List<FacturaEntity> getFacturasAsociadas() {
+        return facturasAsociadas;
+    }
+
+    /**
+     * @param facturasAsociadas the facturasAsociadas to set
+     */
+    public void setFacturasAsociadas(List<FacturaEntity> facturasAsociadas) {
+        this.facturasAsociadas = facturasAsociadas;
     }
 
 }

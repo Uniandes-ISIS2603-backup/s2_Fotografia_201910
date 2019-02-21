@@ -5,29 +5,48 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.*;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 /**
  *
  * @author da.benavides
  */
 public class PhotoDTO implements Serializable{
-    
+    /*
+    * Atributo correspondiente a el nombre de la foto.
+    */
     private String name;
     
+    /*
+    * Atributo correspondiente a la fecha de la foto.
+    */
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date date;
     
-    private String[] tags;
-    
+    /*
+    * Atributo correspondiente a la descripcion de la foto.
+    */
     private String description;
     
-    private double price;
+    /*
+    * Atributo correspondiente a el precio de la foto.
+    */
+    private Double price;
     
-    private ArrayList<String> comments;
+     /*
+    * Atributo correspondiente a si la foto es ganadora o no.
+    */
+    private Boolean winner;
     
-    private boolean winner;
-    
-    private boolean published;
+    /*
+    * Atributo correspondiente a si la ha sido publicada o no.
+    */
+    private Boolean published;
 
     //Create getters and setters
     //private Photgrapher participant;
@@ -35,12 +54,16 @@ public class PhotoDTO implements Serializable{
     //Create getters and setters
     //private Photographer photographer;
     
+    //Create getters and setters
+    //private Tag tags
+    
     /**
      * Constructor vacío
      */
     public PhotoDTO(){
         
     }
+
     /**
      * @return the name
      */
@@ -70,20 +93,6 @@ public class PhotoDTO implements Serializable{
     }
 
     /**
-     * @return the tags
-     */
-    public String[] getTags() {
-        return tags;
-    }
-
-    /**
-     * @param tags the tags to set
-     */
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
-
-    /**
      * @return the description
      */
     public String getDescription() {
@@ -100,59 +109,42 @@ public class PhotoDTO implements Serializable{
     /**
      * @return the price
      */
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
-    }
-
-    /**
-     * @return the comments
-     */
-    public ArrayList<String> getComments() {
-        return comments;
-    }
-
-    /**
-     * @param comments the comments to set
-     */
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
     }
 
     /**
      * @return the winner
      */
-    public boolean isWinner() {
+    public Boolean getWinner() {
         return winner;
     }
 
     /**
      * @param winner the winner to set
      */
-    public void setWinner(boolean winner) {
+    public void setWinner(Boolean winner) {
         this.winner = winner;
     }
 
     /**
      * @return the published
      */
-    public boolean isPublished() {
+    public Boolean getPublished() {
         return published;
     }
 
     /**
      * @param published the published to set
      */
-    public void setPublished(boolean published) {
+    public void setPublished(Boolean published) {
         this.published = published;
     }
-    
-    
-    
 }

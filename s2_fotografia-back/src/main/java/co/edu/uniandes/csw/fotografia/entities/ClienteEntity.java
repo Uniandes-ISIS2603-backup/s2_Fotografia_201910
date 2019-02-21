@@ -21,21 +21,25 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity extends BaseEntity implements Serializable {
 
     private String nombre;
-    private String usuario;
-    private String Correo;
+    private String login;
+    private String correo;
+    private String contrasena;
 
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
 
-    // @PodamExclude
-    //@OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
-    // private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
+    @PodamExclude
+    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
+     private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
     
-      
-   // private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
-    
-   // private List<ConcursoEntity> concursosCliente= new ArrayList<>();
+    @PodamExclude
+    @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
+     private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
+     
+    @PodamExclude
+    @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
+    private List<ConcursoEntity> concursosCliente = new ArrayList<ConcursoEntity>();
     
     /**
      * Constructor vacio
@@ -59,31 +63,31 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the usuario
+     * @return the login
      */
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param login the usuario to set
      */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     /**
-     * @return the Correo
+     * @return the correo
      */
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     /**
-     * @param Correo the Correo to set
+     * @param correo the correo to set
      */
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     /**
@@ -100,6 +104,60 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.facturas = facturas;
     }
 
- 
+    /**
+     * @return the contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    /**
+     * @return the calificacionesPorCliente
+     */
+    public List<CalificacionEntity> getCalificacionesPorCliente() {
+        return calificacionesPorCliente;
+    }
+
+    /**
+     * @param calificacionesPorCliente the calificacionesPorCliente to set
+     */
+    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
+        this.calificacionesPorCliente = calificacionesPorCliente;
+    }
+
+    /**
+     * @return the formasDePago
+     */
+    public List<FormaDePagoEntity> getFormasDePago() {
+        return formasDePago;
+    }
+
+    /**
+     * @param formasDePago the formasDePago to set
+     */
+    public void setFormasDePago(List<FormaDePagoEntity> formasDePago) {
+        this.formasDePago = formasDePago;
+    }
+
+    /**
+     * @return the concursosCliente
+     */
+    public List<ConcursoEntity> getConcursosCliente() {
+        return concursosCliente;
+    }
+
+    /**
+     * @param concursosCliente the concursosCliente to set
+     */
+    public void setConcursosCliente(List<ConcursoEntity> concursosCliente) {
+        this.concursosCliente = concursosCliente;
+    }
 
 }
