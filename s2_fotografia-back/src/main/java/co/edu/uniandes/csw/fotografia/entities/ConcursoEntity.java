@@ -6,11 +6,16 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,13 +25,34 @@ import javax.persistence.TemporalType;
 public class ConcursoEntity extends BaseEntity implements Serializable{
     private String tema;
     private List<String> restricciones;
-    private int edadFoto;
-    private int maximasFotos;
+    private Integer edadFoto;
+    private Integer maximasFotos;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<FotografoEntity> fotografos = new ArrayList<>();
+    
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
+    
+    
+    @PodamExclude
+    @ManyToMany
+    private List<PhotoEntity> fotosEnConcurso = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "concursoJurado")
+    private List<JuradoEntity> jurados = new ArrayList<>();
+    
+    @PodamExclude
+    @ManyToOne
+    private OrganizadorEntity organizador;
     
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    private int cantidadPremio;
+    private Integer cantidadPremio;
     /**
      * AQUI ESTARAN LAS RELACIONES CON LAS DEMAS CLASES
      */

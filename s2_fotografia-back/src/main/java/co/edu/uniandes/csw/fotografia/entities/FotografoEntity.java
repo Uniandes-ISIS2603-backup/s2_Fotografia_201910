@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -28,16 +29,16 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private String pais;
     @PodamExclude
     @OneToMany(mappedBy = "fotografo")
-    private List<PhotoEntity> fotos;
+    private List<PhotoEntity> fotos = new ArrayList<PhotoEntity>();
     @PodamExclude
     @OneToMany(mappedBy = "concursante")
-    private List<PhotoEntity> fotosConcurso;
+    private List<PhotoEntity> fotosConcurso = new ArrayList<PhotoEntity>();
     @PodamExclude
     @ManyToMany(mappedBy="fotografos")
-    private List<ConcursoEntity> concursos;
+    private List<ConcursoEntity> concursos = new ArrayList<ConcursoEntity>();
     @PodamExclude
     @ManyToMany(mappedBy="fotografos")
-    private List<InteresFotograficoEntity> intereses;
+    private List<InteresFotograficoEntity> intereses = new ArrayList<InteresFotograficoEntity>();
     
     
     public String getNombre(){
