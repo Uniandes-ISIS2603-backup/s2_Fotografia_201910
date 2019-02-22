@@ -229,6 +229,10 @@ public class FotografoDTO implements Serializable  {
     public Long getId(){
         return id;
     }
+    
+    public void vacio(){
+        
+    }
     /**
      * Establece un valor para el atributoid
      * @param pId nuevo valor del atributo 

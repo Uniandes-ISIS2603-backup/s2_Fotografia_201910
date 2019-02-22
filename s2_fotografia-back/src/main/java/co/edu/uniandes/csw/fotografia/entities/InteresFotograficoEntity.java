@@ -23,6 +23,7 @@ public class InteresFotograficoEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToMany
     private List<FotografoEntity>fotografos = new ArrayList<FotografoEntity>();
+
     
     public InteresFotograficoEntity(){
         

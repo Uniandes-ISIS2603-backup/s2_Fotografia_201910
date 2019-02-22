@@ -32,7 +32,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @Concurso Nicolas Rincon
  */
-@Path("/Concursos")
+@Path("concursos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
@@ -48,16 +48,21 @@ public class ConcursoResource {
      * petición y se regresa un objeto identico con un id auto-generado por la
      * base de datos.
      *
+     * @param concurso
      * @param Concurso {@link ConcursoDTO} - EL fotografo que se desea guardar.
      * @return JSON {@link ConcursoDTO} - El fotografo guardado con el atributo id
      * autogenerado.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException si 
+     * no concuerda con las reglas del negocio del concurso
      */
     @POST
-    public ConcursoDTO createConcurso(ConcursoDTO Concurso) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ConcursoResource createConcurso: input: {0}", Concurso);
-        ConcursoDTO ConcursoDTO = new ConcursoDTO(ConcursoLogic.createConcurso(Concurso.toEntity()));
-        LOGGER.log(Level.INFO, "ConcursoResource createConcurso: output: {0}", ConcursoDTO);
-        return ConcursoDTO;
+    public ConcursoDTO createConcurso(ConcursoDTO concurso) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "ConcursoResource createConcurso: input: {0}", concurso);
+        ConcursoEntity concursoEntity = concurso.toEntity();
+        ConcursoEntity nuevoConcursoEntity = ConcursoLogic.createConcurso(concursoEntity);
+        ConcursoDTO nuevoConcursoDTO = new ConcursoDTO(nuevoConcursoEntity);
+        LOGGER.log(Level.INFO, "ConcursoResource createConcurso: output: {0}", nuevoConcursoDTO);
+        return nuevoConcursoDTO;
     }
 
     /**
@@ -84,12 +89,12 @@ public class ConcursoResource {
      * Error de lógica que se genera cuando no se encuentra el fotografo.
      */
     @GET
-    @Path("{ConcursosId: \\d+}")
-    public ConcursoDetailDTO getConcurso(@PathParam("ConcursosId") Long ConcursosId) {
+    @Path("{concursosId: \\d+}")
+    public ConcursoDetailDTO getConcurso(@PathParam("concursosId") Long ConcursosId) {
         LOGGER.log(Level.INFO, "ConcursoResource getConcurso: input: {0}", ConcursosId);
         ConcursoEntity ConcursoEntity = ConcursoLogic.getConcurso(ConcursosId);
         if (ConcursoEntity == null) {
-            throw new WebApplicationException("El recurso /Concursos/" + ConcursosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /concursos/" + ConcursosId + " no existe.", 404);
         }
         ConcursoDetailDTO detailDTO = new ConcursoDetailDTO(ConcursoEntity);
         LOGGER.log(Level.INFO, "ConcursoResource getConcurso: output: {0}", detailDTO);
@@ -109,12 +114,12 @@ public class ConcursoResource {
      * actualizar.
      */
     @PUT
-    @Path("{ConcursosId: \\d+}")
-    public ConcursoDetailDTO updateConcurso(@PathParam("ConcursosId") Long ConcursosId, ConcursoDetailDTO Concurso) {
-        LOGGER.log(Level.INFO, "ConcursoResource updateConcurso: input: ConcursosId: {0} , Concurso: {1}", new Object[]{ConcursosId, Concurso});
+    @Path("{concursosId: \\d+}")
+    public ConcursoDetailDTO updateConcurso(@PathParam("concursosId") Long ConcursosId, ConcursoDetailDTO Concurso) {
+        LOGGER.log(Level.INFO, "ConcursoResource updateConcurso: input: id: {0} , concurso: {1}", new Object[]{ConcursosId, Concurso});
         Concurso.setId(ConcursosId);
         if (ConcursoLogic.getConcurso(ConcursosId) == null) {
-            throw new WebApplicationException("El recurso /Concursos/" + ConcursosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /concursos/" + ConcursosId + " no existe.", 404);
         }
         ConcursoDetailDTO detailDTO = new ConcursoDetailDTO(ConcursoLogic.updateConcurso(ConcursosId, Concurso.toEntity()));
         LOGGER.log(Level.INFO, "ConcursoResource updateConcurso: output: {0}", detailDTO);
