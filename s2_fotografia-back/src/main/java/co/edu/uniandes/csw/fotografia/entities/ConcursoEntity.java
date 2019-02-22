@@ -45,6 +45,11 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "concursoJurado")
     private List<JuradoEntity> jurados = new ArrayList<>();
     
+
+    @PodamExclude
+    @ManyToOne
+    private OrganizadorEntity organizador;
+ 
     
     @Temporal(TemporalType.DATE)
     private Date fecha;
