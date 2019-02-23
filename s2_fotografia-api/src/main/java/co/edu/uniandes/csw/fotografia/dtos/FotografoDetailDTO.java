@@ -99,19 +99,19 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
     /**
      * Esta lista contiene las fotos que estan asociadad al fotografo 
      */
-    public ArrayList<PhotoDTO> fotos;
+    private ArrayList<PhotoDTO> fotos;
     /**
      * Esta lista contiene las fotos del concurso que estan asociadas al fotografo
      */
-    public ArrayList<PhotoDTO> fotosConcurso;
+    private ArrayList<PhotoDTO> fotosConcurso;
     /**
      * Esta lista contiene los intereses que estan asociados al fotografo
      */
-    public ArrayList<InteresFotograficoDTO> intereses;
+    private ArrayList<InteresFotograficoDTO> intereses;
     /**
      * Esta lista contiene los concursos que estan asociados al fotografo  
      */
-    public ArrayList<ConcursoDTO> concursos;
+    private ArrayList<ConcursoDTO> concursos;
     
     /**
      * Constructos vacio por defecto 
