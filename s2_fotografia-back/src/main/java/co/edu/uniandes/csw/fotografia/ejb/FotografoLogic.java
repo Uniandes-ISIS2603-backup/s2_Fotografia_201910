@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.FotografoPersistence;
 import java.util.List;
@@ -66,5 +67,6 @@ public class FotografoLogic {
      
      public void deleteFotografo(Long fotografoId){
      }
+
      
 }
