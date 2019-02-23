@@ -50,7 +50,7 @@ public class FotografoPersistence {
     
     public FotografoEntity findByLogin(String login){
         LOGGER.log(Level.INFO,"Consultando el fotografo con login={0}", login);
-        TypedQuery query = em.createQuery("Select e From FotografoEntity f where f.login = :login", FotografoEntity.class);
+        TypedQuery query = em.createQuery("Select f From FotografoEntity f where f.login = :login", FotografoEntity.class);
         query = query.setParameter("login",login);
          FotografoEntity result;
          List<FotografoEntity> sameLogin = query.getResultList();
