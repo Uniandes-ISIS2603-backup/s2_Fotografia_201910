@@ -27,6 +27,8 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private String correo;
     private Integer telefono;
     private String pais;
+    private String password;
+    private String login;
     @PodamExclude
     @OneToMany(mappedBy = "fotografo")
     private List<PhotoEntity> fotos = new ArrayList<PhotoEntity>();
@@ -87,6 +89,18 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     
     public void setPais(String pPais){
         pais = pPais;
+    }
+    public void setLogin(String pLogin){
+        login = pLogin;
+    }
+    public String getLogin(){
+        return login;
+    }
+    public void setPassword(String pPassword){
+        password = pPassword;
+    }
+    public String getPassword(){
+        return password;
     }
     
 }
