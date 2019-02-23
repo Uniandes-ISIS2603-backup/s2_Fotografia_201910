@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.persistence;
 
+import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,23 @@ public class InteresFotograficoPersistence {
         TypedQuery query = em.createQuery("select u from InteresFotograficoEntity u", InteresFotograficoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de interesFotograficos.
         return query.getResultList();
+    }
+    
+    public InteresFotograficoEntity findByInteres(String interes){
+        LOGGER.log(Level.INFO,"Consultando el fotografo con login={0}", interes);
+        TypedQuery query = em.createQuery("Select i From  InteresFotograficoEntity i where i.interes = :interes", InteresFotograficoEntity.class);
+        query = query.setParameter("interes",interes);
+         InteresFotograficoEntity result;
+         List<InteresFotograficoEntity> same = query.getResultList();
+        if (same == null) {
+            result = null;
+        } else if (same.isEmpty()) {
+            result = null;
+        } else {
+            result = same.get(0);
+        }
+        LOGGER.log(Level.INFO, "Consultar el interes ", interes);
+        return result;
     }
     
     public InteresFotograficoEntity find(Long interesFotograficoId) {

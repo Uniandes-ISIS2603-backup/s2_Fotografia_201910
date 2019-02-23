@@ -54,7 +54,7 @@ public class InteresFotograficoResource {
      * autogenerado.
      */
     @POST
-    public InteresFotograficoDTO createInteresFotografico(InteresFotograficoDTO InteresFotografico) {
+    public InteresFotograficoDTO createInteresFotografico(InteresFotograficoDTO InteresFotografico) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "InteresFotograficoResource createInteresFotografico: input: {0}", InteresFotografico);
         InteresFotograficoDTO InteresFotograficoDTO = new InteresFotograficoDTO(InteresFotograficoLogic.createInteresFotografico(InteresFotografico.toEntity()));
         LOGGER.log(Level.INFO, "InteresFotograficoResource createInteresFotografico: output: {0}", InteresFotograficoDTO);
@@ -68,9 +68,9 @@ public class InteresFotograficoResource {
      * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<InteresFotograficoDetailDTO> getInteresFotograficos() {
+    public List<InteresFotograficoDetailDTO> getInteresesFotograficos() {
         LOGGER.info("InteresFotograficoResource getInteresFotograficos: input: void");
-        List<InteresFotograficoDetailDTO> listaInteresFotograficos = listEntity2DTO(InteresFotograficoLogic.getInteresFotograficos());
+        List<InteresFotograficoDetailDTO> listaInteresFotograficos = listEntity2DTO(InteresFotograficoLogic.getInteresesFotograficos());
         LOGGER.log(Level.INFO, "InteresFotograficoResource getInteresFotograficos: output: {0}", listaInteresFotograficos);
         return listaInteresFotograficos;
     }
