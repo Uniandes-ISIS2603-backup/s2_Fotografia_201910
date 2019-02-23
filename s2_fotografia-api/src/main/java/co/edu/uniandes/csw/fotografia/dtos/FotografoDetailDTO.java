@@ -5,9 +5,15 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
+import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -22,12 +28,69 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
     
     
     public FotografoDetailDTO(){
-        super();
+       
     }
     public FotografoDetailDTO(FotografoEntity fotografo){
-        
+         super(fotografo);
+         if(fotografo!=null){
+             if(fotografo.getFotos()!=null){
+                 fotos = new ArrayList();
+                  for (PhotoEntity entity : fotografo.getFotos()) {
+                    /**fotos.add(new PhotoDTO(entity   ));**/}
+             }
+              if(fotografo.getFotos()!=null){
+                 fotosConcurso = new ArrayList();
+                  for (PhotoEntity entity1 : fotografo.getFotosConcurso()) {
+                    /**fotosConcurso.add(new PhotoDTO(entity1));**/}
+             }
+              if(fotografo.getConcursos()!=null){
+                 concursos = new ArrayList();
+                  for (ConcursoEntity entity2 : fotografo.getConcursos()) {
+                    concursos.add(new ConcursoDTO(entity2));}
+             }
+              if(fotografo.getIntereses()!=null){
+                 intereses = new ArrayList();
+                  for (InteresFotograficoEntity entity3: fotografo.getIntereses()) {
+                    intereses.add(new InteresFotograficoDTO(entity3));
+             }
+           }
+         }
     }
-    
+    @Override 
+    public FotografoEntity toEntity() {
+        FotografoEntity fotografoEntity = super.toEntity();
+        if (fotos != null) {
+            List<PhotoEntity> fotosEntity = new ArrayList<>();
+            for (PhotoDTO dto : fotos) {
+               /* fotosEntity.add(dto.toEntity());*/
+            }
+            fotografoEntity.setFotos(fotosEntity);
+        }
+        if (fotosConcurso != null) {
+            List<PhotoEntity> fotosEntity = new ArrayList<>();
+            for (PhotoDTO dto : fotosConcurso) {
+               /* fotosEntity.add(dto.toEntity());*/
+            }
+            fotografoEntity.setFotosConcurso(fotosEntity);
+        }
+         if (concursos != null) {
+            List<ConcursoEntity> concursosEntity = new ArrayList<>();
+            for (ConcursoDTO dto : concursos) {
+              concursosEntity.add(dto.toEntity());
+            }
+            fotografoEntity.setConcursos(concursosEntity);
+        }
+          if (intereses != null) {
+            List<InteresFotograficoEntity> interesesEntity = new ArrayList<>();
+            for (InteresFotograficoDTO dto : intereses) {
+               interesesEntity.add(dto.toEntity());
+            }
+            fotografoEntity.setIntereses(interesesEntity);
+        }
+        return fotografoEntity;
+    }
+      
+       
     public ArrayList<PhotoDTO> getFotos(){
         return fotos;
     } 
@@ -54,8 +117,9 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
           intereses = p;
       }
     
-    public FotografoEntity toEntity(){
-        return new FotografoEntity();
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
     
     public void setId(Long pId){
