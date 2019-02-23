@@ -53,7 +53,7 @@ public class FotografoResource {
      * autogenerado.
      */
     @POST
-    public FotografoDTO createFotografo(FotografoDTO Fotografo) {
+    public FotografoDTO createFotografo(FotografoDTO Fotografo)throws BusinessLogicException {
         LOGGER.log(Level.INFO, "FotografoResource createFotografo: input: {0}", Fotografo);
         FotografoDTO FotografoDTO = new FotografoDTO(FotografoLogic.createFotografo(Fotografo.toEntity()));
         LOGGER.log(Level.INFO, "FotografoResource createFotografo: output: {0}", FotografoDTO);
