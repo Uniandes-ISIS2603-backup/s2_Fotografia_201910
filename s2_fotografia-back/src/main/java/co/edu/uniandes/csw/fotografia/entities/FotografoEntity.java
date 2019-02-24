@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -26,20 +27,53 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private String correo;
     private Integer telefono;
     private String pais;
+    private String password;
+    private String login;
     @PodamExclude
     @OneToMany(mappedBy = "fotografo")
-    private List<PhotoEntity> fotos;
+    private List<PhotoEntity> fotos = new ArrayList<PhotoEntity>();
     @PodamExclude
     @OneToMany(mappedBy = "concursante")
-    private List<PhotoEntity> fotosConcurso;
+    private List<PhotoEntity> fotosConcurso = new ArrayList<PhotoEntity>();
     @PodamExclude
     @ManyToMany(mappedBy="fotografos")
-    private List<ConcursoEntity> concursos;
+    private List<ConcursoEntity> concursos = new ArrayList<ConcursoEntity>();
     @PodamExclude
     @ManyToMany(mappedBy="fotografos")
-    private List<InteresFotograficoEntity> intereses;
+    private List<InteresFotograficoEntity> intereses = new ArrayList<InteresFotograficoEntity>();
     
     
+    public void setFotos(List<PhotoEntity> p){
+        fotos = p;
+    }
+    
+    public List<PhotoEntity> getFotos(){
+        return fotos;
+    }
+    
+    public void setFotosConcurso(List<PhotoEntity> p){
+        fotosConcurso = p;
+    }
+    
+    public List<PhotoEntity> getFotosConcurso(){
+        return fotosConcurso;
+    }
+     public void setConcursos(List<ConcursoEntity> p){
+        concursos = p;
+    }
+     
+    public void setIntereses(List<InteresFotograficoEntity> p){
+        intereses = p;
+    }
+    
+    public List<InteresFotograficoEntity> getIntereses(){
+        return intereses ;
+    }
+    
+    public List<ConcursoEntity> getConcursos
+        (){
+        return concursos;
+    }
     public String getNombre(){
         return nombre;
     }
@@ -86,6 +120,18 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     
     public void setPais(String pPais){
         pais = pPais;
+    }
+    public void setLogin(String pLogin){
+        login = pLogin;
+    }
+    public String getLogin(){
+        return login;
+    }
+    public void setPassword(String pPassword){
+        password = pPassword;
+    }
+    public String getPassword(){
+        return password;
     }
     
 }
