@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 /**
  *
@@ -45,6 +46,23 @@ public class FotografoPersistence {
         LOGGER.log(Level.INFO, "Consultando el fotografo con id={0}", fotografoId);
        
         return em.find(FotografoEntity.class, fotografoId);
+    }
+    
+    public FotografoEntity findByLogin(String login){
+        LOGGER.log(Level.INFO,"Consultando el fotografo con login={0}", login);
+        TypedQuery query = em.createQuery("Select f From FotografoEntity f where f.login = :login", FotografoEntity.class);
+        query = query.setParameter("login",login);
+         FotografoEntity result;
+         List<FotografoEntity> sameLogin = query.getResultList();
+        if (sameLogin == null) {
+            result = null;
+        } else if (sameLogin.isEmpty()) {
+            result = null;
+        } else {
+            result = sameLogin.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar libros por isbn ", login);
+        return result;
     }
     
      public FotografoEntity update(FotografoEntity fotografoEntity) {
