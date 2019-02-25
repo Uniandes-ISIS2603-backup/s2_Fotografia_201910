@@ -19,7 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author Nicolas Rincon
  */
 @Entity
 public class ConcursoEntity extends BaseEntity implements Serializable{
@@ -67,7 +67,11 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
      * 
      */
     }
-
+  
+    public void setOrganizador(OrganizadorEntity organizador) {
+        this.organizador = organizador;
+    }
+    
     public String getTema() {
         return tema;
     }
