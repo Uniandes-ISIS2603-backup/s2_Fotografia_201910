@@ -47,7 +47,7 @@ public class FotografoInteresesFotograficosLogic {
         fEntity.getIntereses().add(interesEntity);
       
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", fotografosId);
-        return interesEntity;
+        return interesFotograficoPersistence.find(interesesFotograficosId);
     }
 
     /**
