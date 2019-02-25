@@ -39,8 +39,15 @@ public class PhotoLogic {
             throw new BusinessLogicException("La foto no puede ser creada con una fecha en el futuro");
         }
         if(photo.getName()==null){
-            
+            throw new BusinessLogicException("La foto tiene que tener un nombre.");
         }
+        if(photo.getName().length() > 120){
+            throw new BusinessLogicException("El nombre no puede tener más de 120 caracteres.");
+        }
+      //  if(photo.getFotografo.isInstanceOf(Fotografo.class))
+      // {
+      //      throw new BusinessLogicException("Solo un fotografo puede crear una foto.");
+      //  }
         PhotoEntity newPhotoEntity = persistence.create(photo);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la foto");
         return newPhotoEntity;

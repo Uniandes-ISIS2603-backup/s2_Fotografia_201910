@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.*;
@@ -61,6 +62,9 @@ public class PhotoDTO implements Serializable{
      * Constructor vacío
      */
     public PhotoDTO(){
+        
+    }
+    public PhotoDTO(PhotoEntity x){
         
     }
 
