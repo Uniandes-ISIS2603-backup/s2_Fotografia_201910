@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
+import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.FotografoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,7 +28,13 @@ public class FotografoLogic {
     @Inject
     private FotografoPersistence persistence;
     
-    public FotografoEntity createFotografo(FotografoEntity fotografo){
+    public FotografoEntity createFotografo(FotografoEntity fotografo) throws BusinessLogicException{
+       if (fotografo.getLogin()==null) {
+            throw new BusinessLogicException("El fotografo es invalido");
+        }
+       if (persistence.findByLogin(fotografo.getLogin())!=null) {
+            throw new BusinessLogicException("El login ya existe");
+        }
         LOGGER.log(Level.INFO, "Inicia proceso de creación del fotografo");
         FotografoEntity newFotografoEntity = persistence.create(fotografo);
         LOGGER.log(Level.INFO, "Termina proceso de creación del fotografo");
@@ -59,5 +67,6 @@ public class FotografoLogic {
      
      public void deleteFotografo(Long fotografoId){
      }
+
      
 }

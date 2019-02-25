@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.fotografia.test.logic;
 
-import co.edu.uniandes.csw.fotografia.ejb.JuradoLogic;
-import co.edu.uniandes.csw.fotografia.entities.JuradoEntity;
+import co.edu.uniandes.csw.fotografia.ejb.InteresFotograficoLogic;
+import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.fotografia.persistence.JuradoPersistence;
+import co.edu.uniandes.csw.fotografia.persistence.InteresFotograficoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,15 +28,15 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author a.trujilloa1
+ * @author s.acostav
  */
 @RunWith(Arquillian.class)
-public class JuradoLogicTest {
+public class InteresFotograficoLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private JuradoLogic juradoLogic;
+    private InteresFotograficoLogic interesFotograficoLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -44,7 +44,7 @@ public class JuradoLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<JuradoEntity> data = new ArrayList<>();
+    private List<InteresFotograficoEntity> data = new ArrayList<>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -54,9 +54,9 @@ public class JuradoLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(JuradoEntity.class.getPackage())
-                .addPackage(JuradoLogic.class.getPackage())
-                .addPackage(JuradoPersistence.class.getPackage())
+                .addPackage(InteresFotograficoEntity.class.getPackage())
+                .addPackage(InteresFotograficoLogic.class.getPackage())
+                .addPackage(InteresFotograficoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -85,7 +85,7 @@ public class JuradoLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from JuradoEntity").executeUpdate();
+        em.createQuery("delete from InteresFotograficoEntity").executeUpdate();
     }
 
     /**
@@ -94,37 +94,35 @@ public class JuradoLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            JuradoEntity entity = factory.manufacturePojo(JuradoEntity.class);
+            InteresFotograficoEntity entity = factory.manufacturePojo(InteresFotograficoEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
     
     /**
-     * Prueba para crear un Jurado.
-     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     * Prueba para crear un InteresFotografico.
      */
     @Test
-    public void createJuradoTest() throws BusinessLogicException {
-        JuradoEntity newEntity = factory.manufacturePojo(JuradoEntity.class);
-        JuradoEntity result = juradoLogic.createJurado(newEntity);
+    public void createInteresFotograficoTest() throws BusinessLogicException {
+        InteresFotograficoEntity newEntity = factory.manufacturePojo(InteresFotograficoEntity.class);
+        InteresFotograficoEntity result = interesFotograficoLogic.createInteresFotografico(newEntity);
         Assert.assertNotNull(result);
-        JuradoEntity entity = em.find(JuradoEntity.class, result.getId());
+        InteresFotograficoEntity entity = em.find(InteresFotograficoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getApellido(), entity.getApellido());
+        Assert.assertEquals(newEntity.getInteres(), entity.getInteres());
     }
 
     /**
-     * Prueba para consultar la lista de Jurados.
+     * Prueba para consultar la lista de InteresesFotograficos.
      */
     @Test
-    public void getJuradosTest() {
-        List<JuradoEntity> list = juradoLogic.getJurados();
+    public void getInteresesFotograficosTest() {
+        List<InteresFotograficoEntity> list = interesFotograficoLogic.getInteresesFotograficos();
         Assert.assertEquals(data.size(), list.size());
-        for (JuradoEntity entity : list) {
+        for (InteresFotograficoEntity entity : list) {
             boolean found = false;
-            for (JuradoEntity storedEntity : data) {
+            for (InteresFotograficoEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -134,47 +132,45 @@ public class JuradoLogicTest {
     }
 
     /**
-     * Prueba para consultar un Jurado.
+     * Prueba para consultar un InteresFotografico.
      */
     @Test
-    public void getJuradoTest() {
-        JuradoEntity entity = data.get(0);
-        JuradoEntity resultEntity = juradoLogic.getJurado(entity.getId());
+    public void getInteresFotograficoTest() {
+        InteresFotograficoEntity entity = data.get(0);
+        InteresFotograficoEntity resultEntity = interesFotograficoLogic.getInteresFotografico(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-        Assert.assertEquals(entity.getApellido(), resultEntity.getApellido());
+        Assert.assertEquals(entity.getInteres(), resultEntity.getInteres());
     }
 
     /**
-     * Prueba para actualizar un Jurado.
+     * Prueba para actualizar un InteresFotografico.
      */
     @Test
-    public void updateJuradoTest() {
-        JuradoEntity entity = data.get(0);
-        JuradoEntity pojoEntity = factory.manufacturePojo(JuradoEntity.class);
+    public void updateInteresFotograficoTest() {
+        InteresFotograficoEntity entity = data.get(0);
+        InteresFotograficoEntity pojoEntity = factory.manufacturePojo(InteresFotograficoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        juradoLogic.updateJurado(pojoEntity.getId(), pojoEntity);
+        interesFotograficoLogic.updateInteresFotografico(pojoEntity.getId(), pojoEntity);
 
-        JuradoEntity resp = em.find(JuradoEntity.class, entity.getId());
+        InteresFotograficoEntity resp = em.find(InteresFotograficoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getApellido(), resp.getApellido());
+        Assert.assertEquals(pojoEntity.getInteres(), resp.getInteres());
     }
 
     /**
-     * Prueba para eliminar un Jurado
+     * Prueba para eliminar un InteresFotografico
      *
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @Test
-    public void deleteJuradoTest() throws BusinessLogicException {
-        JuradoEntity entity = data.get(0);
-        juradoLogic.deleteJurado(entity.getId());
-        JuradoEntity deleted = em.find(JuradoEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+    public void deleteInteresFotograficoTest() throws BusinessLogicException {
+       /** InteresFotograficoEntity entity = data.get(0);
+        interesFotograficoLogic.deleteInteresFotografico(entity.getId());
+        InteresFotograficoEntity deleted = em.find(InteresFotograficoEntity.class, entity.getId());
+        Assert.assertNull(deleted);**/
     }
 }

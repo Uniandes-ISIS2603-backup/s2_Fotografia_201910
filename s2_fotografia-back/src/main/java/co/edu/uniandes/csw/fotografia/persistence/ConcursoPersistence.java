@@ -46,17 +46,17 @@ public class ConcursoPersistence {
         em.remove(entity);
     }
     
-    public ConcursoEntity get(Long concursoId){
+    public ConcursoEntity find(Long concursoId){
                 LOGGER.log(Level.INFO, "Consultando el cliente con id{0}", concursoId);
         return em.find(ConcursoEntity.class, concursoId);
     }
     
-    public ConcursoEntity set(ConcursoEntity concursoEntity){
+    public ConcursoEntity update(ConcursoEntity concursoEntity){
         LOGGER.log(Level.INFO, "Actualizando el concurso con id={0}", concursoEntity.getId());
         return em.merge(concursoEntity);
     }
     
-    public List<ConcursoEntity> getAll(){
+    public List<ConcursoEntity> findAll(){
         LOGGER.log(Level.INFO,"Consultando todos los concursos");
         TypedQuery<ConcursoEntity> query = em.createQuery("Select u from ConcursoEntity u", ConcursoEntity.class);
         return query.getResultList();

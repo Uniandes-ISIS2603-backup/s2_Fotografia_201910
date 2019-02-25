@@ -68,6 +68,8 @@ public class FotografoDTO implements Serializable  {
     private int telefono;
     private String pais;
     private Long id;
+    private String login;
+    private String password;
     
     
     /**
@@ -90,6 +92,8 @@ public class FotografoDTO implements Serializable  {
             this.correo = fotografoEntity.getCorreo();
              this.telefono = fotografoEntity.getTelefono();
             this.pais= fotografoEntity.getPais();
+            this.login = fotografoEntity.getLogin();
+            this.login = fotografoEntity.getPassword();
             
            
         }
@@ -110,9 +114,39 @@ public class FotografoDTO implements Serializable  {
         fotografo.setCorreo(correo);
         fotografo.setTelefono(telefono);
         fotografo.setPais(pais);
+        fotografo.setLogin(login);
+        fotografo.setPassword(password);
+       
         return fotografo;
     }
-    
+    /**
+     * Obtiene el atributo password
+     * @return atributo password
+     */
+    public String getPassword(){
+        return password;
+    }
+    /**
+     * Modifica el valor del atributo password
+     * @param clave nuevo valor del atributo 
+     */
+    public void setPassword(String clave){
+        password = clave;
+    }
+    /**
+     * Obtiene el atributo login
+     * @return atributo login
+     */
+    public String getLogin(){
+        return login;
+    }
+    /**
+     * Modifica el valor del atributo login
+     * @param log nuevo valor del atributo 
+     */
+    public void setLogin(String log){
+        login = log;
+    }
     /**
      * Obtiene el atributo nombre
      * @return atributo nombre 
@@ -226,13 +260,11 @@ public class FotografoDTO implements Serializable  {
      * @return atributo id
      */
     
+    
     public Long getId(){
         return id;
     }
-    
-    public void vacio(){
-        
-    }
+  
     /**
      * Establece un valor para el atributoid
      * @param pId nuevo valor del atributo 

@@ -41,7 +41,7 @@ public class ConcursoLogic {
     
     public ConcursoEntity getConcurso(long pId){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el concurso con id = {0}", pId);
-        ConcursoEntity concursoEntity = persistence.get(pId);
+        ConcursoEntity concursoEntity = persistence.find(pId);
         if (concursoEntity == null) {
             LOGGER.log(Level.SEVERE, "El concurso con el id = {0} no existe", pId);
         }
@@ -51,19 +51,20 @@ public class ConcursoLogic {
     
     public List<ConcursoEntity> getConcursos(){
        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los concursos");
-        List<ConcursoEntity> lista = persistence.getAll();
+        List<ConcursoEntity> lista = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los concursos");
         return lista;
     }
     
      public ConcursoEntity updateConcurso(Long concursoId, ConcursoEntity entity){
        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el concurso con id = {0}", concursoId);
-        ConcursoEntity newConcursoEntity = persistence.set(entity);
+        ConcursoEntity newConcursoEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el concurso con id = {0}", concursoId);
         return newConcursoEntity;
      }
      
      public void deleteConcurso(Long concursoId){
+         
      }
      
 }

@@ -29,7 +29,12 @@ public class InteresFotograficoEntity extends BaseEntity implements Serializable
         
     }
     
-  
+    public void setFotografos(List<FotografoEntity> f){
+        fotografos = f;
+    }
+    public List<FotografoEntity> getFotografos(){
+        return fotografos;
+    }
     
     public String getInteres(){
         return interes;

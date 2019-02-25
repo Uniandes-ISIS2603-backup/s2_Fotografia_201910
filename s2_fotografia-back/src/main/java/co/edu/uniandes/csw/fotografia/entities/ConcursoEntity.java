@@ -67,7 +67,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
      * 
      */
     }
-
+  
     public void setOrganizador(OrganizadorEntity organizador) {
         this.organizador = organizador;
     }
@@ -76,47 +76,79 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
         return tema;
     }
 
-    public List<String> getRestricciones() {
-        return restricciones;
-    }
-
-    public int getEdadFoto() {
-        return edadFoto;
-    }
-
-    public int getMaximasFotos() {
-        return maximasFotos;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public int getCantidadPremio() {
-        return cantidadPremio;
-    }
-
     public void setTema(String tema) {
         this.tema = tema;
+    }
+
+    public List<String> getRestricciones() {
+        return restricciones;
     }
 
     public void setRestricciones(List<String> restricciones) {
         this.restricciones = restricciones;
     }
 
-    public void setEdadFoto(int edadFoto) {
+    public Integer getEdadFoto() {
+        return edadFoto;
+    }
+
+    public void setEdadFoto(Integer edadFoto) {
         this.edadFoto = edadFoto;
     }
 
-    public void setMaximasFotos(int maximasFotos) {
+    public Integer getMaximasFotos() {
+        return maximasFotos;
+    }
+
+    public void setMaximasFotos(Integer maximasFotos) {
         this.maximasFotos = maximasFotos;
+    }
+
+    public List<FotografoEntity> getFotografos() {
+        return fotografos;
+    }
+
+    public void setFotografos(List<FotografoEntity> fotografos) {
+        this.fotografos = fotografos;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<PhotoEntity> getFotosEnConcurso() {
+        return fotosEnConcurso;
+    }
+
+    public void setFotosEnConcurso(List<PhotoEntity> fotosEnConcurso) {
+        this.fotosEnConcurso = fotosEnConcurso;
+    }
+
+    public List<JuradoEntity> getJurados() {
+        return jurados;
+    }
+
+    public void setJurados(List<JuradoEntity> jurados) {
+        this.jurados = jurados;
+    }
+
+    public Date getFecha() {
+        return fecha;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public void setCantidadPremio(int cantidadPremio) {
+    public Integer getCantidadPremio() {
+        return cantidadPremio;
+    }
+
+    public void setCantidadPremio(Integer cantidadPremio) {
         this.cantidadPremio = cantidadPremio;
     }
     

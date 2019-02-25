@@ -27,6 +27,8 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private String correo;
     private Integer telefono;
     private String pais;
+    private String password;
+    private String login;
     @PodamExclude
     @OneToMany(mappedBy = "fotografo")
     private List<PhotoEntity> fotos = new ArrayList<PhotoEntity>();
@@ -41,6 +43,37 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private List<InteresFotograficoEntity> intereses = new ArrayList<InteresFotograficoEntity>();
     
     
+    public void setFotos(List<PhotoEntity> p){
+        fotos = p;
+    }
+    
+    public List<PhotoEntity> getFotos(){
+        return fotos;
+    }
+    
+    public void setFotosConcurso(List<PhotoEntity> p){
+        fotosConcurso = p;
+    }
+    
+    public List<PhotoEntity> getFotosConcurso(){
+        return fotosConcurso;
+    }
+     public void setConcursos(List<ConcursoEntity> p){
+        concursos = p;
+    }
+     
+    public void setIntereses(List<InteresFotograficoEntity> p){
+        intereses = p;
+    }
+    
+    public List<InteresFotograficoEntity> getIntereses(){
+        return intereses ;
+    }
+    
+    public List<ConcursoEntity> getConcursos
+        (){
+        return concursos;
+    }
     public String getNombre(){
         return nombre;
     }
@@ -87,6 +120,18 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     
     public void setPais(String pPais){
         pais = pPais;
+    }
+    public void setLogin(String pLogin){
+        login = pLogin;
+    }
+    public String getLogin(){
+        return login;
+    }
+    public void setPassword(String pPassword){
+        password = pPassword;
+    }
+    public String getPassword(){
+        return password;
     }
     
 }

@@ -32,9 +32,9 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private JuradoEntity juradoCalificador;
     
-    //@PodamExclude
-    //@ManyToOne
-    //private RondaEntity rondaCalificada;
+    @PodamExclude
+    @ManyToOne
+    private RondaEntity rondaCalificada;
 
 /**
 * Constructor de la clase

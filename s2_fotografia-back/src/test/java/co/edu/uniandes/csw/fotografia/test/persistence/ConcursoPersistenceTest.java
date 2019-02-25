@@ -111,8 +111,8 @@ public class ConcursoPersistenceTest {
      * Prueba para consultar la lista de facturas
      */
     @Test
-    public void getConcursosTest() {
-        List<ConcursoEntity> list = fp.getAll();
+    public void findConcursosTest() {
+        List<ConcursoEntity> list = fp.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (ConcursoEntity ent : list) {
             boolean found = false;
@@ -128,9 +128,9 @@ public class ConcursoPersistenceTest {
      * Prueba para consultar una factura.
      */
     @Test
-    public void getConcursoTest() {
+    public void findConcursoTest() {
         ConcursoEntity entity = data.get(0);
-        ConcursoEntity newEntity = fp.get(entity.getId());
+        ConcursoEntity newEntity = fp.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getTema(), newEntity.getTema());
@@ -140,12 +140,12 @@ public class ConcursoPersistenceTest {
      * Prueba para actualizar una factura.
      */
     @Test
-    public void setConcursoTest() {
+    public void updateConcursoTest() {
         ConcursoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ConcursoEntity newEntity = factory.manufacturePojo(ConcursoEntity.class);
         newEntity.setId(entity.getId());
-        fp.set(newEntity);
+        fp.update(newEntity);
         ConcursoEntity resp = em.find(ConcursoEntity.class, entity.getId());
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
