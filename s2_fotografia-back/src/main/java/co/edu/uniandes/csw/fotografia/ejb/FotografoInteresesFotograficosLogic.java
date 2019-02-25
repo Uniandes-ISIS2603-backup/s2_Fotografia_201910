@@ -42,14 +42,12 @@ public class FotografoInteresesFotograficosLogic {
      */
     public InteresFotograficoEntity addInteresFotografico(Long fotografosId, Long interesesFotograficosId) {
        LOGGER.log(Level.INFO, "Inicia proceso de asociarle un libro al autor con id = {0}", fotografosId);
-        FotografoEntity fotografoEntity = fotografoPersistence.find(fotografosId);
-        InteresFotograficoEntity interesFotograficoEntity = interesFotograficoPersistence.find(interesesFotograficosId);
-        interesFotograficoEntity.getFotografos().add(fotografoEntity);
-       List<InteresFotograficoEntity> a = fotografoEntity.getIntereses();
-       a.add(interesFotograficoEntity);
-       fotografoEntity.setIntereses(a);
+        InteresFotograficoEntity interesEntity = interesFotograficoPersistence.find(interesesFotograficosId);
+        FotografoEntity fEntity = fotografoPersistence.find(fotografosId);
+        fEntity.getIntereses().add(interesEntity);
+      
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", fotografosId);
-        return interesFotograficoEntity;
+        return interesEntity;
     }
 
     /**
