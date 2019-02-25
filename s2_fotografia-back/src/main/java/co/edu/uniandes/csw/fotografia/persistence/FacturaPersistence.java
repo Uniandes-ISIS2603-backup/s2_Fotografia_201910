@@ -61,6 +61,32 @@ public class FacturaPersistence
         return query.getResultList();
 
     }
+    
+     /**
+     * Devuelve la factura con el numero que se ingresa como parametro
+     * @param numero de la factura que se quiere consultar
+     * @return la factura con el numero ingresado
+     */
+    public FacturaEntity getByNumero(Integer numero)
+    {
+        LOGGER.log(Level.INFO, "Buscando la factura por su numero", numero);
+        
+        TypedQuery query = em.createQuery("Select f From FacturaEntity f where f.numero = :numero", FacturaEntity.class);
+        
+        query = query.setParameter("numero", numero);
+        
+        List<FacturaEntity> sameNumero = query.getResultList();
+        FacturaEntity result;
+        if (sameNumero == null) {
+            result = null;
+        } else if (sameNumero.isEmpty()) {
+            result = null;
+        } else {
+            result = sameNumero.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar factura por numero ", numero);
+        return result;
+    }
 
     /**
      * Actualiza la informacion de la factura ingresada
