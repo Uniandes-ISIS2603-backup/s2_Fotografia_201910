@@ -116,6 +116,7 @@ public class FotografoDTO implements Serializable  {
         fotografo.setPais(pais);
         fotografo.setLogin(login);
         fotografo.setPassword(password);
+       
         return fotografo;
     }
     /**
