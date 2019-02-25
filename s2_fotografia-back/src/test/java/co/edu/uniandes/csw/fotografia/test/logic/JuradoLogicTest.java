@@ -102,6 +102,7 @@ public class JuradoLogicTest {
     
     /**
      * Prueba para crear un Jurado.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @Test
     public void createJuradoTest() throws BusinessLogicException {
