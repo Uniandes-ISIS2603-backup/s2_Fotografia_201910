@@ -35,6 +35,12 @@ public class ConcursoLogic {
         if(concurso.getTema() == null || concurso.getTema().length() == 0){
             throw new BusinessLogicException("Tema invalido");
         }
+        if(concurso.getMaximasFotos() <= 0){
+            throw new BusinessLogicException("El numero maximo de fotos debe ser al menos uno");
+        }
+        if(concurso.getEdadFoto() <= 0){
+            throw new BusinessLogicException("La edad de la foto debe ser un numero positivo");
+        }
         LOGGER.log(Level.INFO, "Termina proceso de creación del concurso");
         return concurso;
     }
@@ -64,7 +70,7 @@ public class ConcursoLogic {
      }
      
      public void deleteConcurso(Long concursoId){
-         
+         //ESTE METODO NO SE DEBERIA USAR YA QUE TODOS LOS CONCURSOS QUEDAN GUARDADOS
      }
      
 }

@@ -96,7 +96,7 @@ public class ConcursoPersistenceTest {
     }
     
     /**
-     * Prueba para crear una factura.
+     * Prueba para crear un concurso.
      */
     @Test
     public void createConcursoTest() {
@@ -108,7 +108,7 @@ public class ConcursoPersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     /**
-     * Prueba para consultar la lista de facturas
+     * Prueba para consultar la lista de concursos
      */
     @Test
     public void findConcursosTest() {
@@ -125,7 +125,7 @@ public class ConcursoPersistenceTest {
         }
     }
     /**
-     * Prueba para consultar una factura.
+     * Prueba para consultar un concurso.
      */
     @Test
     public void findConcursoTest() {
@@ -137,7 +137,7 @@ public class ConcursoPersistenceTest {
      
     }
     /**
-     * Prueba para actualizar una factura.
+     * Prueba para actualizar un concurso.
      */
     @Test
     public void updateConcursoTest() {
@@ -150,10 +150,10 @@ public class ConcursoPersistenceTest {
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     /**
-     * Prueba para eliminar una forma de pago.
+     * Prueba para eliminar un concurso.
      */
     @Test
-    public void deleteFormaDePagoTest() {
+    public void deleteConcursoTest() {
         ConcursoEntity entity = data.get(0);
         fp.delete(entity.getId());
         ConcursoEntity deleted = em.find(ConcursoEntity.class, entity.getId());

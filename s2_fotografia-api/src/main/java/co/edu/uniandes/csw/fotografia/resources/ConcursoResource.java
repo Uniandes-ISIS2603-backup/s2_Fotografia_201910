@@ -44,7 +44,7 @@ public class ConcursoResource {
     private ConcursoLogic ConcursoLogic;
 
     /**
-     * Crea un nuevo fotografo con la informacion que se recibe en el cuerpo de la
+     * Crea un nuevo concurso con la informacion que se recibe en el cuerpo de la
      * petición y se regresa un objeto identico con un id auto-generado por la
      * base de datos.
      *
