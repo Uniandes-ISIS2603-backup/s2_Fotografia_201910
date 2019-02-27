@@ -64,7 +64,13 @@ public class PhotoDTO implements Serializable{
     public PhotoDTO(){
         
     }
-    public PhotoDTO(PhotoEntity x){
+    public PhotoDTO(PhotoEntity entidad){
+        this.date = entidad.getDate();
+        this.description = entidad.getDescription();
+        this.name = entidad.getName();
+        this.price = entidad.getPrice();
+        this.published = entidad.getPublished();
+        this.winner = entidad.getWinner();
         
     }
 
@@ -150,5 +156,16 @@ public class PhotoDTO implements Serializable{
      */
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+    
+    public PhotoEntity toEntity(){
+        PhotoEntity entidad = new PhotoEntity();
+        entidad.setDate(this.date);
+        entidad.setDescription(this.description);
+        entidad.setName(this.name);
+        entidad.setPrice(this.price);
+        entidad.setPublished(this.published);
+        entidad.setWinner(this.winner);
+        return entidad;
     }
 }
