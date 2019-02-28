@@ -53,25 +53,20 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private OrganizadorEntity organizador;
- 
+
     @PodamExclude
     @OneToOne
     private RondaEntity ronda;
-    
+   
+ 
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
     private Integer cantidadPremio;
-    /**
-     * AQUI ESTARAN LAS RELACIONES CON LAS DEMAS CLASES
-     */
-    
-    
-    
-    
+  
     public ConcursoEntity(){
     /**
-     * 
+     * no hago nada xd 
      */
     }
 
@@ -138,7 +133,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-
+    
     public List<PhotoEntity> getFotosEnConcurso() {
         return fotosEnConcurso;
     }
