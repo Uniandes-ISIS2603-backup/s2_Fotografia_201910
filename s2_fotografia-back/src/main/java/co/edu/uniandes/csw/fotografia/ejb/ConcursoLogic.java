@@ -41,8 +41,9 @@ public class ConcursoLogic {
         if(concurso.getEdadFoto() <= 0){
             throw new BusinessLogicException("La edad de la foto debe ser un numero positivo");
         }
+        ConcursoEntity newConcursoEntity = persistence.create(concurso);
         LOGGER.log(Level.INFO, "Termina proceso de creación del concurso");
-        return concurso;
+        return newConcursoEntity;
     }
     
     public ConcursoEntity getConcurso(long pId){
