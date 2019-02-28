@@ -49,8 +49,8 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private OrganizadorEntity organizador;
- 
     
+ 
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
@@ -119,7 +119,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-
+    
     public List<PhotoEntity> getFotosEnConcurso() {
         return fotosEnConcurso;
     }
