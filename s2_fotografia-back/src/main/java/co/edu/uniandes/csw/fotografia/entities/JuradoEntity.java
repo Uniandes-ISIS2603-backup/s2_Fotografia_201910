@@ -41,9 +41,9 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private ConcursoEntity concursoJurado;
     
-    //@PodamExclude
-    //@OneToOne(mappedBy = "jurado", fetch=FetchType.LAZY)
-    //private RondaEntity ronda;
+    @PodamExclude
+    @OneToOne(mappedBy = "jurado", fetch=FetchType.LAZY)
+    private RondaEntity ronda;
     
     /**
 * Constructor de la clase

@@ -32,18 +32,34 @@ public class PhotoLogic {
     @Inject
     private PhotoPersistance persistence;
     
-    public PhotoEntity createFoto(PhotoEntity photo) throws BusinessLogicException{
+    public PhotoEntity createPhoto(PhotoEntity photo) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la foto");
         Date today = new Date();      
-        if(today.compareTo(photo.getDate()) > 0){
+        if(today.compareTo(photo.getDate()) < 0){
             throw new BusinessLogicException("La foto no puede ser creada con una fecha en el futuro");
         }
         if(photo.getName()==null){
-            
+            throw new BusinessLogicException("La foto tiene que tener un nombre.");
         }
+        if(photo.getName().length() > 120){
+            throw new BusinessLogicException("El nombre no puede tener más de 120 caracteres.");
+        }
+        
+      //  if(photo.getFotografo.isInstanceOf(Fotografo.class))
+      // {
+      //      throw new BusinessLogicException("Solo un fotografo puede crear una foto.");
+      //  }
+        if(photo.getPrice() < 0 ){
+            throw new BusinessLogicException("El precio tiene que ser positivo.");
+        }
+        if(photo.getDescription().length() > 300){
+            throw new BusinessLogicException("La descripción no puede tener más de 300 caracteres.");
+        }
+        
         PhotoEntity newPhotoEntity = persistence.create(photo);
         LOGGER.log(Level.INFO, "Termina proceso de creación de la foto");
         return newPhotoEntity;
+        
     }
      
     public PhotoEntity getFoto(long pId){
@@ -70,9 +86,19 @@ public class PhotoLogic {
         return newPhotoEntity;
      }
      
-     public void deleteFoto(Long fotoId){
-     }
-    
+     /**
+      * Elimina la foto con el id ingresado por parametro
+      * @param photoId el id de la factura a eliminar
+      */
+      public void deletePhoto(Long photoId)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la factura con id = {0}", photoId);
+        // El inyect de dependenciaspermite llamar al delete de la persistencia
+        
+        persistence.delete(photoId);
+        
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la factura con id = {0}", photoId);
+    }
      
     
 }

@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.csw.fotografia.test.logic;
 
-import co.edu.uniandes.csw.fotografia.ejb.JuradoLogic;
-import co.edu.uniandes.csw.fotografia.entities.JuradoEntity;
+
+import co.edu.uniandes.csw.fotografia.ejb.FormaDePagoLogic;
+import co.edu.uniandes.csw.fotografia.entities.FormaDePagoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.fotografia.persistence.JuradoPersistence;
+import co.edu.uniandes.csw.fotografia.persistence.FormaDePagoPersistence;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -28,15 +30,16 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author a.trujilloa1
+ * @author Valentina Duarte
  */
-@RunWith(Arquillian.class)
-public class JuradoLogicTest {
-    
-    private PodamFactory factory = new PodamFactoryImpl();
 
-    @Inject
-    private JuradoLogic juradoLogic;
+@RunWith(Arquillian.class)
+public class FormaDePagoLogicTest 
+{
+     private PodamFactory factory = new PodamFactoryImpl();
+   
+   @Inject
+    private FormaDePagoLogic formaDePagoLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -44,8 +47,8 @@ public class JuradoLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<JuradoEntity> data = new ArrayList<>();
-
+    private List<FormaDePagoEntity> data = new ArrayList<>();
+    
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
@@ -54,9 +57,9 @@ public class JuradoLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(JuradoEntity.class.getPackage())
-                .addPackage(JuradoLogic.class.getPackage())
-                .addPackage(JuradoPersistence.class.getPackage())
+                .addPackage(FormaDePagoEntity.class.getPackage())
+                .addPackage(FormaDePagoLogic.class.getPackage())
+                .addPackage(FormaDePagoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -85,7 +88,7 @@ public class JuradoLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from JuradoEntity").executeUpdate();
+        em.createQuery("delete from FormaDePagoEntity").executeUpdate();
     }
 
     /**
@@ -93,38 +96,53 @@ public class JuradoLogicTest {
      * pruebas.
      */
     private void insertData() {
+
         for (int i = 0; i < 3; i++) {
-            JuradoEntity entity = factory.manufacturePojo(JuradoEntity.class);
-            em.persist(entity);
-            data.add(entity);
+            FormaDePagoEntity formaDePago = factory.manufacturePojo(FormaDePagoEntity.class);
+            em.persist(formaDePago);
+            data.add(formaDePago);
         }
     }
     
-    /**
-     * Prueba para crear un Jurado.
-     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     /**
+     * Prueba el metodo de crearFormaDePago de la clase FormaDePagoLogic
+     * @throws BusinessLogicException si no se puede crear la forma de pago
      */
-    @Test
-    public void createJuradoTest() throws BusinessLogicException {
-        JuradoEntity newEntity = factory.manufacturePojo(JuradoEntity.class);
-        JuradoEntity result = juradoLogic.createJurado(newEntity);
+     @Test
+    public void createFormaDePagoTest() throws BusinessLogicException 
+    {
+        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
+ 
+        FormaDePagoEntity result = formaDePagoLogic.createFactura(newEntity);
         Assert.assertNotNull(result);
-        JuradoEntity entity = em.find(JuradoEntity.class, result.getId());
+        FormaDePagoEntity entity = em.find(FormaDePagoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getApellido(), entity.getApellido());
     }
-
-    /**
-     * Prueba para consultar la lista de Jurados.
+    
+    
+     /**
+     * Prueba para consultar una forma de pago
      */
     @Test
-    public void getJuradosTest() {
-        List<JuradoEntity> list = juradoLogic.getJurados();
+    public void getFacturaTest() {
+        FormaDePagoEntity entity = data.get(0);
+        FormaDePagoEntity resultEntity = formaDePagoLogic.getFormaDePago(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+    }
+    
+      /**
+     * Prueba para consultar la lista de formas de pago.
+     */
+    @Test
+    public void getFacturasTest() {
+        List<FormaDePagoEntity> list = formaDePagoLogic.getFormasDePago();
         Assert.assertEquals(data.size(), list.size());
-        for (JuradoEntity entity : list) {
+        for (FormaDePagoEntity entity : list) {
             boolean found = false;
-            for (JuradoEntity storedEntity : data) {
+            for (FormaDePagoEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -132,49 +150,30 @@ public class JuradoLogicTest {
             Assert.assertTrue(found);
         }
     }
-
+    
     /**
-     * Prueba para consultar un Jurado.
+     * Prueba para actualizar una forma de pago.
      */
     @Test
-    public void getJuradoTest() {
-        JuradoEntity entity = data.get(0);
-        JuradoEntity resultEntity = juradoLogic.getJurado(entity.getId());
-        Assert.assertNotNull(resultEntity);
-        Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-        Assert.assertEquals(entity.getApellido(), resultEntity.getApellido());
-    }
-
-    /**
-     * Prueba para actualizar un Jurado.
-     */
-    @Test
-    public void updateJuradoTest() {
-        JuradoEntity entity = data.get(0);
-        JuradoEntity pojoEntity = factory.manufacturePojo(JuradoEntity.class);
-
+    public void setFacturaTest() throws BusinessLogicException {
+        FormaDePagoEntity entity = data.get(0);
+        FormaDePagoEntity pojoEntity = factory.manufacturePojo(FormaDePagoEntity.class);
         pojoEntity.setId(entity.getId());
-
-        juradoLogic.updateJurado(pojoEntity.getId(), pojoEntity);
-
-        JuradoEntity resp = em.find(JuradoEntity.class, entity.getId());
-
+       
+        formaDePagoLogic.setFormaDePago(pojoEntity.getId(), pojoEntity);
+        FormaDePagoEntity resp = em.find(FormaDePagoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getApellido(), resp.getApellido());
     }
-
+    
     /**
-     * Prueba para eliminar un Jurado
-     *
-     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     * Prueba para eliminar una forma de pago
      */
     @Test
-    public void deleteJuradoTest() throws BusinessLogicException {
-        JuradoEntity entity = data.get(0);
-        juradoLogic.deleteJurado(entity.getId());
-        JuradoEntity deleted = em.find(JuradoEntity.class, entity.getId());
+    public void deleteClienteTest()  {
+        FormaDePagoEntity entity = data.get(0);
+        formaDePagoLogic.deleteFormaDePago(entity.getId());
+        FormaDePagoEntity deleted = em.find(FormaDePagoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 }
