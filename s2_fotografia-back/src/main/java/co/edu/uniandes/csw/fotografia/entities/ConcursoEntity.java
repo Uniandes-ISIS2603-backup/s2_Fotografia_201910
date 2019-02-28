@@ -13,9 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
  *
@@ -25,7 +27,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ConcursoEntity extends BaseEntity implements Serializable{
     private String tema;
     private List<String> restricciones;
+    @PodamIntValue(minValue = 0, maxValue = Integer.MAX_VALUE)
     private Integer edadFoto;
+    @PodamIntValue(minValue = 1, maxValue = Integer.MAX_VALUE)
     private Integer maximasFotos;
     
     @PodamExclude
@@ -49,27 +53,37 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private OrganizadorEntity organizador;
-    
+
+    @PodamExclude
+    @OneToOne
+    private RondaEntity ronda;
+   
  
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
     private Integer cantidadPremio;
-    /**
-     * AQUI ESTARAN LAS RELACIONES CON LAS DEMAS CLASES
-     */
-    
-    
-    
-    
+  
     public ConcursoEntity(){
     /**
-     * 
+     * no hago nada xd 
      */
     }
-  
+
+    public OrganizadorEntity getOrganizador() {
+        return organizador;
+    }
+
     public void setOrganizador(OrganizadorEntity organizador) {
         this.organizador = organizador;
+    }
+
+    public RondaEntity getRonda() {
+        return ronda;
+    }
+
+    public void setRonda(RondaEntity ronda) {
+        this.ronda = ronda;
     }
     
     public String getTema() {
