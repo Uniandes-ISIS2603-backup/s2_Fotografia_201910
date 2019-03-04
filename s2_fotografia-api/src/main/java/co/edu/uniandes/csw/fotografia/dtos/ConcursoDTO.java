@@ -24,18 +24,46 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {  
- *      "tema": "/tema",
-		"id" : "/id"
- *      "nombre": string,
- *      "apellido": String,
- *      "fechaNacimiento": date,
- *      "edad":number,
+ *      "id" : number,
+ *      "tema": string,
+ *      "restricciones": [string, ... , string],
  *      "edadDeLaFoto": number,
- *      "maxFotos": number,
- *      "fechaDeLConcurso":String,
- * 
+ *      "maxFotos" : number,
+ *      "fechaDelConcurso" : date,
+ *      "premioCantidad" : number
+ *      "ronda":{@link RondaDTO},
+ *      "organizador":{@link OrganizadorDTO}
+ *      
  *   }
- * </pre> 
+ * </pre> por ejemplo : <br>   
+ * <pre>
+ * 
+ *  {  
+ *      "id" : 43,
+ *      "tema": "Arduo Dolor",
+ *      "restricciones": ["Solo fotos digitales", "Maxima resolucion de 2000x2000" , "Solo fotos monocromas"],
+ *      "edadDeLaFoto": 5,
+ *      "maxFotos" : 80,
+ *      "fechaDelConcurso" : 06/12/2019,
+ *      "premioCantidad" : 120000
+ *      "ronda":
+ *      {
+ *        "id" : 1,
+ *        "numeroRonda" : 2
+ *      },
+ *      "organizador":
+ *      {
+ *       "id": 1,
+ *       "nombre": "Jose",
+ *       "apellido": "Ramirez",
+ *       "edad": 29,
+ *       "correo": "jRamirez@example.com",
+ *       "telefono": 31293829,
+ *       "pais": "Colombia"
+ *      }
+ *      
+ *   }
+ * </pre>
  * @author n.rincond
  */
 public class ConcursoDTO implements Serializable {
@@ -45,6 +73,7 @@ public class ConcursoDTO implements Serializable {
     private List<String> restricciones;
     private Integer edadDeLaFoto;
     private Integer maxFotos;
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaDelConcurso;
     private Integer premioCantidad;
 

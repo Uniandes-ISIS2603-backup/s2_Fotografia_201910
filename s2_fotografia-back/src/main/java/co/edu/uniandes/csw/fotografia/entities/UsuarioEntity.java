@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.fotografia.entities;
 
+import co.edu.uniandes.csw.fotografia.podam.CorreoStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -14,6 +16,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable {
+    @PodamStrategyValue(CorreoStrategy.class)
     private String login;
     private String nombreDeUsuario;
     private String contrasena;

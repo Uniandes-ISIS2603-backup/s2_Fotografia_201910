@@ -32,6 +32,9 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @PodamIntValue(minValue = 1, maxValue = Integer.MAX_VALUE)
     private Integer maximasFotos;
     
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    
     @PodamExclude
     @ManyToMany
     private List<FotografoEntity> fotografos = new ArrayList<>();
@@ -58,13 +61,10 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @OneToOne
     private RondaEntity ronda;
     
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+
     
     private Integer cantidadPremio;
-    /**
-     * AQUI ESTARAN LAS RELACIONES CON LAS DEMAS CLASES
-     */
+    
     
     
     

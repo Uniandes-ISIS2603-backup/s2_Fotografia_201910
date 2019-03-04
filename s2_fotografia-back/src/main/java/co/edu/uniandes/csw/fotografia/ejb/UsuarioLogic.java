@@ -63,7 +63,9 @@ public class UsuarioLogic {
      }
      
      public void deleteUsuario(Long usuarioId){
-         
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el jurado con id = {0}", usuarioId);
+        persistence.delete(usuarioId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el jurado con id = {0}", usuarioId);
      }
     
 }
