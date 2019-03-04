@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.fotografia.ejb;
 import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.FacturaPersistence;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class FacturaLogic
          }
           
           //Verifica la regla de negocio que prohibe que el numero de la factura sea negativo
-          if(factura.getNumero()<0)
+          if(factura.getNumero()<0 || factura.getNumero()==null)
           {
                throw new BusinessLogicException ("El numero de la factura no puede ser negativo");
           }
@@ -55,6 +56,16 @@ public class FacturaLogic
           {
               throw new BusinessLogicException ("El precio en la factura no puede ser negativo");
           }
+          //Verifica la regla de negocio que prohibe que la fecha sea mayor a la actual
+          
+          Calendar c = Calendar.getInstance();
+          if(factura.getFechaCompra().getYear() > c.get(Calendar.YEAR) ||
+             (factura.getFechaCompra().getYear() == c.get(Calendar.YEAR)&& factura.getFechaCompra().getMonth() > c.get(Calendar.MONTH)) ||
+             (factura.getFechaCompra().getYear() == c.get(Calendar.YEAR)&& factura.getFechaCompra().getMonth() == c.get(Calendar.MONTH)&& factura.getFechaCompra().getDate()> c.get(Calendar.DATE)))
+          {
+               throw new BusinessLogicException ("La fecha ingresada es mayor a la actual");
+          }
+          
           
           //Llama a la persistencia para crear la factura
        
