@@ -6,11 +6,9 @@
 package co.edu.uniandes.csw.fotografia.resources;
 
 import co.edu.uniandes.csw.fotografia.dtos.UsuarioDTO;
-import co.edu.uniandes.csw.fotografia.dtos.UsuarioDTO;
 import co.edu.uniandes.csw.fotografia.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.fotografia.entities.UsuarioEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
-import com.sun.istack.internal.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
