@@ -126,7 +126,7 @@ public class FotografoInteresesFotograficosLogicTest {
         InteresFotograficoEntity response = fotografoInteresesFotograficosLogic.addInteresFotografico(interesFotograficoEntity.getId(), entity.getId());
 
         Assert.assertNotNull(response);
-        Assert.assertEquals(interesFotograficoEntity.getInteres(), response.getInteres());
+        Assert.assertEquals(interesFotograficoEntity.getId(), response.getId());
     }
 
     /**

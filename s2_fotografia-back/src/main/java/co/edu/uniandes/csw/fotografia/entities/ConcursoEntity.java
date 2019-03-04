@@ -21,7 +21,7 @@ import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
  *
- * @author estudiante
+ * @author Nicolas Rincon
  */
 @Entity
 public class ConcursoEntity extends BaseEntity implements Serializable{
@@ -90,7 +90,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     public void setRonda(RondaEntity ronda) {
         this.ronda = ronda;
     }
-
+    
     public String getTema() {
         return tema;
     }

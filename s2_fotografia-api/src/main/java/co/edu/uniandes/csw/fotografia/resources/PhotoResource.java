@@ -31,9 +31,10 @@ public class PhotoResource {
     private static final Logger LOGGER = Logger.getLogger(PhotoResource.class.getName());
     
     @POST
-    public PhotoDetailDTO createPhoto(PhotoDetailDTO photo){
+    public PhotoDTO createPhoto(PhotoDTO photo){
         return photo;
     }
+    
     @GET
         @Path("{id: \\d+}")
         public PhotoDetailDTO getPhoto(@PathParam("id") int id){

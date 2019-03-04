@@ -165,4 +165,18 @@ public class FacturaPersistenceTest
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    
+     /**
+     * Prueba para consultar una factura por numero
+     */
+    @Test
+    public void getFacturaByNumeroTest() {
+        FacturaEntity entity = data.get(0);
+        FacturaEntity newEntity = fp.getByNumero(entity.getNumero());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
+
+        newEntity = fp.getByNumero(null);
+        Assert.assertNull(newEntity);
+    }
 }

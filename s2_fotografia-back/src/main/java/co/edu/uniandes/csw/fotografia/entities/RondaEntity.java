@@ -5,8 +5,12 @@
  */
 package co.edu.uniandes.csw.fotografia.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -23,6 +27,11 @@ public class RondaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private ConcursoEntity concurso;
+    
+    @PodamExclude
+    @OneToMany (mappedBy = "rondaCalificada", fetch = FetchType.LAZY)
+    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    
     
     private Integer numeroRonda;
 

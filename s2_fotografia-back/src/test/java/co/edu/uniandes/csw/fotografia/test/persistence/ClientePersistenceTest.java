@@ -131,10 +131,10 @@ public class ClientePersistenceTest
         }
     }
     /**
-     * Prueba para consultar una forma de pago.
+     * Prueba para consultar un cliente.
      */
     @Test
-    public void getFormaDePagoTest() {
+    public void getClienteTest() {
         ClienteEntity entity = data.get(0);
         ClienteEntity newEntity = cp.get(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -170,7 +170,7 @@ public class ClientePersistenceTest
      * Prueba para consultar un cliente por login
      */
     @Test
-    public void findEditorialByNameTest() {
+    public void findClienteByLoginTest() {
         ClienteEntity entity = data.get(0);
         ClienteEntity newEntity = cp.getByLogin(entity.getLogin());
         Assert.assertNotNull(newEntity);
