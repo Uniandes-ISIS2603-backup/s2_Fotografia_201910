@@ -15,6 +15,7 @@ import java.util.Date;
  */
 public class FacturaDTO implements Serializable
 {
+    private Long id;
     private Integer numero;
     private Double precio;
     private Date fechaCompra;
@@ -56,7 +57,7 @@ public class FacturaDTO implements Serializable
             }
             
             if (facturaEntity.getFotoComprada()!= null) {
-                //this.foto = new PhotoDTO(facturaEntity.getFotoComprada());
+                this.foto = new PhotoDTO(facturaEntity.getFotoComprada());
             } else {
                 facturaEntity.setFotoComprada(null);
             }
@@ -87,7 +88,7 @@ public class FacturaDTO implements Serializable
         
         if(foto !=null)
         {
-            //facturaEntity.setFotoComprada(foto.toEntity());
+            facturaEntity.setFotoComprada(foto.toEntity());
         }
         
         return facturaEntity;
@@ -173,6 +174,20 @@ public class FacturaDTO implements Serializable
      */
     public void setFoto(PhotoDTO foto) {
         this.foto = foto;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
 }
