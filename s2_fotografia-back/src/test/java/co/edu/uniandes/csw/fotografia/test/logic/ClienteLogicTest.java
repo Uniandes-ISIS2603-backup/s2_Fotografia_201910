@@ -156,6 +156,8 @@ public class ClienteLogicTest
     }
     
     
+    
+    
     /**
      * Prueba crear un cliente con una contrasena no valida
      * @throws BusinessLogicException si no se puede crear el cliente

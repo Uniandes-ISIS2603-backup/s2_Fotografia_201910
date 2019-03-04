@@ -5,26 +5,93 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
- * @author estudiante
+ * @author Valentina Duarte
  */
 public class FacturaDTO implements Serializable
 {
     private Integer numero;
-    
     private Double precio;
-   // private PhotographerDTO fotografo;
-    //private ClientDTO cliente;
-    //private PhotoDTO fotoComprada;
     private Date fechaCompra;
+    
+   
+    private ClienteDTO cliente;
+    private FormaDePagoDTO formaDePago;
+    private PhotoDTO foto;
+    
     
     public FacturaDTO()
     {
     }
+    
+     /**
+     * Crea un objeto FacturaDTO a partir de un objeto FacturaEntity.
+     *
+     * @param facturaEntity Entidad FacturaEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public FacturaDTO(FacturaEntity facturaEntity) {
+        if (facturaEntity != null) 
+        {
+            this.numero = facturaEntity.getNumero();
+            this.fechaCompra = facturaEntity.getFechaCompra();
+            this.precio= facturaEntity.getPrecio();
+            
+            if (facturaEntity.getCliente() != null) {
+                this.cliente = new ClienteDTO(facturaEntity.getCliente());
+            } else {
+                facturaEntity.setCliente(null);
+            }
+            
+            if (facturaEntity.getFormaDePagoFactura()!= null) {
+                this.formaDePago = new FormaDePagoDTO(facturaEntity.getFormaDePagoFactura());
+            } else {
+                facturaEntity.setFormaDePagoFactura(null);
+            }
+            
+            if (facturaEntity.getFotoComprada()!= null) {
+                //this.foto = new PhotoDTO(facturaEntity.getFotoComprada());
+            } else {
+                facturaEntity.setFotoComprada(null);
+            }
+            
+        }
+    }
+
+    /**
+     * Convierte un objeto FacturaDTO a FacturaEntity.
+     *
+     * @return Nueva objeto FacturaEntity.
+     *
+     */
+    public FacturaEntity toEntity() {
+        FacturaEntity facturaEntity = new FacturaEntity();
+        facturaEntity.setNumero(this.getNumero());
+        facturaEntity.setPrecio(this.getPrecio());
+        facturaEntity.setFechaCompra(this.getFechaCompra());
+       
+        if (cliente != null) {
+            facturaEntity.setCliente(cliente.toEntity());
+        }
+        
+        if(formaDePago!= null)
+        {
+            facturaEntity.setFormaDePagoFactura(formaDePago.toEntity());
+        }
+        
+        if(foto !=null)
+        {
+            //facturaEntity.setFotoComprada(foto.toEntity());
+        }
+        
+        return facturaEntity;
+    } 
 
     /**
      * @return the precio
@@ -40,29 +107,13 @@ public class FacturaDTO implements Serializable
         this.precio = precio;
     }
     
-    /**
-     * @return the cliente
-     */
-   // public ClientDTO getCliente() {
-     //   return cliente;
-   // }
-
-    /**
-     * @param cliente the cliente to set
-     */
-   // public void setCliente(ClientDTO cliente) {
-    //    this.cliente = cliente;
-   // }
-
-    /**
-     * @return the id
-     */
+  
     public int getNumero() {
         return numero;
     }
 
     /**
-     * @param id the id to set
+     * @param numero the id to set
      */
     public void setNumero(int numero) {
         this.numero = numero;
@@ -80,6 +131,48 @@ public class FacturaDTO implements Serializable
      */
     public void setFechaCompra(Date fechaCompra) {
         this.fechaCompra = fechaCompra;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
+    }
+
+    /**
+     * @return the formaDePago
+     */
+    public FormaDePagoDTO getFormaDePago() {
+        return formaDePago;
+    }
+
+    /**
+     * @param formaDePago the formaDePago to set
+     */
+    public void setFormaDePago(FormaDePagoDTO formaDePago) {
+        this.formaDePago = formaDePago;
+    }
+
+    /**
+     * @return the foto
+     */
+    public PhotoDTO getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(PhotoDTO foto) {
+        this.foto = foto;
     }
     
 }

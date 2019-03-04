@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.entities.FormaDePagoEntity;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -13,7 +15,16 @@ import java.io.Serializable;
  */
 public class FormaDePagoDTO implements Serializable
 {
-    private String nombre;
+    public final static String TARJETADEBITO = "Tarjeta Debito";
+    public final static String TARJETACREDITO = "Tarjeta Credito";
+    public final static String VISA = "VISA";
+    public final static String MASTERCARD = "MASTERCARD";
+    
+    private Long numeroTarjeta;
+    private Date fechaVencimiento;
+    private Integer numeroVerificacion;
+    private String tipoDeTarjeta;
+    private String tipoTarjetaDeCredito;
     
     /**
      * Constructor vacio
@@ -23,20 +34,114 @@ public class FormaDePagoDTO implements Serializable
     {
         
     }
-
-    /**
-     * @return the nombre
+    
+     /**
+     * Crea un objeto FormaDePagoDTO a partir de un objeto FormaDePagoEntity.
+     *
+     * @param formaDePagoEntity Entidad FormaDePagoEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
      */
-    public String getNombre() {
-        return nombre;
+    public FormaDePagoDTO(FormaDePagoEntity formaDePagoEntity) {
+        if (formaDePagoEntity != null) 
+        {
+           
+            this.numeroTarjeta = formaDePagoEntity.getNumeroTarjeta();
+            this.numeroVerificacion = formaDePagoEntity.getNumeroVerificacion();
+            this.fechaVencimiento = formaDePagoEntity.getFechaVencimiento();
+            this.tipoDeTarjeta = formaDePagoEntity.getTipoDeTarjeta();
+            this.tipoTarjetaDeCredito = formaDePagoEntity.getTipoTarjetaDeCredito();
+            
+        }
     }
 
     /**
-     * @param nombre the nombre to set
+     * Convierte un objeto FormaDePagoDTO a FormaDePagoEntity.
+     *
+     * @return Nueva objeto FormaDePagoEntity.
+     *
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public FormaDePagoEntity toEntity() {
+        FormaDePagoEntity formaDePagoEntity = new FormaDePagoEntity();
+        formaDePagoEntity.setNumeroTarjeta(this.getNumeroTarjeta());
+        formaDePagoEntity.setFechaVencimiento(this.getFechaVencimiento());
+        formaDePagoEntity.setNumeroVerificacion(this.getNumeroVerificacion());
+        formaDePagoEntity.setTipoDeTarjeta(this.getTipoDeTarjeta());
+        formaDePagoEntity.setTipoTarjetaDeCredito(this.getTipoTarjetaDeCredito());
+       
+        
+        return formaDePagoEntity;
+    } 
+
+    /**
+     * @return the numeroTarjeta
+     */
+    public Long getNumeroTarjeta() {
+        return numeroTarjeta;
     }
-    
-    
+
+    /**
+     * @param numeroTarjeta the numeroTarjeta to set
+     */
+    public void setNumeroTarjeta(Long numeroTarjeta) {
+        this.numeroTarjeta = numeroTarjeta;
+    }
+
+    /**
+     * @return the fechaVencimiento
+     */
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    /**
+     * @param fechaVencimiento the fechaVencimiento to set
+     */
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    /**
+     * @return the numeroVerificacion
+     */
+    public Integer getNumeroVerificacion() {
+        return numeroVerificacion;
+    }
+
+    /**
+     * @param numeroVerificacion the numeroVerificacion to set
+     */
+    public void setNumeroVerificacion(Integer numeroVerificacion) {
+        this.numeroVerificacion = numeroVerificacion;
+    }
+
+    /**
+     * @return the tipoDeTarjeta
+     */
+    public String getTipoDeTarjeta() {
+        return tipoDeTarjeta;
+    }
+
+    /**
+     * @param tipoDeTarjeta the tipoDeTarjeta to set
+     */
+    public void setTipoDeTarjeta(String tipoDeTarjeta) {
+        this.tipoDeTarjeta = tipoDeTarjeta;
+    }
+
+    /**
+     * @return the tipoTarjetaDeCredito
+     */
+    public String getTipoTarjetaDeCredito() {
+        return tipoTarjetaDeCredito;
+    }
+
+    /**
+     * @param tipoTarjetaDeCredito the tipoTarjetaDeCredito to set
+     */
+    public void setTipoTarjetaDeCredito(String tipoTarjetaDeCredito) {
+        this.tipoTarjetaDeCredito = tipoTarjetaDeCredito;
+    }
+
+   
 }
