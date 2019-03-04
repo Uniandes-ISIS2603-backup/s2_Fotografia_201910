@@ -61,6 +61,8 @@ public class OrganizadorEntity extends BaseEntity implements Serializable {
     public void setCorreo(String pCorreo){
         correo = pCorreo;
     }
+    
+    
     public Integer getTelefono(){
         return telefono;
     }
@@ -92,8 +94,6 @@ public class OrganizadorEntity extends BaseEntity implements Serializable {
     public void setConcursos(List<ConcursoEntity> pConcursos) {
         this.concursos = pConcursos;
     }
-    public void vacio(){
-        
-    }
+   
     
 }

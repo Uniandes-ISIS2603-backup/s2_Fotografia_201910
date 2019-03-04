@@ -139,9 +139,24 @@ public class FormaDePagoPersistenceTest
         FormaDePagoEntity entity = data.get(0);
         FormaDePagoEntity newEntity = fdpp.get(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
      
     }
+    
+     /**
+     * Prueba para consultar una forma de pago por numero
+     */
+    @Test
+    public void getFormaDePagoByNumero() {
+        FormaDePagoEntity entity = data.get(0);
+        FormaDePagoEntity newEntity = fdpp.getByNumeroTarjeta(entity.getNumeroTarjeta());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
+
+        newEntity = fdpp.getByNumeroTarjeta(null);
+        Assert.assertNull(newEntity);
+    }
+    
     /**
      * Prueba para actualizar una forma de pago.
      */

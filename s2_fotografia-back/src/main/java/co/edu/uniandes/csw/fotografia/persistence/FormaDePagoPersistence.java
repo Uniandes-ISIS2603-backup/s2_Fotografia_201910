@@ -50,6 +50,32 @@ public class FormaDePagoPersistence
         LOGGER.log(Level.INFO, "Consultando la forma de pago con id{0}", formaDePagoId);
         return em.find(FormaDePagoEntity.class, formaDePagoId);
     }
+    
+    /**
+     * Busca una forma de pago por numero de tarjeta
+     * @param numeroTarjeta el numero de tarjeta por el cual se buscaea
+     * @return la tarjeta con el numero de tarjeta buscado
+     */
+    public FormaDePagoEntity getByNumeroTarjeta(Long numeroTarjeta)
+    {
+        LOGGER.log(Level.INFO, "Buscando la forma de pago por numero de tarjeta", numeroTarjeta);
+        
+        TypedQuery query = em.createQuery("Select f From FormaDePagoEntity f where f.numeroTarjeta = :numeroTarjeta", FormaDePagoEntity.class);
+        
+        query = query.setParameter("numeroTarjeta", numeroTarjeta);
+        
+        List<FormaDePagoEntity> sameNumeroTarjeta = query.getResultList();
+        FormaDePagoEntity result;
+        if (sameNumeroTarjeta == null) {
+            result = null;
+        } else if (sameNumeroTarjeta.isEmpty()) {
+            result = null;
+        } else {
+            result = sameNumeroTarjeta.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar forma de pago por numero de tarjeta ", numeroTarjeta);
+        return result;
+    }
 
     /**
      * Devuelve la lista de todas las formas de pago

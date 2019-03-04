@@ -56,22 +56,17 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private OrganizadorEntity organizador;
- 
+
     @PodamExclude
     @OneToOne
     private RondaEntity ronda;
     
-
-    
     private Integer cantidadPremio;
     
-    
-    
-    
-    
+
     public ConcursoEntity(){
     /**
-     * 
+     * no hago nada xd 
      */
     }
 
@@ -138,7 +133,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-
+    
     public List<PhotoEntity> getFotosEnConcurso() {
         return fotosEnConcurso;
     }
