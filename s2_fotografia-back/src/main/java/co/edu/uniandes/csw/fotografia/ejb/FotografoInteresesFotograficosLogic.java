@@ -32,6 +32,8 @@ public class FotografoInteresesFotograficosLogic {
 
     @Inject
     private FotografoPersistence fotografoPersistence;
+    
+     
 
     /**
      * Asocia un InteresFotografico existente a un Fotografo
@@ -47,7 +49,7 @@ public class FotografoInteresesFotograficosLogic {
         fEntity.getIntereses().add(interesEntity);
       
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", fotografosId);
-        return interesFotograficoPersistence.find(interesesFotograficosId);
+        return interesEntity;
     }
 
     /**
