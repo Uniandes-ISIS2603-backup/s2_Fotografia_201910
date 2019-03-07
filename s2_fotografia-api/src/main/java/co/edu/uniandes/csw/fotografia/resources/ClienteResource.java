@@ -19,21 +19,21 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author Valentina Duarte
  */
-@Path ("clientes")
-@Produces ("application/json")
-@Consumes("application/json")
+@Path ("/clientes")
+@Produces (MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 
 public class ClienteResource 
@@ -64,8 +64,8 @@ public class ClienteResource
      * @return null
      */
     @GET
-    @Path ("{login:\\d+}")
-    public ClienteDetailDTO getCliente (@PathParam ("clientesId")Long clientesId)
+    @Path ("{clientesId:\\d+}")
+    public ClienteDetailDTO getCliente (@PathParam ("clientesId")Long clientesId) throws WebApplicationException
     {
          LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", clientesId);
         ClienteEntity clienteEntity = clienteLogic.getCliente(clientesId);
@@ -112,6 +112,7 @@ public class ClienteResource
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @PUT
+    @Path("{clientesId: \\d+}")
     public ClienteDetailDTO updateCliente(@PathParam("clientesId") Long clientesId, ClienteDetailDTO cliente) throws BusinessLogicException {
        LOGGER.log(Level.INFO, "ClienteResource updateCliente: input: clientesId: {0} , cliente: {1}", new Object[]{clientesId, cliente});
         cliente.setId(clientesId);

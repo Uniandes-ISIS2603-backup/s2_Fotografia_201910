@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.fotografia.ejb;
 import co.edu.uniandes.csw.fotografia.entities.FormaDePagoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.FormaDePagoPersistence;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -43,20 +45,39 @@ public class FormaDePagoLogic {
     public FormaDePagoEntity createFormaDePago(FormaDePagoEntity formaDePago) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia la creación de la factura");
 
-        //Verificar la regla de negocio que afirma que no deben haber dos tarjetas con el mismo numero
-        if (fdpp.getByNumeroTarjeta(formaDePago.getNumeroTarjeta()) != null) {
-            throw new BusinessLogicException("Ya existe una forma de pago con numero \"" + formaDePago.getNumeroTarjeta() + "\"");
-        }
-
-        //Verificar la regla de negocio que afirma que el numero de la tarjeta no puede ser null
+        //Verificar la regla de negocio que afirma que no deben haber dos tarjetas con el mismo numero y que dicho numero no debe ser null
         if (formaDePago.getNumeroTarjeta() == null) {
             throw new BusinessLogicException("El numero de tarjeta no puede ser null \"");
+        } else {
+            if (fdpp.getByNumeroTarjeta(formaDePago.getNumeroTarjeta()) != null) {
+                throw new BusinessLogicException("Ya existe una forma de pago con el numero ingresado");
+            }
+
+            //Verificar la regla de negocio que afirma que el numero de la tarjeta debe tener entre 13 y 18 digitos, y que debe ser positivo
+            String digitos = formaDePago.getNumeroTarjeta().toString().trim();
+            if (formaDePago.getNumeroTarjeta() < 0 || digitos.length() < 13 || digitos.length() > 18) {
+                throw new BusinessLogicException("El numero de la tarjeta no es valido");
+            }
         }
 
-        //Verificar la regla de negocio que afirma que el numero de la tarjeta debe tener entre 13 y 18 digitos, y que debe ser positivo
-        String digitos = formaDePago.getNumeroTarjeta().toString().trim();
-        if (formaDePago.getNumeroTarjeta() < 0 || digitos.length() < 13 || digitos.length() > 18) {
-            throw new BusinessLogicException("El numero de la tarjeta no es valido");
+        //Verifica regla de negocio que afirma que una tarjeta solo puede ser de credito o debito y no puede ser null
+        if (formaDePago.getTipoDeTarjeta() == null) {
+            throw new BusinessLogicException("El tipo de tarjeta no puede ser null");
+        } else {
+            if (!(formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO) || formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETADEBITO))) {
+
+                throw new BusinessLogicException("El tipo de tarjeta no es valido");
+            }
+        }
+
+        //Verifica la regla de negocio que afirma que uan tarjeta de credito debe ser VISA o MASTERCARD
+        if (formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO) && formaDePago.getTipoTarjetaDeCredito() == null) {
+            throw new BusinessLogicException("El tipo de tarjeta de credito no puede ser null");
+
+        } else if (formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO)) {
+            if (!(formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(MASTERCARD) || formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(VISA))) {
+                throw new BusinessLogicException("El tipo de tarjeta de credito no es valido. Debe ser VISA o MASTERCARD");
+            }
         }
 
         //Verificar la regla de negocio que afirma que el numero de verificacion debe tener entre 3 o 4 digitos, y que debe ser posi
@@ -68,33 +89,24 @@ public class FormaDePagoLogic {
                     throw new BusinessLogicException("El numero de verificación no es valido");
                 }
             }
+        }
 
-            // Verifica la regla de negocio que afirma que la fecha de vencimiento debe ser anterior a la actual
-            Date fecha = formaDePago.getFechaVencimiento();
-            if (fecha == null) {
-                throw new BusinessLogicException("La fecha de vencimiento no puede estar vacía.");
-            }
+        // Verifica la regla de negocio que afirma que la fecha de vencimiento debe ser anterior a la actual
+        Date fecha = formaDePago.getFechaVencimiento();
+        // LocalDate fecha = fechaD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+
+        if (fecha == null) {
+            throw new BusinessLogicException("La fecha de vencimiento no puede estar vacía.");
+        } else {
             Calendar c = Calendar.getInstance();
 
-            if (fecha.getYear() < c.get(Calendar.YEAR)
-                    || (fecha.getYear() == c.get(Calendar.YEAR) && fecha.getMonth() < c.get(Calendar.MONTH))) {
-                throw new BusinessLogicException("La tarjeta ya está vencida.");
-            }
-        }
-
-        //Verifica regla de negocio que afirma que ina tarjeta solo puede ser de credito o debito
-        if (!(formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO) || formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETADEBITO)) ) {
-            
-            throw new BusinessLogicException("El tipo de tarjeta no es valido");
-        }
-
-        //Verifica regla de negocio que afirma que una tarjeta credito solo puede ser VISA o MASTERCARD
-        if (formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO)) {
-            if (!(formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(MASTERCARD)||formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(VISA))) 
-            {
-                throw new BusinessLogicException("El tipo de tarjeta de credito no es valido. Debe ser VISA o MASTERCARD");
-            }
+            if (fecha.getYear()+1900 < c.get(Calendar.YEAR)
+                    || (fecha.getYear()+1900 == c.get(Calendar.YEAR) && fecha.getMonth() < c.get(Calendar.MONTH))) {
+                throw new BusinessLogicException("La tarjeta ya está vencida." + fecha.getYear() +" "+c.get(Calendar.YEAR));
+           }
+         
+           
         }
 
         //Llama a la persistencia para crear la forma de pago
@@ -149,21 +161,43 @@ public class FormaDePagoLogic {
     public FormaDePagoEntity setFormaDePago(Long formaDePagoId, FormaDePagoEntity formaDePago) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la forma de pago con id = {0}", formaDePagoId);
         // El inyect de dependenciaspermite llamar al set de la persistencia
+        //Verificar la regla de negocio que afirma que no deben haber dos tarjetas con el mismo numero y que dicho numero no debe ser null
 
-        //Verificar la regla de negocio que afirma que no deben haber dos tarjetas con el mismo numero
-        if (fdpp.getByNumeroTarjeta(formaDePago.getNumeroTarjeta()) != null) {
-            throw new BusinessLogicException("Ya existe una forma de pago con numero \"" + formaDePago.getNumeroTarjeta() + "\"");
-        }
-
-        //Verificar la regla de negocio que afirma que el numero de la tarjeta no puede ser null
         if (formaDePago.getNumeroTarjeta() == null) {
             throw new BusinessLogicException("El numero de tarjeta no puede ser null \"");
+        } else {
+
+            if (!String.valueOf(fdpp.get(formaDePagoId).getNumeroTarjeta()).equalsIgnoreCase(String.valueOf(formaDePago.getNumeroTarjeta()))) {
+                if (fdpp.getByNumeroTarjeta(formaDePago.getNumeroTarjeta()) != null) {
+                    throw new BusinessLogicException("Ya existe una forma de pago con numero \"" + formaDePago.getNumeroTarjeta() + "\"");
+                }
+            }
+
+            //Verificar la regla de negocio que afirma que el numero de la tarjeta debe tener entre 13 y 18 digitos, y que debe ser positivo
+            String digitos = formaDePago.getNumeroTarjeta().toString().trim();
+            if (formaDePago.getNumeroTarjeta() < 0 || digitos.length() < 13 || digitos.length() > 18) {
+                throw new BusinessLogicException("El numero de la tarjeta no es valido");
+            }
         }
 
-        //Verificar la regla de negocio que afirma que el numero de la tarjeta debe tener entre 13 y 18 digitos, y que debe ser positivo
-        String digitos = formaDePago.getNumeroTarjeta().toString().trim();
-        if (formaDePago.getNumeroTarjeta() < 0 || digitos.length() < 13 || digitos.length() > 18) {
-            throw new BusinessLogicException("El numero de la tarjeta no es valido");
+        //Verifica regla de negocio que afirma que una tarjeta solo puede ser de credito o debito y no puede ser null
+        if (formaDePago.getTipoDeTarjeta() == null) {
+            throw new BusinessLogicException("El tipo de tarjeta no puede ser null");
+        } else {
+            if (!(formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO) || formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETADEBITO))) {
+
+                throw new BusinessLogicException("El tipo de tarjeta no es valido");
+            }
+        }
+
+        //Verifica la regla de negocio que afirma que uan tarjeta de credito debe ser VISA o MASTERCARD
+        if (formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO) && formaDePago.getTipoTarjetaDeCredito() == null) {
+            throw new BusinessLogicException("El tipo de tarjeta de credito no puede ser null");
+
+        } else if (formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO)) {
+            if (!(formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(MASTERCARD) || formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(VISA))) {
+                throw new BusinessLogicException("El tipo de tarjeta de credito no es valido. Debe ser VISA o MASTERCARD");
+            }
         }
 
         //Verificar la regla de negocio que afirma que el numero de verificacion debe tener entre 3 o 4 digitos, y que debe ser posi
@@ -175,32 +209,18 @@ public class FormaDePagoLogic {
                     throw new BusinessLogicException("El numero de verificación no es valido");
                 }
             }
+        }
 
-            // Verifica la regla de negocio que afirma que la fecha de vencimiento debe ser anterior a la actual
-            Date fecha = formaDePago.getFechaVencimiento();
-            if (fecha == null) {
-                throw new BusinessLogicException("La fecha de vencimiento no puede estar vacía.");
-            }
-
+        // Verifica la regla de negocio que afirma que la fecha de vencimiento debe ser anterior a la actual
+        Date fecha = formaDePago.getFechaVencimiento();
+        if (fecha == null) {
+            throw new BusinessLogicException("La fecha de vencimiento no puede estar vacía.");
+        } else {
             Calendar c = Calendar.getInstance();
 
-            if (fecha.getYear() < c.get(Calendar.YEAR)
-                    || (fecha.getYear() == c.get(Calendar.YEAR) && fecha.getMonth() < c.get(Calendar.MONTH))) {
+            if (fecha.getYear()+1900 < c.get(Calendar.YEAR)
+                    || (fecha.getYear()+1900 == c.get(Calendar.YEAR) && fecha.getMonth() < c.get(Calendar.MONTH))) {
                 throw new BusinessLogicException("La tarjeta ya está vencida.");
-            }
-        }
-
-       //Verifica regla de negocio que afirma que ina tarjeta solo puede ser de credito o debito
-        if (!(formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO) || formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETADEBITO)) ) {
-            
-            throw new BusinessLogicException("El tipo de tarjeta no es valido");
-        }
-
-        //Verifica regla de negocio que afirma que una tarjeta credito solo puede ser VISA o MASTERCARD
-        if (formaDePago.getTipoDeTarjeta().equalsIgnoreCase(TARJETACREDITO)) {
-            if (!(formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(MASTERCARD)||formaDePago.getTipoTarjetaDeCredito().equalsIgnoreCase(VISA))) 
-            {
-                throw new BusinessLogicException("El tipo de tarjeta de credito no es valido. Debe ser VISA o MASTERCARD");
             }
         }
 

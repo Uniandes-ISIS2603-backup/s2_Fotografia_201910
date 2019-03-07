@@ -24,15 +24,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author Valentina Duarte
  */
 
-@Path ("formasDePago")
-@Produces ("application/json")
-@Consumes("application/json")
+@Path ("/formasDePago")
+@Produces (MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class FormaDePagoResource 
 {
@@ -110,6 +111,7 @@ public class FormaDePagoResource
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @PUT
+    @Path("{formasDePagoId: \\d+}")
     public FormaDePagoDTO updateFormaDePago(@PathParam ("formasDePagoId")Long formasDePagoId, FormaDePagoDTO formaDePago ) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "FormaDePagoResource updateFormaDePago: input: formasDePagoId: {0} , formaDePago: {1}", new Object[]{formasDePagoId, formaDePago});

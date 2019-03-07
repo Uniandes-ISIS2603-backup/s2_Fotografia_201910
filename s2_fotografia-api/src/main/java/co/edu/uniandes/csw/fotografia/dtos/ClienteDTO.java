@@ -102,7 +102,7 @@ public class ClienteDTO implements Serializable
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param login the usuario to set
      */
     public void setLogin(String login) {
         this.login = login;

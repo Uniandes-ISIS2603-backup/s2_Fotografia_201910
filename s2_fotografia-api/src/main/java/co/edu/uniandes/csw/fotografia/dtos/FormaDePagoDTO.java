@@ -52,7 +52,7 @@ public class FormaDePagoDTO implements Serializable
             this.fechaVencimiento = formaDePagoEntity.getFechaVencimiento();
             this.tipoDeTarjeta = formaDePagoEntity.getTipoDeTarjeta();
             this.tipoTarjetaDeCredito = formaDePagoEntity.getTipoTarjetaDeCredito();
-            
+            this.id = formaDePagoEntity.getId();
         }
     }
 
@@ -69,7 +69,7 @@ public class FormaDePagoDTO implements Serializable
         formaDePagoEntity.setNumeroVerificacion(this.getNumeroVerificacion());
         formaDePagoEntity.setTipoDeTarjeta(this.getTipoDeTarjeta());
         formaDePagoEntity.setTipoTarjetaDeCredito(this.getTipoTarjetaDeCredito());
-       
+       formaDePagoEntity.setId(this.getId());
         
         return formaDePagoEntity;
     } 

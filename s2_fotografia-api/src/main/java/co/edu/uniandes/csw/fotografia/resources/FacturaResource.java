@@ -24,15 +24,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author Valentina Duarte
  */
 
-@Path ("facturas")
-@Produces ("application/json")
-@Consumes("application/json")
+@Path ("/facturas")
+@Produces (MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 
 
@@ -115,6 +116,7 @@ public class FacturaResource
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @PUT
+    @Path("{facturasId: \\d+}")
     public FacturaDTO updateFactura(@PathParam ("facturasId")Long facturasId, FacturaDTO factura) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "FacturaResource updateFactura: input: facturasId: {0} , factura: {1}", new Object[]{facturasId, factura});

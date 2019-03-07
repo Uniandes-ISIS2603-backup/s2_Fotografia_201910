@@ -43,6 +43,7 @@ public class FacturaDTO implements Serializable
             this.numero = facturaEntity.getNumero();
             this.fechaCompra = facturaEntity.getFechaCompra();
             this.precio= facturaEntity.getPrecio();
+            this.id = facturaEntity.getId();
             
             if (facturaEntity.getCliente() != null) {
                 this.cliente = new ClienteDTO(facturaEntity.getCliente());
@@ -76,6 +77,7 @@ public class FacturaDTO implements Serializable
         facturaEntity.setNumero(this.getNumero());
         facturaEntity.setPrecio(this.getPrecio());
         facturaEntity.setFechaCompra(this.getFechaCompra());
+        facturaEntity.setId(this.getId());
        
         if (cliente != null) {
             facturaEntity.setCliente(cliente.toEntity());
