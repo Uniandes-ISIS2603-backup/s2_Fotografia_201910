@@ -15,7 +15,6 @@
         <module>s2_fotografia-api</module>
         <module>s2_fotografia-back</module>
     </modules>
-
     
     <repositories>
         <repository>
