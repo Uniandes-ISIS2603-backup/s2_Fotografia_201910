@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.fotografia.test.persistence;
 
-import co.edu.uniandes.csw.fotografia.entities.FormaDePagoEntity;
-import co.edu.uniandes.csw.fotografia.persistence.FormaDePagoPersistence;
+import co.edu.uniandes.csw.fotografia.entities.UsuarioEntity;
+import co.edu.uniandes.csw.fotografia.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,27 +26,25 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Valentina Duarte
+ * @author Nicolas Rincon
  */
 @RunWith(Arquillian.class)
-public class FormaDePagoPersistenceTest 
-{
-    
+public class UsuarioPersistenceTest {
     @Inject
-    private FormaDePagoPersistence fdpp;
+    private UsuarioPersistence fp;
     
     @PersistenceContext
     private EntityManager em;
     
-     @Inject
+    @Inject
     UserTransaction utx;
-    private List<FormaDePagoEntity> data = new ArrayList<>();
+    private List<UsuarioEntity> data = new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(FormaDePagoEntity.class.getPackage())
-                .addPackage(FormaDePagoPersistence.class.getPackage())
+                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -73,7 +71,7 @@ public class FormaDePagoPersistenceTest
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from FormaDePagoEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
     
       /**
@@ -83,7 +81,7 @@ public class FormaDePagoPersistenceTest
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            FormaDePagoEntity entity = factory.manufacturePojo(FormaDePagoEntity.class);
+            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
             em.persist(entity);
             data.add(entity);
         }
@@ -94,36 +92,36 @@ public class FormaDePagoPersistenceTest
     @Test
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        FormaDePagoEntity result = fdpp.create(newEntity);
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result = fp.create(newEntity);
         Assert.assertNotNull(result);
         
-        FormaDePagoEntity entity = em.find(FormaDePagoEntity.class, result.getId());
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     
     /**
-     * Prueba para crear una forma de pago.
+     * Prueba para crear un usuario.
      */
     @Test
-    public void createFormaDePagoTest() {
+    public void createUsuarioTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        FormaDePagoEntity result = fdpp.create(newEntity);
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result = fp.create(newEntity);
         Assert.assertNotNull(result);
-        FormaDePagoEntity entity = em.find(FormaDePagoEntity.class, result.getId());
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
     /**
-     * Prueba para consultar la lista de formas de pago.
+     * Prueba para consultar la lista de usuarios
      */
     @Test
-    public void getFormasDePagoTest() {
-        List<FormaDePagoEntity> list = fdpp.getAll();
+    public void findUsuariosTest() {
+        List<UsuarioEntity> list = fp.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (FormaDePagoEntity ent : list) {
+        for (UsuarioEntity ent : list) {
             boolean found = false;
-            for (FormaDePagoEntity entity : data) {
+            for (UsuarioEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -132,52 +130,38 @@ public class FormaDePagoPersistenceTest
         }
     }
     /**
-     * Prueba para consultar una forma de pago.
+     * Prueba para consultar un usuario.
      */
     @Test
-    public void getFormaDePagoTest() {
-        FormaDePagoEntity entity = data.get(0);
-        FormaDePagoEntity newEntity = fdpp.get(entity.getId());
+    public void findUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = fp.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getNombreDeUsuario(), newEntity.getNombreDeUsuario());
      
     }
-    
-     /**
-     * Prueba para consultar una forma de pago por numero
-     */
-    @Test
-    public void getFormaDePagoByNumero() {
-        FormaDePagoEntity entity = data.get(0);
-        FormaDePagoEntity newEntity = fdpp.getByNumeroTarjeta(entity.getNumeroTarjeta());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
-
-        newEntity = fdpp.getByNumeroTarjeta(null);
-        Assert.assertNull(newEntity);
-    }
-    
     /**
-     * Prueba para actualizar una forma de pago.
+     * Prueba para actualizar un usuario.
      */
     @Test
-    public void setFormaDePagoTest() {
-        FormaDePagoEntity entity = data.get(0);
+    public void updateUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
         newEntity.setId(entity.getId());
-        fdpp.set(newEntity);
-        FormaDePagoEntity resp = em.find(FormaDePagoEntity.class, entity.getId());
+        fp.update(newEntity);
+        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     /**
-     * Prueba para eliminar una forma de pago.
+     * Prueba para eliminar un usuario.
      */
     @Test
-    public void deleteFormaDePagoTest() {
-        FormaDePagoEntity entity = data.get(0);
-        fdpp.delete(entity.getId());
-        FormaDePagoEntity deleted = em.find(FormaDePagoEntity.class, entity.getId());
+    public void deleteUsuarioTest() {
+        UsuarioEntity entity = data.get(0);
+        fp.delete(entity.getId());
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 }

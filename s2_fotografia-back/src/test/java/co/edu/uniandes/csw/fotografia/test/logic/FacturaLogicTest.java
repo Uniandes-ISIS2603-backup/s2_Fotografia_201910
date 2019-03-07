@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.FacturaPersistence;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -30,13 +32,16 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Valentina Duarte
  */
-
 @RunWith(Arquillian.class)
-public class FacturaLogicTest 
-{
+public class FacturaLogicTest {
+
+    Calendar c = Calendar.getInstance();
+
+    Date fecha = new Date(c.get(Calendar.YEAR) - 1, 8, 20);
+
     private PodamFactory factory = new PodamFactoryImpl();
-   
-   @Inject
+
+    @Inject
     private FacturaLogic facturaLogic;
 
     @PersistenceContext
@@ -46,7 +51,7 @@ public class FacturaLogicTest
     private UserTransaction utx;
 
     private List<FacturaEntity> data = new ArrayList<>();
-    
+
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
      * El jar contiene las clases, el descriptor de la base de datos y el
@@ -101,71 +106,127 @@ public class FacturaLogicTest
             data.add(factura);
         }
     }
-    
-     /**
+
+    /**
      * Prueba el metodo de crearFactura de la clase facturaLogic
+     *
      * @throws BusinessLogicException si no se puede crear la factura
      */
-     @Test
-    public void createFacturaTest() throws BusinessLogicException 
-    {
+    @Test
+    public void createFacturaTest() throws BusinessLogicException {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
         newEntity.setNumero(1);
         newEntity.setPrecio(1.0);
+        newEntity.setFechaCompra(fecha);
         FacturaEntity result = facturaLogic.createFactura(newEntity);
         Assert.assertNotNull(result);
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
     }
-    
+
     /**
      * Prueba crear dos facturas con el mismo numero
      *
      * @throws BusinessLogicException si no se puede crear el cliente
      */
     @Test(expected = BusinessLogicException.class)
-    public void createFacturaConMismoNumeroTest() throws BusinessLogicException 
-    {
+    public void createFacturaConMismoNumeroTest() throws BusinessLogicException {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
         newEntity.setNumero(data.get(0).getNumero());
         facturaLogic.createFactura(newEntity);
     }
-    
+
     /**
      * Prueba crear una factura con un numero no valido
      *
      * @throws BusinessLogicException si no se puede crear la factura
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createFacturaNumeroInvalidoTest() throws BusinessLogicException 
-    {
+    @Test
+    public void createFacturaNumeroInvalidoTest() throws BusinessLogicException {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-        newEntity.setNumero(-11);
-        facturaLogic.createFactura(newEntity);
-        
-        newEntity.setNumero(null);
-        facturaLogic.createFactura(newEntity);
+        newEntity.setPrecio(1.0);
+        newEntity.setFechaCompra(fecha);
+
+        try {
+            newEntity.setNumero(-11);
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura no deberia tener numero negativo");
+        } catch (BusinessLogicException e) {
+        }
+
+        try {
+            newEntity.setNumero(null);
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura no deberia tener numero null");
+        } catch (BusinessLogicException e) {
+        }
     }
-    
+
     /**
      * Prueba crear una factura con un precio no valido
      *
      * @throws BusinessLogicException si no se puede crear la factura
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createFacturaPrecioInvalidoTest() throws BusinessLogicException 
-    {
+    @Test
+    public void createFacturaPrecioInvalidoTest() throws BusinessLogicException {
         FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
-        newEntity.setPrecio(-11.00);
-        facturaLogic.createFactura(newEntity);
-        
-        newEntity.setPrecio(null);
-        facturaLogic.createFactura(newEntity);
+        newEntity.setNumero(1);
+        newEntity.setFechaCompra(fecha);
+
+        try {
+            newEntity.setPrecio(-11.00);
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura no deberia tener precio negativo");
+        } catch (BusinessLogicException e) {
+
+        }
+
+        try {
+            newEntity.setPrecio(null);
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura no deberia tener precio negativo");
+        } catch (BusinessLogicException e) {
+
+        }
     }
-    
-    
-     /**
+
+    /**
+     * Prueba crear una factura con una fecha no valida
+     *
+     * @throws BusinessLogicException si no se puede crear la factura
+     */
+    @Test
+    public void createFacturaFechaInvalidaTest() throws BusinessLogicException {
+        FacturaEntity newEntity = factory.manufacturePojo(FacturaEntity.class);
+        newEntity.setNumero(1);
+        newEntity.setPrecio(1.0);
+
+        try {
+            newEntity.setFechaCompra(new Date(c.get(Calendar.YEAR) + 1, 2, 11));
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura debe ser menor a la actual");
+        } catch (BusinessLogicException e) {
+
+        }
+
+        try {
+            newEntity.setFechaCompra(new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, 11));
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura debe ser menor a la actual");
+        } catch (BusinessLogicException e) {
+
+        }
+        try {
+            newEntity.setFechaCompra(new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DATE) + 1));
+            facturaLogic.createFactura(newEntity);
+            Assert.fail("La factura debe ser menor a la actual");
+        } catch (BusinessLogicException e) {
+
+        }
+    }
+
+    /**
      * Prueba para consultar una factura
      */
     @Test
@@ -176,8 +237,8 @@ public class FacturaLogicTest
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNumero(), resultEntity.getNumero());
     }
-    
-      /**
+
+    /**
      * Prueba para consultar la lista de facturas.
      */
     @Test
@@ -194,7 +255,7 @@ public class FacturaLogicTest
             Assert.assertTrue(found);
         }
     }
-    
+
     /**
      * Prueba para actualizar una factura.
      */
@@ -205,17 +266,18 @@ public class FacturaLogicTest
         pojoEntity.setId(entity.getId());
         pojoEntity.setNumero(12);
         pojoEntity.setPrecio(11.9);
+        pojoEntity.setFechaCompra(fecha);
         facturaLogic.setFactura(pojoEntity.getId(), pojoEntity);
         FacturaEntity resp = em.find(FacturaEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNumero(), resp.getNumero());
     }
-    
+
     /**
      * Prueba para eliminar una factura
      */
     @Test
-    public void deleteClienteTest()  {
+    public void deleteClienteTest() {
         FacturaEntity entity = data.get(0);
         facturaLogic.deleteFactura(entity.getId());
         FacturaEntity deleted = em.find(FacturaEntity.class, entity.getId());

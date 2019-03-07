@@ -65,13 +65,14 @@ public class PhotoDTO implements Serializable{
         
     }
     public PhotoDTO(PhotoEntity entidad){
-        this.date = entidad.getDate();
-        this.description = entidad.getDescription();
-        this.name = entidad.getName();
-        this.price = entidad.getPrice();
-        this.published = entidad.getPublished();
-        this.winner = entidad.getWinner();
-        
+        if(entidad != null){
+            this.date = entidad.getDate();
+            this.description = entidad.getDescription();
+            this.name = entidad.getName();
+            this.price = entidad.getPrice();
+            this.published = entidad.getPublished();
+            this.winner = entidad.getWinner();
+        }
     }
 
     /**

@@ -44,7 +44,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     /**
      * Constructor vacio
      */
-    public ClienteEntity() {
+   public ClienteEntity() {
 
     }
 

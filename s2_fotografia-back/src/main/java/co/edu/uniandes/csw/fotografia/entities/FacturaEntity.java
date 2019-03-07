@@ -25,7 +25,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
     private Integer numero;
     private Double precio;
     
-     @Temporal (TemporalType.DATE)
+    @Temporal (TemporalType.DATE)
     private Date fechaCompra;
     
     @PodamExclude
