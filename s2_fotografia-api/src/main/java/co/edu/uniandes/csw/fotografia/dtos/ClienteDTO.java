@@ -15,6 +15,8 @@ import java.io.Serializable;
  */
 public class ClienteDTO implements Serializable
 {
+    private Long id;
+    
     private String login;
     
     private String nombre;
@@ -38,6 +40,7 @@ public class ClienteDTO implements Serializable
     public ClienteDTO(ClienteEntity clienteEntity) {
         if (clienteEntity != null) 
         {
+            this.id = clienteEntity.getId();
             this.login = clienteEntity.getLogin();
             this.correo = clienteEntity.getCorreo();
             this.nombre = clienteEntity.getNombre();
@@ -52,7 +55,9 @@ public class ClienteDTO implements Serializable
      *
      */
     public ClienteEntity toEntity() {
+        
         ClienteEntity clienteEntity = new ClienteEntity();
+        clienteEntity.setId(this.getId());
         clienteEntity.setNombre(this.getNombre());
         clienteEntity.setLogin(this.getLogin());
         clienteEntity.setCorreo(this.getCorreo());
@@ -97,7 +102,7 @@ public class ClienteDTO implements Serializable
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param login the usuario to set
      */
     public void setLogin(String login) {
         this.login = login;
@@ -115,6 +120,20 @@ public class ClienteDTO implements Serializable
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
           

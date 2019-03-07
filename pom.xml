@@ -10,7 +10,12 @@
     <packaging>pom</packaging>
     <name>s2_fotografia</name>
  
-    <modules></modules>
+
+    <modules>
+        <module>s2_fotografia-api</module>
+        <module>s2_fotografia-back</module>
+    </modules>
+
     
     <repositories>
         <repository>

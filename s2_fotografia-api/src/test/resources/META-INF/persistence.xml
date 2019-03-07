@@ -3,9 +3,19 @@
   <persistence-unit name="fotografiaPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
-    
+    <class>co.edu.uniandes.csw.fotografia.entities.ClienteEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.FacturaEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.FormaDePagoEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.CalificacionEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.ConcursoEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.FotografoEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.JuradoEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.OrganizadorEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.PhotoEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.RondaEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
- <shared-cache-mode>NONE</shared-cache-mode>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
       <property name="eclipselink.target-database" value="Derby"/>

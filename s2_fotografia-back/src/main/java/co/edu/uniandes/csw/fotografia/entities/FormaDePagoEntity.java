@@ -38,6 +38,7 @@ public class FormaDePagoEntity extends BaseEntity implements Serializable {
     
      @Temporal (TemporalType.DATE)
     private Date fechaVencimiento;
+     
     private Integer numeroVerificacion;
     private String tipoDeTarjeta;
     private String tipoTarjetaDeCredito;

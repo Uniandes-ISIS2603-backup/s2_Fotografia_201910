@@ -37,8 +37,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class FormaDePagoLogicTest {
 
     Calendar c = Calendar.getInstance();
-    Date fecha = new Date(c.get(Calendar.YEAR)+1,8,20);
-    
+    Date fecha = new Date(c.get(Calendar.YEAR) + 1, 8, 20);
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -103,11 +103,6 @@ public class FormaDePagoLogicTest {
         for (int i = 0; i < 3; i++) {
             FormaDePagoEntity formaDePago = factory.manufacturePojo(FormaDePagoEntity.class);
 
-            //formaDePago.setNumeroTarjeta(Long.valueOf("1234333998763455")+i);
-           // formaDePago.setNumeroVerificacion(543);
-            //formaDePago.setFechaVencimiento(new Date(2022, 7, 18));
-           // formaDePago.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
-           // formaDePago.setTipoTarjetaDeCredito(FormaDePagoLogic.MASTERCARD);
             em.persist(formaDePago);
             data.add(formaDePago);
         }
@@ -148,39 +143,39 @@ public class FormaDePagoLogicTest {
     }
 
     /**
-     * Prueba crear una forma de pago con numero null
-     *
-     * @throws BusinessLogicException si no se puede crear la forma de pago
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void createFormaDePagoConNumeroNullTest() throws BusinessLogicException {
-        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        newEntity.setNumeroTarjeta(null);
-        newEntity.setNumeroVerificacion(234);
-        newEntity.setFechaVencimiento(fecha);
-        newEntity.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
-        newEntity.setTipoTarjetaDeCredito(FormaDePagoLogic.VISA);
-        formaDePagoLogic.createFormaDePago(newEntity);
-
-    }
-
-    /**
      * Prueba crear una forma de pago con numero invalido
      *
      * @throws BusinessLogicException si no se puede crear la forma de pago
      */
-    @Test(expected = BusinessLogicException.class)
+    @Test
     public void createFormaDePagoConNumeroInvalidoTest() throws BusinessLogicException {
         FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        newEntity.setNumeroTarjeta(Long.valueOf("23456"));
+
         newEntity.setNumeroVerificacion(234);
         newEntity.setFechaVencimiento(fecha);
         newEntity.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
         newEntity.setTipoTarjetaDeCredito(FormaDePagoLogic.VISA);
-        formaDePagoLogic.createFormaDePago(newEntity);
 
-        newEntity.setNumeroTarjeta(Long.valueOf("2345678908764321234"));
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setNumeroTarjeta(null);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("La forma de pago no deberia tener numero null");
+        } catch (BusinessLogicException e) {
+        }
+
+        try {
+            newEntity.setNumeroTarjeta(Long.valueOf("23456"));
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El numero de la forma de pago no es valido");
+        } catch (BusinessLogicException e) {
+        }
+
+        try {
+            newEntity.setNumeroTarjeta(Long.valueOf("2345678908764321234"));
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El numero de la forma de pago no es valido");
+        } catch (BusinessLogicException e) {
+        }
 
     }
 
@@ -189,40 +184,43 @@ public class FormaDePagoLogicTest {
      *
      * @throws BusinessLogicException si no se puede crear la forma de pago
      */
-    @Test(expected = BusinessLogicException.class)
+    @Test
     public void createFormaDePagoConNumeroVerificacionInvalidoTest() throws BusinessLogicException {
         FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        newEntity.setNumeroVerificacion(12);
 
         newEntity.setNumeroTarjeta(Long.valueOf("1234333221123455"));
         newEntity.setFechaVencimiento(fecha);
         newEntity.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
         newEntity.setTipoTarjetaDeCredito(FormaDePagoLogic.VISA);
 
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setNumeroVerificacion(12);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El numero de verificacion no es valido");
+        } catch (BusinessLogicException e) {
+        }
 
-        newEntity.setNumeroVerificacion(13122);
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setNumeroVerificacion(12);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El numero de verificacion no es valido");
+        } catch (BusinessLogicException e) {
+        }
 
-        newEntity.setNumeroVerificacion(-1234);
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setNumeroVerificacion(121132);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El numero de verificacion no es valido");
+        } catch (BusinessLogicException e) {
+        }
 
-    }
+        try {
+            newEntity.setNumeroVerificacion(-512);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El numero de verificacion no puede ser negativo");
+        } catch (BusinessLogicException e) {
+        }
 
-    /**
-     * Prueba crear una forma de pago con fecha de vencimiento null
-     *
-     * @throws BusinessLogicException si no se puede crear la forma de pago
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void createFormaDePagoConFechaNullTest() throws BusinessLogicException {
-        FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        newEntity.setFechaVencimiento(null);
-        newEntity.setNumeroTarjeta(Long.valueOf("1234333221123455"));
-        newEntity.setNumeroVerificacion(234);
-        newEntity.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
-        newEntity.setTipoTarjetaDeCredito(FormaDePagoLogic.VISA);
-        formaDePagoLogic.createFormaDePago(newEntity);
     }
 
     /**
@@ -230,21 +228,36 @@ public class FormaDePagoLogicTest {
      *
      * @throws BusinessLogicException si no se puede crear la forma de pago
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createFormaDePagoVencidaTest() throws BusinessLogicException {
+    @Test
+    public void createFormaDeFechaInvalidaTest() throws BusinessLogicException {
         FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        newEntity.setFechaVencimiento(new Date(c.get(Calendar.YEAR) -1, 11, 12));
 
         newEntity.setNumeroTarjeta(Long.valueOf("1234333221123455"));
         newEntity.setNumeroVerificacion(234);
         newEntity.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
         newEntity.setTipoTarjetaDeCredito(FormaDePagoLogic.VISA);
+        
 
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setFechaVencimiento(null);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("La fecha de vencimiento no puede ser null");
+        } catch (BusinessLogicException e) {
+        }
 
-        newEntity.setFechaVencimiento(new Date(2019, 2, 22));
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setFechaVencimiento(new Date(c.get(Calendar.YEAR) - 1901, 11, 12));
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("La tarjeta ya esta vencida" + newEntity.getFechaVencimiento());
+        } catch (BusinessLogicException e) {
+        }
 
+        try {
+            newEntity.setFechaVencimiento(new Date(c.get(Calendar.YEAR)-1900, c.get(Calendar.MONTH) - 1, 12));
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("La tarjeta ya esta vencida" + newEntity.getFechaVencimiento());
+        } catch (BusinessLogicException e) {
+        }
     }
 
     /**
@@ -252,15 +265,27 @@ public class FormaDePagoLogicTest {
      *
      * @throws BusinessLogicException si no se puede crear la forma de pago
      */
-    @Test(expected = BusinessLogicException.class)
+    @Test
     public void createFormaDePagoTipoTarjetaInvalidoTest() throws BusinessLogicException {
         FormaDePagoEntity newEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        newEntity.setTipoDeTarjeta("PSE");
+
         newEntity.setNumeroTarjeta(Long.valueOf("1234333221123455"));
         newEntity.setNumeroVerificacion(234);
         newEntity.setFechaVencimiento(fecha);
 
-        formaDePagoLogic.createFormaDePago(newEntity);
+        try {
+            newEntity.setTipoDeTarjeta(null);
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El tipo de forma de pago no puede ser null");
+        } catch (BusinessLogicException e) {
+        }
+        
+        try {
+            newEntity.setTipoDeTarjeta("PSE");
+            formaDePagoLogic.createFormaDePago(newEntity);
+            Assert.fail("El tipo de forma de pago no es valido");
+        } catch (BusinessLogicException e) {
+        }
     }
 
     /**
@@ -316,14 +341,14 @@ public class FormaDePagoLogicTest {
     public void setFormasDePagoTest() throws BusinessLogicException {
         FormaDePagoEntity entity = data.get(0);
         FormaDePagoEntity pojoEntity = factory.manufacturePojo(FormaDePagoEntity.class);
-        
+
         pojoEntity.setId(entity.getId());
         pojoEntity.setNumeroTarjeta(Long.valueOf("1234333221123455"));
         pojoEntity.setNumeroVerificacion(234);
         pojoEntity.setFechaVencimiento(fecha);
         pojoEntity.setTipoDeTarjeta(FormaDePagoLogic.TARJETACREDITO);
         pojoEntity.setTipoTarjetaDeCredito(FormaDePagoLogic.VISA);
-        
+
         formaDePagoLogic.setFormaDePago(pojoEntity.getId(), pojoEntity);
         FormaDePagoEntity resp = em.find(FormaDePagoEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
