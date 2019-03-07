@@ -32,6 +32,8 @@ public class FotografoInteresesFotograficosLogic {
 
     @Inject
     private FotografoPersistence fotografoPersistence;
+    
+     
 
     /**
      * Asocia un InteresFotografico existente a un Fotografo
