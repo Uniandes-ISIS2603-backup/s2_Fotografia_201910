@@ -1,6 +1,9 @@
 delete from CalificacionEntity;
 delete from ClienteEntity;
 delete from JURADOENTITY;
+delete from fotografoentity;
+
+
 delete from FormaDePagoEntity;
 delete from FacturaEntity;
 
@@ -13,3 +16,8 @@ insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) val
 insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
 
 insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (1,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
+
+
+insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_');
+insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password) values (5,'Villegas','s@correo.com',30,'23/12/12','Sara','Colombia',319,'s.acostav','s_');
+
