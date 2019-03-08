@@ -29,16 +29,16 @@ public class ConcursoLogic {
     
     public ConcursoEntity createConcurso(ConcursoEntity concurso) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del concurso");
-        if(concurso.getEdadFoto() < 0){
+        if(concurso.getEdadDeLaFoto() < 0){
             throw new BusinessLogicException("La edad de la foto es inválida");
         }
         if(concurso.getTema() == null || concurso.getTema().length() == 0){
             throw new BusinessLogicException("Tema invalido");
         }
-        if(concurso.getMaximasFotos() <= 0){
+        if(concurso.getMaxFotos() <= 0){
             throw new BusinessLogicException("El numero maximo de fotos debe ser al menos uno");
         }
-        if(concurso.getEdadFoto() <= 0){
+        if(concurso.getEdadDeLaFoto() <= 0){
             throw new BusinessLogicException("La edad de la foto debe ser un numero positivo");
         }
         ConcursoEntity newConcursoEntity = persistence.create(concurso);
