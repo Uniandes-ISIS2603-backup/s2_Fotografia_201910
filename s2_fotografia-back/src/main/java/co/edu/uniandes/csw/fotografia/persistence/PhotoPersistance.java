@@ -56,8 +56,8 @@ private static final Logger LOGGER = Logger.getLogger(PhotoPersistance.class.get
      public void delete(Long fId) {
 
         LOGGER.log(Level.INFO, "Borrando el fotografo con id={0}", fId);
-        PhotoEntity fotografoEntity = em.find(PhotoEntity.class, fId);
-        em.remove(fotografoEntity);
+        PhotoEntity photoEntity = em.find(PhotoEntity.class, fId);
+        em.remove(photoEntity);
     }
      
          

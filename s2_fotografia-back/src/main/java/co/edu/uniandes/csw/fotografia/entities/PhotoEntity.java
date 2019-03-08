@@ -22,18 +22,15 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class PhotoEntity extends BaseEntity implements Serializable{
+    
     private String name;
     
     private Date date;
-    
-    private String[] tags;
-    
+ 
     private String description;
     
     private Double price;
-    
-   // private ArrayList<String> comments;
-    
+     
     private Boolean winner;
     
     private Boolean published;
@@ -62,7 +59,7 @@ public class PhotoEntity extends BaseEntity implements Serializable{
    @PodamExclude
    @ManyToMany(mappedBy = "fotosEnConcurso")
    private List<ConcursoEntity> concursos = new ArrayList<>();
- 
+
     /**
      * @return the name
      */
@@ -92,20 +89,6 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the tags
-     */
-    public String[] getTags() {
-        return tags;
-    }
-
-    /**
-     * @param tags the tags to set
-     */
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
-
-    /**
      * @return the description
      */
     public String getDescription() {
@@ -132,20 +115,6 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     public void setPrice(Double price) {
         this.price = price;
     }
-
-    /**
-     * @return the comments
-     */
-   // public ArrayList<String> getComments() {
-   //     return comments;
-   // }
-
-    /**
-     * @pasram comments the comments to set
-     */
-   // public void setComments(ArrayList<String> comments) {
-   //     this.comments = comments;
-   // }
 
     /**
      * @return the winner
@@ -187,6 +156,76 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setFacturasAsociadas(List<FacturaEntity> facturasAsociadas) {
         this.facturasAsociadas = facturasAsociadas;
+    }
+
+    /**
+     * @return the concursante
+     */
+    public FotografoEntity getConcursante() {
+        return concursante;
+    }
+
+    /**
+     * @param concursante the concursante to set
+     */
+    public void setConcursante(FotografoEntity concursante) {
+        this.concursante = concursante;
+    }
+
+    /**
+     * @return the fotografo
+     */
+    public FotografoEntity getFotografo() {
+        return fotografo;
+    }
+
+    /**
+     * @param fotografo the fotografo to set
+     */
+    public void setFotografo(FotografoEntity fotografo) {
+        this.fotografo = fotografo;
+    }
+
+    /**
+     * @return the jurados
+     */
+    public List<JuradoEntity> getJurados() {
+        return jurados;
+    }
+
+    /**
+     * @param jurados the jurados to set
+     */
+    public void setJurados(List<JuradoEntity> jurados) {
+        this.jurados = jurados;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the concursos
+     */
+    public List<ConcursoEntity> getConcursos() {
+        return concursos;
+    }
+
+    /**
+     * @param concursos the concursos to set
+     */
+    public void setConcursos(List<ConcursoEntity> concursos) {
+        this.concursos = concursos;
     }
 
 }
