@@ -41,7 +41,7 @@ public class PhotoLogic {
         if(photo.getName()==null){
             throw new BusinessLogicException("La foto tiene que tener un nombre.");
         }
-        if(photo.getName().length() > 120){
+        if(photo.getName().length() > 70){
             throw new BusinessLogicException("El nombre no puede tener más de 120 caracteres.");
         }
         

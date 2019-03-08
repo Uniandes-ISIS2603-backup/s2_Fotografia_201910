@@ -186,4 +186,60 @@ public class PhotoLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
     }
+    
+    /**
+     * Prueba crea una foto con una fecha en el futuro
+     *
+     * @throws BusinessLogicException si no se puede crear la foto
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFotoEnElFuturoTest() throws BusinessLogicException {
+        PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
+        newEntity.setDate(new Date(2020, 12, 12));
+        photoLogic.createPhoto(newEntity);
+    }
+    /**
+     * Prueba crear una foto sin nombre
+     *
+     * @throws BusinessLogicException si no se puede crear la foto
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFotoSinNombreTest() throws BusinessLogicException {
+        PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
+        newEntity.setName(null);
+        photoLogic.createPhoto(newEntity);
+    }
+    /**
+     * Prueba crear una foto con un nombre muy largo
+     *
+     * @throws BusinessLogicException si no se puede crear la foto
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFotoConNombreLargoTest() throws BusinessLogicException {
+        PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
+        newEntity.setName("Dany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largo");
+        photoLogic.createPhoto(newEntity);
+    }
+    /**
+     * Prueba crear una foto con un precio negativo
+     *
+     * @throws BusinessLogicException si no se puede crear la foto
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFotoConPrecioNegativoTest() throws BusinessLogicException {
+        PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
+        newEntity.setPrice(-50.2);
+        photoLogic.createPhoto(newEntity);
+    }
+    /**
+     * Prueba crear una foto con una descrpcion muy larga
+     *
+     * @throws BusinessLogicException si no se puede crear la foto
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createFotoConDescripcionLargaTest() throws BusinessLogicException {
+        PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
+        newEntity.setDescription("Dany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largoDany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largo");
+        photoLogic.createPhoto(newEntity);
+    }
 }
