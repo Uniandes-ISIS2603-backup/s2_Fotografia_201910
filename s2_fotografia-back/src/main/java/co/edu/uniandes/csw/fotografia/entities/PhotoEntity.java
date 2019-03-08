@@ -22,10 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class PhotoEntity extends BaseEntity implements Serializable{
-     /*
-    * Atributo correspondiente al id de la foto.
-    */
-    private Long id;
+    
     private String name;
     
     private Date date;
@@ -229,20 +226,6 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setConcursos(List<ConcursoEntity> concursos) {
         this.concursos = concursos;
-    }
-
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
 }
