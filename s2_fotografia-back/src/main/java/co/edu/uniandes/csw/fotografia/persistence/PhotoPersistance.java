@@ -26,17 +26,17 @@ private static final Logger LOGGER = Logger.getLogger(PhotoPersistance.class.get
     @PersistenceContext(unitName = "fotografiaPU")
     protected EntityManager em;
     
-    public PhotoEntity create(PhotoEntity fotografoEntity){
-        LOGGER.log(Level.INFO,"Creando un fotografo nuevo");
-        em.persist(fotografoEntity);
-        LOGGER.log(Level.INFO,"Saliendo de crear una editorial nueva");
-        return fotografoEntity;
+    public PhotoEntity create(PhotoEntity fotoEntity){
+        LOGGER.log(Level.INFO,"Creando un foto nuevo");
+        em.persist(fotoEntity);
+        LOGGER.log(Level.INFO,"Saliendo de crear una foto nueva");
+        return fotoEntity;
     }
     
     public List<PhotoEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todos los fotografos");
+        LOGGER.log(Level.INFO, "Consultando todos las fotos");
         // Se crea un query para buscar todos los fotografos en la base de datos.
-        TypedQuery query = em.createQuery("select u from FotografoEntity u", PhotoEntity.class);
+        TypedQuery query = em.createQuery("select u from PhotoEntity u", PhotoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de fotografos.
         return query.getResultList();
     }

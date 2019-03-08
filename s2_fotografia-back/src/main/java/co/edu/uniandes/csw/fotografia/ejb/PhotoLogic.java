@@ -74,9 +74,9 @@ public class PhotoLogic {
     
     public List<PhotoEntity> getFotos(){
        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las fotos");
-        List<PhotoEntity> lista = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las fotos");
-        return lista;
+       List<PhotoEntity> lista = persistence.findAll();
+       LOGGER.log(Level.INFO, "Termina proceso de consultar todas las fotos");
+       return lista;
     }
     
      public PhotoEntity updateFoto(Long fotoId, PhotoEntity entity){

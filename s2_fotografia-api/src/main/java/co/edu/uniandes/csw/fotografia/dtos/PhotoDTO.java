@@ -72,6 +72,7 @@ public class PhotoDTO implements Serializable{
     }
     public PhotoDTO(PhotoEntity entidad){
         if(entidad != null){
+            this.id = entidad.getId();
             this.date = entidad.getDate();
             this.description = entidad.getDescription();
             this.name = entidad.getName();
@@ -83,6 +84,7 @@ public class PhotoDTO implements Serializable{
     
     public PhotoEntity toEntity(){
         PhotoEntity entidad = new PhotoEntity();
+        entidad.setId(this.getId());
         entidad.setDate(this.getDate());
         entidad.setDescription(this.getDescription());
         entidad.setName(this.getName());

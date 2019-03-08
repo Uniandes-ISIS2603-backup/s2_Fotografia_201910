@@ -85,7 +85,7 @@ public class PhotoLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from PhotoEntity").executeUpdate();
     }
 
     /**
@@ -131,6 +131,59 @@ public class PhotoLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
-    
-    
+     /**
+     * Prueba para consultar la lista de fotos.
+     */
+    @Test
+    public void getFotosTest() {
+        List<PhotoEntity> list = photoLogic.getFotos();
+        Assert.assertEquals(data.size(), list.size());
+        for (PhotoEntity entity : list) {
+            boolean found = false;
+            for (PhotoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    /**
+     * Prueba para actualizar una foto.
+     */
+    @Test
+    public void setPhotoTest() throws BusinessLogicException {
+        PhotoEntity entity = data.get(0);
+        PhotoEntity pojoEntity = factory.manufacturePojo(PhotoEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setDescription("Lindo atardecer por la tarde");
+        pojoEntity.setPrice(5000.0);
+        photoLogic.updateFoto(pojoEntity.getId(), pojoEntity);
+        PhotoEntity resp = em.find(PhotoEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getDescription(), resp.getDescription());
+        Assert.assertEquals(pojoEntity.getPrice(), resp.getPrice());
+
+    }
+    /**
+     * Prueba para eliminar un cliente
+     */
+    @Test
+    public void deletePhotoTest() {
+        PhotoEntity entity = data.get(0);
+        photoLogic.deletePhoto(entity.getId());
+        PhotoEntity deleted = em.find(PhotoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    /**
+     * Prueba para consultar un Foto.
+     */
+    @Test
+    public void getClienteTest() {
+        PhotoEntity entity = data.get(0);
+        PhotoEntity resultEntity = photoLogic.getFoto(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getName(), resultEntity.getName());
+    }
 }
