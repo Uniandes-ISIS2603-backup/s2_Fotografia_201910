@@ -81,9 +81,6 @@ public class OrganizadorDTO implements Serializable {
         }
     }
 
-    public void nothing(){
-        
-    }
     /**
      * Convierte un objeto OrganizadorDTO a OrganizadorEntity.
      *
