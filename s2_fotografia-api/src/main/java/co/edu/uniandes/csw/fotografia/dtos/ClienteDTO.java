@@ -5,16 +5,19 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.entities.ClienteEntity;
 import java.io.Serializable;
 
 
 /**
  *
- * @author estudiante
+ * @author Valentina Duarte
  */
 public class ClienteDTO implements Serializable
 {
-    private String usuario;
+    private Long id;
+    
+    private String login;
     
     private String nombre;
     
@@ -26,6 +29,42 @@ public class ClienteDTO implements Serializable
      {
          
      }
+     
+      /**
+     * Crea un objeto ClienteDTO a partir de un objeto ClienteEntity.
+     *
+     * @param clienteEntity Entidad ClienteEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public ClienteDTO(ClienteEntity clienteEntity) {
+        if (clienteEntity != null) 
+        {
+            this.id = clienteEntity.getId();
+            this.login = clienteEntity.getLogin();
+            this.correo = clienteEntity.getCorreo();
+            this.nombre = clienteEntity.getNombre();
+            this.contrasena= clienteEntity.getContrasena();
+        }
+    }
+
+    /**
+     * Convierte un objeto ClienteDTO a ClienteEntity.
+     *
+     * @return Nueva objeto ClienteEntity.
+     *
+     */
+    public ClienteEntity toEntity() {
+        
+        ClienteEntity clienteEntity = new ClienteEntity();
+        clienteEntity.setId(this.getId());
+        clienteEntity.setNombre(this.getNombre());
+        clienteEntity.setLogin(this.getLogin());
+        clienteEntity.setCorreo(this.getCorreo());
+        clienteEntity.setContrasena(this.getContrasena());
+       
+        return clienteEntity;
+    } 
 
     /**
      * @return the nombre
@@ -58,15 +97,15 @@ public class ClienteDTO implements Serializable
     /**
      * @return the usuario
      */
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param login the usuario to set
      */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     /**
@@ -81,6 +120,20 @@ public class ClienteDTO implements Serializable
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
           

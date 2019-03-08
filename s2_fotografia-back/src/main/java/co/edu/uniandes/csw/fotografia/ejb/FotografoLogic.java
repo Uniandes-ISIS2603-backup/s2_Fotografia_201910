@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
+import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.FotografoPersistence;
@@ -65,7 +66,22 @@ public class FotografoLogic {
         return newFotografoEntity;
      }
      
-     public void deleteFotografo(Long fotografoId){
+     public void deleteFotografo(Long fotografoId) throws BusinessLogicException{
+         LOGGER.log(Level.INFO, "Inicia proceso de borrar el fotografo con id = {0}", fotografoId);
+        List<PhotoEntity> fotos = getFotografo(fotografoId).getFotos();
+        List<PhotoEntity> fotos1 = getFotografo(fotografoId).getFotosConcurso();
+        List<InteresFotograficoEntity> intereses = getFotografo(fotografoId).getIntereses();
+        if (fotos != null && !fotos.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el fotografo con id = " + fotografoId + " porque tiene fotos asociados");
+        }
+        if (fotos1 != null && !fotos1.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el fotografo con id = " + fotografoId + " porque tiene fotos asociados");
+        }
+        if (intereses != null && !intereses.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el fotografo con id = " + fotografoId + " porque tiene intereses asociados");
+        }
+        persistence.delete(fotografoId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el fotografo con id = {0}", fotografoId);
      }
 
      

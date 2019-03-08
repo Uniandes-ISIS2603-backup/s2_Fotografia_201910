@@ -39,19 +39,53 @@ public class ClienteLogic
     {
          LOGGER.log(Level.INFO, "Inicia la creación del cliente");
          
-         //Verificar la regla de negocio que afirma que no deben haber dos usuarios con el mismo login
+         //Verificar la regla de negocio que afirma que no deben haber dos usuarios con el mismo login y que este no sea null
          
-         if(cp.getByLogin(cliente.getLogin())!= null)
+         if(cliente.getLogin()==null)
          {
-             throw new BusinessLogicException ("Ya existe un cliente con el login \"" + cliente.getLogin() + "\"");
+             throw new BusinessLogicException ("Se debe ingresar un login, este no puede estar vacio");
          }
          
-        if(cliente.getCorreo().indexOf('@')<0 || cliente.getCorreo().indexOf('.')<0 || cliente.getCorreo()==null)
+         else
+         {
+             if(cp.getByLogin(cliente.getLogin())!= null)
+            {
+             throw new BusinessLogicException ("Ya existe un cliente con el login ingresado");
+            }
+         }
+         
+         //Verifica la regla de negocio que afirma que el nombre no puede ser null
+         
+         if(cliente.getNombre()==null)
+         {
+             throw new BusinessLogicException ("Se debe ingresar un nombre, este no puede estar vacio");
+         }
+
+         //Verifica la regla de negocio que afirma que el correo no puede ser null, y que debe ser valido
+         
+        if(cliente.getCorreo()== null)
         {
-            throw new BusinessLogicException ("El correo\"" + cliente.getCorreo() + " no es valido\"");
+            throw new BusinessLogicException ("Se debe ingresar un correo, este no puede estar vacio");
+        }
+        
+        else
+        {
+            if(cliente.getCorreo().indexOf('@')<0 || cliente.getCorreo().indexOf('.')<0 || cliente.getCorreo()==null)
+            {
+                throw new BusinessLogicException ("El correo\"" + cliente.getCorreo() + " no es valido\"");
+            }
         }
          
-        boolean correctFormat = false;
+        
+        // Verifica la regla de negocio que afirma que la contraseña no puede ser null, y que debe tener mas de 8 caracteres y 1 numero
+        if(cliente.getContrasena()==null)
+        {
+           throw new BusinessLogicException ("Se debe ingresar una contraseña, esta no puede estar vacia"); 
+        }
+        
+        else
+        {
+            boolean correctFormat = false;
         char[] letras = cliente.getContrasena().toCharArray();
         for (int i =0; i<cliente.getContrasena().length()&& !correctFormat;i++)
         {
@@ -63,8 +97,10 @@ public class ClienteLogic
         
         if(correctFormat == false || cliente.getContrasena().length()<8 || cliente.getContrasena()==null)
         {
-            throw new BusinessLogicException ("La contrasena\"" + cliente.getContrasena() + "no es valida\"");
+            throw new BusinessLogicException ("La contrasena\"" + cliente.getContrasena() + "no es valida. Esta debe tener al menos 8 caracteres y un numero.\"");
         }
+        }
+        
          //Llama a la persistencia para crear el cliente
        
          cp.create(cliente);
@@ -74,22 +110,22 @@ public class ClienteLogic
     
     /**
      * Se busca el cliente con el id ingresado por parametro 
-     * @param clienteId el id del cliente que se quiere consultar
+     * @param clientesId el id del cliente que se quiere consultar
      * @return el cliente buscado
      */
-    public ClienteEntity getCliente(Long clienteId)
+    public ClienteEntity getCliente(Long clientesId)
     {
-      LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con id = {0}", clienteId);  
+      LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con id = {0}", clientesId);  
       
       //El inyect de dependecias es el que permite llamar al get que esta en la persistencia
       
-      ClienteEntity cliente = cp.get(clienteId);
+      ClienteEntity cliente = cp.get(clientesId);
         if (cliente == null) 
         {
-            LOGGER.log(Level.SEVERE, "El cliente con el id = {0} no existe", clienteId);
+            LOGGER.log(Level.SEVERE, "El cliente con el id = {0} no existe", clientesId);
         }
         
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con id = {0}", clienteId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con id = {0}", clientesId);
         return cliente;
     }
     
@@ -118,17 +154,56 @@ public class ClienteLogic
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente con id = {0}", clienteId);
          // El inyect de dependenciaspermite llamar al set de la persistencia
         
-         if(cp.getByLogin(cliente.getLogin())!= null)
+         //Verificar la regla de negocio que afirma que no deben haber dos usuarios con el mismo login y que este no sea null
+         
+         if(cliente.getLogin()==null)
          {
-             throw new BusinessLogicException ("Ya existe un cliente con el login \"" + cliente.getLogin() + "\"");
+             throw new BusinessLogicException ("Se debe ingresar un login, este no puede estar vacio");
          }
          
-        if(cliente.getCorreo().indexOf('@')<0 || cliente.getCorreo().indexOf('.')<0 || cliente.getCorreo()==null)
+         else
+         { 
+             if(!cp.get(clienteId).getLogin().equalsIgnoreCase(cliente.getLogin()))
+             {
+                 if(cp.getByLogin(cliente.getLogin())!= null)
+                {
+                    throw new BusinessLogicException ("Ya existe un cliente con el login \"" + cliente.getLogin() + "\"");
+                }
+             } 
+         }
+         
+         //Verifica la regla de negocio que afirma que el nombre no puede ser null
+         
+         if(cliente.getNombre()==null)
+         {
+             throw new BusinessLogicException ("Se debe ingresar un nombre, este no puede estar vacio");
+         }
+
+         //Verifica la regla de negocio que afirma que el correo no puede ser null, y que debe ser valido
+         
+        if(cliente.getCorreo()== null)
         {
-            throw new BusinessLogicException ("El correo\"" + cliente.getCorreo() + "no es valido\"");
+            throw new BusinessLogicException ("Se debe ingresar un correo, este no puede estar vacio");
+        }
+        
+        else
+        {
+            if(cliente.getCorreo().indexOf('@')<0 || cliente.getCorreo().indexOf('.')<0 || cliente.getCorreo()==null)
+            {
+                throw new BusinessLogicException ("El correo\"" + cliente.getCorreo() + " no es valido\"");
+            }
         }
          
-        boolean correctFormat = false;
+        
+        // Verifica la regla de negocio que afirma que la contraseña no puede ser null, y que debe tener mas de 8 caracteres y 1 numero
+        if(cliente.getContrasena()==null)
+        {
+           throw new BusinessLogicException ("Se debe ingresar una contraseña, esta no puede estar vacia"); 
+        }
+        
+        else
+        {
+            boolean correctFormat = false;
         char[] letras = cliente.getContrasena().toCharArray();
         for (int i =0; i<cliente.getContrasena().length()&& !correctFormat;i++)
         {
@@ -140,9 +215,9 @@ public class ClienteLogic
         
         if(correctFormat == false || cliente.getContrasena().length()<8 || cliente.getContrasena()==null)
         {
-            throw new BusinessLogicException ("La contrasena\"" + cliente.getContrasena() + " no es valida\"");
+            throw new BusinessLogicException ("La contrasena\"" + cliente.getContrasena() + "no es valida. Esta debe tener al menos 8 caracteres y un numero.\"");
         }
-         
+        }
          
          ClienteEntity nuevoCliente =cp.set(cliente);
          

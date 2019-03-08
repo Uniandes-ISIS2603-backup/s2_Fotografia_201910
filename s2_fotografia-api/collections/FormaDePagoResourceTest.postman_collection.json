@@ -1,0 +1,492 @@
+{
+	"info": {
+		"_postman_id": "1400b626-d9c0-4507-8228-2de0fac917cc",
+		"name": "FormaDePagoResourceTest",
+		"description": "Cliente Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fp\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 129168716256765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear forma de pago 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25283834-fc65-4462-9a9e-38c144630465",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fp2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 1291621106256765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una forma de pago con el mismo numero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "553638f9-b670-450a-a4eb-dc04417d7b11",
+						"exec": [
+							"tests[\"No crea con el mismo numero\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una forma de pago con el numero ingresado\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 129168716256765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89ea92d6-51e3-4a74-aae8-88b59cc3648e",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 129168716256765,\n\"fechaVencimiento\" : \"2024-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fp}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fp}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una factura que no forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9913e268-4376-4525-bef6-047a63b7a75a",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /formasDePago/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 129168716256765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 2554,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las formas de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"tests [\"No genera error en el get\"]=responseCode.code ===200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una forma de pago que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74f56cde-0b76-47b0-97e6-76d52c9f23e4",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /formasDePago/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b264e41-58e7-4dab-8654-58e59896c9f9",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fp}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fp}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fp}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fp}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1bc8b94-cf1f-4d92-8349-c3f9dceaefcc",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fp2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fp2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cfdfbff3-175f-4bb5-8d2b-1c5d47c70811",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /formasDePago/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "30e76afb-b2c2-4b44-be60-66a5df743bb4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "752fb125-35a4-4c88-854d-966c742236ee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

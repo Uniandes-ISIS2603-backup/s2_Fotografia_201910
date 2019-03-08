@@ -30,13 +30,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Valentina Duarte
  */
-
 @RunWith(Arquillian.class)
-public class ClienteLogicTest 
-{
-   private PodamFactory factory = new PodamFactoryImpl();
-   
-   @Inject
+public class ClienteLogicTest {
+
+    private PodamFactory factory = new PodamFactoryImpl();
+
+    @Inject
     private ClienteLogic clienteLogic;
 
     @PersistenceContext
@@ -101,15 +100,14 @@ public class ClienteLogicTest
             data.add(cliente);
         }
     }
-    
-    
+
     /**
      * Prueba el metodo de crearCliente de la clase clienteLogic
+     *
      * @throws BusinessLogicException si no se puede crear el cliente
      */
-     @Test
-    public void createClienteTest() throws BusinessLogicException 
-    {
+    @Test
+    public void createClienteTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         newEntity.setCorreo("gabo@hotmail.com");
         newEntity.setContrasena("xxxxxxxx123");
@@ -119,63 +117,92 @@ public class ClienteLogicTest
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
     }
-    
-     /**
+
+    /**
      * Prueba crear dos clientes con el mismo login
      *
      * @throws BusinessLogicException si no se puede crear el cliente
      */
     @Test(expected = BusinessLogicException.class)
-    public void createClienteConMismoLoginTest() throws BusinessLogicException 
-    {
+    public void createClienteConMismoLoginTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         newEntity.setLogin(data.get(0).getLogin());
         clienteLogic.createCliente(newEntity);
     }
-    
+
     /**
      * Prueba crear un cliente con correo no valido
      *
      * @throws BusinessLogicException si no se puede crear el cliente
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createClienteCorreoInvalidoTest() throws BusinessLogicException 
-    {
+    @Test
+    public void createClienteCorreoInvalidoTest() throws BusinessLogicException {
+
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        newEntity.setCorreo("xxxxxx");
-        clienteLogic.createCliente(newEntity);
-        
-        newEntity.setCorreo("xxx@xxx");
-        clienteLogic.createCliente(newEntity);
-        
-        newEntity.setCorreo("xxxx.xx");
-        clienteLogic.createCliente(newEntity);
-        
-        newEntity.setCorreo(null);
-        clienteLogic.createCliente(newEntity);
+        newEntity.setContrasena("xxxxxxxx123");
+
+        try {
+            newEntity.setCorreo("xxxxxx");
+            clienteLogic.createCliente(newEntity);
+            Assert.fail("El correo deberia tener @ y . para ser valido");
+        } catch (BusinessLogicException e) {
+        }
+
+        try {
+            newEntity.setCorreo("xxx@xxx");
+            clienteLogic.createCliente(newEntity);
+            Assert.fail("El correo deberia tener . para ser valido");
+        } catch (BusinessLogicException e) {
+        }
+
+        try {
+            newEntity.setCorreo("xxxx.xx");
+            clienteLogic.createCliente(newEntity);
+            Assert.fail("El correo deberia tener @ para ser valido");
+        } catch (BusinessLogicException e) {
+        }
+
+        try {
+            newEntity.setCorreo(null);
+            clienteLogic.createCliente(newEntity);
+            Assert.fail("El correo no puede ser null");
+        } catch (BusinessLogicException e) {
+        }
     }
-    
-    
+
     /**
      * Prueba crear un cliente con una contrasena no valida
+     *
      * @throws BusinessLogicException si no se puede crear el cliente
      */
-    @Test(expected = BusinessLogicException.class)
-    public void createClienteContrasenaInvalidaTest() throws BusinessLogicException 
-    {
+    @Test
+    public void createClienteContrasenaInvalidaTest() throws BusinessLogicException {
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         newEntity.setCorreo("xx@xxx.xx");
-        newEntity.setContrasena("xx");
-        clienteLogic.createCliente(newEntity);
         
-        newEntity.setContrasena("xxxxxxxxx");
+        try {
+            newEntity.setContrasena(null);
         clienteLogic.createCliente(newEntity);
+            Assert.fail("La contraseña no puede ser null");
+        } catch (BusinessLogicException e) {
+        }
         
-        newEntity.setContrasena(null);
+        try {
+            newEntity.setContrasena("xxxxxxxxx");
         clienteLogic.createCliente(newEntity);
+            Assert.fail("La contraseña no puede ser null");
+        } catch (BusinessLogicException e) {
+        }
+        
+        try {
+            newEntity.setContrasena("xx");
+        clienteLogic.createCliente(newEntity);
+            Assert.fail("La contraseña no puede ser null");
+        } catch (BusinessLogicException e) {
+        }
     }
-    
-     /**
+
+    /**
      * Prueba para consultar un cliente.
      */
     @Test
@@ -186,8 +213,8 @@ public class ClienteLogicTest
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getLogin(), resultEntity.getLogin());
     }
-    
-      /**
+
+    /**
      * Prueba para consultar la lista de clientes.
      */
     @Test
@@ -204,7 +231,7 @@ public class ClienteLogicTest
             Assert.assertTrue(found);
         }
     }
-    
+
     /**
      * Prueba para actualizar un cliente.
      */
@@ -220,12 +247,12 @@ public class ClienteLogicTest
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getLogin(), resp.getLogin());
     }
-    
+
     /**
      * Prueba para eliminar un cliente
      */
     @Test
-    public void deleteClienteTest()  {
+    public void deleteClienteTest() {
         ClienteEntity entity = data.get(0);
         clienteLogic.deleteCliente(entity.getId());
         ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
