@@ -15,7 +15,7 @@
 						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
-							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"postman.setGlobalVariable(\"new_id_p\",data.id);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\"name\" : \"la foto mela\",\n\"date\" : \"2000-08-20T00:00:00-05:00\",\n\"description\" : \"una foto en el atardecer muy tarde\",\n\"price\" : \"2112.2\",\n\"winner\" : \"true\",\n\"published\" : \"true\"\n\n}"
+					"raw": "{\"nombre\" : \"la foto mela\",\n\"date\" : \"2000-08-20T00:00:00-05:00\",\n\"description\" : \"una foto en el atardecer muy tarde\",\n\"price\" : 2112.2,\n\"winner\" : false,\n\"published\" : false\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos",
@@ -79,10 +79,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"login\" : \"danielp\",\n\"nombre\" : \"Daniel Perez\",\n\"correo\": \"dp@hotmail.com\",\n\"contrasena\" : \"danielpp233\"\n}"
+					"raw": "{\"nombre\" : \"la foto otra mela\",\n\"date\" : \"2000-08-20T00:00:00-05:00\",\n\"description\" : \"una foto en edl atardecer muy tarde\",\n\"price\" : 33112.2,\n\"winner\" : true,\n\"published\" : false\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -91,7 +91,7 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes"
+						"photos"
 					]
 				}
 			},
@@ -105,8 +105,8 @@
 					"script": {
 						"id": "553638f9-b670-450a-a4eb-dc04417d7b11",
 						"exec": [
-							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe un cliente con el login ingresado\");"
+							"tests[\"No crea conprecios negativos\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El precio tiene que ser positivo.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -123,10 +123,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"login\" : \"ignaciagomez\",\n\"nombre\" : \"Ignacia Gomez\",\n\"correo\" : \"ig@gmail.com\",\n\"contrasena\" : \"ignaciagomez123\"\n}"
+					"raw": "{\"nombre\" : \"la foto mela\",\n\"date\" : \"2000-08-20T00:00:00-05:00\",\n\"description\" : \"una foto en el atardecer muy tarde\",\n\"price\" : -2112.2,\n\"winner\" : false,\n\"published\" : false\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -135,7 +135,7 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes"
+						"photos"
 					]
 				}
 			},
@@ -168,10 +168,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\"login\" : \"ignaciagomez\",\n\"nombre\" : \"Ignacia Gomez Diaz\",\n\"correo\" : \"ig@gmail.com\",\n\"contrasena\" : \"ignaciagd6\"\n\n}"
+					"raw": "{\"nombre\" : \"la fotfsdo mela\",\n\"date\" : \"2000-08-20T00:00:00-05:00\",\n\"description\" : \"una ffsdfsdto en el atardecer muy tarde\",\n\"price\" : 2142.2,\n\"winner\" : false,\n\"published\" : false\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/{{new_id_p}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -180,8 +180,8 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
-						"{{new_id_c}}"
+						"photos",
+						"{{new_id_p}}"
 					]
 				}
 			},
@@ -196,7 +196,7 @@
 						"id": "9913e268-4376-4525-bef6-047a63b7a75a",
 						"exec": [
 							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /photos/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -213,10 +213,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n\"login\" : \"ignaciocordoba\",\n\"nombre\" : \"Ignacio Cordoba\",\n\"correo\" : \"igna@hotmail.com\",\n\"contrasena\" : \"ignacioc123\"\n\n}"
+					"raw": "{\"nombre\" : \"la fotfsdo mela\",\n\"date\" : \"2000-08-20T00:00:00-05:00\",\n\"description\" : \"una ffsdfsdto en el atardecer muy tarde\",\n\"price\" : 2142.2,\n\"winner\" : false,\n\"published\" : false\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -225,7 +225,7 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
+						"photos",
 						"0"
 					]
 				}
@@ -281,7 +281,7 @@
 						"id": "74f56cde-0b76-47b0-97e6-76d52c9f23e4",
 						"exec": [
 							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /photos/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -295,7 +295,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -304,7 +304,7 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
+						"photos",
 						"0"
 					]
 				}
@@ -335,7 +335,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/{{new_id_p}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -344,8 +344,8 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
-						"{{new_id_c}}"
+						"photos",
+						"{{new_id_p}}"
 					]
 				}
 			},
@@ -373,7 +373,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_id_c}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/{{new_id_p}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -382,8 +382,8 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
-						"{{new_id_c}}"
+						"photos",
+						"{{new_id_p}}"
 					]
 				}
 			},
@@ -411,7 +411,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_id_c2}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/{{new_id_c2}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -420,7 +420,7 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
+						"photos",
 						"{{new_id_c2}}"
 					]
 				}
@@ -436,7 +436,7 @@
 						"id": "e447c474-fb91-4d91-9f71-bcee42784930",
 						"exec": [
 							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /photos/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -450,7 +450,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/0",
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos/0",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -459,7 +459,7 @@
 					"path": [
 						"s2_fotografia-api",
 						"api",
-						"clientes",
+						"photos",
 						"0"
 					]
 				}
