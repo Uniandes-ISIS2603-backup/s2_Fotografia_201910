@@ -27,9 +27,6 @@ public class UsuarioLogic {
     
     public UsuarioEntity createUsuario(UsuarioEntity usuario) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación del usuario");
-        if(!usuario.getLogin().matches("(.*)@(.*)")){
-            throw new BusinessLogicException("El login debe ser un correo ");
-        }
         if(usuario.getNombreDeUsuario() == null || usuario.getNombreDeUsuario().length() <= 0){
             throw new BusinessLogicException("El nombre de usurario no puede estar vacio");
         }
