@@ -10,8 +10,6 @@ import co.edu.uniandes.csw.fotografia.dtos.ClienteDTO;
 import co.edu.uniandes.csw.fotografia.ejb.CalificacionClienteLogic;
 import co.edu.uniandes.csw.fotografia.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.fotografia.ejb.ClienteLogic;
-import co.edu.uniandes.csw.fotografia.ejb.ClienteLogic;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
