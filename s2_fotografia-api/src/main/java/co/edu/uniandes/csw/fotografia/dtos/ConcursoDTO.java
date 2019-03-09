@@ -193,7 +193,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo fechaConcurso
      */
-    public Date getFechaConcurso() {
+    public Date getFechaDelConcurso() {
         return fechaDelConcurso;
     }
 
@@ -202,7 +202,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pFecha nuevo valor para el atributo
      */
-    public void setFechaConcurso(Date pFechaConcurso) {
+    public void setFechaDelConcurso(Date pFechaConcurso) {
         fechaDelConcurso = pFechaConcurso;
     }
 
