@@ -6,8 +6,8 @@ delete from JURADOENTITY;
 delete from fotografoentity;
 delete from FormaDePagoEntity;
 delete from FacturaEntity;
+delete from PhotoEntity;
 delete from ConcursoEntity;
-
 
 insert into CalificacionEntity (id, puntaje, comentario) values (100, 4, 'Muy bonita');
 
@@ -30,5 +30,10 @@ insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerific
 
 insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_');
 insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password) values (5,'Villegas','s@correo.com',30,'23/12/12','Sara','Colombia',319,'s.acostav','s_');
+
+insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais) values (200, 'Jose', 'Martinez', 18,'j.martinez@gmail.com', 31578965, 'Colombia');
+insert into RondaEntity(id, numeroRonda) values (200, 1);
+
+insert into ClienteEntity (id, name, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea' );
 
 
