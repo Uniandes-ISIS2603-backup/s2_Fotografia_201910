@@ -131,4 +131,6 @@ public class PhotoLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }
+    
+    
 }

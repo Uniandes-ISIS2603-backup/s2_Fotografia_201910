@@ -41,9 +41,9 @@ public class InteresFotograficoFotografosLogic {
      */
     public FotografoEntity addFotografo(Long interesesFotograficosId, Long fotografosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle un autor al libro con id = {0}", interesesFotograficosId);
-        FotografoEntity fotografoEntity = fotografoPersistence.find(fotografosId);
-        InteresFotograficoEntity interesFotograficoEntity = interesFotograficoPersistence.find(interesesFotograficosId);
-        interesFotograficoEntity.getFotografos().add(fotografoEntity);
+         InteresFotograficoEntity interesEntity = interesFotograficoPersistence.find(interesesFotograficosId);
+        FotografoEntity fEntity = fotografoPersistence.find(fotografosId);
+        interesEntity.getFotografos().add(fEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un autor al libro con id = {0}", interesesFotograficosId);
         return fotografoPersistence.find(fotografosId);
     }

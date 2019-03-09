@@ -114,6 +114,13 @@ public class InteresFotograficoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
+    
+    @Test
+    public void find(){
+        InteresFotograficoEntity entity = data.get(0);
+        InteresFotograficoEntity esperado = interesFotograficoPersistence.find(entity.getId());
+        Assert.assertEquals(entity.getId(), esperado.getId());
+    }
     @Test
     public void getInteresFotograficoTest() {
         InteresFotograficoEntity entity = data.get(0);

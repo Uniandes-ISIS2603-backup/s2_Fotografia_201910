@@ -16,7 +16,7 @@ public class PhotoDetailDTO extends PhotoDTO {
     //private List<Calification> calification;
 
     public PhotoDetailDTO(){
-        
+        super();
     }
     /**
      * @return the calification

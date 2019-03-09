@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "7d9a04df-b523-48e5-94de-17cf37b78d01",
+		"name": "FotografoResourceTest",
+		"description": "FotografoResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "906f9b81-91a0-423e-afb3-5978e2d57e06",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "906f9b81-91a0-423e-afb3-5978e2d57e06",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"apellido\": \"Rojas\",\n        \"correo\": \"j.acosta@correo.com\",\n        \"edad\": 19,\n        \"fechaNacimiento\": \"23/12/12\",\n        \"login\": \"s_\",\n        \"nombre\": \"Sara\",\n        \"pais\": \"Colombia\",\n        \"telefono\": 319,\n        \"concursos\": [],\n        \"fotos\": [],\n        \"fotosConcurso\": [],\n        \"intereses\": []\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "906f9b81-91a0-423e-afb3-5978e2d57e06",
+						"exec": [
+							"",
+							"tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"apellido\": \"Rojas\",\n        \"correo\": \"j.acosta@correo.com\",\n        \"edad\": 19,\n        \"fechaNacimiento\": \"23/12/12\",\n        \"login\": \"s.acostav\",\n        \"nombre\": \"Sara\",\n        \"pais\": \"Colombia\",\n        \"telefono\": 319,\n        \"concursos\": [],\n        \"fotos\": [],\n        \"fotosConcurso\": [],\n        \"intereses\": []\n\t\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos/{{new_id_e}}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "906f9b81-91a0-423e-afb3-5978e2d57e06",
+						"exec": [
+							"tests[\"Funciona el metodo Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

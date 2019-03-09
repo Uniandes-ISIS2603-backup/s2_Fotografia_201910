@@ -143,4 +143,15 @@ public class FotografoResource {
         }
         return list;
     }
+    
+    @DELETE
+    @Path("{FotografosId: \\d+}")
+    public void deleteFotografo(@PathParam("FotografosId") Long fotografosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "FotografoResource deleteFotografo: input: {0}", fotografosId);
+        if (FotografoLogic.getFotografo(fotografosId) == null) {
+            throw new WebApplicationException("El recurso /fotografos/" + fotografosId + " no existe.", 404);
+        }
+        FotografoLogic.deleteFotografo(fotografosId);
+        LOGGER.info("FotografoResource deleteFotografo: output: void");
+    }
 }
