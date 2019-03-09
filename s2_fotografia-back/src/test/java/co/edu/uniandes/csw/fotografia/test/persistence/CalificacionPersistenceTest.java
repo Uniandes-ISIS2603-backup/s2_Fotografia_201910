@@ -140,7 +140,7 @@ public class CalificacionPersistenceTest {
         CalificacionEntity newEntity = calificacionPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getComentario(), newEntity.getComentario());
-        Assert.assertEquals(entity.getPuntaje(), newEntity.getPuntaje());
+        Assert.assertEquals(entity.getPuntaje(), newEntity.getPuntaje(),0);
     }
 
     /**

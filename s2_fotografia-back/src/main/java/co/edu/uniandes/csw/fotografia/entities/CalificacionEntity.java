@@ -76,5 +76,76 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-
+    
+    /**
+     * Devuelve el cliente  calificador
+     * @return Un cliente
+     */
+    public ClienteEntity getClienteCalificador()
+    {
+        return clienteCalificador;
+    }
+    
+    /**
+     * Modifica el cliente calificador
+     * @param cliente
+     */
+    public void setClienteCalificador(ClienteEntity cliente)
+    {
+        this.clienteCalificador = cliente;
+    }
+    
+    /**
+     * Devuelve la foto calificada
+     * @return foto calificada
+     */
+    public PhotoEntity getFotoCalificada()
+    {
+        return fotoCalificada;
+    }
+    
+    /**
+     * Modifica la foto calificada
+     * @param foto la nueva foto
+     */
+    public void setFotoCalificada( PhotoEntity foto)
+    {
+        this.fotoCalificada = foto;
+    }
+    
+    /**
+     * Devuelve el jurado calificador
+     * @return jurado calificador
+     */
+    public JuradoEntity getJuradoCalificador()
+    {
+        return juradoCalificador;
+    }
+    
+    /**
+     * Modifica el jurado calificador
+     * @param jurado el nuevo jurado
+     */
+    public void setJuradoCalificador(JuradoEntity jurado)
+    {
+        this.juradoCalificador = jurado;
+    }
+    
+    /**
+     * Devuelve la ronda calificada
+     * @return rondaCalificada
+     */
+    public RondaEntity getRondaCalificada()
+    {
+        return rondaCalificada;
+    }
+    
+    /**
+     * Modifica la ronda calificada
+     * @param ronda la nueva ronda
+     */
+    public void setRondaCalificada(RondaEntity ronda)
+    {
+        this.rondaCalificada = ronda;
+    }
 }
