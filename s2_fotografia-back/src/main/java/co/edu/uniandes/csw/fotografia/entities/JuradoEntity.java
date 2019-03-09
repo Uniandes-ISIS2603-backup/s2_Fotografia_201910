@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.fotografia.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -34,7 +35,7 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     private List<PhotoEntity> fotosCalificadas = new ArrayList<PhotoEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "juradoCalificador", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "juradoCalificador", cascade = CascadeType.PERSIST, orphanRemoval = true )
     private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
@@ -156,5 +157,77 @@ public class JuradoEntity extends BaseEntity implements Serializable{
      */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+    
+    /**
+     * Devuelve las fotos calificasdas por el jurado
+     * @return las fotos calificadas
+     */
+    public List<PhotoEntity> getFotos()
+    {
+        return fotosCalificadas;
+    }
+    
+    /**
+     * Modifica las fotos calificadas
+     * @param fotos las nuevas fotos calificadas
+     */
+    public void setFotos( List<PhotoEntity> fotos)
+    {
+        this.fotosCalificadas = fotos;
+    }
+    
+    /**
+     * Devuelve las calificaciones del jurado
+     * @return las calificaciones 
+     */
+    public List<CalificacionEntity> getCalificaciones()
+    {
+        return calificaciones;
+    }
+    
+    /**
+     * Modifica las calificaciones del jurado
+     * @param calificaciones las nuevas calificaciones
+     */
+    public void setCalificaciones (List<CalificacionEntity> calificaciones)
+    {
+        this.calificaciones = calificaciones;
+    }
+    
+    /**
+     * Devuelve el concurso del jurado
+     * @return el concurso del jurado
+     */
+    public  ConcursoEntity getConcursoJurado()
+    {
+        return concursoJurado;
+    }
+    
+    /**
+     * Modifica el concurso del jurado
+     * @param concurso el nuevo concurso del jurado
+     */
+    public void setConcurso(ConcursoEntity concurso)
+    {
+        this.concursoJurado = concurso;
+    }
+    
+    /**
+     * Devuelve la ronda del jurado
+     * @return la ronda del jurado
+     */
+    public RondaEntity getRonda()
+    {
+        return ronda;
+    }
+    
+    /**
+     * Modifica la ronda del jurado
+     * @param ronda la nueva ronda del jurado
+     */
+    public void setRonda(RondaEntity ronda)
+    {
+        this.ronda = ronda;
     }
 }
