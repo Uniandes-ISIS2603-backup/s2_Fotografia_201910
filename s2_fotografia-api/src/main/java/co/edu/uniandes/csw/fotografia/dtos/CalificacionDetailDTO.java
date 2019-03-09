@@ -31,7 +31,7 @@ public class CalificacionDetailDTO extends CalificacionDTO implements Serializab
      *
      */
     public CalificacionDetailDTO(CalificacionEntity calificacionEntity) {
-        
+        super(calificacionEntity);
     }
 
     /**
