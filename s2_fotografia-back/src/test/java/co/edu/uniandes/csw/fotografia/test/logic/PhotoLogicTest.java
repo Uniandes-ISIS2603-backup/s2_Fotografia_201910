@@ -166,7 +166,7 @@ public class PhotoLogicTest {
 
     }
     /**
-     * Prueba para eliminar un cliente
+     * Prueba para eliminar una foto
      */
     @Test
     public void deletePhotoTest() {
