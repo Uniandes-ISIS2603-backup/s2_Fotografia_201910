@@ -83,7 +83,7 @@ public class InteresFotograficoDTO implements Serializable{
      */
     
     public void setId(long pId){
-        pId = id;
+     id = pId;
     }
     
     /**
