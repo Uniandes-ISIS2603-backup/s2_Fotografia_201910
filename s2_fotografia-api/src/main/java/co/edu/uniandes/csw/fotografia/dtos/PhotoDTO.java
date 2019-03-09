@@ -70,6 +70,9 @@ public class PhotoDTO implements Serializable{
     public PhotoDTO(){
         
     }
+    /**
+     * Constructor que recibe un entity y transforma a DTO
+     */
     public PhotoDTO(PhotoEntity entidad){
         if(entidad != null){
             this.id = entidad.getId();
@@ -81,7 +84,10 @@ public class PhotoDTO implements Serializable{
             this.winner = entidad.getWinner();
         }
     }
-    
+    /**
+     * Método que transforma el entity a DTO
+     * @return entidad. Objeto DTO transformado a entity.
+     */
     public PhotoEntity toEntity(){
         PhotoEntity entidad = new PhotoEntity();
         entidad.setId(this.getId());

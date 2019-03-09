@@ -19,7 +19,9 @@ public class PhotoDetailDTO extends PhotoDTO {
      * Esta lista contiene las calificaciones a la foto
      */
     private List<CalificacionDTO> calification;
-
+    /**
+     * Constructor vacío
+     */
     public PhotoDetailDTO(){
         super();
     }    
