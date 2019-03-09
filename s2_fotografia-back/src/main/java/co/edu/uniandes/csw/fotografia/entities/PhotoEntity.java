@@ -23,7 +23,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PhotoEntity extends BaseEntity implements Serializable{
     
-    private String name;
+    private String nombre;
     
     private Date date;
  
@@ -59,20 +59,6 @@ public class PhotoEntity extends BaseEntity implements Serializable{
    @PodamExclude
    @ManyToMany(mappedBy = "fotosEnConcurso")
    private List<ConcursoEntity> concursos = new ArrayList<>();
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
 
     /**
      * @return the date
@@ -226,6 +212,20 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setConcursos(List<ConcursoEntity> concursos) {
         this.concursos = concursos;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

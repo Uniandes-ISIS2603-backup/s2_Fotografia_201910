@@ -38,10 +38,10 @@ public class PhotoLogic {
         if(today.compareTo(photo.getDate()) < 0){
             throw new BusinessLogicException("La foto no puede ser creada con una fecha en el futuro");
         }
-        if(photo.getName()==null){
+        if(photo.getNombre()==null){
             throw new BusinessLogicException("La foto tiene que tener un nombre.");
         }
-        if(photo.getName().length() > 70){
+        if(photo.getNombre().length() > 70){
             throw new BusinessLogicException("El nombre no puede tener más de 120 caracteres.");
         }
         
