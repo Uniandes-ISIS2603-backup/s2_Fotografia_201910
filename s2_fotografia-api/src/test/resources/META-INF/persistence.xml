@@ -14,6 +14,7 @@
     <class>co.edu.uniandes.csw.fotografia.entities.OrganizadorEntity</class>
     <class>co.edu.uniandes.csw.fotografia.entities.PhotoEntity</class>
     <class>co.edu.uniandes.csw.fotografia.entities.RondaEntity</class>
+    <class>co.edu.uniandes.csw.fotografia.entities.UsuarioEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
