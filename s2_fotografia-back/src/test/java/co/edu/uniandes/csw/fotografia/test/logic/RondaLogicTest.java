@@ -5,11 +5,15 @@
  */
 package co.edu.uniandes.csw.fotografia.test.logic;
 
+import co.edu.uniandes.csw.fotografia.ejb.ConcursoLogic;
 import co.edu.uniandes.csw.fotografia.ejb.RondaLogic;
 import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
+import co.edu.uniandes.csw.fotografia.entities.JuradoEntity;
 import co.edu.uniandes.csw.fotografia.entities.RondaEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.RondaPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,10 +37,14 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class RondaLogicTest {
 
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
     private RondaLogic rondaLogic;
+
+    @Inject
+    private ConcursoLogic conLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -44,7 +52,9 @@ public class RondaLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private RondaEntity data = new RondaEntity();
+    private List<ConcursoEntity> conData = new ArrayList<>();
+
+    private List<RondaEntity> data = new ArrayList<RondaEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -88,17 +98,23 @@ public class RondaLogicTest {
         em.createQuery("delete from RondaEntity").executeUpdate();
     }
 
-    /**
+ /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
     private void insertData() {
-        ConcursoEntity concurso = factory.manufacturePojo(ConcursoEntity.class);
-         em.persist(concurso);
-        concurso.setRonda(data);
-       
-        data.setConcurso(concurso);
+        for (int i = 0; i < 3; i++) {
+            RondaEntity entity = factory.manufacturePojo(RondaEntity.class);
+            ConcursoEntity orgEntity = factory.manufacturePojo(ConcursoEntity.class);
+            em.persist(orgEntity);
+            entity.setConcurso(orgEntity);
+            orgEntity.setRonda(entity);
+            em.persist(entity);
+            data.add(entity);
+            conData.add(orgEntity);
+        }
     }
+
 
     /**
      * Prueba para crear un Ronda.
@@ -108,12 +124,44 @@ public class RondaLogicTest {
     @Test
     public void createRondaTest() throws BusinessLogicException {
         RondaEntity newEntity = factory.manufacturePojo(RondaEntity.class);
-       
+        ConcursoEntity newOrgEntity = factory.manufacturePojo(ConcursoEntity.class);
+
+        newOrgEntity = conLogic.createConcurso(newOrgEntity);
+        newEntity.setConcurso(newOrgEntity);
         RondaEntity result = rondaLogic.createRonda(newEntity);
         Assert.assertNotNull(result);
         RondaEntity entity = em.find(RondaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getNumeroRonda(), entity.getNumeroRonda());
     }
+
+     /**
+     * Prueba para crear un ronda con concurso nula.
+     *
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createRondaConConcursoInvalida1Test() throws BusinessLogicException {
+        RondaEntity newEntity = factory.manufacturePojo(RondaEntity.class);
+        newEntity.setConcurso(null);
+        rondaLogic.createRonda(newEntity);
+    }
+
+    /**
+     * Prueba para crear un ronda con una concurso que no existe.
+     *
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createRondaConConcursoInvalida2Test() throws BusinessLogicException {
+        RondaEntity newEntity = factory.manufacturePojo(RondaEntity.class);
+        ConcursoEntity organization = new ConcursoEntity();
+        organization.setId(Long.MIN_VALUE);
+        newEntity.setConcurso(organization);
+        rondaLogic.createRonda(newEntity);
+    }
+
+  
 
 }
 

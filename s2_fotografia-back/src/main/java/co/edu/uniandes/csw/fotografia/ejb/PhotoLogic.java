@@ -41,7 +41,7 @@ public class PhotoLogic {
         if(photo.getName()==null){
             throw new BusinessLogicException("La foto tiene que tener un nombre.");
         }
-        if(photo.getName().length() > 120){
+        if(photo.getName().length() > 70){
             throw new BusinessLogicException("El nombre no puede tener más de 120 caracteres.");
         }
         
@@ -74,9 +74,9 @@ public class PhotoLogic {
     
     public List<PhotoEntity> getFotos(){
        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las fotos");
-        List<PhotoEntity> lista = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las fotos");
-        return lista;
+       List<PhotoEntity> lista = persistence.findAll();
+       LOGGER.log(Level.INFO, "Termina proceso de consultar todas las fotos");
+       return lista;
     }
     
      public PhotoEntity updateFoto(Long fotoId, PhotoEntity entity){

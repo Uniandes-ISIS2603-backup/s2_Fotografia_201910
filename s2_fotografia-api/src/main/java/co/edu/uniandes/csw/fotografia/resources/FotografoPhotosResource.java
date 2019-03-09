@@ -59,10 +59,9 @@ public class FotografoPhotosResource {
         if (photoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /photos/" + photosId + " no existe.", 404);
         }
-       /** PhotoDTO photoDTO = new PhotoDTO(fotografoPhotosLogic.addPhoto(photosId, fotografosId));
+       PhotoDTO photoDTO = new PhotoDTO(fotografoPhotosLogic.addPhoto(photosId, fotografosId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: output: {0}", photoDTO);
-        return photoDTO;**/
-       return null;
+        return photoDTO;
     }
 
     /**
@@ -102,10 +101,9 @@ public class FotografoPhotosResource {
         if (photoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /fotografos/" + fotografosId + "/photos/" + photosId + " no existe.", 404);
         }
-       /** PhotoDetailDTO photoDetailDTO = new PhotoDetailDTO(fotografoPhotosLogic.getPhoto(fotografosId, photosId));
+        PhotoDetailDTO photoDetailDTO = new PhotoDetailDTO(fotografoPhotosLogic.getPhoto(fotografosId, photosId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: output: {0}", photoDetailDTO);
-        return photoDetailDTO;**/
-        return null;
+        return photoDetailDTO;
     }
 
     /**
@@ -124,9 +122,9 @@ public class FotografoPhotosResource {
     public List<PhotoDetailDTO> replacePhotos(@PathParam("fotografosId") Long fotografosId, List<PhotoDetailDTO> photos) {
         LOGGER.log(Level.INFO, "FotografoPhotosResource replacePhotos: input: fotografosId: {0} , photos: {1}", new Object[]{fotografosId, photos});
         for (PhotoDetailDTO photo : photos) {
-            /**if (photoLogic.getFoto(photo.getId()) == null) {
+            if (photoLogic.getFoto(photo.getId()) == null) {
                 throw new WebApplicationException("El recurso /photos/" + photo.getId() + " no existe.", 404);
-            }**/
+            }
         }
         List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(fotografoPhotosLogic.replacePhotos(fotografosId, photosListDTO2Entity(photos)));
         LOGGER.log(Level.INFO, "FotografoPhotosResource replacePhotos: output: {0}", listaDetailDTOs);
@@ -142,7 +140,7 @@ public class FotografoPhotosResource {
     private List<PhotoDetailDTO> photosListEntity2DTO(List<PhotoEntity> entityList) {
         List<PhotoDetailDTO> list = new ArrayList();
         for (PhotoEntity entity : entityList) {
-            /**list.add(new PhotoDetailDTO(entity));**/
+            list.add(new PhotoDetailDTO(entity));
         }
         return list;
     }
@@ -156,7 +154,7 @@ public class FotografoPhotosResource {
     private List<PhotoEntity> photosListDTO2Entity(List<PhotoDetailDTO> dtos) {
         List<PhotoEntity> list = new ArrayList<>();
         for (PhotoDetailDTO dto : dtos) {
-            /**list.add(dto.toEntity());**/
+            list.add(dto.toEntity());
         }
         return list;
     }

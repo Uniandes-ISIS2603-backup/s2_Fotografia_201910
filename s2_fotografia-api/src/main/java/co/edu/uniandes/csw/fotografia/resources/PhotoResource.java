@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.fotografia.dtos.PhotoDetailDTO;
 import co.edu.uniandes.csw.fotografia.ejb.PhotoLogic;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -51,15 +53,42 @@ public class PhotoResource {
         LOGGER.log(Level.INFO, "EditorialPhoto createPhoto: output: {0}", nuevoPhotoDTO);
         return nuevoPhotoDTO;
     }
-    
+    /**
+     * Busca la foto con el id asociado recibido en la URL y la devuelve.
+     *
+     * @param id Identificador de la editorial que se esta buscando.
+     * Este debe ser una cadena de dígitos.
+     * @return JSON {@link PhotoDetailDTO} - La editorial buscada
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra la foto.
+     */
     @GET
-        @Path("{id: \\d+}")
-        public PhotoDetailDTO getPhoto(@PathParam("id") int id){
-            return null;
+    @Path("{id: \\d+}")
+    public PhotoDetailDTO getPhoto(@PathParam("id") Long id) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "PhotoResource getFoto: input: {0}", id);
+        PhotoEntity photoEntity = photoLogic.getFoto(id);
+        if (photoEntity == null) {
+            throw new WebApplicationException("El recurso /photos/" + id + " no existe.", 404);
         }
-        
+        PhotoDetailDTO detailDTO = new PhotoDetailDTO(photoEntity);
+        LOGGER.log(Level.INFO, "PhotoResource getFoto: output: {0}", detailDTO);
+        return detailDTO;
+    }
+    /**
+     * Busca y devuelve todas las fotos que existen en la aplicacion.
+     *
+     * @return JSONArray {@link PhotoDetailDTO} - Las fotos
+     * encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+    @GET
+    public List<PhotoDetailDTO> getPhotos() {
+        LOGGER.info("PhotoResource getFotos: input: void");
+        List<PhotoDetailDTO> listaFotos = listEntity2DetailDTO(photoLogic.getFotos());
+        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaFotos);
+        return listaFotos;
+    }
     @DELETE
-        @Path("{id: \\d+}")
+    @Path("{id: \\d+}")
     public void deletePhoto(@PathParam("id") Long id){
         LOGGER.log(Level.INFO, "PhotoResource deletePhoto: input: {0}", id);
         if (photoLogic.getFoto(id) == null) {
@@ -67,5 +96,22 @@ public class PhotoResource {
         }
         photoLogic.deletePhoto(id);
         LOGGER.info("PhotoResource deletePhoto: output: void");
+    }
+     /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos PhotoEntity a una lista de
+     * objetos PhotoDetailDTO (json)
+     *
+     * @param photoList corresponde a la lista de fotos de tipo PhotoEntity
+     * que vamos a convertir a DTO.
+     * @return la lista de fotos en forma DTO (json)
+     */
+    private List<PhotoDetailDTO> listEntity2DetailDTO(List<PhotoEntity> photoList) {
+        List<PhotoDetailDTO> list = new ArrayList<PhotoDetailDTO>();
+        for (PhotoEntity entity : photoList) {
+            list.add(new PhotoDetailDTO(entity));
+        }
+        return list;
     }
 }

@@ -17,6 +17,12 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author da.benavides
  */
 public class PhotoDTO implements Serializable{
+    
+    /*
+    * Atributo correspondiente al id de la foto.
+    */
+    private Long id;
+    
     /*
     * Atributo correspondiente a el nombre de la foto.
     */
@@ -66,6 +72,7 @@ public class PhotoDTO implements Serializable{
     }
     public PhotoDTO(PhotoEntity entidad){
         if(entidad != null){
+            this.id = entidad.getId();
             this.date = entidad.getDate();
             this.description = entidad.getDescription();
             this.name = entidad.getName();
@@ -73,6 +80,32 @@ public class PhotoDTO implements Serializable{
             this.published = entidad.getPublished();
             this.winner = entidad.getWinner();
         }
+    }
+    
+    public PhotoEntity toEntity(){
+        PhotoEntity entidad = new PhotoEntity();
+        entidad.setId(this.getId());
+        entidad.setDate(this.getDate());
+        entidad.setDescription(this.getDescription());
+        entidad.setName(this.getName());
+        entidad.setPrice(this.getPrice());
+        entidad.setPublished(this.getPublished());
+        entidad.setWinner(this.getWinner());
+        return entidad;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -157,16 +190,5 @@ public class PhotoDTO implements Serializable{
      */
     public void setPublished(Boolean published) {
         this.published = published;
-    }
-    
-    public PhotoEntity toEntity(){
-        PhotoEntity entidad = new PhotoEntity();
-        entidad.setDate(this.date);
-        entidad.setDescription(this.description);
-        entidad.setName(this.name);
-        entidad.setPrice(this.price);
-        entidad.setPublished(this.published);
-        entidad.setWinner(this.winner);
-        return entidad;
     }
 }
