@@ -121,7 +121,7 @@ public class FotografoResource {
         return detailDTO;
     }
 
-    @Path("{fotografosId: \\d+}/photos")
+    @Path("{FotografosId: \\d+}/photos")
     public Class<FotografoPhotosResource> getFotografoPhotosResource(@PathParam("fotografosId") Long fotografosId) {
         if (FotografoLogic.getFotografo(fotografosId) == null) {
             throw new WebApplicationException("El recurso /editorials/" + fotografosId + " no existe.", 404);
