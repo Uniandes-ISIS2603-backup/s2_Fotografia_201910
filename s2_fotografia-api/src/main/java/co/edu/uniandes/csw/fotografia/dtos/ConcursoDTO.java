@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +10,7 @@ import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Date;  
 import java.util.List;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -92,8 +93,8 @@ public class ConcursoDTO implements Serializable {
             this.id = concursoEntity.getId();
             this.tema = concursoEntity.getTema();
             this.restricciones = concursoEntity.getRestricciones();
-            this.edadDeLaFoto = concursoEntity.getEdadFoto();
-            this.maxFotos = concursoEntity.getMaximasFotos();
+            this.edadDeLaFoto = concursoEntity.getEdadDeLaFoto();
+            this.maxFotos = concursoEntity.getMaxFotos();
             this.premioCantidad = concursoEntity.getCantidadPremio();
             this.fechaDelConcurso = concursoEntity.getFecha();
              if (concursoEntity.getOrganizador() != null) {
@@ -115,8 +116,8 @@ public class ConcursoDTO implements Serializable {
         entity.setId(this.getId());
         entity.setCantidadPremio(this.premioCantidad);
         entity.setFecha(this.fechaDelConcurso);
-        entity.setMaximasFotos(this.maxFotos);
-        entity.setEdadFoto(this.edadDeLaFoto);
+        entity.setMaxFotos(this.maxFotos);
+        entity.setEdadDeLaFoto(this.edadDeLaFoto);
         entity.setTema(this.tema);
         entity.setRestricciones(this.restricciones);
         if(organizador != null )entity.setOrganizador(organizador.toEntity());
@@ -192,7 +193,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo fechaConcurso
      */
-    public Date getFechaConcurso() {
+    public Date getFechaDelConcurso() {
         return fechaDelConcurso;
     }
 
@@ -201,7 +202,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pFecha nuevo valor para el atributo
      */
-    public void setFechaConcurso(Date pFechaConcurso) {
+    public void setFechaDelConcurso(Date pFechaConcurso) {
         fechaDelConcurso = pFechaConcurso;
     }
 

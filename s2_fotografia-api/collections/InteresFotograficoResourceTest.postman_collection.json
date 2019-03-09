@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "e5e9e3c4-74d2-4d28-b095-2465a07d47e1",
+		"name": "InteresFotograficoResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s2_fotografia-api/api/InteresFotograficos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b661bda9-b92d-47ae-9d5d-0f4f2dc15aea",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Gell All\"] = responseCode.code === 200;",
+							"tests[\"intereses fotograficos count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/InteresFotograficos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"InteresFotograficos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/InteresFotograficos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee5a6002-e06a-4448-8c64-30b452da0b15",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"interesFotograficoDetailDTO\",\n        \"interes\": \"animales\"\n  }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/InteresFotograficos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"InteresFotograficos"
+					]
+				},
+				"description": "Crear un autor"
+			},
+			"response": []
+		}
+	]
+}

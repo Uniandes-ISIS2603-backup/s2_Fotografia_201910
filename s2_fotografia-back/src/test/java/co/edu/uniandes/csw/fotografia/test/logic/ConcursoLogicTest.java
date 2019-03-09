@@ -117,7 +117,7 @@ public class ConcursoLogicTest {
         ConcursoEntity entity = em.find(ConcursoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getTema(), entity.getTema());
-        Assert.assertEquals(newEntity.getEdadFoto(), entity.getEdadFoto());
+        Assert.assertEquals(newEntity.getEdadDeLaFoto(), entity.getEdadDeLaFoto());
     }
     /**
      * Prueba para crear un concurso con numero maximo invalido
@@ -125,7 +125,7 @@ public class ConcursoLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void createConcursoInvalido1Test() throws BusinessLogicException{
         ConcursoEntity newEntity = factory.manufacturePojo(ConcursoEntity.class);
-        newEntity.setMaximasFotos(0);
+        newEntity.setMaxFotos(0);
         concursoLogic.createConcurso(newEntity); 
     }
 
@@ -159,7 +159,7 @@ public class ConcursoLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getTema(), resultEntity.getTema());
-        Assert.assertEquals(entity.getMaximasFotos(), resultEntity.getMaximasFotos());
+        Assert.assertEquals(entity.getMaxFotos(), resultEntity.getMaxFotos());
     }
 
     /**
