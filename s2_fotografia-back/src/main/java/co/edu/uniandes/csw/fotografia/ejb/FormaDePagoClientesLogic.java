@@ -34,7 +34,7 @@ public class FormaDePagoClientesLogic
      * Agregar un cliente a una forma de pago
      * @param formasDePagoId El id de la forma de pago a guardar
      * @param clientesId El id del cliente al cual se le va a guardar la forma de pago
-     * @return La forma de pago que fue agregado al cliente.
+     * @return El cliente que fue agragado a la forma de pago.
      */
     public ClienteEntity addCliente(Long clientesId, Long formasDePagoId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar el cliente con id = {0} a la forma de pago con id = " + formasDePagoId, clientesId);

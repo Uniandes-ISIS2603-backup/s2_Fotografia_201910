@@ -122,4 +122,6 @@ public class FormaDePagoClientesResource
         formaDePagoClientesLogic.removeCliente(formasDePagoId);
         LOGGER.info("FormaDePagoClientesResource removeCliente: output: void");
     }
+    
+ 
 }

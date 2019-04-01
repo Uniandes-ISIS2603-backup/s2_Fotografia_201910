@@ -61,7 +61,7 @@ public class FacturaFormasDePagoResource
             throw new WebApplicationException("El recurso /formasDePago/" + formasDePagoId + " no existe.", 404);
         }
         FormaDePagoDTO formaDePagoDTO = new FormaDePagoDTO(facturaFormasDePagoLogic.addFormaDePago(formasDePagoId, facturasId));
-        LOGGER.log(Level.INFO, "PrizeAuthorResource addAuthor: output: {0}", formaDePagoDTO);
+        LOGGER.log(Level.INFO, "FacturaFormasDePagoResource addFormaDePago: output: {0}", formaDePagoDTO);
         return formaDePagoDTO;
     }
 

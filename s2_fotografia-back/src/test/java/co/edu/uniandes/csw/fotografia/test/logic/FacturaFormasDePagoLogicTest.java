@@ -139,24 +139,24 @@ public class FacturaFormasDePagoLogicTest
      * Prueba para remplazar las instancias de Facturas asociadas a una instancia
      * de FormaDePago.
      */
-    //@Test
-   // public void replaceFormaDePagoTest() {
-       // FormaDePagoEntity entity = data.get(0);
-      //  facturaFormaDePagoLogic.replaceFormaDePago(facturasData.get(1).getId(), entity.getId());
-      //  entity = facturaFormaDePagoLogic.getFormaDePago(facturasData.get(1).getId());
-      //  Assert.assertTrue(entity.getFacturas().contains(facturasData.get(1)));
-  //  }
+    @Test
+    public void replaceFormaDePagoTest() {
+        FormaDePagoEntity entity = data.get(0);
+        facturaFormaDePagoLogic.replaceFormaDePago(facturasData.get(1).getId(), entity.getId());
+        entity = facturaFormaDePagoLogic.getFormaDePago(facturasData.get(1).getId());
+        Assert.assertTrue(entity.getFacturas().contains(facturasData.get(1)));
+    }
 
     /**
      * Prueba para desasociar un Factura existente de un FormaDePago existente.
      *
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
-   // @Test
-    //public void removeFacturaTest() throws BusinessLogicException {
-     //   facturaFormaDePagoLogic.removeFormaDePago(facturasData.get(0).getId());
-     //   Assert.assertNull(facturaFormaDePagoLogic.getFormaDePago(facturasData.get(0).getId()));
-   // }
+    @Test
+    public void removeFacturaTest() throws BusinessLogicException {
+        facturaFormaDePagoLogic.removeFormaDePago(facturasData.get(0).getId());
+        Assert.assertNull(facturaFormaDePagoLogic.getFormaDePago(facturasData.get(0).getId()));
+    }
 
     /**
      * Prueba para desasociar un Factura existente de un FormaDePago existente.
