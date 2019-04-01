@@ -11,35 +11,37 @@ import co.edu.uniandes.csw.fotografia.persistence.FacturaPersistence;
 import co.edu.uniandes.csw.fotografia.persistence.FormaDePagoPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Valentina Duarte
  */
+@Stateless
 public class FacturaFormasDePagoLogic 
 {
      private static final Logger LOGGER = Logger.getLogger(FacturaFormasDePagoLogic.class.getName());
 
     @Inject
+    private FormaDePagoPersistence formaDePagoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+ 
+    @Inject
     private FacturaPersistence facturaPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-    @Inject
-    private FormaDePagoPersistence formaDePagoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
-    /**
+    
+     /**
      * Agregar una forma de pago a una factura
-     *
      * @param facturasId El id de la factura a guardar
-     * @param formasDePagoId El id de la forma de pago a la cual se le va a guardar la factura.
-     * @return La factura que fue agregado a la forma de pago.
+     * @param formasDePagoId El id de la forma de pago al cual se le va a guardar la factura
+     * @return La forma de pago que fue agregado a la factura.
      */
     public FormaDePagoEntity addFormaDePago(Long formasDePagoId, Long facturasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar la forma de pago con id = {0} a la factura con id = " + facturasId, formasDePagoId);
         FormaDePagoEntity formaDePagoEntity = formaDePagoPersistence.get(formasDePagoId);
         FacturaEntity facturaEntity = facturaPersistence.get(facturasId);
         facturaEntity.setFormaDePagoFactura(formaDePagoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar la forma de pago con id = {0} a la factura con id = " + facturasId, formasDePagoId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar la forma de Pago con id = {0} a la factura con id = " + facturasId, formasDePagoId);
         return formaDePagoPersistence.get(formasDePagoId);
     }
 
@@ -51,7 +53,7 @@ public class FacturaFormasDePagoLogic
      * @return la forma de pago solicitada por medio de su id.
      */
     public FormaDePagoEntity getFormaDePago(Long facturasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la formaDePago dea factura con id = {0}", facturasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la formaDePago de la factura con id = {0}", facturasId);
         FormaDePagoEntity formaDePagoEntity = facturaPersistence.get(facturasId).getFormaDePagoFactura();
         LOGGER.log(Level.INFO, "Termina proceso de consultar la forma de pago dela factura con id = {0}", facturasId);
         return formaDePagoEntity;
