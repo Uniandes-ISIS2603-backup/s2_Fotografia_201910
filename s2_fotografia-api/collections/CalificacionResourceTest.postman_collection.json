@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "46a7b85b-109a-42d6-8a28-782c5e432078",
+		"name": "CalificacionResourceTest",
+		"description": "Calificacion Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las calificaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"tests [\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_fotografia-api/api/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener calificacion con id dado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe7af646-a61c-49f4-905e-ed8731967dad",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\", data.id);",
+							"tests [\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener calificacon que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"",
+							"tests [\"No existe una calificacion con el id dado\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"comentario\": \"Foto que muestra la realidad\",\n\t\"puntaje\": 5\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear calificacion 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"comentario\": \"La foto esta desenfocada\",\n\t\"puntaje\": 3.5\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar calificacion ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+                                                "type": "text/javascript",
+						"exec": [
+							"",
+                                                        "console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests [\"No genera error en el Get\"] = responseCode.code === 200;"
+                                                ]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"comentario\": \"La foto esta desenfocada\",\n\t\"puntaje\": 2.5\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar calificacion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"comentario\": \"La foto esta desenfocada\",\n\t\"puntaje\": 2.5\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones/5",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar calificacion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/calificaciones/5",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"calificaciones",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -37,14 +37,11 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
      */
     public JuradoDetailDTO(JuradoEntity juradoEntity) {
         super(juradoEntity);
-        if (juradoEntity.getFotos() != null) {
+        if (juradoEntity != null) {
             fotos = new ArrayList<>();
             for (PhotoEntity photoEntity : juradoEntity.getFotos()) {
                 fotos.add(new PhotoDTO(photoEntity));
             }
-        }
-        
-        if(juradoEntity.getCalificaciones() !=null){
             calificaciones = new ArrayList();
             for ( CalificacionEntity entityCalificacion : juradoEntity.getCalificaciones()) {
                 calificaciones.add(new CalificacionDTO(entityCalificacion));
@@ -64,14 +61,14 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
         JuradoEntity juradoEntity = super.toEntity();
         if( fotos != null){
             List<PhotoEntity> fotosEntity = new ArrayList<>();
-            for( PhotoDTO dtoFoto : getFotos()){
+            for( PhotoDTO dtoFoto : fotos){
                 fotosEntity.add(dtoFoto.toEntity());
             }
             juradoEntity.setFotos(fotosEntity);
         }
         if(calificaciones != null){
             List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
-            for( CalificacionDTO dtoCalificacion: getCalificaciones()){
+            for( CalificacionDTO dtoCalificacion: calificaciones){
                 calificacionesEntity.add(dtoCalificacion.toEntity());
             }
             juradoEntity.setCalificaciones(calificacionesEntity);

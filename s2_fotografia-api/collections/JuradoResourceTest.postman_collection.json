@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "4368e45f-47d3-4c4d-bf06-d3adf7464d2e",
+		"name": "JuradoResourceTest",
+		"description": "Jurado Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los jurados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"",
+							"tests [\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener jurado con id dado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9622b71-bcda-4987-b695-4868f605573d",
+						"exec": [
+							"",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_j\", data.id);",
+							"tests [\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados/{{new_id_j}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados",
+						"{{new_id_j}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener jurado con id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"",
+							"tests [\"No existe un jurado con el id dado\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear jurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ba0c3fe-bcdb-4e5b-9983-82ec4bcca539",
+						"exec": [
+							"",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_j\", data.id);",
+							"tests [\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Julian\",\n\t\"apellido\": \"Cordoba\",\n\t\"correo\": \"julian.cordoba@gmail.com\",\n\t\"cedula\": 123456,\n\t\"pais\": \"Colombia\",\n\t\"ciudad\": \"Bogota\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear jurado 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"",
+							"tests [\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Ivan Dario\",\n\t\"apellido\": \"Chavarro\",\n\t\"cedula\": 765934,\n\t\"pais\": \"Colombia\",\n\t\"ciudad\": \"Bogota\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar jurado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"tests [\"No existe la calificacion\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Ivan Dario\",\n\t\"apellido\": \"Chavarro\",\n\t\"cedula\": 765934,\n\t\"pais\": \"Argentina\",\n\t\"ciudad\": \"Bogota\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados",
+						"0"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "87",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar jurado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca7fdfb-0ccc-4eed-a856-6c3103873a98",
+						"exec": [
+							"",
+							"tests [\"No hay error en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Camilo\",\n\t\"apellido\": \"Cordoba\",\n\t\"cedula\": 1234567,\n\t\"correo\": \"camilo.cordoba@hotmail.com\",\n\t\"pais\": \"Colombia\",\n\t\"ciudad\": \"Cali\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados/2",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar jurado que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e138b01-59d5-4463-a6d2-3b9a7ab35b17",
+						"exec": [
+							"",
+							"tests[\"No existe un jurado con el id\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/jurados/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"jurados",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

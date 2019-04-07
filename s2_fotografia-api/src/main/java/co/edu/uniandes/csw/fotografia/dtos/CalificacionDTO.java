@@ -21,6 +21,7 @@ public class CalificacionDTO implements Serializable {
     private Long id;
     private Double puntaje;
     private String comentario;  
+    private String foto;
 
     /**
      * Constructor vacio
@@ -40,6 +41,7 @@ public class CalificacionDTO implements Serializable {
             this.id = calificacionEntity.getId();
             this.puntaje = calificacionEntity.getPuntaje();
             this.comentario = calificacionEntity.getComentario();
+            this.foto = calificacionEntity.getFoto();
         }
     }
 
@@ -54,6 +56,7 @@ public class CalificacionDTO implements Serializable {
         calificacionEntity.setId(this.getId());
         calificacionEntity.setPuntaje(this.getPuntaje());
         calificacionEntity.setComentario(this.getComentario());
+        calificacionEntity.setFoto(this.getFotoString());
         return calificacionEntity;
     }
 
@@ -115,6 +118,26 @@ public class CalificacionDTO implements Serializable {
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+    /**
+     * Obtiene el atributo foto.
+     *
+     * @return atributo foto.
+     *
+     */
+    public String getFotoString() {
+        return foto;
+    }
+
+    /**
+     * Establece el valor del atributo foto.
+     *
+     * @param foto nuevo valor del atributo
+     *
+     */
+    public void setFotoString(String foto) {
+        this.foto = foto;
     }
     
     @Override

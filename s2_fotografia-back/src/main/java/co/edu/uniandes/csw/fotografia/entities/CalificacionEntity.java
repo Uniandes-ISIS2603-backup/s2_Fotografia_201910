@@ -19,6 +19,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private Double puntaje;
     private String comentario;
+    private String foto;
     
     @PodamExclude
     @ManyToOne
@@ -75,6 +76,24 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+     /**
+     * Obtiene el atributo foto.
+     *
+     * @return atributo foto.
+     */
+    public String getFoto() {
+        return foto;
+    }
+
+    /**
+     * Establece el valor del atributo foto.
+     *
+     * @param foto nuevo valor del atributo
+     */
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     /**
