@@ -1,4 +1,3 @@
-
 delete from FacturaEntity;
 delete from FormaDePagoEntity;
 delete from fotografoentity;
@@ -14,6 +13,11 @@ delete from OrganizadorEntity;
 insert into CalificacionEntity (id, puntaje, comentario, foto) values (100, 4, 'Muy bonita','Foto1');
 insert into CalificacionEntity (id, puntaje, comentario, foto) values (200, 3.5, 'Debería manejar otros tonos','Foto2');
 insert into CalificacionEntity (id, puntaje, comentario, foto) values (300, 2.3, 'No esta enfocada','Foto3');
+
+insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais) values (200, 'Jose', 'Martinez', 20, 'j.martinez@gmail.com', 31578965, 'Colombia');
+
+
+insert into RondaEntity(id, numeroRonda) values (300, 1);
 
 insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea' );
 insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr' );
