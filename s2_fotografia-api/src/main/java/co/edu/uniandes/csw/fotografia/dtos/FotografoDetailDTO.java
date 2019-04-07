@@ -130,12 +130,12 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
              if(fotografo.getFotos()!=null){
                  fotos = new ArrayList();
                   for (PhotoEntity entity : fotografo.getFotos()) {
-                    /**fotos.add(new PhotoDTO(entity   ));**/}
+                    fotos.add(new PhotoDTO(entity   ));}
              }
               if(fotografo.getFotos()!=null){
                  fotosConcurso = new ArrayList();
                   for (PhotoEntity entity1 : fotografo.getFotosConcurso()) {
-                    /**fotosConcurso.add(new PhotoDTO(entity1));**/}
+                    fotosConcurso.add(new PhotoDTO(entity1));}
              }
               if(fotografo.getConcursos()!=null){
                  concursos = new ArrayList();

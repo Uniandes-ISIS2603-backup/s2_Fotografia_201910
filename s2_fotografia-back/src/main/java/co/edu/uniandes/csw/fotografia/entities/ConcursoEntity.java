@@ -26,11 +26,15 @@ import uk.co.jemos.podam.common.PodamIntValue;
 @Entity
 public class ConcursoEntity extends BaseEntity implements Serializable{
     private String tema;
-    private List<String> restricciones;
+    
+    
+    private String[] restricciones;
+    
     @PodamIntValue(minValue = 0, maxValue = Integer.MAX_VALUE)
-    private Integer edadFoto;
+    private Integer edadDeLaFoto;
+    
     @PodamIntValue(minValue = 1, maxValue = Integer.MAX_VALUE)
-    private Integer maximasFotos;
+    private Integer maxFotos;
     
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -94,28 +98,28 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
         this.tema = tema;
     }
 
-    public List<String> getRestricciones() {
+    public String[] getRestricciones() {
         return restricciones;
     }
 
-    public void setRestricciones(List<String> restricciones) {
+    public void setRestricciones(String[] restricciones) {
         this.restricciones = restricciones;
     }
 
-    public Integer getEdadFoto() {
-        return edadFoto;
+    public Integer getEdadDeLaFoto() {
+        return edadDeLaFoto;
     }
 
-    public void setEdadFoto(Integer edadFoto) {
-        this.edadFoto = edadFoto;
+    public void setEdadDeLaFoto(Integer edadFoto) {
+        this.edadDeLaFoto = edadFoto;
     }
 
-    public Integer getMaximasFotos() {
-        return maximasFotos;
+    public Integer getMaxFotos() {
+        return maxFotos;
     }
 
-    public void setMaximasFotos(Integer maximasFotos) {
-        this.maximasFotos = maximasFotos;
+    public void setMaxFotos(Integer maximasFotos) {
+        this.maxFotos = maximasFotos;
     }
 
     public List<FotografoEntity> getFotografos() {

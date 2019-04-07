@@ -129,7 +129,7 @@ public class PhotoLogicTest {
         Assert.assertNotNull(result);
         PhotoEntity entity = em.find(PhotoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
      /**
      * Prueba para consultar la lista de fotos.
@@ -166,7 +166,7 @@ public class PhotoLogicTest {
 
     }
     /**
-     * Prueba para eliminar un cliente
+     * Prueba para eliminar una foto
      */
     @Test
     public void deletePhotoTest() {
@@ -184,7 +184,7 @@ public class PhotoLogicTest {
         PhotoEntity resultEntity = photoLogic.getFoto(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
     }
     
     /**
@@ -206,7 +206,7 @@ public class PhotoLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void createFotoSinNombreTest() throws BusinessLogicException {
         PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
-        newEntity.setName(null);
+        newEntity.setNombre(null);
         photoLogic.createPhoto(newEntity);
     }
     /**
@@ -217,7 +217,7 @@ public class PhotoLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void createFotoConNombreLargoTest() throws BusinessLogicException {
         PhotoEntity newEntity = factory.manufacturePojo(PhotoEntity.class);
-        newEntity.setName("Dany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largo");
+        newEntity.setNombre("Dany Alejandro Benavides Pedroza esta es una foto con un nombre demasiado largo");
         photoLogic.createPhoto(newEntity);
     }
     /**

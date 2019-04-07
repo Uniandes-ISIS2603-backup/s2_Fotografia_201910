@@ -20,27 +20,38 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author estudiante
+ * @author da.benavides
  */
 
 @Path("photos")
-@Produces("applications/json")
-@Consumes("applications/json")
+@Produces (MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class PhotoResource {
-    
+    /**
+     * Track de que se esta haciendo
+     */
     private static final Logger LOGGER = Logger.getLogger(PhotoResource.class.getName());
-    
+    /**
+     * Objeto de la lògica
+     */
     @Inject
     private PhotoLogic photoLogic;
-    
+    /**
+     * Mètodo que crea una foto con la anotaciòn post
+     * @param photo DTO de la foto que se quiere crear
+     * @return el mismo objeto
+     * @throws BusinessLogicException No se puede crear la foto 
+     */
     @POST
     public PhotoDTO createPhoto(PhotoDTO photo) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "PhotoResource createPhoto: input: {0}", photo);
@@ -114,4 +125,24 @@ public class PhotoResource {
         }
         return list;
     }
+    
+    /**
+     * Actualiza la foto ingresado por parametro
+     * @param fotosId del cliente a actualizar
+     * @param foto el cliente por el cual se quiere actualizar
+     * @return null
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     */
+    @PUT
+    @Path("{fotosId: \\d+}")
+    public PhotoDetailDTO updatePhoto(@PathParam("fotosId") Long fotosId, PhotoDetailDTO foto) throws BusinessLogicException {
+       LOGGER.log(Level.INFO, "FotoResource updatePhoto: input: fotosId: {0} , foto: {1}", new Object[]{fotosId, foto});
+        foto.setId(fotosId);
+        if (photoLogic.getFoto(fotosId) == null) {
+            throw new WebApplicationException("El recurso /photos/" + fotosId + " no existe.", 404);
+        }
+        PhotoDetailDTO detailDTO = new PhotoDetailDTO(photoLogic.updateFoto(fotosId, foto.toEntity()));
+        LOGGER.log(Level.INFO, "PhotoResource updateCliente: output: {0}", detailDTO);
+        return detailDTO;
+    }   
 }

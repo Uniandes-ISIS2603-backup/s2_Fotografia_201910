@@ -26,7 +26,7 @@ public class PhotoDTO implements Serializable{
     /*
     * Atributo correspondiente a el nombre de la foto.
     */
-    private String name;
+    private String nombre;
     
     /*
     * Atributo correspondiente a la fecha de la foto.
@@ -70,24 +70,30 @@ public class PhotoDTO implements Serializable{
     public PhotoDTO(){
         
     }
+    /**
+     * Constructor que recibe un entity y transforma a DTO
+     */
     public PhotoDTO(PhotoEntity entidad){
         if(entidad != null){
             this.id = entidad.getId();
             this.date = entidad.getDate();
             this.description = entidad.getDescription();
-            this.name = entidad.getName();
+            this.nombre = entidad.getNombre();
             this.price = entidad.getPrice();
             this.published = entidad.getPublished();
             this.winner = entidad.getWinner();
         }
     }
-    
+    /**
+     * Método que transforma el entity a DTO
+     * @return entidad. Objeto DTO transformado a entity.
+     */
     public PhotoEntity toEntity(){
         PhotoEntity entidad = new PhotoEntity();
         entidad.setId(this.getId());
         entidad.setDate(this.getDate());
         entidad.setDescription(this.getDescription());
-        entidad.setName(this.getName());
+        entidad.setNombre(this.getNombre());
         entidad.setPrice(this.getPrice());
         entidad.setPublished(this.getPublished());
         entidad.setWinner(this.getWinner());
@@ -108,19 +114,7 @@ public class PhotoDTO implements Serializable{
         this.id = id;
     }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+   
 
     /**
      * @return the date
@@ -190,5 +184,19 @@ public class PhotoDTO implements Serializable{
      */
     public void setPublished(Boolean published) {
         this.published = published;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

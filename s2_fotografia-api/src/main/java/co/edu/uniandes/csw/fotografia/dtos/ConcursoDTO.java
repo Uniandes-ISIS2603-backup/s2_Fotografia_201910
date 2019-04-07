@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +10,7 @@ import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Date;  
 import java.util.List;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -70,7 +71,7 @@ public class ConcursoDTO implements Serializable {
 
     private Long id;
     private String tema;
-    private List<String> restricciones;
+    private String[] restricciones;
     private Integer edadDeLaFoto;
     private Integer maxFotos;
     @XmlJavaTypeAdapter(DateAdapter.class)
@@ -92,8 +93,8 @@ public class ConcursoDTO implements Serializable {
             this.id = concursoEntity.getId();
             this.tema = concursoEntity.getTema();
             this.restricciones = concursoEntity.getRestricciones();
-            this.edadDeLaFoto = concursoEntity.getEdadFoto();
-            this.maxFotos = concursoEntity.getMaximasFotos();
+            this.edadDeLaFoto = concursoEntity.getEdadDeLaFoto();
+            this.maxFotos = concursoEntity.getMaxFotos();
             this.premioCantidad = concursoEntity.getCantidadPremio();
             this.fechaDelConcurso = concursoEntity.getFecha();
              if (concursoEntity.getOrganizador() != null) {
@@ -115,8 +116,8 @@ public class ConcursoDTO implements Serializable {
         entity.setId(this.getId());
         entity.setCantidadPremio(this.premioCantidad);
         entity.setFecha(this.fechaDelConcurso);
-        entity.setMaximasFotos(this.maxFotos);
-        entity.setEdadFoto(this.edadDeLaFoto);
+        entity.setMaxFotos(this.maxFotos);
+        entity.setEdadDeLaFoto(this.edadDeLaFoto);
         entity.setTema(this.tema);
         entity.setRestricciones(this.restricciones);
         if(organizador != null )entity.setOrganizador(organizador.toEntity());
@@ -166,7 +167,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo restricciones
      */
-    public List<String> getRestricciones() {
+    public String[] getRestricciones() {
         return restricciones;
     }
 
@@ -175,16 +176,29 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pRestricciones nueva lista de restricciones
      */
-    public void setRestricciones(ArrayList<String> pRestricciones) {
+    public void setRestricciones(String[] pRestricciones) {
         restricciones = pRestricciones;
     }
 
     /**
      * Agrega una restriccion a la lista de restricciones
-     *
+     *@param pRestriccion restriccion que se quiere agregar
      */
     public void addRestriccion(String pRestriccion) {
-        restricciones.add(pRestriccion);
+        if(restricciones[restricciones.length-1] != null){
+          String[] temp = restricciones;
+          restricciones = new String[temp.length*2];
+          System.arraycopy(temp, 0, restricciones, 0, temp.length);
+          temp = null;
+        }
+        else{
+            for(int i=0; i < restricciones.length; i++){
+                if(restricciones[i] == null){
+                    restricciones[i] = pRestriccion;
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -192,7 +206,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo fechaConcurso
      */
-    public Date getFechaConcurso() {
+    public Date getFechaDelConcurso() {
         return fechaDelConcurso;
     }
 
@@ -201,7 +215,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pFecha nuevo valor para el atributo
      */
-    public void setFechaConcurso(Date pFechaConcurso) {
+    public void setFechaDelConcurso(Date pFechaConcurso) {
         fechaDelConcurso = pFechaConcurso;
     }
 

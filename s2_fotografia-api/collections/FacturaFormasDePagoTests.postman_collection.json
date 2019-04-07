@@ -1,0 +1,637 @@
+{
+	"info": {
+		"_postman_id": "e060d785-f8f2-4984-b193-23cf3b2a7158",
+		"name": "FacturaFormasDePagoTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fac\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numero\" : 15,\n\"precio\" :  48.0,\n\"fechaCompra\" : \"2018-08-29T00:00:00-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una factura 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fac2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numero\" : 16,\n\"precio\" :  125.50,\n\"fechaCompra\" : \"2019-01-11T00:00:00-05:00\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fop\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 191265181156765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una forma de pago 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fop2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 120999986256165,\n\"fechaVencimiento\" : \"2022-03-12T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregarle una forma de pago a una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9b76351-dc3d-4ac6-beab-81871addfd96",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}/formasDePago/{{new_id_fop}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}",
+						"formasDePago",
+						"{{new_id_fop}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un premio a un autor en la aplicación. \r\n\r\nSe envía el Id del autor y el del premio a asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar una forma de pago que no existe a una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd685e11-33db-4118-be98-28f9dacd0dc7",
+						"exec": [
+							"tests[\"No se puede asociar la forma de pago ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /formasDePago/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}/formasDePago/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}",
+						"formasDePago",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un autor que no existe a un premio en la aplicación. \r\n\r\nSe envía el Id del autor y el del premio a asociar en la URL de la petición.\r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /authors/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la forma de pago de una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e5d490f-c9a8-4f77-9ff8-cd2807cf9b20",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}",
+						"formasDePago"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta un autor de un premio en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id del autor y del premio a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la forma de pago que no existe de una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3297c68a-6c35-4e0f-96bb-711c10512c2c",
+						"exec": [
+							"tests[\"No se puede obtener la forma de pago ya que esta no existe.\"] = responseCode.code === 404;",
+							"let id = pm.variables.get(\"new_id_fac2\");",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /facturas/\"+id+\"/formaDePago no existe.\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac2}}/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac2}}",
+						"formasDePago"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta un autor que no existe de un premio en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error.\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar una forma de pago a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b595cd14-771c-4768-9c3e-b1faacdf23ce",
+						"exec": [
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}/formasDePago/{{new_id_fop2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}",
+						"formasDePago",
+						"{{new_id_fop2}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nActualiza el autor de un premio existente. Se envían los Ids de las entidades asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar una forma de pago que no existe a una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "826eb21c-0515-42ac-95a6-9367c2a4182f",
+						"exec": [
+							"tests[\"No se puede reemplazar la forma de pago a la factura ya que el nuevo no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /formasDePago/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}/formasDePago/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}",
+						"formasDePago",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un autor que no existe a un premio en la aplicación. \r\n\r\nSe envían los Ids a asociar en la URL de la petición.\r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /authors/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle la forma de pago a una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08d9072a-55bf-4641-bbdb-52b352762f65",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}",
+						"formasDePago"
+					]
+				},
+				"description": "**Release: Paso-5**\n\nBorra la asociación entre un premio y un autor. Se envían los ids del autor y del premio creados anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fop}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fop}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fop2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fop2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una factura 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/facturas/{{new_id_fac2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"facturas",
+						"{{new_id_fac2}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

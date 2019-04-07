@@ -144,4 +144,26 @@ public class FacturaResource
         facturaLogic.deleteFactura(facturasId);
         LOGGER.info("FacturaResource deleteFactura: output: void");
     }  
+    
+    /**
+     * Conexión con el servicio de formas de pago para una factura
+     * {@link FacturaFormasDePagoResource}
+     *
+     * Este método conecta la ruta de /facturas con las rutas de /formasDePago que
+     * dependen de la factura, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga la forma de pago de la factura.
+     *
+     * @param facturasId El ID de la factura con respecto a la cual se accede al
+     * servicio.
+     * @return El servicio de forma de pago para esta factura en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se la facturaq.
+     */
+    @Path("{facturasId: \\d+}/formasDePago")
+    public Class<FacturaFormasDePagoResource> getFacturaFormasDePagoResource(@PathParam("facturasId") Long facturasId) {
+        if (facturaLogic.getFactura(facturasId) == null) {
+            throw new WebApplicationException("El recurso /facturas/" + facturasId + " no existe.", 404);
+        }
+        return FacturaFormasDePagoResource.class;
+    }
 }

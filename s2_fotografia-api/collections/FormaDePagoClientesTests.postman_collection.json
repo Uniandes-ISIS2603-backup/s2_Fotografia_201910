@@ -1,0 +1,638 @@
+{
+	"info": {
+		"_postman_id": "be9aa1f8-7534-4552-b181-15bf3c89a8cc",
+		"name": "FormaDePagoClientesTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fopa\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 129168716256765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear forma de pago 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25283834-fc65-4462-9a9e-38c144630465",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_fopa2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroTarjeta\" : 1291621106256765,\n\"fechaVencimiento\" : \"2022-02-20T00:00:00-05:00\",\n\"numeroVerificacion\" : 234,\n\"tipoDeTarjeta\": \"Tarjeta Credito\",\n\"tipoTarjetaDeCredito\" : \"VISA\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6c81017-0ea4-47b9-88b1-49b1144f87c7",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cli\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"login\" : \"ignaciagomez\",\n\"nombre\" : \"Ignacia Gomez\",\n\"correo\" : \"ig@gmail.com\",\n\"contrasena\" : \"ignaciagomez123\"\n\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cliente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25283834-fc65-4462-9a9e-38c144630465",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_cli2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"login\" : \"danielp\",\n\"nombre\" : \"Daniel Perez\",\n\"correo\": \"dp@hotmail.com\",\n\"contrasena\" : \"danielpp233\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregarle una cliente a una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9b76351-dc3d-4ac6-beab-81871addfd96",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}/clientes/{{new_id_cli}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}",
+						"clientes",
+						"{{new_id_cli}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un premio a un autor en la aplicación. \r\n\r\nSe envía el Id del autor y el del premio a asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar una cliente que no existe a una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd685e11-33db-4118-be98-28f9dacd0dc7",
+						"exec": [
+							"tests[\"No se puede asociar el cliente ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}/clientes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}",
+						"clientes",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un autor que no existe a un premio en la aplicación. \r\n\r\nSe envía el Id del autor y el del premio a asociar en la URL de la petición.\r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /authors/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener el cliente de una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e5d490f-c9a8-4f77-9ff8-cd2807cf9b20",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}",
+						"clientes"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta un autor de un premio en la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nSe envía el Id del autor y del premio a consultar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener el cliente que no existe de una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3297c68a-6c35-4e0f-96bb-711c10512c2c",
+						"exec": [
+							"tests[\"No se puede obtener el cliente ya que esta no existe.\"] = responseCode.code === 404;",
+							"let id = pm.variables.get(\"new_id_fopa2\");",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /formasDePago/\"+id+\"/cliente no existe.\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa2}}/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa2}}",
+						"clientes"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nConsulta un autor que no existe de un premio en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error.\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un cliente a una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b595cd14-771c-4768-9c3e-b1faacdf23ce",
+						"exec": [
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}/clientes/{{new_id_cli2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}",
+						"clientes",
+						"{{new_id_cli2}}"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nActualiza el autor de un premio existente. Se envían los Ids de las entidades asociar en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un cliente que no existe a una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "826eb21c-0515-42ac-95a6-9367c2a4182f",
+						"exec": [
+							"tests[\"No se puede reemplazar el cliente a la forma de pago ya que el nuevo no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /clientes/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}/clientes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}",
+						"clientes",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-5**\r\n\r\nAsocia un autor que no existe a un premio en la aplicación. \r\n\r\nSe envían los Ids a asociar en la URL de la petición.\r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /authors/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle el cliente a una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08d9072a-55bf-4641-bbdb-52b352762f65",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}/clientes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}",
+						"clientes"
+					]
+				},
+				"description": "**Release: Paso-5**\n\nBorra la asociación entre un premio y un autor. Se envían los ids del autor y del premio creados anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a13769a8-7fd6-4188-b4ab-883140dfb90d",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_id_cli}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"clientes",
+						"{{new_id_cli}}"
+					]
+				},
+				"description": "**Release: Paso-5**\n\nBorra una editorial. Se envía el id de la editorial creada en la primera petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un cliente 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a13769a8-7fd6-4188-b4ab-883140dfb90d",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_id_cli2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"clientes",
+						"{{new_id_cli2}}"
+					]
+				},
+				"description": "**Release: Paso-5**\n\nBorra una editorial. Se envía el id de la editorial creada en la primera petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una forma de pago 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "298b9365-c326-401f-bbef-6d81a017ee1d",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/formasDePago/{{new_id_fopa2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"formasDePago",
+						"{{new_id_fopa2}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -26,22 +26,31 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Stateless
 public class PhotoLogic {
-    
+    /**
+     * Track de que se esta haciendo
+     */
      private static final Logger LOGGER = Logger.getLogger(PhotoLogic.class.getName());
-
+    /**
+    * Objeto de la persistencia de foto
+    */
     @Inject
     private PhotoPersistance persistence;
-    
+    /**
+     * Crea y verifica las reglas de negocio para una foto
+     * @param photo foto que se quiere a crear de forma entity
+     * @return el mismo objeto sin cambios
+     * @throws BusinessLogicException La foto no ciumple con alguna regla de negocio
+     */
     public PhotoEntity createPhoto(PhotoEntity photo) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "Inicia proceso de creación de la foto");
         Date today = new Date();      
         if(today.compareTo(photo.getDate()) < 0){
             throw new BusinessLogicException("La foto no puede ser creada con una fecha en el futuro");
         }
-        if(photo.getName()==null){
+        if(photo.getNombre()==null){
             throw new BusinessLogicException("La foto tiene que tener un nombre.");
         }
-        if(photo.getName().length() > 70){
+        if(photo.getNombre().length() > 70){
             throw new BusinessLogicException("El nombre no puede tener más de 120 caracteres.");
         }
         
@@ -61,7 +70,11 @@ public class PhotoLogic {
         return newPhotoEntity;
         
     }
-     
+    /**
+     * Obtiene la foto con el id especificado
+     * @param pId identificador de la foto buscada
+     * @return La foto buscada
+     */
     public PhotoEntity getFoto(long pId){
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la foto con id = {0}", pId);
         PhotoEntity photoEntity = persistence.find(pId);
@@ -71,14 +84,22 @@ public class PhotoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar la foto con id = {0}", pId);
         return photoEntity;
     }
-    
+    /**
+     * Devuleve todas las fotos de la base de datos
+     * @return Lista con todos los objetos entity de la base de datos de tipo FotoEntity
+     */
     public List<PhotoEntity> getFotos(){
        LOGGER.log(Level.INFO, "Inicia proceso de consultar todas las fotos");
        List<PhotoEntity> lista = persistence.findAll();
        LOGGER.log(Level.INFO, "Termina proceso de consultar todas las fotos");
        return lista;
     }
-    
+    /**
+     * Actualiza una foto con un id dado
+     * @param fotoId id de la foto que se quiere actualizar
+     * @param entity Datos por los que se va a reemplazar los existentes
+     * @return Entity actualizado
+     */
      public PhotoEntity updateFoto(Long fotoId, PhotoEntity entity){
        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la foto con id = {0}", fotoId);
         PhotoEntity newPhotoEntity = persistence.update(entity);
