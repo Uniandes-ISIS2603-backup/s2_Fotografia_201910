@@ -26,8 +26,8 @@ import javax.ws.rs.WebApplicationException;
 /**
  * Clase que implementa el recurso "concurso/{id}/cliente".
  *
- * @cliente ISIS2603
- * @version 1.0
+ * @autor Nicolas RinconD
+ * 
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

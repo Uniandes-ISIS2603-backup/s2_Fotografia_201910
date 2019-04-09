@@ -18,6 +18,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CalificacionDetailDTO extends CalificacionDTO implements Serializable{
     
+    private ClienteDTO cliente;
+    private PhotoDTO foto;
+    private JuradoDTO jurado;
+    private RondaDTO ronda;
+    
     public CalificacionDetailDTO() {
         super();
     }
@@ -32,6 +37,20 @@ public class CalificacionDetailDTO extends CalificacionDTO implements Serializab
      */
     public CalificacionDetailDTO(CalificacionEntity calificacionEntity) {
         super(calificacionEntity);
+        if(calificacionEntity.getClienteCalificador() != null){
+            cliente = new ClienteDTO(calificacionEntity.getClienteCalificador());
+        }
+        if(calificacionEntity.getFotoCalificada()!=null){
+            foto = new PhotoDTO(calificacionEntity.getFotoCalificada());
+        }
+        if(calificacionEntity.getJuradoCalificador()!= null)
+        {
+            jurado = new JuradoDTO(calificacionEntity.getJuradoCalificador());
+        }
+        if(calificacionEntity.getRondaCalificada() != null)
+        {
+            ronda = new RondaDTO(calificacionEntity.getRondaCalificada());
+        }
     }
 
     /**
@@ -44,9 +63,61 @@ public class CalificacionDetailDTO extends CalificacionDTO implements Serializab
     @Override
     public CalificacionEntity toEntity() {
         CalificacionEntity calificacionEntity = super.toEntity();
+        if(cliente != null)
+        {
+            calificacionEntity.setClienteCalificador(cliente.toEntity());
+        }
+        if(foto != null)
+        {
+            calificacionEntity.setFotoCalificada(foto.toEntity());
+        }
+        if(jurado != null)
+        {
+            calificacionEntity.setJuradoCalificador(jurado.toEntity());
+        }
+        if(ronda != null)
+        {
+            calificacionEntity.setRondaCalificada(ronda.toEntity());
+        }
         return calificacionEntity;
     }
 
+    /**
+     * Devuelve el cliente
+     * @return cliente
+     */
+    public ClienteDTO getCliente()
+    {
+        return cliente;
+    }
+    
+    /**
+     * Devuelve la foto
+     * @return foto
+     */
+    public PhotoDTO getFoto()
+    {
+        return foto;
+    }
+    
+    /**
+     * Devuelve el jurado
+     * @return jurado
+     */
+    public JuradoDTO getJurado()
+    {
+        return jurado;
+    }
+    
+    /**
+     * Devuelve la ronda
+     * @return ronda
+     */
+    public RondaDTO getRonda()
+    {
+        return ronda;
+    }
+    
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

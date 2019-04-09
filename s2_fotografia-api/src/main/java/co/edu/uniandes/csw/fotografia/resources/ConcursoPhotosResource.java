@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @photo estudiante
+ * @autor NicolasRincond
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -41,13 +41,13 @@ public class ConcursoPhotosResource {
     private PhotoLogic photoLogic;
 
     /**
-     * Asocia un autor existente con un libro existente
+     * Asocia una foto existente con un concurso existente
      *
-     * @param photosId El ID del autor que se va a asociar
-     * @param concursosId El ID del libro al cual se le va a asociar el autor
+     * @param photosId El ID de la foto que se va a asociar
+     * @param concursosId El ID del concurso al cual se le va a asociar la foto
      * @return JSON {@link PhotoDetailDTO} - El autor asociado.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra la foto.
      */
     @POST
     @Path("{photosId: \\d+}")
@@ -62,11 +62,11 @@ public class ConcursoPhotosResource {
     }
 
     /**
-     * Busca y devuelve todos los autores que existen en un libro.
+     * Busca y devuelve todos las fotos que existen en un concurso.
      *
-     * @param concursosId El ID del libro del cual se buscan los autores
+     * @param concursosId El ID del concurso del cual se buscan las fotos
      * @return JSONArray {@link PhotoDetailDTO} - Los autores encontrados en el
-     * libro. Si no hay ninguno retorna una lista vacía.
+     * concurso. Si no hay ninguno retorna una lista vacía.
      */
     @GET
     public List<PhotoDetailDTO> getFotos(@PathParam("concursosId") Long concursosId) {
@@ -77,14 +77,14 @@ public class ConcursoPhotosResource {
     }
 
     /**
-     * Busca y devuelve el autor con el ID recibido en la URL, relativo a un
-     * libro.
+     * Busca y devuelve la foto con el ID recibido en la URL, relativo a un
+     * concurso.
      *
-     * @param photosId El ID del autor que se busca
-     * @param concursosId El ID del libro del cual se busca el autor
-     * @return {@link PhotoDetailDTO} - El autor encontrado en el libro.
+     * @param photosId El ID de la foto que se busca
+     * @param concursosId El ID del concurso del cual se busca la foto
+     * @return {@link PhotoDetailDTO} - El autor encontrado en el concurso.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra la foto.
      */
     @GET
     @Path("{photosId: \\d+}")
@@ -100,16 +100,16 @@ public class ConcursoPhotosResource {
     }
 
     /**
-     * Actualiza la lista de autores de un libro con la lista que se recibe en
+     * Actualiza la lista de fotos de un concurso con la lista que se recibe en
      * el cuerpo.
      *
-     * @param concursosId El ID del libro al cual se le va a asociar la lista de
-     * autores
+     * @param concursosId El ID del concurso al cual se le va a asociar la lista de
+     * fotos
      * @param photos JSONArray {@link PhotoDetailDTO} - La lista de autores
      * que se desea guardar.
      * @return JSONArray {@link PhotoDetailDTO} - La lista actualizada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra la foto.
      */
     @PUT
     public List<PhotoDetailDTO> replacePhotos(@PathParam("concursosId") Long concursosId, List<PhotoDetailDTO> photos) {
@@ -125,12 +125,12 @@ public class ConcursoPhotosResource {
     }
 
     /**
-     * Elimina la conexión entre el autor y el libro recibidos en la URL.
+     * Elimina la conexión entre la foto y el concurso recibidos en la URL.
      *
-     * @param concursosId El ID del libro al cual se le va a desasociar el autor
-     * @param photosId El ID del autor que se desasocia
+     * @param concursosId El ID del concurso al cual se le va a desasociar la foto
+     * @param photosId El ID de la foto que se desasocia
      * @throws WebApplicationException {@link WebApplicationExceptionMapper}
-     * Error de lógica que se genera cuando no se encuentra el autor.
+     * Error de lógica que se genera cuando no se encuentra la foto.
      */
     @DELETE
     @Path("{photosId: \\d+}")
