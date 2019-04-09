@@ -1,0 +1,559 @@
+{
+	"info": {
+		"_postman_id": "067911e2-0cab-4297-94e5-732c28e43bbc",
+		"name": "Prize Tests",
+		"description": "Colección de pruebas sobre el recurso Prize",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "c5bad6b2-f866-48b9-b8af-c56615073c87",
+			"name": "Crear un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50ee5497-bf40-4f0b-8f14-131fc0241352",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_o\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tema\": \"Color\",\r\n    \"fechaDelConcurso\": \"06/12/2019\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nCrea un nuevo concurso. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "1b6ff53d-c1ff-4616-8004-18ddb4aa0103",
+			"name": "Crear una organización 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a721f07f-a1be-4f22-b0e0-a3a6c7596aae",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_o2\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+                                        "raw": "{\r\n    \"tema\": \"Color\",\r\n    \"fechaDelConcurso\": \"02/12/2019\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nCrea un nuevo concurso. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "27e34a79-1cb9-458c-8c5e-c83b436cb59f",
+			"name": "Crear una ronda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3a9c462-edf9-4bd9-81a0-16ff15613f82",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_p\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t \"numeroRonda\": 2,\r\n\t ,\r\n\t \"concurso\":\r\n       {\r\n            \"tema\": \"Color\",\r\n    \"fechaDelConcurso\": \"02/12/2019\"\r\n       }\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nCrea una nueva ronda. El Id es inicializado por la BD y se debe ver en la respuesta. \r\n\r\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "bd9d2bea-54cb-4649-a7a0-961c035c2ce2",
+			"name": "Crear una sin concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ecfd2fe-5145-4201-b07f-8d759f90c1df",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia poder crear la ronda ya que no tiene concurso.\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El concurso es inválido\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t \"numeroRonda\": \2\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nCrea una nueva ronda pero con un concurso que no existe. Verifica que se genera el error y el mensaje \"El concurso es inválido\".\r\n\r\n**Código HTTP esperado: 412 Precondition failed\".**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "4844d215-2e1b-465c-99b6-011fc640a983",
+			"name": "Obtener todas las rondas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64d1ba02-bce9-4952-bbc6-e7dbdf3c224a",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
+							"tests[\"ronda count\"] = data.length >= 1;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nConsulta todos los rondas de la aplicación. \r\nLa petición no tiene cuerpo.\r\n\r\nPara la prueba, se verifica que el conjunto de premios en la respuesta tenga mas de uno.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "1f1977da-81ce-413b-b8ac-28eea7b1016f",
+			"name": "Obtener una ronda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76d3d73b-f7cb-44fd-88d7-75ece031b0b1",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas/{{new_id_p}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas",
+						"{{new_id_p}}"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nConsulta una ronda de la aplicación.  \r\nLa petición no tiene cuerpo.\r\nSe envía el id del premio deseado por la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "0a5439cf-84eb-45bf-87ad-58e6d4e90618",
+			"name": "Obtener una ronda que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7f173c8-325f-41ea-b3e0-3112cd475aa7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se puede una ronda que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /rondass/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nConsulta una ronda que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /rondas/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "efd03ae3-ddc0-4b1f-9355-51cdeae7e3d5",
+			"name": "Editar una ronda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0ddc96c-1291-41a8-ac55-c7a52a91077a",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t \"numeroRonda\": 2,\r\n\t ,\r\n\t \"concurso\":\r\n       {\r\n            \"tema\": \"Color\",\r\n    \"fechaDelConcurso\": \"02/12/2019\"\r\n       }\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas/{{new_id_p}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas",
+						"{{new_id_p}}"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nActualiza una ronda existente. \r\nse envía el Id en la URL de la petición.\r\n\r\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "98dd0a0e-ddcd-4dd3-85e6-34c10ab1db50",
+			"name": "Editar una ronda que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ede98e0-9262-4863-baa8-d440b3a379cf",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se deberia editar la ronda ya que este no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /rondas/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t \"numeroRonda\": 2,\r\n\t ,\r\n\t \"concurso\":\r\n       {\r\n            \"tema\": \"Color\",\r\n    \"fechaDelConcurso\": \"02/12/2019\"\r\n       }\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-1**\r\nActualiza una ronda que no existe. \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /rondas/0 no existe.\".\r\n\r\n**Código HTTP esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c907afe9-ef32-4340-9788-62828f3e259f",
+			"name": "Borrar un premio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ca4c3b3-3e23-4f74-a365-3a14867f6906",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas/{{new_id_p}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas",
+						"{{new_id_p}}"
+					]
+				},
+				"description": "**Release: Paso-1**\n\nBorra una ronda. Se envía el id del ronda creado anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "6cff0b54-5bec-4c69-af5a-70e811a3d21e",
+			"name": "Borrar una ronda que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57ffd64d-0537-4d8c-a331-3ebcf73f1a37",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No se puede borrar la ronda ya que este no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /rondas/0 no existe.\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/rondas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"rondas",
+						"0"
+					]
+				},
+				"description": "**Release: Paso-1**\r\n\r\nBorra una ronda que no existe en la aplicación.  \r\n\r\nPara la prueba se verifica que se genera el error y el mensaje \"El recurso /rondas/0 no existe.\".\r\n\r\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "c5dd8906-6f90-4b84-a435-6bacf437f591",
+			"name": "Borrar un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f6d86b3-058f-472f-ba83-6ec7be2d1129",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_o}}"
+					]
+				},
+				"description": "**Release: Paso-5**\n\nBorra una organización. Se envía el id de la organización creada anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e75fcdc1-cbe1-481f-b2ab-dbb2c50daca3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c0a8dec2-d7f7-4e42-8785-9449057e3a64",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

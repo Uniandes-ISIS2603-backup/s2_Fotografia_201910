@@ -37,11 +37,11 @@ public class ConcursoPhotoLogic {
      * @return Instancia de PhotoEntity que fue asociada a Concurso
      */
     public PhotoEntity addPhoto(Long concursosId, Long photosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociarle un autor al libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de asociarle una foto al concurso con id = {0}", concursosId);
         PhotoEntity photoEntity = photoPersistence.find(photosId);
         ConcursoEntity concursoEntity = concursoPersistence.find(concursosId);
         concursoEntity.getFotosEnConcurso().add(photoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociarle un autor al libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociarle una foto al concurso con id = {0}", concursosId);
         return photoPersistence.find(photosId);
     }
 
@@ -54,7 +54,7 @@ public class ConcursoPhotoLogic {
      * de Concurso
      */
     public List<PhotoEntity> getPhotos(Long concursosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las fotos del concurso con id = {0}", concursosId);
         return concursoPersistence.find(concursosId).getFotosEnConcurso();
     }
 
@@ -63,14 +63,14 @@ public class ConcursoPhotoLogic {
      *
      * @param concursosId Identificador de la instancia de Concurso
      * @param photosId Identificador de la instancia de Photo
-     * @return La entidad del Autor asociada al libro
+     * @return La entidad del Autor asociada al concurso
      */
     public PhotoEntity getPhoto(Long concursosId, Long photosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un autor del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar una foto del concurso con id = {0}", concursosId);
         List<PhotoEntity> photos = concursoPersistence.find(concursosId).getFotosEnConcurso();
         PhotoEntity photoEntity = photoPersistence.find(photosId);
         int index = photos.indexOf(photoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar un autor del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar una foto del concurso con id = {0}", concursosId);
         if (index >= 0) {
             return photos.get(index);
         }
@@ -86,10 +86,10 @@ public class ConcursoPhotoLogic {
      * @return Nueva colección de PhotoEntity asociada a la instancia de Concurso
      */
     public List<PhotoEntity> replacePhotos(Long concursosId, List<PhotoEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los autores del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar las fotos del concurso con id = {0}", concursosId);
         ConcursoEntity concursoEntity = concursoPersistence.find(concursosId);
         concursoEntity.setFotosEnConcurso(list);
-        LOGGER.log(Level.INFO, "Termina proceso de reemplazar los autores del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Termina proceso de reemplazar las fotos del concurso con id = {0}", concursosId);
         return concursoPersistence.find(concursosId).getFotosEnConcurso();
     }
 
@@ -100,10 +100,10 @@ public class ConcursoPhotoLogic {
      * @param photosId Identificador de la instancia de Photo
      */
     public void removePhoto(Long concursosId, Long photosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un autor del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una foto del concurso con id = {0}", concursosId);
         PhotoEntity photoEntity = photoPersistence.find(photosId);
         ConcursoEntity concursoEntity = concursoPersistence.find(concursosId);
         concursoEntity.getFotosEnConcurso().remove(photoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar un autor del libro con id = {0}", concursosId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar una foto del concurso con id = {0}", concursosId);
     }
 }

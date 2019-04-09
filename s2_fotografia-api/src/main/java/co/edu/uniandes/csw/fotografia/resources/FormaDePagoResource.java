@@ -138,5 +138,27 @@ public class FormaDePagoResource
         }
         formaDePagoLogic.deleteFormaDePago(formasDePagoId);
         LOGGER.info("FormaDePagoResource deleteFormaDePago: output: void");
-    }   
+    } 
+    
+     /**
+     * Conexión con el servicio de clientes para una forma de pago.
+     * {@link FormasDePagoResource}
+     *
+     * Este método conecta la ruta de /formasDePagp con las rutas de /clientes que
+     * dependen de la forma de pago, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga del cliente de la forma de pago.
+     *
+     * @param formasDePagoId El ID de la forma de pago con respecto a la cual se accede al
+     * servicio.
+     * @return El servicio de cliente para este premio en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se la forma de pago.
+     */
+    @Path("{formasDePagoId: \\d+}/clientes")
+    public Class<FormaDePagoClientesResource> getFormaDePagoClientesResource(@PathParam("formasDePagoId") Long formasDePagoId) {
+        if (formaDePagoLogic.getFormaDePago(formasDePagoId) == null) {
+            throw new WebApplicationException("El recurso /formasDePago/" + formasDePagoId + " no existe.", 404);
+        }
+        return FormaDePagoClientesResource.class;
+    }
 }

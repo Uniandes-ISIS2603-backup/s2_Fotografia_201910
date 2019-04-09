@@ -21,6 +21,7 @@ public class CalificacionDTO implements Serializable {
     private Long id;
     private Double puntaje;
     private String comentario;  
+    private String nombre;
 
     /**
      * Constructor vacio
@@ -40,6 +41,7 @@ public class CalificacionDTO implements Serializable {
             this.id = calificacionEntity.getId();
             this.puntaje = calificacionEntity.getPuntaje();
             this.comentario = calificacionEntity.getComentario();
+            this.nombre = calificacionEntity.getNombre();
         }
     }
 
@@ -54,6 +56,7 @@ public class CalificacionDTO implements Serializable {
         calificacionEntity.setId(this.getId());
         calificacionEntity.setPuntaje(this.getPuntaje());
         calificacionEntity.setComentario(this.getComentario());
+        calificacionEntity.setNombre(this.getNombre());
         return calificacionEntity;
     }
 
@@ -115,6 +118,26 @@ public class CalificacionDTO implements Serializable {
      */
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+    
+    /**
+     * Obtiene el atributo nombre.
+     *
+     * @return atributo nombre.
+     *
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * Establece el valor del atributo nombre.
+     *
+     * @param nombre nuevo valor del atributo
+     *
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     @Override
