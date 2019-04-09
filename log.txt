@@ -1,0 +1,206 @@
+bab3be6 ; Dany Benavides ; Dany Benavides; Fri Mar 8 23:50:58 2019 -0500 :Photo y factura
+cd627af ; Dany Benavides ; Dany Benavides; Fri Mar 8 23:27:39 2019 -0500 :Documentacion
+d6ea4d2 ; Dany Benavides ; Dany Benavides; Fri Mar 8 23:13:04 2019 -0500 :Merge branch 'dany' of https://github.com/Uniandes-isis2603/s2_Fotografia_201910 into dany
+fdf76ef ; Dany Benavides ; Dany Benavides; Fri Mar 8 23:12:30 2019 -0500 :Documentacion al dia
+1175331 ; Dany Benavides ; GitHub; Fri Mar 8 22:45:06 2019 -0500 :Merge branch 'master' into dany
+cc9ac70 ; Nicolas Rin ; GitHub; Fri Mar 8 22:38:17 2019 -0500 :Merge pull request #131 from Uniandes-isis2603/NicolasRinconD
+c73c952 ; Nicolas Rin ; GitHub; Fri Mar 8 22:36:59 2019 -0500 :Merge branch 'master' into NicolasRinconD
+7a8f96f ; NicolasRinconD ; NicolasRinconD; Fri Mar 8 22:34:59 2019 -0500 :Clases resource y logic de asociaciones
+43fbeea ; sacostav ; GitHub; Fri Mar 8 22:24:50 2019 -0500 :Merge pull request #130 from Uniandes-isis2603/Sara
+10baef1 ; s.acostav ; s.acostav; Fri Mar 8 22:24:08 2019 -0500 :Postman interesFotografico
+69e22c3 ; Dany Benavides ; Dany Benavides; Fri Mar 8 21:46:25 2019 -0500 :postman acabado
+0a1887a ; atrujilloa ; GitHub; Fri Mar 8 20:47:02 2019 -0500 :Merge pull request #129 from Uniandes-isis2603/adriana
+1c6d1e0 ; atrujilloa ; atrujilloa; Fri Mar 8 20:45:17 2019 -0500 :Fin
+93c628f ; atrujilloa ; GitHub; Fri Mar 8 20:19:24 2019 -0500 :Merge pull request #128 from Uniandes-isis2603/adriana
+4114c60 ; atrujilloa ; atrujilloa; Fri Mar 8 20:17:50 2019 -0500 :Merge origin/master into adriana
+c96112d ; Dany Benavides ; GitHub; Fri Mar 8 20:17:07 2019 -0500 :Merge pull request #127 from Uniandes-isis2603/dany
+a1a9c72 ; Dany Benavides ; Dany Benavides; Fri Mar 8 20:16:35 2019 -0500 :sql
+f09122c ; atrujilloa ; atrujilloa; Fri Mar 8 20:15:11 2019 -0500 :finalizado
+c6e77d4 ; atrujilloa ; atrujilloa; Fri Mar 8 20:11:23 2019 -0500 :Merge origin/master into adriana
+0743f36 ; atrujilloa ; atrujilloa; Fri Mar 8 20:10:49 2019 -0500 :finalizado
+235579c ; Dany Benavides ; GitHub; Fri Mar 8 19:15:03 2019 -0500 :Merge pull request #126 from Uniandes-isis2603/dany
+0f810f6 ; Dany Benavides ; Dany Benavides; Fri Mar 8 19:13:52 2019 -0500 :tests
+2e23969 ; s.acostav ; s.acostav; Fri Mar 8 18:54:19 2019 -0500 :Asociaciones
+685d936 ; Dany Benavides ; Dany Benavides; Fri Mar 8 18:46:06 2019 -0500 :Más tests
+77677f9 ; Dany Benavides ; Dany Benavides; Fri Mar 8 18:29:32 2019 -0500 :Más tests
+4b5623e ; NicolasRinconD ; NicolasRinconD; Fri Mar 8 17:02:53 2019 -0500 :Merge remote-tracking branch 'origin/master' into NicolasRinconD
+df1314c ; NicolasRinconD ; NicolasRinconD; Fri Mar 8 16:54:13 2019 -0500 :Merge remote-tracking branch 'origin/master' into NicolasRinconD
+5476c12 ; nicolasmelendeznova ; GitHub; Fri Mar 8 16:54:06 2019 -0500 :Merge pull request #125 from Uniandes-isis2603/NicolasMelendez
+03d60ee ; nicolasmelendeznova ; nicolasmelendeznova; Fri Mar 8 16:53:22 2019 -0500 :ciclo 1
+09e001f ; Dany Benavides ; GitHub; Fri Mar 8 16:45:53 2019 -0500 :Merge pull request #124 from Uniandes-isis2603/dany
+072151b ; Dany Benavides ; Dany Benavides; Fri Mar 8 16:44:38 2019 -0500 :correciòn id
+790538d ; NicolasRinconD ; NicolasRinconD; Fri Mar 8 16:33:22 2019 -0500 :Arregle unos errore en las clases principales relacionadas a Concurso
+413d520 ; Dany Benavides ; GitHub; Fri Mar 8 16:33:02 2019 -0500 :Merge pull request #123 from Uniandes-isis2603/dany
+4ef5964 ; Dany Benavides ; Dany Benavides; Fri Mar 8 16:31:55 2019 -0500 :Comentarios y correcciones DTO
+51e560a ; atrujilloa ; atrujilloa; Fri Mar 8 14:22:48 2019 -0500 :Merge origin/master into adriana
+2ab051b ; atrujilloa ; atrujilloa; Fri Mar 8 14:07:26 2019 -0500 :Correccions
+404e6e1 ; nicolasmelendeznova ; GitHub; Thu Mar 7 10:34:46 2019 -0500 :Merge pull request #122 from Uniandes-isis2603/NicolasMelendez
+ff4e396 ; nicolasmelendeznova ; GitHub; Thu Mar 7 10:34:37 2019 -0500 :Merge branch 'master' into NicolasMelendez
+ef801d9 ; nicolasmelendeznova ; nicolasmelendeznova; Thu Mar 7 10:31:25 2019 -0500 :test postman
+fdafa7c ; vduarteb ; GitHub; Thu Mar 7 09:04:01 2019 -0500 :Merge pull request #121 from Uniandes-isis2603/Valentina
+59c338f ; vduarteb ; GitHub; Thu Mar 7 09:03:51 2019 -0500 :Merge branch 'master' into Valentina
+908f665 ; Valentina ; Valentina; Thu Mar 7 08:59:45 2019 -0500 :Tests Postman y XML añadidos
+b0aed56 ; Dany Benavides ; GitHub; Thu Mar 7 00:20:49 2019 -0500 :Merge pull request #120 from Uniandes-isis2603/dany
+6bf8d17 ; Dany Benavides ; Dany Benavides; Thu Mar 7 00:19:41 2019 -0500 :Algunas correcciones
+93f9284 ; sacostav ; GitHub; Wed Mar 6 20:09:04 2019 -0500 :Merge pull request #119 from Uniandes-isis2603/Sara
+b069561 ; s.acostav ; s.acostav; Wed Mar 6 20:06:47 2019 -0500 :Pruebas postman
+023678d ; Nicolas Rin ; GitHub; Mon Mar 4 13:25:51 2019 -0500 :Merge pull request #110 from Uniandes-isis2603/NicolasRinconD
+a5430d9 ; NicolasRinconD ; NicolasRinconD; Mon Mar 4 13:25:11 2019 -0500 :Elimine unos imports que probablemente causen el error de compilacion
+db54c49 ; Nicolas Rin ; GitHub; Mon Mar 4 12:15:45 2019 -0500 :Merge pull request #109 from Uniandes-isis2603/NicolasRinconD
+dd5dda7 ; Nicolas Rin ; GitHub; Mon Mar 4 12:15:29 2019 -0500 :Merge branch 'master' into NicolasRinconD
+36e4362 ; NicolasRinconD ; NicolasRinconD; Mon Mar 4 12:10:47 2019 -0500 :Implementacion completa de Usuario
+0e8eb82 ; NicolasRinconD ; NicolasRinconD; Mon Mar 4 01:44:31 2019 -0500 :Complete unas funciones de los DTOS
+ebd0347 ; Valentina ; Valentina; Sun Mar 3 22:00:28 2019 -0500 :Resources actualizados
+4546f14 ; NicolasRinconD ; NicolasRinconD; Sun Mar 3 20:24:55 2019 -0500 :Merge branch 'NicolasRinconD' of https://github.com/Uniandes-isis2603/s2_Fotografia_201910 into NicolasRinconD
+4bd592d ; NicolasRinconD ; NicolasRinconD; Sun Mar 3 20:24:32 2019 -0500 :Añadi usuario y sus clases
+d8068fa ; vduarteb ; GitHub; Sun Mar 3 19:33:19 2019 -0500 :Merge pull request #108 from Uniandes-isis2603/Valentina
+beb73f6 ; Valentina ; Valentina; Sun Mar 3 19:32:21 2019 -0500 :Cambio en FdP
+bee3ac4 ; nicolasmelendeznova ; GitHub; Thu Feb 28 09:51:07 2019 -0500 :Merge pull request #107 from Uniandes-isis2603/NicolasMelendez
+833d9b2 ; nicolasmelendeznova ; GitHub; Thu Feb 28 09:50:57 2019 -0500 :Merge branch 'master' into NicolasMelendez
+5f02aec ; nicolasmelendeznova ; nicolasmelendeznova; Thu Feb 28 09:48:37 2019 -0500 :todo funciona lindo y concsiso
+d2ef073 ; Nicolas Rin ; GitHub; Thu Feb 28 09:39:52 2019 -0500 :Merge pull request #106 from Uniandes-isis2603/NicolasRinconD
+a1b4788 ; Nicolas Rin ; GitHub; Thu Feb 28 09:39:39 2019 -0500 :Merge branch 'master' into NicolasRinconD
+da7a73d ; Dany Benavides ; GitHub; Tue Feb 26 20:27:25 2019 -0500 :Merge pull request #105 from Uniandes-isis2603/dany
+3b8c1a0 ; Dany Benavides ; Dany Benavides; Tue Feb 26 20:26:49 2019 -0500 :Photo
+26bebc7 ; NicolasRinconD ; NicolasRinconD; Tue Feb 26 18:25:55 2019 -0500 :Completion of ConcursoLogic y sus tests y adicion de relacion ronda en ConcursoEntity
+fba7afb ; Nicolas Rin ; GitHub; Mon Feb 25 19:37:38 2019 -0500 :Merge pull request #104 from Uniandes-isis2603/NicolasRinconD
+244ffc1 ; NicolasRinconD ; NicolasRinconD; Mon Feb 25 19:29:35 2019 -0500 :cambios de comentarios
+4a7bd9b ; NicolasRinconD ; NicolasRinconD; Mon Feb 25 19:06:56 2019 -0500 :Merge remote-tracking branch 'origin/master' into NicolasRinconD
+b148b40 ; nicolasmelendeznova ; GitHub; Mon Feb 25 12:24:12 2019 -0500 :Merge pull request #103 from Uniandes-isis2603/NicolasMelendez
+59c56ce ; nicolasmelendeznova ; GitHub; Mon Feb 25 12:24:03 2019 -0500 :Merge branch 'master' into NicolasMelendez
+4190c56 ; nicolasmelendeznova ; nicolasmelendeznova; Mon Feb 25 12:22:44 2019 -0500 : test y dtos
+015189f ; nicolasmelendeznova ; nicolasmelendeznova; Mon Feb 25 12:16:24 2019 -0500 :test de logica
+c7b5c06 ; s.acostav ; s.acostav; Mon Feb 25 12:08:33 2019 -0500 :com
+9fd7fae ; sacostav ; GitHub; Mon Feb 25 11:41:29 2019 -0500 :Merge pull request #102 from Uniandes-isis2603/Sara
+fc10334 ; s.acostav ; s.acostav; Mon Feb 25 11:40:02 2019 -0500 :test
+c1afd55 ; sacostav ; GitHub; Mon Feb 25 09:19:14 2019 -0500 :Merge pull request #101 from Uniandes-isis2603/Sara
+4e2dca8 ; s.acostav ; s.acostav; Mon Feb 25 09:18:47 2019 -0500 :Sirven test logica}
+d5f30c0 ; atrujilloa ; GitHub; Mon Feb 25 08:53:38 2019 -0500 :Merge pull request #100 from Uniandes-isis2603/adriana
+6a6bbc3 ; atrujilloa ; atrujilloa; Mon Feb 25 08:53:01 2019 -0500 :Asociaciones listas
+4ab0fbf ; Dany Benavides ; Dany Benavides; Mon Feb 25 07:21:33 2019 -0500 :Logica y tests
+b72a5ab ; vduarteb ; GitHub; Sun Feb 24 23:20:43 2019 -0500 :Merge pull request #99 from Uniandes-isis2603/Valentina
+06fdc5e ; Valentina ; Valentina; Sun Feb 24 23:19:43 2019 -0500 :Logica y sus pruebas
+091fe58 ; NicolasRinconD ; NicolasRinconD; Sun Feb 24 14:14:02 2019 -0500 :Merge branch 'NicolasRinconD' of https://github.com/Uniandes-isis2603/s2_Fotografia_201910 into NicolasRinconD
+9de71d2 ; NicolasRinconD ; NicolasRinconD; Sun Feb 24 14:12:51 2019 -0500 :merge request
+eb9143b ; Nicolas Rin ; GitHub; Sun Feb 24 14:08:02 2019 -0500 :Merge pull request #98 from Uniandes-isis2603/NicolasRinconD
+c6bc711 ; Nicolas Rin ; GitHub; Sun Feb 24 14:06:49 2019 -0500 :Merge branch 'master' into NicolasRinconD
+30be230 ; NicolasRinconD ; NicolasRinconD; Sun Feb 24 13:02:35 2019 -0500 :ConcursoLogic
+666d0ff ; NicolasRinconD ; NicolasRinconD; Sun Feb 24 13:01:13 2019 -0500 :Renombre unas funciones de ConcursoPersistence y puse setters y getters para las relaciones en la clase ConcursoEntity
+40c5529 ; sacostav ; GitHub; Sun Feb 24 11:53:15 2019 -0500 :Merge pull request #97 from Uniandes-isis2603/Sara
+5d18912 ; s.acostav ; s.acostav; Sun Feb 24 11:51:05 2019 -0500 :Test
+76a428e ; sacostav ; GitHub; Sat Feb 23 19:36:04 2019 -0500 :Merge pull request #96 from Uniandes-isis2603/Sara
+8aa1487 ; s.acostav ; s.acostav; Sat Feb 23 19:35:32 2019 -0500 :Asociaciones
+ddd5983 ; sacostav ; GitHub; Sat Feb 23 12:14:25 2019 -0500 :Merge pull request #95 from Uniandes-isis2603/Sara
+242e07a ; s.acostav ; s.acostav; Sat Feb 23 12:13:43 2019 -0500 :Asociaciones completas
+15f29c3 ; sacostav ; GitHub; Sat Feb 23 11:26:46 2019 -0500 :Merge pull request #94 from Uniandes-isis2603/Sara
+e0fe4db ; s.acostav ; s.acostav; Sat Feb 23 11:25:37 2019 -0500 :Recursos asociaciones
+2f470b0 ; sacostav ; GitHub; Sat Feb 23 10:09:18 2019 -0500 :Merge pull request #93 from Uniandes-isis2603/Sara
+a7220de ; s.acostav ; s.acostav; Sat Feb 23 10:08:55 2019 -0500 :Detail Fotografo
+550467e ; sacostav ; GitHub; Fri Feb 22 21:25:09 2019 -0500 :Merge pull request #92 from Uniandes-isis2603/Sara
+efbba42 ; s.acostav ; s.acostav; Fri Feb 22 21:24:36 2019 -0500 :Funcionan test logica interes y fotografo
+25a3869 ; sacostav ; GitHub; Fri Feb 22 20:53:10 2019 -0500 :Merge pull request #91 from Uniandes-isis2603/Sara
+e23f3d2 ; s.acostav ; s.acostav; Fri Feb 22 20:51:55 2019 -0500 :funcionan test fotografo logic
+088d023 ; sacostav ; GitHub; Fri Feb 22 20:45:47 2019 -0500 :Merge pull request #90 from Uniandes-isis2603/Sara
+20cc00c ; s.acostav ; s.acostav; Fri Feb 22 20:42:51 2019 -0500 :Logic y detail fotografo
+44921cc ; nicolasmelendeznova ; GitHub; Fri Feb 22 10:53:35 2019 -0500 :Merge pull request #89 from Uniandes-isis2603/NicolasMelendez
+05589fd ; nicolasmelendeznova ; GitHub; Fri Feb 22 10:53:26 2019 -0500 :Merge branch 'master' into NicolasMelendez
+1e3e702 ; nicolasmelendeznova ; nicolasmelendeznova; Fri Feb 22 10:51:08 2019 -0500 :sirve
+993ea74 ; nicolasmelendeznova ; GitHub; Fri Feb 22 10:07:33 2019 -0500 :Merge pull request #88 from Uniandes-isis2603/NicolasMelendez
+56690bd ; nicolasmelendeznova ; nicolasmelendeznova; Fri Feb 22 10:06:54 2019 -0500 :Funciona
+afa2de1 ; sacostav ; GitHub; Thu Feb 21 19:30:57 2019 -0500 :Merge pull request #87 from Uniandes-isis2603/Sara
+f9ea341 ; s.acostav ; s.acostav; Thu Feb 21 19:30:10 2019 -0500 :Detail
+3a3df2b ; sacostav ; GitHub; Thu Feb 21 18:55:56 2019 -0500 :Merge pull request #86 from Uniandes-isis2603/Sara
+b9d0e12 ; s.acostav ; s.acostav; Thu Feb 21 18:55:30 2019 -0500 :Funciona proyecto
+b88fa36 ; sacostav ; GitHub; Thu Feb 21 18:30:11 2019 -0500 :Merge pull request #85 from Uniandes-isis2603/Sara
+53a2f6f ; s.acostav ; s.acostav; Thu Feb 21 18:29:09 2019 -0500 :Cambios
+48bbff7 ; nicolasmelendeznova ; nicolasmelendeznova; Thu Feb 21 10:51:24 2019 -0500 :asosciasiones
+3053a8f ; NicolasRinconD ; NicolasRinconD; Thu Feb 21 10:49:49 2019 -0500 :Merge branch 'NicolasRinconD'
+8f2a1eb ; NicolasRinconD ; NicolasRinconD; Thu Feb 21 10:49:22 2019 -0500 :Merge branch 'master' of https://github.com/Uniandes-isis2603/s2_Fotografia_201910
+10825e4 ; NicolasRinconD ; NicolasRinconD; Thu Feb 21 10:48:18 2019 -0500 :Merge branch 'master' of https://github.com/Uniandes-isis2603/s2_Fotografia_201910 into NicolasRinconD
+a8d9eb0 ; nicolasmelendeznova ; nicolasmelendeznova; Thu Feb 21 10:41:31 2019 -0500 :Merge remote-tracking branch 'origin/master' into NicolasMelendez
+bc02ef5 ; NicolasRinconD ; NicolasRinconD; Thu Feb 21 09:20:46 2019 -0500 :minor changes
+bc3d19b ; NicolasRinconD ; NicolasRinconD; Thu Feb 21 09:18:59 2019 -0500 :Relaciones ConcursoEntity
+3cc40dc ; atrujilloa ; GitHub; Thu Feb 21 09:15:33 2019 -0500 :Merge pull request #84 from Uniandes-isis2603/adriana
+78b2ebf ; atrujilloa ; atrujilloa; Thu Feb 21 09:14:50 2019 -0500 :Asociaciones
+1dd572d ; atrujilloa ; atrujilloa; Thu Feb 21 09:11:58 2019 -0500 :Merge origin/master into adriana
+337c13d ; vduarteb ; GitHub; Thu Feb 21 09:09:56 2019 -0500 :Merge pull request #83 from Uniandes-isis2603/Valentina
+1519bfa ; Valentina ; Valentina; Thu Feb 21 09:08:21 2019 -0500 :Asociaciones completas
+ba84594 ; Dany Benavides ; GitHub; Thu Feb 21 09:07:03 2019 -0500 :Merge pull request #82 from Uniandes-isis2603/dany
+c5fbeda ; Dany Benavides ; Dany Benavides; Thu Feb 21 09:06:36 2019 -0500 :Asociaciones desomentadas en PhotoEntity
+caf796b ; sacostav ; GitHub; Thu Feb 21 08:38:07 2019 -0500 :Merge pull request #81 from Uniandes-isis2603/Sara
+b13b5fe ; s.acostav ; s.acostav; Thu Feb 21 08:36:33 2019 -0500 :Asociaciones
+b9962e8 ; atrujilloa ; atrujilloa; Thu Feb 21 08:35:28 2019 -0500 :Logic
+763ffd5 ; Dany Benavides ; GitHub; Wed Feb 20 20:07:24 2019 -0500 :Merge pull request #80 from Uniandes-isis2603/dany
+940fdde ; Dany Benavides ; Dany Benavides; Wed Feb 20 20:06:19 2019 -0500 :Relaciones PhotoEntity Terminadas
+eb93718 ; Dany Benavides ; GitHub; Wed Feb 20 19:08:48 2019 -0500 :Merge pull request #79 from Uniandes-isis2603/dany
+76212b9 ; Dany Benavides ; Dany Benavides; Wed Feb 20 19:08:02 2019 -0500 : Entity configurado
+cf45c3c ; vduarteb ; GitHub; Wed Feb 20 19:02:43 2019 -0500 :Merge pull request #78 from Uniandes-isis2603/Valentina
+fb1b77f ; Valentina ; Valentina; Wed Feb 20 19:02:11 2019 -0500 :Asociacion
+f12f660 ; Dany Benavides ; GitHub; Wed Feb 20 18:52:21 2019 -0500 :Merge pull request #77 from Uniandes-isis2603/dany
+f8ebecb ; Dany Benavides ; Dany Benavides; Wed Feb 20 18:51:53 2019 -0500 :Entity con Factura
+f8a1e8d ; NicolasRinconD ; NicolasRinconD; Wed Feb 20 12:44:51 2019 -0500 :cerre algunos errores en github y modifique el path en ConcursoResource
+f1e5bfc ; NicolasRinconD ; NicolasRinconD; Wed Feb 20 11:24:50 2019 -0500 :Arregle el error de compilacion :/
+8c14760 ; NicolasRinconD ; NicolasRinconD; Wed Feb 20 11:09:20 2019 -0500 :Implementacion de ConcursoPersistenceTest, ConcursLogic y ConcursoResource
+e43ddab ; nicolasmelendeznova ; nicolasmelendeznova; Tue Feb 19 16:46:40 2019 -0500 :logica organizador
+b973509 ; Jenkins ; Jenkins; Mon Feb 18 01:06:28 2019 -0500 :ConcursoPT, ConcursoResource, y Concurso Logic
+b6beea5 ; vduarteb ; GitHub; Sun Feb 17 17:30:11 2019 -0500 :Merge pull request #76 from Uniandes-isis2603/Valentina
+5696fa6 ; Valentina ; Valentina; Sun Feb 17 17:29:33 2019 -0500 :Tests listos
+c02ceec ; vduarteb ; GitHub; Sun Feb 17 16:07:15 2019 -0500 :Merge pull request #75 from Uniandes-isis2603/Valentina
+67515e1 ; Valentina ; Valentina; Sun Feb 17 16:05:40 2019 -0500 :Tests
+8fb0548 ; vduarteb ; GitHub; Sun Feb 17 15:25:47 2019 -0500 :Merge pull request #74 from Uniandes-isis2603/Valentina
+0262059 ; Valentina ; Valentina; Sun Feb 17 15:24:42 2019 -0500 :Asociaciones comentadas
+bc128f2 ; vduarteb ; GitHub; Sun Feb 17 13:35:54 2019 -0500 :Merge pull request #73 from Uniandes-isis2603/Valentina
+b1c5f28 ; Valentina ; Valentina; Sun Feb 17 13:34:56 2019 -0500 :Se implementarios las relaciones en las entidades Cliente y Factura
+df57918 ; atrujilloa ; GitHub; Sat Feb 16 13:41:04 2019 -0500 :Merge pull request #72 from Uniandes-isis2603/adriana
+0a9f389 ; atrujilloa ; atrujilloa; Sat Feb 16 13:40:31 2019 -0500 :Logic test listos
+7c5483c ; atrujilloa ; GitHub; Sat Feb 16 13:17:16 2019 -0500 :Merge pull request #71 from Uniandes-isis2603/adriana
+5056511 ; atrujilloa ; atrujilloa; Sat Feb 16 13:16:51 2019 -0500 :Test persistence listos
+c576bcb ; atrujilloa ; GitHub; Sat Feb 16 11:40:00 2019 -0500 :Merge pull request #70 from Uniandes-isis2603/adriana
+7e273dd ; atrujilloa ; atrujilloa; Sat Feb 16 11:37:16 2019 -0500 :Merge origin/master into adriana
+eac7597 ; atrujilloa ; atrujilloa; Sat Feb 16 11:34:34 2019 -0500 :jurado y calificacion
+77ccdcd ; vduarteb ; GitHub; Fri Feb 15 01:29:46 2019 -0500 :Merge pull request #16 from Uniandes-isis2603/Valentina
+2453cdc ; Valentina ; Valentina; Fri Feb 15 01:28:46 2019 -0500 :Se agrego forma de pago
+3f343a8 ; atrujilloa ; GitHub; Thu Feb 14 17:58:13 2019 -0500 :Merge pull request #15 from Uniandes-isis2603/adriana
+5ffcd52 ; atrujilloa ; atrujilloa; Thu Feb 14 17:56:56 2019 -0500 :Definitivo
+0214e4b ; atrujilloa ; GitHub; Thu Feb 14 17:55:55 2019 -0500 :Merge pull request #14 from Uniandes-isis2603/adriana
+80800ad ; atrujilloa ; atrujilloa; Thu Feb 14 17:50:04 2019 -0500 :Merge origin/master into adriana
+c0a3fdf ; atrujilloa ; atrujilloa; Thu Feb 14 17:44:40 2019 -0500 :Completo
+00fb838 ; vduarteb ; GitHub; Thu Feb 14 11:51:11 2019 -0500 :Merge pull request #13 from Uniandes-isis2603/Valentina
+ffa692e ; Valentina ; Valentina; Thu Feb 14 11:49:57 2019 -0500 :Cambio en get
+da4ac36 ; vduarteb ; GitHub; Thu Feb 14 08:48:49 2019 -0500 :Merge pull request #12 from Uniandes-isis2603/Valentina
+190c4db ; Valentina ; Valentina; Thu Feb 14 08:47:21 2019 -0500 :Clases que faltaban
+bd7077b ; vduarteb ; GitHub; Thu Feb 14 08:43:33 2019 -0500 :Merge pull request #11 from Uniandes-isis2603/Valentina
+f567886 ; Dany Benavides ; GitHub; Thu Feb 14 07:59:26 2019 -0500 :Merge pull request #10 from Uniandes-isis2603/dany
+98da7df ; Dany Benavides ; Dany Benavides; Thu Feb 14 07:23:27 2019 -0500 :persistence tests working
+73b705e ; NicolasRinconD ; NicolasRinconD; Wed Feb 13 21:45:37 2019 -0500 :Se añadieron funciones a las clases de ConcursoDTO y ConcutsoDetailDTO
+4a0169f ; NicolasRinconD ; NicolasRinconD; Wed Feb 13 13:37:36 2019 -0500 :Se añadieron las clases ConcursoEntity y ConcursoPersistence
+fb17ead ; Valentina ; Valentina; Tue Feb 12 17:06:21 2019 -0500 :Implementacion persistencia Basica Client y Receipt
+cc7776c ; sacostav ; GitHub; Mon Feb 11 12:14:25 2019 -0500 :Merge pull request #9 from Uniandes-isis2603/Sara
+0a04b2f ; s.acostav ; s.acostav; Mon Feb 11 12:13:48 2019 -0500 :Logica fotografo
+4f141e5 ; sacostav ; GitHub; Mon Feb 11 11:59:46 2019 -0500 :Merge pull request #8 from Uniandes-isis2603/Sara
+a3d087c ; s.acostav ; s.acostav; Mon Feb 11 11:59:12 2019 -0500 :Test persistencia interes fotografico funcionando
+b17667a ; sacostav ; GitHub; Mon Feb 11 11:44:52 2019 -0500 :Merge pull request #7 from Uniandes-isis2603/Sara
+7374fe5 ; s.acostav ; s.acostav; Mon Feb 11 11:44:11 2019 -0500 :Test completos y funcionando
+7b7b844 ; sacostav ; GitHub; Mon Feb 11 09:24:05 2019 -0500 :Merge pull request #6 from Uniandes-isis2603/Sara
+8b8162a ; s.acostav ; s.acostav; Mon Feb 11 09:23:07 2019 -0500 :Test
+b7f55b3 ; atrujilloa ; GitHub; Mon Feb 11 09:13:58 2019 -0500 :Merge pull request #5 from Uniandes-isis2603/adriana
+4b27d9f ; atrujilloa ; atrujilloa; Mon Feb 11 09:07:18 2019 -0500 :Merge origin/master into adriana
+1ca550d ; sacostav ; GitHub; Mon Feb 11 08:52:34 2019 -0500 :Merge pull request #4 from Uniandes-isis2603/Sara
+510ea8e ; s.acostav ; s.acostav; Mon Feb 11 08:51:16 2019 -0500 :Funciona entity
+e7eebe5 ; atrujilloa ; atrujilloa; Mon Feb 11 08:47:27 2019 -0500 :Listo entities
+3b449db ; Valentina ; Valentina; Mon Feb 11 08:34:08 2019 -0500 :Implementacion vacia
+c874cbd ; sacostav ; GitHub; Mon Feb 11 07:52:07 2019 -0500 :Merge pull request #2 from Uniandes-isis2603/Sara
+6910c55 ; s.acostav ; s.acostav; Mon Feb 11 07:50:09 2019 -0500 :DTO y Resource de Interes completo
+7dda886 ; sacostav ; GitHub; Sun Feb 10 22:08:08 2019 -0500 :Merge pull request #1 from Uniandes-isis2603/Sara
+85eec86 ; s.acostav ; s.acostav; Sun Feb 10 22:06:35 2019 -0500 :Agregar Entity y Logic
+2039376 ; atrujilloa ; atrujilloa; Sun Feb 10 12:20:38 2019 -0500 :DTO's
+2c5ea59 ; Dany Benavides ; Dany Benavides; Sun Feb 10 10:59:00 2019 -0500 :rest vacio
+c510cae ; s.acostav ; s.acostav; Fri Feb 8 09:20:42 2019 -0500 :Implementacion InteresFotograficoDTO
+c0ac0e7 ; estudiante ; estudiante; Fri Feb 8 09:01:33 2019 -0500 :Implementacion DTO Fotografo
+13e9253 ; AndresVaron ; AndresVaron; Wed Feb 6 21:31:37 2019 -0500 :Cascara
+29a9093 ; Camilo Andres Salinas Martinez ; Camilo Andres Salinas Martinez; Wed Feb 6 16:39:06 2019 -0500 :Revert "Creando Cascara Proyecto"
+5d4ed75 ; estudiante ; estudiante; Wed Feb 6 16:34:02 2019 -0500 :Creando Cascara Proyecto
+9be2c10 ; AndresVaron ; AndresVaron; Mon Feb 4 15:22:34 2019 -0500 :Arreglo .git
+d2af544 ; AndresVaron ; AndresVaron; Fri Feb 1 08:04:52 2019 -0500 :.Bat y .Jar generador de la Cascara.
+3e23c47 ; AndresVaron ; AndresVaron; Thu Jan 31 08:21:17 2019 -0500 :Cascara
+80e4984 ; af.varon ; af.varon; Thu Jul 5 08:28:52 2018 -0500 :Probando V1

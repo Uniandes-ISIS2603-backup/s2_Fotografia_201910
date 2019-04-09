@@ -24,6 +24,10 @@ public class PhotoDTO implements Serializable{
     private Long id;
     
     /*
+    * Atributo correspondiente a la ruta de la foto.
+    */
+    private String rutaFoto;
+    /*
     * Atributo correspondiente a el nombre de la foto.
     */
     private String nombre;
@@ -82,6 +86,7 @@ public class PhotoDTO implements Serializable{
             this.price = entidad.getPrice();
             this.published = entidad.getPublished();
             this.winner = entidad.getWinner();
+            this.rutaFoto= entidad.getRutaFoto();
         }
     }
     /**
@@ -97,6 +102,7 @@ public class PhotoDTO implements Serializable{
         entidad.setPrice(this.getPrice());
         entidad.setPublished(this.getPublished());
         entidad.setWinner(this.getWinner());
+        entidad.setRutaFoto(this.getRutaFoto());
         return entidad;
     }
 
@@ -198,5 +204,18 @@ public class PhotoDTO implements Serializable{
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    /**
+     * @return the rutafoto
+     */
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
+
+    /**
+     * @param rutaFoto the rutaFoto to set
+     */
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
     }
 }
