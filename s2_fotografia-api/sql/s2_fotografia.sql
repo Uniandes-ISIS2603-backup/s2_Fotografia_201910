@@ -10,6 +10,7 @@ DELETE FROM CONCURSOENTITY_PHOTOENTITY;
 delete from ConcursoEntity;
 delete from RondaEntity;
 delete from OrganizadorEntity;
+delete from PHOTOENTITY;
 
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (100, 4, 'Muy bonita', 'Foto 1');
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (200, 2.5, 'Esta desenfocada', 'Foto 2');
