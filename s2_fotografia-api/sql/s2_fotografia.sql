@@ -58,5 +58,4 @@ insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '
 insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (1,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
 
 
-
 insert into PHOTOENTITY (nombre, date, description, price, winner, published, rutaFoto) values ('Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
