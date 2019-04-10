@@ -28,7 +28,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     private String tema;
     
     
-    private List<String> restricciones;
+    private String[] restricciones;
     
     @PodamIntValue(minValue = 0, maxValue = Integer.MAX_VALUE)
     private Integer edadDeLaFoto;
@@ -98,11 +98,11 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
         this.tema = tema;
     }
 
-    public List<String> getRestricciones() {
+    public String[] getRestricciones() {
         return restricciones;
     }
 
-    public void setRestricciones(List<String> restricciones) {
+    public void setRestricciones(String[] restricciones) {
         this.restricciones = restricciones;
     }
 

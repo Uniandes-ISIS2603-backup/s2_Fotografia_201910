@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,9 +28,14 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     * Atributo correspondiente a el nombre de la foto.
     */
     private String nombre;
+     /*
+    * Atributo correspondiente a el nombre de la foto.
+    */
+    private String rutaFoto;
     /*
     * Atributo correspondiente a la fecha de la foto.
     */
+    @Temporal(TemporalType.DATE)
     private Date date;
     /*
     * Atributo correspondiente a la descripcion de la foto.
@@ -252,5 +259,17 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+/**
+     * @return the nombre
+     */
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
 
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
+    }
 }
