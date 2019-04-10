@@ -34,6 +34,4 @@ insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre
 insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais) values (200, 'Jose', 'Martinez', 18,'j.martinez@gmail.com', 31578965, 'Colombia');
 insert into RondaEntity(id, numeroRonda) values (200, 1);
 
-insert into ClienteEntity (id, name, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea' );
-
 
