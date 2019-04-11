@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
+import co.edu.uniandes.csw.fotografia.adapters.DateAdapter;
 import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -18,6 +20,7 @@ public class FacturaDTO implements Serializable
     private Long id;
     private Integer numero;
     private Double precio;
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaCompra;
     
    
