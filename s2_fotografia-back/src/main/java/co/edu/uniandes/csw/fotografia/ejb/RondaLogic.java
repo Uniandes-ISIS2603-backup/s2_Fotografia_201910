@@ -40,7 +40,8 @@ public class RondaLogic {
      */
     public RondaEntity createRonda(RondaEntity rondaEntity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de ronda");
-        if (rondaEntity.getConcurso() == null) {
+        /**
+         *     if (rondaEntity.getConcurso() == null) {
             throw new BusinessLogicException("El Concurso es inválido");
         }
         ConcursoEntity concursoEntity = organizationPersistence.find(rondaEntity.getConcurso().getId());
@@ -52,6 +53,8 @@ public class RondaLogic {
         }
         rondaEntity.setConcurso(concursoEntity);
         concursoEntity.setRonda(rondaEntity);
+         */
+    
         rondaEntity = persistence.create(rondaEntity);
         LOGGER.info("Termina proceso de creación de ronda");
         return rondaEntity;
