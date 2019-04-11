@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.fotografia.dtos;
 
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
+import co.edu.uniandes.csw.fotografia.adapters.DateAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import co.edu.uniandes.csw.fotografia.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamStrategyValue;
+
 /**
  *
  * @author da.benavides
@@ -35,8 +38,7 @@ public class PhotoDTO implements Serializable{
     /*
     * Atributo correspondiente a la fecha de la foto.
     */
-    @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateStrategy.class)
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date date;
     
     /*
