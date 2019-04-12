@@ -25,11 +25,11 @@ insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais
 insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais) values (206, 'John', 'Martinez', 18, 'j.martinez6@gmail.com', 31578961, 'Colombia');
 
 
-insert into RondaEntity(id, numeroRonda) values (300, 1);
-insert into RondaEntity(id, numeroRonda) values (301, 1);
-insert into RondaEntity(id, numeroRonda) values (302, 1);
-insert into RondaEntity(id, numeroRonda) values (303, 1);
-insert into RondaEntity(id, numeroRonda) values (304, 1);
+insert into RondaEntity(id, numRonda) values (300, 1);
+insert into RondaEntity(id, numRonda) values (301, 1);
+insert into RondaEntity(id, numRonda) values (302, 1);
+insert into RondaEntity(id, numRonda) values (303, 1);
+insert into RondaEntity(id, numRonda) values (304, 1);
 
 insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea' );
 insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr' );
