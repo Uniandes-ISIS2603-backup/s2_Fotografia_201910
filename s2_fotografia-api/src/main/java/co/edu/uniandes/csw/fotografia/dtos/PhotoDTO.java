@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.fotografia.dtos;
 
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
+import co.edu.uniandes.csw.fotografia.adapters.DateAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import co.edu.uniandes.csw.fotografia.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamStrategyValue;
+
 /**
  *
  * @author da.benavides
@@ -24,6 +27,10 @@ public class PhotoDTO implements Serializable{
     private Long id;
     
     /*
+    * Atributo correspondiente a la ruta de la foto.
+    */
+    private String rutaFoto;
+    /*
     * Atributo correspondiente a el nombre de la foto.
     */
     private String nombre;
@@ -31,8 +38,7 @@ public class PhotoDTO implements Serializable{
     /*
     * Atributo correspondiente a la fecha de la foto.
     */
-    @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateStrategy.class)
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date date;
     
     /*
@@ -70,6 +76,9 @@ public class PhotoDTO implements Serializable{
     public PhotoDTO(){
         
     }
+    /**
+     * Constructor que recibe un entity y transforma a DTO
+     */
     public PhotoDTO(PhotoEntity entidad){
         if(entidad != null){
             this.id = entidad.getId();
@@ -79,9 +88,13 @@ public class PhotoDTO implements Serializable{
             this.price = entidad.getPrice();
             this.published = entidad.getPublished();
             this.winner = entidad.getWinner();
+            this.rutaFoto= entidad.getRutaFoto();
         }
     }
-    
+    /**
+     * Método que transforma el entity a DTO
+     * @return entidad. Objeto DTO transformado a entity.
+     */
     public PhotoEntity toEntity(){
         PhotoEntity entidad = new PhotoEntity();
         entidad.setId(this.getId());
@@ -91,6 +104,7 @@ public class PhotoDTO implements Serializable{
         entidad.setPrice(this.getPrice());
         entidad.setPublished(this.getPublished());
         entidad.setWinner(this.getWinner());
+        entidad.setRutaFoto(this.getRutaFoto());
         return entidad;
     }
 
@@ -192,5 +206,18 @@ public class PhotoDTO implements Serializable{
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    /**
+     * @return the rutafoto
+     */
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
+
+    /**
+     * @param rutaFoto the rutaFoto to set
+     */
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
     }
 }

@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author estudiante
+ * @author da.benavides
  */
 
 @Path("photos")
@@ -37,12 +37,21 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class PhotoResource {
-    
+    /**
+     * Track de que se esta haciendo
+     */
     private static final Logger LOGGER = Logger.getLogger(PhotoResource.class.getName());
-    
+    /**
+     * Objeto de la lògica
+     */
     @Inject
     private PhotoLogic photoLogic;
-    
+    /**
+     * Mètodo que crea una foto con la anotaciòn post
+     * @param photo DTO de la foto que se quiere crear
+     * @return el mismo objeto
+     * @throws BusinessLogicException No se puede crear la foto 
+     */
     @POST
     public PhotoDTO createPhoto(PhotoDTO photo) throws BusinessLogicException{
         LOGGER.log(Level.INFO, "PhotoResource createPhoto: input: {0}", photo);

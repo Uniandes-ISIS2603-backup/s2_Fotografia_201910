@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -22,40 +24,70 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class PhotoEntity extends BaseEntity implements Serializable{
-    
+    /*
+    * Atributo correspondiente a el nombre de la foto.
+    */
     private String nombre;
-    
+     /*
+    * Atributo correspondiente a el nombre de la foto.
+    */
+    private String rutaFoto;
+    /*
+    * Atributo correspondiente a la fecha de la foto.
+    */
+    @Temporal(TemporalType.DATE)
     private Date date;
- 
+    /*
+    * Atributo correspondiente a la descripcion de la foto.
+    */
     private String description;
-    
+    /*
+    * Atributo correspondiente a el precio de la foto.
+    */
     private Double price;
-     
+     /*
+    * Atributo correspondiente a si la foto es ganadora o no.
+    */
     private Boolean winner;
-    
+    /*
+    * Atributo correspondiente a si la ha sido publicada o no.
+    */
     private Boolean published;
-
+    
+    /**
+     * Relacion con clase Factura de tipo OneToMany
+     */
      @PodamExclude
     @OneToMany(mappedBy = "fotoComprada", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
      
-     
+    /**
+     * Relacion con clase Fotografo de tipo ManyToOne
+     */ 
    @PodamExclude
    @ManyToOne
    private FotografoEntity concursante;
-     
+     /**
+     * Relacion con clase Fotografo de tipo ManyToOne
+     */
    @PodamExclude
    @ManyToOne
     private FotografoEntity fotografo;
-     
+     /**
+     * Relacion con clase Jurado de tipo ManyToMany mapeado por esta clase
+     */
    @PodamExclude
    @ManyToMany(mappedBy = "fotosCalificadas")
    private List<JuradoEntity> jurados = new ArrayList<>();
-    
+    /**
+     * Relacion con clase Calificacion de tipo OneToMany mapeado por esta clase
+     */
    @PodamExclude
    @OneToMany(mappedBy = "fotoCalificada", fetch = FetchType.LAZY)
    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
-     
+     /**
+     * Relacion con clase Concurso de tipo ManyToMany mapeado por esta clase
+     */
    @PodamExclude
    @ManyToMany(mappedBy = "fotosEnConcurso")
    private List<ConcursoEntity> concursos = new ArrayList<>();
@@ -227,5 +259,17 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+/**
+     * @return the nombre
+     */
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
 
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
+    }
 }

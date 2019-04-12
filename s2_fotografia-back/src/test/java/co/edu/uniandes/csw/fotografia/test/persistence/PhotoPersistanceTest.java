@@ -87,6 +87,10 @@ public class PhotoPersistanceTest {
             data.add(entity);
         }
     }
+    /**
+     * 
+     * Prueba la creación de una foto válida
+     */
     @Test
     public void createPhotoTest() {
         PodamFactory factory = new PodamFactoryImpl();

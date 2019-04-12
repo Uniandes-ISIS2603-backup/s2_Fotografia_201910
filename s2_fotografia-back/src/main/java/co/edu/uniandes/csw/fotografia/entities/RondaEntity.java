@@ -33,7 +33,7 @@ public class RondaEntity extends BaseEntity implements Serializable{
     private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
     
     
-    private Integer numeroRonda;
+    private Integer numRonda;
 
     public RondaEntity(){
         
@@ -47,7 +47,7 @@ public class RondaEntity extends BaseEntity implements Serializable{
     }
 
     public Integer getNumeroRonda() {
-        return numeroRonda;
+        return numRonda;
     }
 
     public List<CalificacionEntity> getCalificaciones() {
@@ -67,7 +67,7 @@ public class RondaEntity extends BaseEntity implements Serializable{
     }
 
     public void setNumeroRonda(Integer numeroRonda) {
-        this.numeroRonda = numeroRonda;
+        this.numRonda = numeroRonda;
     }
   
 }

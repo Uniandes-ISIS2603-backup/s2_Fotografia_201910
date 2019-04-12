@@ -139,4 +139,50 @@ public class ClienteResource
         clienteLogic.deleteCliente(clientesId);
         LOGGER.info("ClienteResource deleteCliente: output: void");
     }   
+    
+     /**
+     * Conexión con el servicio de facturas para un cliente.
+     * {@link ClienteFacturasResource}
+     *
+     * Este método conecta la ruta de /clientes con las rutas de /facturas que
+     * dependen del cliente, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de las facturas de un cliente.
+     *
+     * @param clientesId El ID del cliente con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de facturas para este cliente en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el cliente.
+     */
+   @Path("{clientesId: \\d+}/facturas")
+    public Class<ClienteFacturasResource> getClienteFacturasResource(@PathParam("clientesId") Long clientesId) {
+        if (clienteLogic.getCliente(clientesId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clientesId + " no existe.", 404);
+        }
+        return ClienteFacturasResource.class;
+    }
+    
+    
+      
+     /**
+     * Conexión con el servicio de formas de pago para un cliente.
+     * {@link ClienteFormasDePagoResource}
+     *
+     * Este método conecta la ruta de /clientes con las rutas de /formasDePago que
+     * dependen del cliente, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de las facturas de un cliente.
+     *
+     * @param clientesId El ID del cliente con respecto a la cual se
+     * accede al servicio.
+     * @return El servicio de formasDePago para este cliente en paricular.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el cliente.
+     */
+   @Path("{clientesId: \\d+}/formasDePago")
+    public Class<ClienteFormasDePagoResource> getClienteFormasDePagoResource(@PathParam("clientesId") Long clientesId) {
+        if (clienteLogic.getCliente(clientesId) == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clientesId + " no existe.", 404);
+        }
+        return ClienteFormasDePagoResource.class;
+    }
 }

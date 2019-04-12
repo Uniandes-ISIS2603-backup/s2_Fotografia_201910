@@ -71,7 +71,7 @@ public class ConcursoDTO implements Serializable {
 
     private Long id;
     private String tema;
-    private List<String> restricciones;
+    private String[] restricciones;
     private Integer edadDeLaFoto;
     private Integer maxFotos;
     @XmlJavaTypeAdapter(DateAdapter.class)
@@ -167,7 +167,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo restricciones
      */
-    public List<String> getRestricciones() {
+    public String[] getRestricciones() {
         return restricciones;
     }
 
@@ -176,16 +176,29 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pRestricciones nueva lista de restricciones
      */
-    public void setRestricciones(ArrayList<String> pRestricciones) {
+    public void setRestricciones(String[] pRestricciones) {
         restricciones = pRestricciones;
     }
 
     /**
      * Agrega una restriccion a la lista de restricciones
-     *
+     *@param pRestriccion restriccion que se quiere agregar
      */
     public void addRestriccion(String pRestriccion) {
-        restricciones.add(pRestriccion);
+        if(restricciones[restricciones.length-1] != null){
+          String[] temp = restricciones;
+          restricciones = new String[temp.length*2];
+          System.arraycopy(temp, 0, restricciones, 0, temp.length);
+          temp = null;
+        }
+        else{
+            for(int i=0; i < restricciones.length; i++){
+                if(restricciones[i] == null){
+                    restricciones[i] = pRestriccion;
+                    break;
+                }
+            }
+        }
     }
 
     /**
