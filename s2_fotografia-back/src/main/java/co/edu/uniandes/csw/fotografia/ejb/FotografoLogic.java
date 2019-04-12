@@ -30,9 +30,7 @@ public class FotografoLogic {
     private FotografoPersistence persistence;
     
     public FotografoEntity createFotografo(FotografoEntity fotografo) throws BusinessLogicException{
-       if (fotografo.getLogin()==null) {
-            throw new BusinessLogicException("El fotografo es invalido");
-        }
+       
        if (persistence.findByLogin(fotografo.getLogin())!=null) {
             throw new BusinessLogicException("El login ya existe");
         }

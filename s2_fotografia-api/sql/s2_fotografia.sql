@@ -38,8 +38,6 @@ insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) val
 insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (500, 'Luisa', 'Sanchez', 'luisasanchez@hotmail.com', 67348812, 'Argentina', 'Buenos Aires');
 insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (600, 'Iván', 'Camacho', 'ivan.camacho@yahoo.com', 0987656, 'Colombia', 'Medellín');
 
-insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password) values (5,'Villegas','s@correo.com',30,'23/12/12','Sara','Colombia',319,'s.acostav','s_');
-insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_');
 
 insert into CONCURSOENTITY(ID, CANTIDADPREMIO, EDADDELAFOTO, FECHA, MAXFOTOS, TEMA, CLIENTE_ID, ORGANIZADOR_ID,RONDA_ID) 
 values (100, 10000, 36,  '8/20/2015 ', 3, 'Blanco y negro', null, 200, 300 );
@@ -50,9 +48,14 @@ values (102, 13000, 36,  '8/20/2015 ', 5, 'Beahc', null, 202, 302 );
 insert into CONCURSOENTITY(ID, CANTIDADPREMIO, EDADDELAFOTO, FECHA, MAXFOTOS, TEMA, CLIENTE_ID, ORGANIZADOR_ID,RONDA_ID) 
 values (103, 15000, 6,  '8/20/2015 ', 6, 'Conciertos', null, 203, 303 );
 
+
+insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_','https://www.dzoom.org.es/wp-content/uploads/2007/02/canon-mejorar-fotografo-consejos-principiantes-novatos-810x540.jpg');
+insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto) values (5,'Villegas','s@correo.com',30,'23/12/12','Laura','Colombia',319,'s.acostav','s_','https://cadenaser00.epimg.net/ser/imagenes/2018/12/11/sociedad/1544508140_140111_1544508461_noticia_normal_recorte1.jpg');
+
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 400;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 500;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;    
+
 
 insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
 insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (1,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
