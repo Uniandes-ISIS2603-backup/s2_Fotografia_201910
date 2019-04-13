@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Pruebas de logica de la relacion Concurso - Photos
  *
- * @author ISIS2603
+ * @author n.rincond
  */
 @RunWith(Arquillian.class)
 public class ConcursoPhotosLogicTest {
@@ -148,7 +148,7 @@ public class ConcursoPhotosLogicTest {
     }
 
     /**
-     * Prueba para consultar la lista de Books de un concurso.
+     * Prueba para consultar la lista de fotos de un concurso.
      */
     @Test
     public void getPhotosTest() {
@@ -182,7 +182,7 @@ public class ConcursoPhotosLogicTest {
     /**
      * Prueba para actualizar los fotos de un concurso.
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void replacePhotoTest() throws BusinessLogicException {
