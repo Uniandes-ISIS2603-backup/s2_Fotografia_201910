@@ -8,6 +8,7 @@ delete from CalificacionEntity;
 delete from CONCURSOENTITY_FOTOGRAFOENTITY;
 DELETE FROM CONCURSOENTITY_PHOTOENTITY;
 delete from ConcursoEntity;
+delete from interesfotograficoentity;
 delete from RondaEntity;
 delete from OrganizadorEntity;
 delete from PHOTOENTITY;
@@ -51,7 +52,10 @@ values (103, 15000, 6,  '8/20/2015 ', 6, 'Conciertos', null, 203, 303 );
 
 insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_','https://www.dzoom.org.es/wp-content/uploads/2007/02/canon-mejorar-fotografo-consejos-principiantes-novatos-810x540.jpg');
 insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto) values (5,'Villegas','s@correo.com',30,'23/12/12','Laura','Colombia',319,'s.acostav','s_','https://cadenaser00.epimg.net/ser/imagenes/2018/12/11/sociedad/1544508140_140111_1544508461_noticia_normal_recorte1.jpg');
-
+insert into INTERESFOTOGRAFICOENTITY(id,interes)values(1,'paisajes');
+insert into INTERESFOTOGRAFICOENTITY(id,intereses) values(2,'retratos');
+insert into INTERESFOTOGRAFICOENTITY(id,intereses) values(3,'animales');
+insert into INTERESFOTOGRAFICOENTITY(id,intereses) values(4,'edificios');
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 400;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 500;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;    
@@ -64,3 +68,9 @@ insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerific
 insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
 insert into PHOTOENTITY (nombre, date, description, price, winner, published, rutaFoto) values ('Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,1);
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,4);
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,1);
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3);
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,1);
