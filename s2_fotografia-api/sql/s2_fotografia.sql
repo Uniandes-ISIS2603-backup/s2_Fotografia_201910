@@ -11,6 +11,7 @@ delete from ConcursoEntity;
 delete from RondaEntity;
 delete from OrganizadorEntity;
 delete from PHOTOENTITY;
+delete from CLIENTEENTITY_FORMADEPAGOENTITY;
 
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (100, 4, 'Muy bonita', 'Foto 1');
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (200, 2.5, 'Esta desenfocada', 'Foto 2');
@@ -25,14 +26,16 @@ insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais
 insert into OrganizadorEntity(id, nombre, apellido, edad, correo, telefono, pais) values (206, 'John', 'Martinez', 18, 'j.martinez6@gmail.com', 31578961, 'Colombia');
 
 
-insert into RondaEntity(id, numeroRonda) values (300, 1);
-insert into RondaEntity(id, numeroRonda) values (301, 1);
-insert into RondaEntity(id, numeroRonda) values (302, 1);
-insert into RondaEntity(id, numeroRonda) values (303, 1);
-insert into RondaEntity(id, numeroRonda) values (304, 1);
+insert into RondaEntity(id, numRonda) values (300, 1);
+insert into RondaEntity(id, numRonda) values (301, 1);
+insert into RondaEntity(id, numRonda) values (302, 1);
+insert into RondaEntity(id, numRonda) values (303, 1);
+insert into RondaEntity(id, numRonda) values (304, 1);
 
 insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea' );
 insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr' );
+
+
 
 insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (400, 'Pedro', 'Ramirez', 'pedroramirez@yahoo.com', 12345678, 'Colombia', 'Bogota');
 insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (500, 'Luisa', 'Sanchez', 'luisasanchez@hotmail.com', 67348812, 'Argentina', 'Buenos Aires');
@@ -58,7 +61,10 @@ UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;
 
 
 insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (1,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
 
+
+insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,1);
+insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
 insert into PHOTOENTITY (nombre, date, description, price, winner, published, rutaFoto) values ('Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
