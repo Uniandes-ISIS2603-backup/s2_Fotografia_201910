@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Pruebas de logica de la relacion Concurso - Fotografos
  *
- * @author ISIS2603
+ * @author n.rincond
  */
 @RunWith(Arquillian.class)
 public class ConcursoFotografosLogicTest {
@@ -123,7 +123,7 @@ public class ConcursoFotografosLogicTest {
      * Prueba para asociar un concurso a un foto.
      *
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void addFotografoTest() throws BusinessLogicException {
