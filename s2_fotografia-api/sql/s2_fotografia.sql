@@ -12,6 +12,7 @@ delete from RondaEntity;
 delete from OrganizadorEntity;
 delete from PHOTOENTITY;
 delete from CLIENTEENTITY_FORMADEPAGOENTITY;
+delete from CONCURSOENTITY_PHOTOENTITY;
 
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (100, 4, 'Muy bonita', 'Foto 1');
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (200, 2.5, 'Esta desenfocada', 'Foto 2');
@@ -67,4 +68,14 @@ insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerific
 insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,1);
 insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
-insert into PHOTOENTITY (nombre, date, description, price, winner, published, rutaFoto) values ('Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto) values (801, 'Lazare', '1975-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto) values (802, 'Beach', '2010-01-01 12:25:06', 'costa caribeña', 11, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto) values (803, 'Mountains', '2015-08-01 12:25:06', 'los andes', 10, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto) values (804, 'Black', '2018-04-07 12:25:06', 'Gente', 88, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto) values (805, 'White', '1899-05-06 12:25:06', 'Test', 1850, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg');
+
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 801);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 802);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 803);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 804);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 805);
