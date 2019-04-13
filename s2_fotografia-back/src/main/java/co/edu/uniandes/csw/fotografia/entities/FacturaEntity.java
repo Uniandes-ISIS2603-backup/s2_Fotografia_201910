@@ -7,8 +7,10 @@ package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -33,7 +35,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
     private ClienteEntity cliente;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private PhotoEntity fotoComprada;
     
     @PodamExclude
@@ -43,7 +45,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
  
     
     public FacturaEntity()
-            {
+    {
     }
 
     /**
