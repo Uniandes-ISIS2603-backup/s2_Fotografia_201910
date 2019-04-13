@@ -29,6 +29,7 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     private String pais;
     private String password;
     private String login;
+    private String foto;
     @PodamExclude
     @OneToMany(mappedBy = "fotografo")
     private List<PhotoEntity> fotos = new ArrayList<PhotoEntity>();
@@ -132,6 +133,13 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     }
     public String getPassword(){
         return password;
+    }
+    
+    public void setFoto(String pFoto){
+        foto = pFoto;}
+    public String getFoto(){
+        
+        return foto;
     }
     
 }

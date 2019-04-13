@@ -19,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * <pre>
  *   {
  *      "id": number,
- *      "numeroRonda": number
+ *      "numRonda": number
  *   }
  * </pre> Por ejemplo un Organizador se representa asi:<br>
  *
@@ -27,7 +27,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  *   {
  *      "id": 1,
- *      "numeroRonda": 2
+ *      "numRonda": 2
  *   }
  *
  * </pre>
