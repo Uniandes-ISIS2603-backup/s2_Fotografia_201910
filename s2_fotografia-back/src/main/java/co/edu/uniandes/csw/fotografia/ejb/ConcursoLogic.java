@@ -70,8 +70,6 @@ public class ConcursoLogic {
         return newConcursoEntity;
      }
      
-     public void deleteConcurso(Long concursoId){
-         //ESTE METODO NO SE DEBERIA USAR YA QUE TODOS LOS CONCURSOS QUEDAN GUARDADOS
-     }
+    
      
 }
