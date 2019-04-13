@@ -63,6 +63,7 @@ UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;
 insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
 insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
 
+
 insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,1);
 insert into RondaEntity(id, NUMRONDA) values (200, 1);
 

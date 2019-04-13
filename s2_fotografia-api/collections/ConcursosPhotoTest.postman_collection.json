@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "15336b77-8686-458b-aaa2-cd32f503fdd2",
+		"name": "ConcursosPhotoTest",
+		"description": "Concursos Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar concursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2102b2dd-9b37-4499-8e6a-da9806438bd4",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c370f1f-ddd2-4d16-939b-1847386fb3fc",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6b90b406-a779-4ac2-913e-06130262afc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"fechaDelConcurso\": \"2010-07-11\",\n        \"edadDeLaFoto\": 40,\n        \"maxFotos\": 4,\n        \"premioCantidad\": 12100,\n        \"tema\": \"Cosas\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una foto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7604c528-63b2-464a-9474-fd177def3a27",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"date\": \"1988-01-01\",\n        \"description\": \"In the stars\",\n        \"nombre\": \"Van gi\",\n        \"price\": 1850,\n        \"published\": true,\n        \"rutaFoto\": \"https://denverartmuseum.org/sites/default/files/slides/Media%20browser/Rembrandt_SelfPortrait_StoneSill_PTL-15391.jpg\",\n        \"winner\": false\n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una foto 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73aab96e-a85a-415e-aa37-5c90b7840be4",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"date\": \"2004-07-07\",\n        \"description\": \"Common Enemy\",\n        \"nombre\": \"Lars von treie\",\n        \"price\": 1850,\n        \"published\": true,\n        \"rutaFoto\": \"http://recsports.ufl.edu/images/made/uploads/images/uf-recsports-locations-broward-pool_512_348_80.jpg\",\n        \"winner\": false\n    }"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/photos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir una foto a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf952e7c-6c20-4fe6-87b8-ada289da20be",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una foto que no existe a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "448dc3d2-2e75-47b6-9cc4-c12f8bf2d385",
+						"exec": [
+							"tests[\"No deberia asociar la foto ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /photos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener la foto de un concurso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener las fotos de un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01c17f77-2e40-41de-811f-d16b37d18058",
+						"exec": [
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar concurso que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75935929-489b-4f14-85ab-8af623efe182",
+						"exec": [
+							"tests[\"No deberia obtener el autor ya que el concurso no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /concursos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una foto inexistenete de un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "066163b9-5ca9-4ff5-8031-c6266944b610",
+						"exec": [
+							"tests[\"No deberia obtener la foto ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /photos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar fotos a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61020dba-98cb-4aef-b8e0-2034b4cbbabd",
+						"exec": [
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"date\": \"1988-01-01\",\n        \"description\": \"In the stars\",\n        \"nombre\": \"Van gi\",\n        \"price\": 1850,\n        \"published\": true,\n        \"id\": {{new_id_f}},\n        \"rutaFoto\": \"https://denverartmuseum.org/sites/default/files/slides/Media%20browser/Rembrandt_SelfPortrait_StoneSill_PTL-15391.jpg\",\n        \"winner\": false\n    },\n    {\n        \"date\": \"2004-07-07\",\n        \"description\": \"Common Enemy\",\n        \"nombre\": \"Lars von treie\",\n        \"price\": 1850,\n        \"id\": {{new_id_f2}},\n        \"published\": true,\n        \"rutaFoto\": \"http://recsports.ufl.edu/images/made/uploads/images/uf-recsports-locations-broward-pool_512_348_80.jpg\",\n        \"winner\": false\n    }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar fotos a un concurso inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61020dba-98cb-4aef-b8e0-2034b4cbbabd",
+						"exec": [
+							"tests[\"No se deberian asociar las fotos ya que el concurso no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /concursos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"date\": \"1988-01-01\",\n        \"description\": \"In the stars\",\n        \"nombre\": \"Van gi\",\n        \"price\": 1850,\n        \"published\": true,\n        \"id\": {{new_id_f}},\n        \"rutaFoto\": \"https://denverartmuseum.org/sites/default/files/slides/Media%20browser/Rembrandt_SelfPortrait_StoneSill_PTL-15391.jpg\",\n        \"winner\": false\n    },\n    {\n        \"date\": \"2004-07-07\",\n        \"description\": \"Common Enemy\",\n        \"nombre\": \"Lars von treie\",\n        \"price\": 1850,\n        \"id\": {{new_id_f2}},\n        \"published\": true,\n        \"rutaFoto\": \"http://recsports.ufl.edu/images/made/uploads/images/uf-recsports-locations-broward-pool_512_348_80.jpg\",\n        \"winner\": false\n    }\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/0/photos/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"0",
+						"photos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una foto de un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4932fdae-2ce3-4aee-b02a-5ed6ee67122e",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una foto inexistente a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4932fdae-2ce3-4aee-b02a-5ed6ee67122e",
+						"exec": [
+							"tests[\"No so deberia eliminar la foto ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /photos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/photos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"photos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab426929-1fe1-455f-b91b-36527ee5b83d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "59c74b94-41e8-490d-9fa9-ee964e57a7f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

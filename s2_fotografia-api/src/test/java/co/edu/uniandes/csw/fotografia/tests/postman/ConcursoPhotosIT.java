@@ -40,13 +40,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- *  Pruebas de integracion del recurso Concurso.
- * @author ISIS2603
+ *  Pruebas de integracion del recurso ConcursoPhotos.
+ * @author NicolasRinconD
  */
 @RunWith(Arquillian.class)
-public class ConcursoIT {
+public class ConcursoPhotosIT {
 
-    private static final String COLLECTION = "ConcursosResourceTest.postman_collection";
+    private static final String COLLECTION = "ConcursosPhotoTest.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {

@@ -94,7 +94,7 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
 
     private List<JuradoDTO> jurados;
 
-    private List<PhotoDTO> fotos;
+    private List<PhotoDTO> fotosEnConcurso;
 
     private List<FotografoDTO> fotografos;
 
@@ -109,9 +109,9 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
             for (JuradoEntity entityJurados : concursoEntity.getJurados()) {
                 jurados.add(new JuradoDTO(entityJurados));
             }
-            fotos = new ArrayList<>();
+            fotosEnConcurso = new ArrayList<>();
            for(PhotoEntity entityFotos : concursoEntity.getFotosEnConcurso()){
-               fotos.add(new PhotoDTO(entityFotos));
+               fotosEnConcurso.add(new PhotoDTO(entityFotos));
            }
            fotografos = new ArrayList<>();
            for(FotografoEntity entityFotografos : concursoEntity.getFotografos()){
@@ -130,9 +130,9 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
             }
             concursoEntity.setJurados(juradosEntity);
         }
-        if(fotos != null){
+        if(fotosEnConcurso != null){
             List<PhotoEntity> juradosEntity  = new ArrayList<>();
-            for(PhotoDTO dtoPhoto: fotos){
+            for(PhotoDTO dtoPhoto: fotosEnConcurso){
                 juradosEntity.add(dtoPhoto.toEntity());
             }
             concursoEntity.setFotosEnConcurso(juradosEntity);
@@ -155,12 +155,12 @@ public class ConcursoDetailDTO extends ConcursoDTO implements Serializable {
         jurados = pJurados;
     }
 
-    public List<PhotoDTO> getFotos() {
-        return fotos;
+    public List<PhotoDTO> getFotosEnConcurso() {
+        return fotosEnConcurso;
     }
 
-    public void setFotos(List<PhotoDTO> pFotos) {
-        fotos = pFotos;
+    public void setFotosEnConcurso(List<PhotoDTO> pFotos) {
+        fotosEnConcurso = pFotos;
     }
 
     public List<FotografoDTO> getFotografos() {

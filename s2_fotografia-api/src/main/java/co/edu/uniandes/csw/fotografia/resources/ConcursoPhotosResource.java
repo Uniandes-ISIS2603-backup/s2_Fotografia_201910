@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import javax.ws.rs.WebApplicationException;
 
 /**
- *
+ * Clase que implementa el recurso "concursos/{id}/photos".
  * @autor NicolasRincond
  */
 @Consumes(MediaType.APPLICATION_JSON)
