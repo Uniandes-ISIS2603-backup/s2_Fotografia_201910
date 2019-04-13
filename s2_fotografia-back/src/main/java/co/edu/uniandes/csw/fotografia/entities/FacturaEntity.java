@@ -17,27 +17,41 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author Valentina Duarte
+ * @author Valentina Duarte y ahora Dany Benavides
  */
 
 @Entity
 public class FacturaEntity extends BaseEntity implements Serializable
 {
-   
+   /*
+    * Atributo correspondiente a el numero de la factura.
+    */
     private Integer numero;
+    /*
+    * Atributo correspondiente a el precio de la foto.
+    */
     private Double precio;
-    
+    /*
+    * Atributo correspondiente a la fecha de la factura.
+    */
     @Temporal (TemporalType.DATE)
     private Date fechaCompra;
-    
+    /*
+    * Atributo correspondiente a la asociacion con cliente
+    */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
+    /*
+    * Atributo correspondiente la foto comprada
+    */
     @PodamExclude
     @ManyToOne(cascade = CascadeType.ALL)
     private PhotoEntity fotoComprada;
-    
+    /*
+    * Atributo correspondiente a la forma de pago usada.
+    */
     @PodamExclude
     @ManyToOne
     private FormaDePagoEntity formaDePagoFactura;
