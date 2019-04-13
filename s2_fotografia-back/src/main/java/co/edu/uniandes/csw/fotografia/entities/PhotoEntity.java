@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -57,8 +58,8 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     /**
      * Relacion con clase Factura de tipo OneToMany
      */
-     @PodamExclude
-    @OneToMany(mappedBy = "fotoComprada", fetch = FetchType.LAZY)
+    @PodamExclude
+    @OneToMany(mappedBy = "fotoComprada", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.LAZY)
     private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
      
     /**
