@@ -26,6 +26,7 @@ public class FormaDePagoDTO implements Serializable
     private Integer numeroVerificacion;
     private String tipoDeTarjeta;
     private String tipoTarjetaDeCredito;
+   
     
     /**
      * Constructor vacio

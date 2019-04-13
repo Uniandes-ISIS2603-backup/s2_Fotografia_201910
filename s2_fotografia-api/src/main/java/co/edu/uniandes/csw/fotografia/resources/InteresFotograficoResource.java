@@ -55,10 +55,10 @@ public class InteresFotograficoResource {
      */
     @POST
     public InteresFotograficoDTO createInteresFotografico(InteresFotograficoDTO InteresFotografico) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "InteresFotograficoResource createInteresFotografico: input: {0}", InteresFotografico);
-        InteresFotograficoDTO InteresFotograficoDTO = new InteresFotograficoDTO(InteresFotograficoLogic.createInteresFotografico(InteresFotografico.toEntity()));
-        LOGGER.log(Level.INFO, "InteresFotograficoResource createInteresFotografico: output: {0}", InteresFotograficoDTO);
-        return InteresFotograficoDTO;
+       LOGGER.log(Level.INFO, "InteresFotograficoResource createInteres: input: {0}", InteresFotografico);
+        InteresFotograficoDTO DTO = new InteresFotograficoDTO(InteresFotograficoLogic.createInteresFotografico(InteresFotografico.toEntity()));
+        LOGGER.log(Level.INFO, "FotografoResource createFotografo: output: {0}", DTO);
+        return DTO;
     }
 
     /**

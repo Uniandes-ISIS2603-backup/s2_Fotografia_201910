@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "607d9c09-ad9d-4425-8d66-a6e6e1abaee3",
+		"name": "ConcursosResourceTest",
+		"description": "Concursos Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar concursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2102b2dd-9b37-4499-8e6a-da9806438bd4",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c370f1f-ddd2-4d16-939b-1847386fb3fc",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6b90b406-a779-4ac2-913e-06130262afc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"fechaDelConcurso\": \"2010-07-11\",\n        \"edadDeLaFoto\": 40,\n        \"maxFotos\": 4,\n        \"premioCantidad\": 12100,\n        \"tema\": \"Cosas\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar el concurso que se creo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2078e940-a789-4adf-a18f-d98f9d333330",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar concurso que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75935929-489b-4f14-85ab-8af623efe182",
+						"exec": [
+							"tests[\"No deberia obtener el autor ya que el concurso no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /concursos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualiza un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c99903af-8978-40f8-ab82-67384158d9eb",
+						"exec": [
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fechaDelConcurso\": \"2010-07-11\",\n    \"edadDeLaFoto\": 20,\n    \"maxFotos\": 4,\n    \"premioCantidad\": 12100,\n    \"tema\": \"Cosas5\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab426929-1fe1-455f-b91b-36527ee5b83d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "59c74b94-41e8-490d-9fa9-ee964e57a7f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
