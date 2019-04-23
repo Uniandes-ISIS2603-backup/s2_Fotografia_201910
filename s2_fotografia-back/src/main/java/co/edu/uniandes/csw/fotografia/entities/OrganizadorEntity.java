@@ -24,15 +24,23 @@ public class OrganizadorEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "organizador",fetch=FetchType.LAZY)
     private List<ConcursoEntity> concursos = new ArrayList<>();
-    
+   
     private String nombre;
     private String apellido;
+    private String foto;
     private Integer edad;
     private String correo;
     private Integer telefono;
     private String pais;
-    
-    
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+   
     public String getNombre(){
         return nombre;
     }
