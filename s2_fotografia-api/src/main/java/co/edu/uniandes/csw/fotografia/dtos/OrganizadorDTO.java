@@ -21,6 +21,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * <pre>
  *   {
  *      "id": number,
+ *      "foto": string,
  *      "nombre": string,
  *      "apellido": string,
  *      "edad": number,
@@ -34,6 +35,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  *   {
  *      "id": 1,
+ *      "foto": "asdas",
  *      "nombre": "Jose",
  *      "apellido": "Ramirez",
  *      "edad": 29,
@@ -49,6 +51,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class OrganizadorDTO implements Serializable {
 
     private Long id;
+    private String foto;
     private String nombre;
     @XmlJavaTypeAdapter(DateAdapter.class)
     private String apellido;
@@ -72,6 +75,7 @@ public class OrganizadorDTO implements Serializable {
     public OrganizadorDTO(OrganizadorEntity organizadorEntity) {
         if (organizadorEntity != null) {
             this.id = organizadorEntity.getId();
+            this.foto = organizadorEntity.getFoto();
             this.nombre = organizadorEntity.getNombre();
             this.apellido = organizadorEntity.getApellido();
             this.edad = organizadorEntity.getEdad();
@@ -90,6 +94,7 @@ public class OrganizadorDTO implements Serializable {
     public OrganizadorEntity toEntity() {
         OrganizadorEntity organizadorEntity = new OrganizadorEntity();
         organizadorEntity.setId(this.getId());
+        organizadorEntity.setFoto(this.getFoto());
         organizadorEntity.setNombre(this.getNombre());
         organizadorEntity.setApellido(this.getApellido());
         organizadorEntity.setEdad(this.getEdad());
@@ -118,6 +123,15 @@ public class OrganizadorDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
 
     /**
      * Obtiene el atributo name.
