@@ -1,0 +1,717 @@
+{
+	"info": {
+		"_postman_id": "1d61825f-3f6a-45aa-a4ee-6503d52880b8",
+		"name": "ConcursoFotografosTest",
+		"description": "Concursos Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar concursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2102b2dd-9b37-4499-8e6a-da9806438bd4",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0c370f1f-ddd2-4d16-939b-1847386fb3fc",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6b90b406-a779-4ac2-913e-06130262afc5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"fechaDelConcurso\": \"2010-07-11\",\n        \"edadDeLaFoto\": 40,\n        \"maxFotos\": 4,\n        \"premioCantidad\": 12100,\n        \"tema\": \"Cosas\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un fotografo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7604c528-63b2-464a-9474-fd177def3a27",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"apellido\": \"Mensea\",\n        \"correo\": \"n.rinrin@correo.com\",\n        \"edad\": 17,\n        \"fechaNacimiento\": \"8/10/12\",\n        \"login\": \"s.test1\",\n        \"nombre\": \"Sarsa\",\n        \"pais\": \"Colombia\",\n        \"password\": \"s12434\",\n        \"telefono\": 319\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un fotografo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73aab96e-a85a-415e-aa37-5c90b7840be4",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f2\",data.id);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"apellido\": \"Noa\",\n        \"correo\": \"nmonas@correo.com\",\n        \"edad\": 17,\n        \"fechaNacimiento\": \"9/10/12\",\n        \"login\":\"conyt\",\n        \"nombre\": \"Tomas\",\n        \"pais\": \"Siberia\",\n        \"password\": \"password\",\n        \"telefono\": 3196801523\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir un fotografo a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf952e7c-6c20-4fe6-87b8-ada289da20be",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un fotografo que no existe a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "448dc3d2-2e75-47b6-9cc4-c12f8bf2d385",
+						"exec": [
+							"tests[\"No deberia asociar la foto ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /fotografos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un fotografo de un concurso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los fotografos de un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01c17f77-2e40-41de-811f-d16b37d18058",
+						"exec": [
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar concurso que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75935929-489b-4f14-85ab-8af623efe182",
+						"exec": [
+							"tests[\"No deberia obtener el autor ya que el concurso no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /concursos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un fotografo inexistente de un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "066163b9-5ca9-4ff5-8031-c6266944b610",
+						"exec": [
+							"tests[\"No deberia obtener la foto ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /fotografos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar fotografos a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61020dba-98cb-4aef-b8e0-2034b4cbbabd",
+						"exec": [
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"apellido\": \"Mensea\",\n        \"correo\": \"n.rinrin@correo.com\",\n        \"edad\": 17,\n        \"fechaNacimiento\": \"8/10/12\",\n        \"login\": \"s.noma\",\n        \"id\": {{new_id_f}},\n        \"nombre\": \"Sarsa\",\n        \"pais\": \"Colombia\",\n        \"password\": \"s12434\",\n        \"telefono\": 319\n},\n   {\n        \"apellido\": \"Noa\",\n        \"correo\": \"nmonas@correo.com\",\n        \"edad\": 17,\n        \"fechaNacimiento\": \"9/10/12\",\n        \"login\":\"lerencuanja\",\n        \"id\": {{new_id_f2}},\n        \"nombre\": \"Tomas\",\n        \"pais\": \"Siberia\",\n        \"password\": \"password\",\n        \"telefono\": 3196801523\n}\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar fotografos a un concurso inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "61020dba-98cb-4aef-b8e0-2034b4cbbabd",
+						"exec": [
+							"tests[\"No se deberian asociar las fotos ya que el concurso no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /concursos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n        \"apellido\": \"Mensea\",\n        \"correo\": \"n.rinrin@correo.com\",\n        \"edad\": 17,\n        \"fechaNacimiento\": \"8/10/12\",\n        \"login\": \"s.noma\",\n        \"id\": {{new_id_f}},\n        \"nombre\": \"Sarsa\",\n        \"pais\": \"Colombia\",\n        \"password\": \"s12434\",\n        \"telefono\": 319\n},\n   {\n        \"apellido\": \"Noa\",\n        \"correo\": \"nmonas@correo.com\",\n        \"edad\": 17,\n        \"fechaNacimiento\": \"9/10/12\",\n        \"login\":\"lerencuanja\",\n        \"id\": {{new_id_f2}},\n        \"nombre\": \"Tomas\",\n        \"pais\": \"Siberia\",\n        \"password\": \"password\",\n        \"telefono\": 3196801523\n}\n]"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/0/photos/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"0",
+						"photos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un fotografo de un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4932fdae-2ce3-4aee-b02a-5ed6ee67122e",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un fotografo inexistente a un concurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4932fdae-2ce3-4aee-b02a-5ed6ee67122e",
+						"exec": [
+							"tests[\"No so deberia eliminar la foto ya que esta no existe.\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /fotografos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/concursos/{{new_id_c}}/fotografos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"concursos",
+						"{{new_id_c}}",
+						"fotografos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete fotografo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7604c528-63b2-464a-9474-fd177def3a27",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos/{{new_id_f}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos",
+						"{{new_id_f}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delte fotografo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7604c528-63b2-464a-9474-fd177def3a27",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/Fotografos/{{new_id_f2}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"Fotografos",
+						"{{new_id_f2}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ab426929-1fe1-455f-b91b-36527ee5b83d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "59c74b94-41e8-490d-9fa9-ee964e57a7f1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

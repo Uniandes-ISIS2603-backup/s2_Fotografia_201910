@@ -224,7 +224,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo edad de la foto
      */
-    public int getEdadDeLaFoto() {
+    public Integer getEdadDeLaFoto() {
         return edadDeLaFoto;
     }
 
@@ -233,7 +233,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pEdad nuevo valor para el atributo edadDeLaFoto
      */
-    public void setEdadDeLaFoto(int pEdad) {
+    public void setEdadDeLaFoto(Integer pEdad) {
         edadDeLaFoto = pEdad;
     }
 
@@ -242,7 +242,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @return atributo maxFotos
      */
-    public int getMaxFotos() {
+    public Integer getMaxFotos() {
         return maxFotos;
     }
 
@@ -252,7 +252,7 @@ public class ConcursoDTO implements Serializable {
      * @param max nuevo valor del atributo
      */
 
-    public void setMaxFotos(int max) {
+    public void setMaxFotos(Integer max) {
         maxFotos = max;
     }
 
@@ -262,7 +262,7 @@ public class ConcursoDTO implements Serializable {
      * @return atributo premio
      */
 
-    public int getPremioCantidad() {
+    public Integer getPremioCantidad() {
         return premioCantidad;
     }
 
@@ -271,7 +271,7 @@ public class ConcursoDTO implements Serializable {
      *
      * @param pPremio nuevo valor del premio
      */
-    public void setPremioCantidad(int pPremio) {
+    public void setPremioCantidad(Integer pPremio) {
         premioCantidad = pPremio;
     }
 
