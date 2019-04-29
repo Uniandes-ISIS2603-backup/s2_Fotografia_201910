@@ -86,7 +86,7 @@ public class CalificacionDTO implements Serializable {
      * @return atributo puntaje.
      *
      */
-    public double getPuntaje() {
+    public Double getPuntaje() {
         return puntaje;
     }
 
@@ -96,7 +96,7 @@ public class CalificacionDTO implements Serializable {
      * @param puntaje nuevo valor del atributo
      *
      */
-    public void setPuntaje(double puntaje) {
+    public void setPuntaje(Double puntaje) {
         this.puntaje = puntaje;
     }
 
