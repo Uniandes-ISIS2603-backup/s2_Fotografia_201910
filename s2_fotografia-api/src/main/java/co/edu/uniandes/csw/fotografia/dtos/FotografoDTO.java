@@ -63,9 +63,9 @@ public class FotografoDTO implements Serializable  {
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
-    private int edad;
+    private Integer edad;
     private String correo;
-    private int telefono;
+    private Integer telefono;
     private String pais;
     private Long id;
     private String login;
@@ -199,7 +199,7 @@ public class FotografoDTO implements Serializable  {
      * Obtiene el atributo edad
      * @return atributo edad
      */
-    public int getEdad(){
+    public Integer getEdad(){
         return edad;
     }
     
@@ -207,7 +207,7 @@ public class FotografoDTO implements Serializable  {
      * Establece un valor para el atributo edad
      * @param pEdad nuevo valor para el atributo
      */
-    public void setEdad(int pEdad) {
+    public void setEdad(Integer pEdad) {
         edad = pEdad;
     }
     
@@ -232,7 +232,7 @@ public class FotografoDTO implements Serializable  {
      *Obtiene el atributo telefono 
      * @return atributo telefono
      */
-    public int getTelefono(){
+    public Integer getTelefono(){
         return telefono;
     }
     /**
@@ -240,7 +240,7 @@ public class FotografoDTO implements Serializable  {
      * @param tel nuevo valor del atributo 
      */
     
-    public void setTelefono(int tel){
+    public void setTelefono(Integer tel){
         telefono = tel;
     }
         /**

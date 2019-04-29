@@ -31,6 +31,8 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author s.acostav
  */
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class FotografoPhotosResource {
     private static final Logger LOGGER = Logger.getLogger(FotografoPhotosResource.class.getName());
 

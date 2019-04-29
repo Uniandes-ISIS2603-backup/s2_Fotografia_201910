@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.resources;
 import co.edu.uniandes.csw.fotografia.dtos.ClienteDTO;
+import co.edu.uniandes.csw.fotografia.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.fotografia.ejb.ClienteLogic;
 import co.edu.uniandes.csw.fotografia.ejb.ConcursoClienteLogic;
 import co.edu.uniandes.csw.fotografia.entities.ClienteEntity;
@@ -75,13 +76,13 @@ public class ConcursoClienteResource {
      * Error de lógica que se genera cuando el concurso no tiene cliente.
      */
     @GET
-    public ClienteDTO getCliente(@PathParam("concursosId") Long concursosId) {
+    public ClienteDetailDTO getCliente(@PathParam("concursosId") Long concursosId) {
         LOGGER.log(Level.INFO, "ConcursoClienteResource getCliente: input: {0}", concursosId);
         ClienteEntity clienteEntity = concursoClienteLogic.getCliente(concursosId);
         if (clienteEntity == null) {
             throw new WebApplicationException("El recurso /concursos/" + concursosId + "/cliente no existe.", 404);
         }
-        ClienteDTO clienteDTO = new ClienteDTO(clienteEntity);
+        ClienteDetailDTO clienteDTO = new ClienteDetailDTO(clienteEntity);
         LOGGER.log(Level.INFO, "ConcursoClienteResource getCliente: output: {0}", clienteDTO);
         return clienteDTO;
     }

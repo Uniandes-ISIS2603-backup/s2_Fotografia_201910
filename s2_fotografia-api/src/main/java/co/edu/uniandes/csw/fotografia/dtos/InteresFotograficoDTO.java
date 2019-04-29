@@ -73,7 +73,7 @@ public class InteresFotograficoDTO implements Serializable{
      * Obtiene el atributo id
      * @return atributo id
      */
-    public long getId(){
+    public Long getId(){
         return id;
     }
     
@@ -82,7 +82,7 @@ public class InteresFotograficoDTO implements Serializable{
      * @param pId nuevo valor para el atributo 
      */
     
-    public void setId(long pId){
+    public void setId(Long pId){
      id = pId;
     }
     
