@@ -1,4 +1,5 @@
 
+delete from CLIENTEENTITY_FORMADEPAGOENTITY;
 delete from FacturaEntity;
 delete from FormaDePagoEntity;
 delete from JURADOENTITY;
@@ -10,7 +11,6 @@ delete from ConcursoEntity;
 delete from RondaEntity;
 delete from OrganizadorEntity;
 delete from PHOTOENTITY;
-delete from CLIENTEENTITY_FORMADEPAGOENTITY;
 delete from CONCURSOENTITY_PHOTOENTITY;
 delete from INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY;
 delete from interesfotograficoentity ;
@@ -66,10 +66,14 @@ UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;
 
 
 insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA',1);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (1,100326968432156, '8/22/2020',496,'Tarjeta Credito', 'VISA',1);
 
 
+insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,22);
 insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,1);
+
+
 insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
 
