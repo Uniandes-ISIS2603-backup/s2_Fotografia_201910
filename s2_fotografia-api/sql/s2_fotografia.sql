@@ -21,12 +21,12 @@ insert into CalificacionEntity (id, puntaje, comentario, nombre) values (200, 2.
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (300, 1.6, 'No me gusta', 'Foto 3');
 
 insert into OrganizadorEntity(id, FOTO, nombre, apellido, edad, correo, telefono, pais) values (200,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Jose', 'Martinez', 20, 'j.martinez@gmail.com', 31578965, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (201,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Juan', 'Martinez', 21, 'j.martinez1@gmail.com', 31578966, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (202, 'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png','Juana', 'Martinez', 22, 'j.martinez2@gmail.com', 31578967, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (203,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png' ,'Julian', 'Martinez', 10, 'j.martinez3@gmail.com', 31578968, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (204, 'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Jaime', 'Martinez', 22, 'j.martinez4@gmail.com', 31578969, 'Colombia');
-insert into OrganizadorEntity(id,FOTO,nombre, apellido, edad, correo, telefono, pais) values (205,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png' ,'Jacobe', 'Martinez', 23, 'j.martinez5@gmail.com', 31578960, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (206,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png' ,'John', 'Martinez', 18, 'j.martinez6@gmail.com', 31578961, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (201,'https://pickaface.net/gallery/avatar/uyyii155a670caadbab.png', 'Juan', 'Martinez', 21, 'j.martinez1@gmail.com', 31578966, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (202, 'https://pickaface.net/gallery/avatar/20130128_124302_3642_Lisa.png','Juana', 'Martinez', 22, 'j.martinez2@gmail.com', 31578967, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (203,'https://pickaface.net/gallery/avatar/VirtualesM55584681cf2c1.png' ,'Julian', 'Martinez', 10, 'j.martinez3@gmail.com', 31578968, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (204, 'https://pickaface.net/gallery/avatar/roverking543bcb6e6df62.png', 'Jaime', 'Martinez', 22, 'j.martinez4@gmail.com', 31578969, 'Colombia');
+insert into OrganizadorEntity(id,FOTO,nombre, apellido, edad, correo, telefono, pais) values (205,'https://pickaface.net/gallery/avatar/unr_zerefdregneel_170905_2001_9rjz9l.png' ,'Jacobe', 'Martinez', 23, 'j.martinez5@gmail.com', 31578960, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (206,'https://pickaface.net/gallery/avatar/20140629_122757_2166_Artid512.png' ,'John', 'Martinez', 18, 'j.martinez6@gmail.com', 31578961, 'Colombia');
 
 insert into RondaEntity(id, numRonda) values (300, 1);
 insert into RondaEntity(id, numRonda) values (301, 1);
