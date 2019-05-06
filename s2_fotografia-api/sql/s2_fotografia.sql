@@ -104,6 +104,6 @@ insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (
 
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,1);
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,4);
-insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3);
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3); 
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,1);
 
