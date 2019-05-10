@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.fotografia.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -22,7 +23,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class OrganizadorEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
-    @OneToMany(mappedBy = "organizador",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "organizador",fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<ConcursoEntity> concursos = new ArrayList<>();
    
     private String nombre;
