@@ -128,6 +128,14 @@ public class FotografoResource {
         }
         return FotografoPhotosResource.class;
     }
+    
+    @Path("{FotografosId: \\d+}/InteresFotograficos")
+    public Class<FotografoInteresesFotograficosResource> getFotografoInteresResource(@PathParam("fotografosId") Long fotografosId) {
+        if (FotografoLogic.getFotografo(fotografosId) == null) {
+            throw new WebApplicationException("El recurso /fotografo/" + fotografosId + " no existe.", 404);
+        }
+        return FotografoInteresesFotograficosResource.class;
+    }
 
 
     /**
