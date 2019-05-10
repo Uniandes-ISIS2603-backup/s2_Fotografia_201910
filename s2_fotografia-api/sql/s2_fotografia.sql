@@ -1,4 +1,5 @@
 
+delete from CLIENTEENTITY_FORMADEPAGOENTITY;
 delete from FacturaEntity;
 delete from FormaDePagoEntity;
 delete from JURADOENTITY;
@@ -10,7 +11,6 @@ delete from ConcursoEntity;
 delete from RondaEntity;
 delete from OrganizadorEntity;
 delete from PHOTOENTITY;
-delete from CLIENTEENTITY_FORMADEPAGOENTITY;
 delete from CONCURSOENTITY_PHOTOENTITY;
 delete from INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY;
 delete from interesfotograficoentity ;
@@ -21,12 +21,12 @@ insert into CalificacionEntity (id, puntaje, comentario, nombre) values (200, 2.
 insert into CalificacionEntity (id, puntaje, comentario, nombre) values (300, 1.6, 'No me gusta', 'Foto 3');
 
 insert into OrganizadorEntity(id, FOTO, nombre, apellido, edad, correo, telefono, pais) values (200,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Jose', 'Martinez', 20, 'j.martinez@gmail.com', 31578965, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (201,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Juan', 'Martinez', 21, 'j.martinez1@gmail.com', 31578966, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (202, 'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png','Juana', 'Martinez', 22, 'j.martinez2@gmail.com', 31578967, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (203,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png' ,'Julian', 'Martinez', 10, 'j.martinez3@gmail.com', 31578968, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (204, 'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Jaime', 'Martinez', 22, 'j.martinez4@gmail.com', 31578969, 'Colombia');
-insert into OrganizadorEntity(id,FOTO,nombre, apellido, edad, correo, telefono, pais) values (205,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png' ,'Jacobe', 'Martinez', 23, 'j.martinez5@gmail.com', 31578960, 'Colombia');
-insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (206,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png' ,'John', 'Martinez', 18, 'j.martinez6@gmail.com', 31578961, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (201,'https://pickaface.net/gallery/avatar/uyyii155a670caadbab.png', 'Juan', 'Martinez', 21, 'j.martinez1@gmail.com', 31578966, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (202, 'https://pickaface.net/gallery/avatar/20130128_124302_3642_Lisa.png','Juana', 'Martinez', 22, 'j.martinez2@gmail.com', 31578967, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (203,'https://pickaface.net/gallery/avatar/VirtualesM55584681cf2c1.png' ,'Julian', 'Martinez', 10, 'j.martinez3@gmail.com', 31578968, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (204, 'https://pickaface.net/gallery/avatar/roverking543bcb6e6df62.png', 'Jaime', 'Martinez', 22, 'j.martinez4@gmail.com', 31578969, 'Colombia');
+insert into OrganizadorEntity(id,FOTO,nombre, apellido, edad, correo, telefono, pais) values (205,'https://pickaface.net/gallery/avatar/unr_zerefdregneel_170905_2001_9rjz9l.png' ,'Jacobe', 'Martinez', 23, 'j.martinez5@gmail.com', 31578960, 'Colombia');
+insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (206,'https://pickaface.net/gallery/avatar/20140629_122757_2166_Artid512.png' ,'John', 'Martinez', 18, 'j.martinez6@gmail.com', 31578961, 'Colombia');
 
 insert into RondaEntity(id, numRonda) values (300, 1);
 insert into RondaEntity(id, numRonda) values (301, 1);
@@ -34,8 +34,10 @@ insert into RondaEntity(id, numRonda) values (302, 1);
 insert into RondaEntity(id, numRonda) values (303, 1);
 insert into RondaEntity(id, numRonda) values (304, 1);
 
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea12211' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr11009' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena) values (2, 'mariana0911', 'Mariana Lozano','ml@yahoo.com','marianalozano12' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena) values (3, 'camilozuluaga', 'Camilo Zuluaga','czulu@gmail.com','cZulu095678' );
 
 
 
@@ -66,10 +68,18 @@ UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;
 
 
 insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA',1);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (1,100326968432156, '10/22/2020',496,'Tarjeta Credito', 'VISA',1);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (2,109984268432222, '11/22/2028',123,'Tarjeta Credito', 'MASTERCARD',100);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (3,1001832155432, '2/22/2024',431,'Tarjeta Credito', 'VISA',2);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (4,1990985122340, '6/22/2022',994,'Tarjeta Credito', 'MASTERCARD',2);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (5,101987651989211, '1/22/2027',502,'Tarjeta Credito', 'VISA',3);
 
 
+insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,22);
 insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,1);
+
+
 insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
 
@@ -94,7 +104,7 @@ insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (
 
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,1);
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,4);
-insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3);
+insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3); 
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,1);
 
 
