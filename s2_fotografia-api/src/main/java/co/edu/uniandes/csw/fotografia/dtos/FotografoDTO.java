@@ -64,6 +64,8 @@ public class FotografoDTO implements Serializable  {
     private String apellido;
     private String fechaNacimiento;
     private Integer edad;
+    private String hobbies;
+    private String descrip;
     private String correo;
     private Integer telefono;
     private String pais;
@@ -96,6 +98,8 @@ public class FotografoDTO implements Serializable  {
             this.login = fotografoEntity.getLogin();
             this.password = fotografoEntity.getPassword();
             this.foto = fotografoEntity.getFoto();
+            this.descrip = fotografoEntity.getDescrp();
+            this.hobbies = fotografoEntity.getHobbies();
             
            
         }
@@ -114,6 +118,8 @@ public class FotografoDTO implements Serializable  {
         fotografo.setFechaNacimiento(fechaNacimiento);
         fotografo.setEdad(edad);
         fotografo.setCorreo(correo);
+        fotografo.setHobbies(hobbies);
+        fotografo.setDescrp(descrip);
         fotografo.setTelefono(telefono);
         fotografo.setPais(pais);
         fotografo.setLogin(login);
@@ -150,6 +156,7 @@ public class FotografoDTO implements Serializable  {
     public void setLogin(String log){
         login = log;
     }
+    
     /**
      * Obtiene el atributo nombre
      * @return atributo nombre 
@@ -274,6 +281,19 @@ public class FotografoDTO implements Serializable  {
         return id;
     }
   
+      public String getHobbies(){
+        return hobbies;
+    }
+    public void setHobbies(String pH){
+        hobbies = pH;
+    }
+    
+    public String getDescrip(){
+        return descrip;
+    }
+    public void setDescrip(String p){
+        descrip = p;
+    }
     /**
      * Establece un valor para el atributoid
      * @param pId nuevo valor del atributo 

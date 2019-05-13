@@ -56,8 +56,8 @@ insert into CONCURSOENTITY(ID, CANTIDADPREMIO, EDADDELAFOTO, FECHA, MAXFOTOS, TE
 values (103, 15000, 6,  '8/20/2015 ', 6, 'Conciertos', null, 203, 303 );
 
 
-insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_','https://www.dzoom.org.es/wp-content/uploads/2007/02/canon-mejorar-fotografo-consejos-principiantes-novatos-810x540.jpg');
-insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto) values (5,'Villegas','s@correo.com',30,'23/12/12','Laura','Colombia',319,'s.acostav','s_','https://cadenaser00.epimg.net/ser/imagenes/2018/12/11/sociedad/1544508140_140111_1544508461_noticia_normal_recorte1.jpg');
+insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto,hobbies,descrip) values (2,'Acosta','s.acosta@correo.com',19,'23/12/12','Sara','Colombia',319,'s.acostav','s_','https://www.dzoom.org.es/wp-content/uploads/2007/02/canon-mejorar-fotografo-consejos-principiantes-novatos-810x540.jpg', 'fotografiar paisajes, leer novelas de terror y practicar deportes extremos', 'Soy una fotografa apasionada me encanta captar los mejores momentos de la vida');
+insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto,hobbies,descrip) values (5,'Villegas','s@correo.com',30,'23/12/12','Laura','Colombia',319,'s.acostav','s_','https://cadenaser00.epimg.net/ser/imagenes/2018/12/11/sociedad/1544508140_140111_1544508461_noticia_normal_recorte1.jpg', 'Fotografiar personas, ir al teatro y jugar videojuegos', 'Soy una fotografa  que le gusta plasmar lo mejor de la vida en fotografias');
 insert into INTERESFOTOGRAFICOENTITY(id,interes)values(1,'paisajes');
 insert into INTERESFOTOGRAFICOENTITY(id,INTERES) values(2,'retratos');
 insert into INTERESFOTOGRAFICOENTITY(id,interes) values(3,'animales');
@@ -86,10 +86,10 @@ insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
 
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (801, 'El presi', '1970-01-01 12:25:06', 'Este es uribe ¿, vale mucho porque es bien famoso', 79, 8, 8, 'https://www.elheraldo.co/sites/default/files/styles/clavelistamovile/public/articulo/2017/05/09/alvaro-uribe-le-responde-al-contralor-sobre-sus-predios_0.jpg?itok=efvMFyQL', 5);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (802, 'Atardecer en cartagena', '1970-01-01 12:25:06', 'Un atardecer bien tarde', 79, 8, 8, 'https://www.turismodeobservacion.com/media/fotografias/atardecer-en-cortegana-3123-xl.jpg', 5);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (802, 'Atardecer en cartagena', '1970-01-01 12:25:06', 'Un atardecer bien tarde', 79, 8, 8, 'https://www.turismodeobservacion.com/media/fotografias/atardecer-en-cortegana-3123-xl.jpg', 2);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (803, 'Baile ensordecido', '1970-01-01 12:25:06', 'La ciudad en blanco y negro', 79, 8, 8, 'http://estag.fimagenes.com/img/4/1/9/d/M/19dM_900.jpg', 5);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (804, 'India verde', '1970-01-01 12:25:06', 'Ojos verdes en India', 79, 8, 8, 'https://mott.pe/noticias/wp-content/uploads/2017/10/Conoce-cu%C3%A1les-son-las-mejores-im%C3%A4genes-art%C3%ADsticas-capturadas-a-trav%C3%A9s-de-fotograf%C3%ADas-famosas.jpg', 5);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (805, 'Niña y su gato', '1970-01-01 12:25:06', 'Gato en la silla', 79, 8, 8, 'https://bigotesdegato.com/wp-content/uploads/2013/10/La-bella-historia-de-amistad-entre-una-ni%C3%B1a-y-su-gato-05.jpg', 5);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (805, 'Niña y su gato', '1970-01-01 12:25:06', 'Gato en la silla', 79, 8, 8, 'https://bigotesdegato.com/wp-content/uploads/2013/10/La-bella-historia-de-amistad-entre-una-ni%C3%B1a-y-su-gato-05.jpg', 2);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (806, 'Colores para colorear', '1970-01-01 12:25:06', 'Coloreando ando', 79, 8, 8, 'https://comunidad.iebschool.com/iebs/files/2012/02/Cubilete-l%C3%A1pices.jpg', 2);
 
 
