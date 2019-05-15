@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.fotografia.test.logic;
 
 import co.edu.uniandes.csw.fotografia.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.CalificacionPersistence;
 import java.util.ArrayList;
@@ -45,6 +46,8 @@ public class CalificacionLogicTest {
     private UserTransaction utx;
 
     private List<CalificacionEntity> data = new ArrayList<>();
+    
+    private List<PhotoEntity> dataPhoto = new ArrayList<PhotoEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -98,6 +101,11 @@ public class CalificacionLogicTest {
             em.persist(entity);
             data.add(entity);
         }
+        for (int i = 0; i < 3; i++) {
+            PhotoEntity entity = factory.manufacturePojo(PhotoEntity.class);
+            em.persist(entity);
+            dataPhoto.add(entity);
+        }
     }
     
     /**
@@ -106,7 +114,8 @@ public class CalificacionLogicTest {
     @Test
     public void createCalificacionTest() throws BusinessLogicException {
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
+        newEntity.setFotoCalificada(dataPhoto.get(1));
+        CalificacionEntity result = calificacionLogic.createCalificacion(dataPhoto.get(1).getId(),newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -119,7 +128,7 @@ public class CalificacionLogicTest {
      */
     @Test
     public void getCalificacionesTest() {
-        List<CalificacionEntity> list = calificacionLogic.getCalificaciones();
+        List<CalificacionEntity> list = calificacionLogic.getCalificaciones(dataPhoto.get(1).getId() );
         Assert.assertEquals(data.size(), list.size());
         for (CalificacionEntity entity : list) {
             boolean found = false;
@@ -138,7 +147,7 @@ public class CalificacionLogicTest {
     @Test
     public void getCalificacionTest() {
         CalificacionEntity entity = data.get(0);
-        CalificacionEntity resultEntity = calificacionLogic.getCalificacion(entity.getId());
+        CalificacionEntity resultEntity = calificacionLogic.getCalificacion(dataPhoto.get(1).getId(),entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getPuntaje(), resultEntity.getPuntaje(), 0);
@@ -172,7 +181,7 @@ public class CalificacionLogicTest {
     @Test
     public void deleteCalificacionTest() throws BusinessLogicException {
         CalificacionEntity entity = data.get(0);
-        calificacionLogic.deleteCalificacion(entity.getId());
+        calificacionLogic.deleteCalificacion(dataPhoto.get(1).getId(),entity.getId());
         CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

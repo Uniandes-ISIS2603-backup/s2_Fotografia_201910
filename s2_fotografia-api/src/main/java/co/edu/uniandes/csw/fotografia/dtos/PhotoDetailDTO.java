@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.fotografia.dtos;
 
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,11 @@ import java.util.List;
  *
  * @author da.benavides
  */
-public class PhotoDetailDTO extends PhotoDTO {
+public class PhotoDetailDTO extends PhotoDTO implements Serializable{
     /**
      * Esta lista contiene las calificaciones a la foto
      */
-    private List<CalificacionDTO> calification;
+    private List<CalificacionDTO> calificaciones;
     /**
      * Constructor vacío
      */
@@ -35,11 +36,11 @@ public class PhotoDetailDTO extends PhotoDTO {
      */
     public PhotoDetailDTO(PhotoEntity photoEntity) {
         super(photoEntity);
-        if (photoEntity != null) {
-            calification = new ArrayList<>();
+        if (photoEntity.getCalificaciones() != null) {
+            calificaciones = new ArrayList<>();
             for(CalificacionEntity entityCalificacion : photoEntity.getCalificaciones())
             {
-                calification.add(new CalificacionDTO(entityCalificacion));
+                calificaciones.add(new CalificacionDTO(entityCalificacion));
             }
         }
     }    
@@ -54,10 +55,10 @@ public class PhotoDetailDTO extends PhotoDTO {
     @Override
     public PhotoEntity toEntity() {
         PhotoEntity photoEntity = super.toEntity();
-        if(calification!=null)
+        if(calificaciones!=null)
         {
             List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
-            for(CalificacionDTO dtoCalificacion : calification)
+            for(CalificacionDTO dtoCalificacion : getCalification())
             {
                 calificacionesEntity.add(dtoCalificacion.toEntity());
             }
@@ -66,16 +67,16 @@ public class PhotoDetailDTO extends PhotoDTO {
         return photoEntity;
     }
     /**
-     * @return the calification
+     * @return the calificaciones
      */
     public List<CalificacionDTO> getCalification() {
-        return calification;
+        return calificaciones;
     }
 
     /**
-     * @param calification the calification to set
+     * @param calificaciones the calificaciones to set
      */
-    public void setCalification(List<CalificacionDTO> calification) {
-        this.calification = calification;
+    public void setCalification(List<CalificacionDTO> calificaciones) {
+        this.calificaciones = calificaciones;
     }
 }

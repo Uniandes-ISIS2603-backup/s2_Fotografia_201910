@@ -27,11 +27,7 @@ public class RondaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne(mappedBy = "ronda", fetch=FetchType.LAZY)
     private ConcursoEntity concurso;
-    
-    @PodamExclude
-    @OneToMany (mappedBy = "rondaCalificada", fetch = FetchType.LAZY)
-    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
-    
+        
     
     private Integer numRonda;
 
@@ -48,14 +44,6 @@ public class RondaEntity extends BaseEntity implements Serializable{
 
     public Integer getNumeroRonda() {
         return numRonda;
-    }
-
-    public List<CalificacionEntity> getCalificaciones() {
-        return calificaciones;
-    }
-
-    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-        this.calificaciones = calificaciones;
     }
 
     public void setJurado(JuradoEntity jurado) {

@@ -114,24 +114,6 @@ public class CalificacionPersistenceTest {
     }
 
     /**
-     * Prueba para consultar la lista de Calificaciones.
-     */
-    @Test
-    public void getCalificacionesTest() {
-        List<CalificacionEntity> list = calificacionPersistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (CalificacionEntity ent : list) {
-            boolean found = false;
-            for (CalificacionEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
-    }
-
-    /**
      * Prueba para consultar un Calificacion.
      */
     @Test

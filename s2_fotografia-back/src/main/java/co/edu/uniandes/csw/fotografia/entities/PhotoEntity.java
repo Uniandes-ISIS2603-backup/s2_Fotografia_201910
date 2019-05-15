@@ -84,7 +84,7 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      * Relacion con clase Calificacion de tipo OneToMany mapeado por esta clase
      */
    @PodamExclude
-   @OneToMany(mappedBy = "fotoCalificada", fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "fotoCalificada", cascade = CascadeType.PERSIST, orphanRemoval = true)
    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
      /**
      * Relacion con clase Concurso de tipo ManyToMany mapeado por esta clase
