@@ -134,8 +134,8 @@ public class PhotoResource {
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @PUT
-    @Path("{fotosId: \\d+}")
-    public PhotoDetailDTO updatePhoto(@PathParam("fotosId") Long fotosId, PhotoDetailDTO foto) throws BusinessLogicException {
+    @Path("{photosId: \\d+}")
+    public PhotoDetailDTO updatePhoto(@PathParam("photosId") Long fotosId, PhotoDetailDTO foto) throws BusinessLogicException {
        LOGGER.log(Level.INFO, "FotoResource updatePhoto: input: fotosId: {0} , foto: {1}", new Object[]{fotosId, foto});
         foto.setId(fotosId);
         if (photoLogic.getFoto(fotosId) == null) {
@@ -144,5 +144,26 @@ public class PhotoResource {
         PhotoDetailDTO detailDTO = new PhotoDetailDTO(photoLogic.updateFoto(fotosId, foto.toEntity()));
         LOGGER.log(Level.INFO, "PhotoResource updateCliente: output: {0}", detailDTO);
         return detailDTO;
-    }   
+    }  
+    
+    /**
+     * Conexión con el servicio de reseñas para un libro. {@link ReviewResource}
+     *
+     * Este método conecta la ruta de /books con las rutas de /reviews que
+     * dependen del libro, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las reseñas.
+     *
+     * @param photosId El ID del libro con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Reseñas para ese libro en paricular.\
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el libro.
+     */
+    @Path("{photosId: \\d+}/calificaciones")
+    public Class<CalificacionResource> getReviewResource(@PathParam("photosId") Long photosId) {
+        if (photoLogic.getFoto(photosId) == null) {
+            throw new WebApplicationException("El recurso /photos/" + photosId + "/calificaciones no existe.", 404);
+        }
+        return CalificacionResource.class;
+    }
 }

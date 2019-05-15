@@ -24,8 +24,6 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     
     private List<FormaDePagoDTO> formasDePago;
     
-    private List <CalificacionDTO> calificacionesPorCliente;
-    
     private List <ConcursoDTO> concursosCliente;
     
       public ClienteDetailDTO()
@@ -52,12 +50,6 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             formasDePago = new ArrayList();
             for (FormaDePagoEntity entityFormaDePago : clienteEntity.getFormasDePago()) {
                 formasDePago.add(new FormaDePagoDTO(entityFormaDePago));
-            }
-            
-            calificacionesPorCliente = new ArrayList<>();
-            for(CalificacionEntity entityCalificacion : clienteEntity.getCalificacionesPorCliente())
-            {
-                calificacionesPorCliente.add(new CalificacionDTO(entityCalificacion));
             }
             
             concursosCliente = new ArrayList<>();
@@ -91,15 +83,6 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
                 formasDePagoEntity.add(dtoFormaDePago.toEntity());
             }
             clienteEntity.setFormasDePago(formasDePagoEntity);
-        }
-        if(calificacionesPorCliente!=null)
-        {
-            List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
-            for(CalificacionDTO dtoCalificacion : calificacionesPorCliente)
-            {
-                calificacionesEntity.add(dtoCalificacion.toEntity());
-            }
-            clienteEntity.setCalificacionesPorCliente(calificacionesEntity);
         }
         
         if(concursosCliente != null)
@@ -142,20 +125,6 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
      */
     public void setFormasDePago(List<FormaDePagoDTO> formasDePago) {
         this.formasDePago = formasDePago;
-    }
-
-    /**
-     * @return the calificacionesPorCliente
-     */
-    public List <CalificacionDTO> getCalificacionesPorCliente() {
-        return calificacionesPorCliente;
-    }
-
-    /**
-     * @param calificacionesPorCliente the calificacionesPorCliente to set
-     */
-    public void setCalificacionesPorCliente(List <CalificacionDTO> calificacionesPorCliente) {
-        this.calificacionesPorCliente = calificacionesPorCliente;
     }
 
     /**

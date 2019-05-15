@@ -16,9 +16,7 @@ delete from INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY;
 delete from interesfotograficoentity ;
 delete from fotografoentity;
 
-insert into CalificacionEntity (id, puntaje, comentario, nombre) values (100, 4, 'Muy bonita', 'Foto 1');
-insert into CalificacionEntity (id, puntaje, comentario, nombre) values (200, 2.5, 'Esta desenfocada', 'Foto 2');
-insert into CalificacionEntity (id, puntaje, comentario, nombre) values (300, 1.6, 'No me gusta', 'Foto 3');
+
 
 insert into OrganizadorEntity(id, FOTO, nombre, apellido, edad, correo, telefono, pais) values (200,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Jose', 'Martinez', 20, 'j.martinez@gmail.com', 31578965, 'Colombia');
 insert into OrganizadorEntity(id, foto,nombre, apellido, edad, correo, telefono, pais) values (201,'https://pickaface.net/gallery/avatar/JuanesRozas5209a6689e87e.png', 'Juan', 'Martinez', 21, 'j.martinez1@gmail.com', 31578966, 'Colombia');
@@ -100,4 +98,6 @@ insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_i
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,4);
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3);
 insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,1);
+
+insert into CALIFICACIONENTITY (ID,COMENTARIO,PUNTAJE,FOTOCALIFICADA_ID) values (1, 'funciona', 4.5, 801);
 
