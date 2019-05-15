@@ -122,11 +122,20 @@ public class FotografoResource {
     }
 
     @Path("{FotografosId: \\d+}/photos")
-    public Class<FotografoPhotosResource> getFotografoPhotosResource(@PathParam("fotografosId") Long fotografosId) {
+    public Class<FotografoPhotosResource> getFotografoPhotosResource(@PathParam("FotografosId") Long fotografosId) {
         if (FotografoLogic.getFotografo(fotografosId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + fotografosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Fotografos/" + fotografosId + " no existe.", 404);
         }
         return FotografoPhotosResource.class;
+    }
+
+    
+    @Path("{FotografosId: \\d+}/InteresFotograficos")
+    public Class<FotografoInteresesFotograficosResource> getFotografoInteresResource(@PathParam("FotografosId") Long fotografosId) {
+        if (FotografoLogic.getFotografo(fotografosId) == null) {
+            throw new WebApplicationException("El recurso /Fotografos/" + fotografosId + " no existe.", 404);
+        }
+        return FotografoInteresesFotograficosResource.class;
     }
 
 
@@ -149,7 +158,7 @@ public class FotografoResource {
     public void deleteFotografo(@PathParam("FotografosId") Long fotografosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "FotografoResource deleteFotografo: input: {0}", fotografosId);
         if (FotografoLogic.getFotografo(fotografosId) == null) {
-            throw new WebApplicationException("El recurso /fotografos/" + fotografosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Fotografos/" + fotografosId + " no existe.", 404);
         }
         FotografoLogic.deleteFotografo(fotografosId);
         LOGGER.info("FotografoResource deleteFotografo: output: void");

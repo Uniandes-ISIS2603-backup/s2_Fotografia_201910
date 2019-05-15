@@ -102,6 +102,14 @@ public class FotografoInteresesFotograficosResource {
         LOGGER.log(Level.INFO, "FotografoInteresesFotograficosResource getInteresFotografico: output: {0}", detailDTO);
         return detailDTO;
     }
+    
+    @GET
+    public List<InteresFotograficoDetailDTO> getIntereses(@PathParam("fotografoId") Long fotografoId) {
+        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: input: {0}", fotografoId);
+        List<InteresFotograficoDetailDTO> listaDetailDTOs = interesesFotograficosListEntity2DTO(fotografoInteresFotograficoLogic.getInteresesFotograficos(fotografoId));
+        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDetailDTOs);
+        return listaDetailDTOs;
+    }
 
     /**
      * Actualiza la lista de libros de un autor con la lista que se recibe en el
