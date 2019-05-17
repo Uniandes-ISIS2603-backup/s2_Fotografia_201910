@@ -2,12 +2,16 @@ package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.fotografia.ejb.InteresFotograficoFotosLogic;
 import co.edu.uniandes.csw.fotografia.persistence.InteresFotograficoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -58,6 +62,7 @@ public class InteresFotograficoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el interesFotograficos con id = {0}", interesFotograficosId);
         return newInteresFotograficosEntity;
      }
+
      
      public void deleteInteresFotografico(Long interesFotograficosId){
      }
