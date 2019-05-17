@@ -95,9 +95,7 @@ insert into PHOTOENTITY (id, nombre, date, description, price, winner, published
 
 
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (807, 'Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg', 2);
-
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (807, 'Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg', 2);
-
+ vbbbbbbbbbbbbb
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 801);
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 802);
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 803);
@@ -107,10 +105,7 @@ insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 805);
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 806);
 
-insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,1);
-insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(2,4);
-insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,3); 
-insert into INTERESFOTOGRAFICOENTITY_FOTOGRAFOENTITY (fotografos_id, intereses_id)values(5,1);
+
 
 insert into CONCURSOENTITY_FOTOGRAFOENTITY(CONCURSOS_ID,FOTOGRAFOS_ID) values (100, 2);
 insert into CONCURSOENTITY_FOTOGRAFOENTITY(CONCURSOS_ID,FOTOGRAFOS_ID) values (100, 5);
