@@ -20,10 +20,15 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private Double puntaje;
     private String comentario;
+    private String nombre;
     
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private PhotoEntity fotoCalificada;
+    
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity clienteCalificador;
    
  /**
      * Devuelve el puntaje de la calificación.
@@ -77,5 +82,23 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setFotoCalificada( PhotoEntity foto)
     {
         this.fotoCalificada = foto;
+    }
+    
+    /**
+     * Devuelve el cliente  calificador
+     * @return Un cliente
+     */
+    public ClienteEntity getClienteCalificador()
+    {
+        return clienteCalificador;
+    }
+    
+    /**
+     * Modifica el cliente calificador
+     * @param cliente
+     */
+    public void setClienteCalificador(ClienteEntity cliente)
+    {
+        this.clienteCalificador = cliente;
     }
 }

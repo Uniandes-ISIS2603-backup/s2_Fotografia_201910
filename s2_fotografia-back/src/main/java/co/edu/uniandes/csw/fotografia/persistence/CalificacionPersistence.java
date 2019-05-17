@@ -50,24 +50,36 @@ public class CalificacionPersistence {
      * @return La reseña encontrada o null. Nota: Si existe una o más reseñas
      * devuelve siempre la primera que encuentra
      */
-    public CalificacionEntity find(Long photoId, Long calificacionId) {
-        LOGGER.log(Level.INFO, "Consultando el calificacion con id = {0} del libro con id = " + photoId, calificacionId);
-        TypedQuery<CalificacionEntity> q = em.createQuery("select p from PhotoEntity p where (p.photo.id = :photoid) and (p.id = :calificacionId)", CalificacionEntity.class);
-        q.setParameter("photoid", photoId);
+    public CalificacionEntity find(Long photosId, Long calificacionId) {
+        LOGGER.log(Level.INFO, "Consultando el review con id = {0} del libro con id = " + photosId, calificacionId);
+        TypedQuery<CalificacionEntity> q = em.createQuery("select p from CalificacionEntity p where (p.fotoCalificada.id = :photoid) and (p.id = :calificacionId)", CalificacionEntity.class);
+        q.setParameter("photoid", photosId);
         q.setParameter("calificacionId", calificacionId);
         List<CalificacionEntity> results = q.getResultList();
-        CalificacionEntity calificacion = null;
+        CalificacionEntity review = null;
         if (results == null) {
-            calificacion = null;
+            review = null;
         } else if (results.isEmpty()) {
-            calificacion = null;
+            review = null;
         } else if (results.size() >= 1) {
-            calificacion = results.get(0);
+            review = results.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el calificacion con id = {0} del libro con id =" + photoId, calificacionId);
-        return calificacion;
+        LOGGER.log(Level.INFO, "Saliendo de consultar el review con id = {0} del libro con id =" + photosId, calificacionId);
+        return review;
     }
 
+     /**
+     * Busca con un query todos los objetos de la base de datos de PhotoEntity
+     * @return Lista de PhotoEntity
+     */
+    public List<CalificacionEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos las fotos");
+        // Se crea un query para buscar todos los fotografos en la base de datos.
+        TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de fotografos.
+        return query.getResultList();
+    }
+    
     /**
      * Actualiza una calificacion.
      *
@@ -126,17 +138,6 @@ public class CalificacionPersistence {
         }
         
         return bien;
-    }
-    
-    /**
-     * Busca si hay algun lubro con el id que se envía de argumento
-     *
-     * @param calificacionId: id correspondiente al libro buscado.
-     * @return un libro.
-     */
-    public CalificacionEntity find(Long calificacionId) {
-        LOGGER.log(Level.INFO, "Consultando el libro con id={0}", calificacionId);
-        return em.find(CalificacionEntity.class, calificacionId);
     }
 }
 

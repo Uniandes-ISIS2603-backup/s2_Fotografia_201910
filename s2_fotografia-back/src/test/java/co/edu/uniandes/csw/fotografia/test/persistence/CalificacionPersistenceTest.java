@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.test.persistence;
 
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,8 @@ public class CalificacionPersistenceTest {
     UserTransaction utx;
 
     private List<CalificacionEntity> data = new ArrayList<>();
+    
+    private List<PhotoEntity> dataPhoto = new ArrayList<PhotoEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -95,6 +98,12 @@ public class CalificacionPersistenceTest {
             em.persist(entity);
             data.add(entity);
         }
+        for (int i = 0; i < 3; i++) {
+            PhotoEntity entity = factory.manufacturePojo(PhotoEntity.class);
+
+            em.persist(entity);
+            dataPhoto.add(entity);
+        }
     }
 
     /**
@@ -119,7 +128,7 @@ public class CalificacionPersistenceTest {
     @Test
     public void getCalificacionTest() {
         CalificacionEntity entity = data.get(0);
-        CalificacionEntity newEntity = calificacionPersistence.find(entity.getId());
+        CalificacionEntity newEntity = calificacionPersistence.find(dataPhoto.get(0).getId(),entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getComentario(), newEntity.getComentario());
         Assert.assertEquals(entity.getPuntaje(), newEntity.getPuntaje(),0);

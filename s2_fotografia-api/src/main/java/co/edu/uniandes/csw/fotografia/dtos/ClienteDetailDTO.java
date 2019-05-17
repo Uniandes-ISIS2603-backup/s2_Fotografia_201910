@@ -24,7 +24,9 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     
     private List<FormaDePagoDTO> formasDePago;
     
-    private List <ConcursoDTO> concursosCliente;
+    private List <ConcursoDTO> concursosCliente;    
+    
+    private List <CalificacionDTO> calificacionesPorCliente;
     
       public ClienteDetailDTO()
      {
@@ -56,6 +58,11 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             for(ConcursoEntity entityConcurso: clienteEntity.getConcursosCliente())
             {
                 concursosCliente.add(new ConcursoDTO(entityConcurso));
+            }
+            calificacionesPorCliente = new ArrayList<>();
+            for(CalificacionEntity entityCalificacion : clienteEntity.getCalificacionesPorCliente())
+            {
+                calificacionesPorCliente.add(new CalificacionDTO(entityCalificacion));
             }
         }
     }
@@ -94,6 +101,15 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             }
             
             clienteEntity.setConcursosCliente(concursosEntity);
+        }
+        if(calificacionesPorCliente!=null)
+        {
+            List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
+            for(CalificacionDTO dtoCalificacion : calificacionesPorCliente)
+            {
+                calificacionesEntity.add(dtoCalificacion.toEntity());
+            }
+            clienteEntity.setCalificacionesPorCliente(calificacionesEntity);
         }
         
         return clienteEntity;
@@ -139,5 +155,19 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
      */
     public void setConcursosCliente(List <ConcursoDTO> concursosCliente) {
         this.concursosCliente = concursosCliente;
+    }
+    
+     /**
+     * @return the calificacionesPorCliente
+     */
+    public List <CalificacionDTO> getCalificacionesPorCliente() {
+        return calificacionesPorCliente;
+    }
+
+    /**
+     * @param calificacionesPorCliente the calificacionesPorCliente to set
+     */
+    public void setCalificacionesPorCliente(List <CalificacionDTO> calificacionesPorCliente) {
+        this.calificacionesPorCliente = calificacionesPorCliente;
     }
 }

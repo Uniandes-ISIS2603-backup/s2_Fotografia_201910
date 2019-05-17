@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 
 /**
  *
@@ -21,6 +22,8 @@ public class CalificacionDTO implements Serializable {
     private String comentario;
 
     private PhotoDTO photo;
+    
+    private ClienteDTO clienteCalificador;
     /**
      * Constructor vacio
      */
@@ -44,6 +47,10 @@ public class CalificacionDTO implements Serializable {
             } else {
                 this.photo = null;
             }
+            if (calificacionEntity.getClienteCalificador()!= null)
+            {
+                this.clienteCalificador = new ClienteDTO(calificacionEntity.getClienteCalificador());
+            } 
         }
     }
 
@@ -137,5 +144,19 @@ public class CalificacionDTO implements Serializable {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the clienteCalificador
+     */
+    public ClienteDTO getClienteCalificador() {
+        return clienteCalificador;
+    }
+
+    /**
+     * @param clienteCalificador the clienteCalificador to set
+     */
+    public void setClienteCalificador(ClienteDTO clienteCalificador) {
+        this.clienteCalificador = clienteCalificador;
     }
 }
