@@ -58,10 +58,10 @@ insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre
 insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto,hobbies,descrip) values (3,'López','dianalo@correo.com',22,'23/12/12','Diana','Colombia',319,'dianalop','s_','http://www.mecenas20.com/wp-content/uploads/2017/11/maria-hesse8-570x460.jpg', 'Pintar paisajes y leer novelas romanticas.', 'Soy una fotografa  que le gusta plasmar lo mejor de la vida en fotografias');
 insert into FOTOGRAFOENTITY (id, apellido, correo, edad, fechanacimiento, nombre, pais, telefono, login, password,foto,hobbies,descrip) values (1,'Rojas','juan@correo.com',21,'23/12/12','Juan','Peru',372455,'rojasj','s_','https://scontent-bog1-1.xx.fbcdn.net/v/t1.0-9/13103328_1610716002580982_1923281472404379076_n.jpg?_nc_cat=110&_nc_ht=scontent-bog1-1.xx&oh=1a44089358bdf062c2578eaf7097100f&oe=5D6A7DE9', 'Viajar por el mundo y plasmar en fotografias lo mejor de cada lugar', 'Soy una persona que le gusta conocer nuevos lugares y disfrutar lo mejor de ellos');
 
-insert into INTERESFOTOGRAFICOENTITY(id,interes)values(1,'paisajes');
-insert into INTERESFOTOGRAFICOENTITY(id,INTERES) values(2,'retratos');
-insert into INTERESFOTOGRAFICOENTITY(id,interes) values(3,'animales');
-insert into INTERESFOTOGRAFICOENTITY(id,interes) values(4,'edificios');
+insert into INTERESFOTOGRAFICOENTITY(id,interes,foto)values(1,'Paisajes','https://culturafotografica.es/wp-content/uploads/2016/06/Egol-Skye-Island-Scotland-2013_Web.jpg');
+insert into INTERESFOTOGRAFICOENTITY(id,INTERES,foto) values(2,'Retratos','https://www.dzoom.org.es/wp-content/uploads/2013/04/retrato-foto-734x489.jpg');
+insert into INTERESFOTOGRAFICOENTITY(id,interes,foto) values(3,'Animales','http://www.animalesextincion.es/images/noticias/1710080234_guepardo.jpg');
+insert into INTERESFOTOGRAFICOENTITY(id,interes,foto) values(4,'Edificios','https://cadenaser00.epimg.net/ser/imagenes/2019/03/09/internacional/1552122127_693173_1552122232_noticia_normal_recorte1.jpg');
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 400;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 500;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;    
@@ -85,13 +85,16 @@ insert into RondaEntity(id, NUMRONDA) values (200, 1);
 
 
 
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (801, 'El presi', '1970-01-01 12:25:06', 'Este es uribe ¿, vale mucho porque es bien famoso', 79, 8, 8, 'https://www.elheraldo.co/sites/default/files/styles/clavelistamovile/public/articulo/2017/05/09/alvaro-uribe-le-responde-al-contralor-sobre-sus-predios_0.jpg?itok=efvMFyQL', 5);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (802, 'Atardecer en cartagena', '1970-01-01 12:25:06', 'Un atardecer bien tarde', 79, 8, 8, 'https://www.turismodeobservacion.com/media/fotografias/atardecer-en-cortegana-3123-xl.jpg', 2);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (803, 'Baile ensordecido', '1970-01-01 12:25:06', 'La ciudad en blanco y negro', 79, 8, 8, 'http://estag.fimagenes.com/img/4/1/9/d/M/19dM_900.jpg', 5);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (804, 'India verde', '1970-01-01 12:25:06', 'Ojos verdes en India', 79, 8, 8, 'https://mott.pe/noticias/wp-content/uploads/2017/10/Conoce-cu%C3%A1les-son-las-mejores-im%C3%A4genes-art%C3%ADsticas-capturadas-a-trav%C3%A9s-de-fotograf%C3%ADas-famosas.jpg', 3);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (805, 'Niña y su gato', '1970-01-01 12:25:06', 'Gato en la silla', 79, 8, 8, 'https://bigotesdegato.com/wp-content/uploads/2013/10/La-bella-historia-de-amistad-entre-una-ni%C3%B1a-y-su-gato-05.jpg', 2);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (806, 'Colores para colorear', '1970-01-01 12:25:06', 'Coloreando ando', 79, 8, 8, 'https://comunidad.iebschool.com/iebs/files/2012/02/Cubilete-l%C3%A1pices.jpg', 1);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (801, 'El presi', '1970-01-01 12:25:06', 'Este es uribe ¿, vale mucho porque es bien famoso', 79, 8, 8, 'https://www.elheraldo.co/sites/default/files/styles/clavelistamovile/public/articulo/2017/05/09/alvaro-uribe-le-responde-al-contralor-sobre-sus-predios_0.jpg?itok=efvMFyQL', 5,1);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (802, 'Atardecer en cartagena', '1970-01-01 12:25:06', 'Un atardecer bien tarde', 79, 8, 8, 'https://www.turismodeobservacion.com/media/fotografias/atardecer-en-cortegana-3123-xl.jpg', 2,2);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (803, 'Baile ensordecido', '1970-01-01 12:25:06', 'La ciudad en blanco y negro', 79, 8, 8, 'http://estag.fimagenes.com/img/4/1/9/d/M/19dM_900.jpg', 5,3);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (804, 'India verde', '1970-01-01 12:25:06', 'Ojos verdes en India', 79, 8, 8, 'https://mott.pe/noticias/wp-content/uploads/2017/10/Conoce-cu%C3%A1les-son-las-mejores-im%C3%A4genes-art%C3%ADsticas-capturadas-a-trav%C3%A9s-de-fotograf%C3%ADas-famosas.jpg', 3,4);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (805, 'Niña y su gato', '1970-01-01 12:25:06', 'Gato en la silla', 79, 8, 8, 'https://bigotesdegato.com/wp-content/uploads/2013/10/La-bella-historia-de-amistad-entre-una-ni%C3%B1a-y-su-gato-05.jpg', 2,1);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (806, 'Colores para colorear', '1970-01-01 12:25:06', 'Coloreando ando', 79, 8, 8, 'https://comunidad.iebschool.com/iebs/files/2012/02/Cubilete-l%C3%A1pices.jpg', 1,2);
 
+
+
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (807, 'Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg', 2);
 
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID) values (807, 'Lazare', '1970-01-01 12:25:06', 'Long-tailed skua', 79, 8, 8, 'https://www.apertura.com/__export/1520955322778/sites/revistaap/img/2018/03/13/lobo-wall-street.jpg_1913337537.jpg', 2);
 
