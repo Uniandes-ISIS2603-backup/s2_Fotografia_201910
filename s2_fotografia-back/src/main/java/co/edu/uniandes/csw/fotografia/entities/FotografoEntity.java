@@ -41,9 +41,7 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany(mappedBy="fotografos")
     private List<ConcursoEntity> concursos = new ArrayList<ConcursoEntity>();
-    @PodamExclude
-    @ManyToMany(mappedBy="fotografos")
-    private List<InteresFotograficoEntity> intereses = new ArrayList<InteresFotograficoEntity>();
+
     
     
     public void setFotos(List<PhotoEntity> p){
@@ -65,13 +63,7 @@ public class FotografoEntity extends BaseEntity implements Serializable{
         concursos = p;
     }
      
-    public void setIntereses(List<InteresFotograficoEntity> p){
-        intereses = p;
-    }
-    
-    public List<InteresFotograficoEntity> getIntereses(){
-        return intereses ;
-    }
+
     
     public List<ConcursoEntity> getConcursos
         (){
