@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.fotografia.resources;
 
 import co.edu.uniandes.csw.fotografia.dtos.CalificacionDTO;
-import co.edu.uniandes.csw.fotografia.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.fotografia.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,16 +23,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @calificacion a.trujilloa1
  */
-@Path("/calificaciones")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-@RequestScoped
+@Produces("application/json")
+@Consumes("application/json")
 public class CalificacionResource {
         private static final Logger LOGGER = Logger.getLogger(CalificacionResource.class.getName());
 
@@ -46,14 +41,16 @@ public class CalificacionResource {
      * petición y se regresa un objeto identico con un id auto-generado por la
      * base de datos.
      *
+     * @param photoId
      * @param calificacion {@link CalificacionDTO} - La calificacion que se desea guardar.
      * @return JSON {@link CalificacionDTO} - La calificacion guardada con el atributo id
      * autogenerado.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @POST
-    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) throws BusinessLogicException {
+    public CalificacionDTO createCalificacion(@PathParam("photoId")Long photoId, CalificacionDTO calificacion) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: input: {0}", calificacion);
-        CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
+        CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(photoId,calificacion.toEntity()));
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: output: {0}", calificacionDTO);
         return calificacionDTO;
     }
@@ -61,13 +58,14 @@ public class CalificacionResource {
     /**
      * Busca y devuelve todas las calificaciones que existen en la aplicacion.
      *
+     * @param photoId
      * @return JSONArray {@link CalificacionDetailDTO} - Las calificaciones encontradas en la
      * aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<CalificacionDetailDTO> getCalificaciones() {
+    public List<CalificacionDTO> getCalificaciones(@PathParam("photosId") Long photoId) {
         LOGGER.info("CalificacionResource getCalificaciones: input: void");
-        List<CalificacionDetailDTO> listaCalificaciones = listEntity2DTO(calificacionLogic.getCalificaciones());
+        List<CalificacionDTO> listaCalificaciones = listEntity2DTO(calificacionLogic.getCalificaciones(photoId));
         LOGGER.log(Level.INFO, "CalificacionResource getCalificaciones: output: {0}", listaCalificaciones);
         return listaCalificaciones;
     }
@@ -75,6 +73,7 @@ public class CalificacionResource {
     /**
      * Busca la calificacion con el id asociado recibido en la URL y la devuelve.
      *
+     * @param photoId
      * @param calificacionesId Identificador de la calificacion que se esta buscando. Este debe
      * ser una cadena de dígitos.
      * @return JSON {@link CalificacionDetailDTO} - La calificacion buscada
@@ -83,45 +82,57 @@ public class CalificacionResource {
      */
     @GET
     @Path("{calificacionesId: \\d+}")
-    public CalificacionDetailDTO getCalificacion(@PathParam("calificacionesId") Long calificacionesId) {
+    public CalificacionDTO getCalificacion(@PathParam("photosId") Long photoId, @PathParam("calificacionesId") Long calificacionesId) {
         LOGGER.log(Level.INFO, "CalificacionResource get: input: {0}", calificacionesId);
-        CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(calificacionesId);
+        CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(photoId, calificacionesId);
         if (calificacionEntity == null) {
             throw new WebApplicationException("El recurso /calificaciones/" + calificacionesId + " no existe.", 404);
         }
-        CalificacionDetailDTO detailDTO = new CalificacionDetailDTO(calificacionEntity);
+        CalificacionDTO detailDTO = new CalificacionDTO(calificacionEntity);
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", detailDTO);
         return detailDTO;
+    }
+    
+    @Path("{calificacionesId: \\d+}/clientes")
+    public Class<CalificacionClienteResource> getCalificacionClienteResource(@PathParam("photosId") Long photoId,@PathParam("calificacionesId") Long calificacionesId) {
+        return CalificacionClienteResource.class;
     }
 
     /**
      * Actualiza la calificacion con el id recibido en la URL con la información que se
      * recibe en el cuerpo de la petición.
      *
+     * @param photoId
      * @param calificacionesId Identificador de la calificacion que se desea actualizar. Este
      * debe ser una cadena de dígitos.
      * @param calificacion {@link CalificacionDetailDTO} La calificacion que se desea guardar.
      * @return JSON {@link CalificacionDetailDTO} - La calificacion guardada.
+     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra la calificacion a
      * actualizar.
      */
     @PUT
     @Path("{calificacionesId: \\d+}")
-    public CalificacionDetailDTO updateCalificacion(@PathParam("calificacionesId") Long calificacionesId, CalificacionDetailDTO calificacion) {
+    public CalificacionDTO updateCalificacion(@PathParam("photosId") Long photoId, @PathParam("calificacionesId") Long calificacionesId, CalificacionDTO calificacion) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CalificacionResource updateCalificacion: input: calificacionesId: {0} , calificacion: {1}", new Object[]{calificacionesId, calificacion});
-        calificacion.setId(calificacionesId);
-        if (calificacionLogic.getCalificacion(calificacionesId) == null) {
-            throw new WebApplicationException("El recurso /calificaciones/" + calificacionesId + " no existe.", 404);
+        if (calificacionesId.equals(calificacion.getId())) {
+            throw new BusinessLogicException("Los ids del Review no coinciden.");
         }
-        CalificacionDetailDTO detailDTO = new CalificacionDetailDTO(calificacionLogic.updateCalificacion(calificacionesId, calificacion.toEntity()));
-        LOGGER.log(Level.INFO, "CalificacionResource updateCalificacion: output: {0}", detailDTO);
-        return detailDTO;
+        CalificacionEntity entity = calificacionLogic.getCalificacion(photoId, calificacionesId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /books/" + photoId + "/reviews/" + calificacionesId + " no existe.", 404);
+
+        }
+        CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.updateCalificacion(photoId, calificacion.toEntity()));
+        LOGGER.log(Level.INFO, "CalificacionResource updateCalificacion: output: {0}", calificacionDTO);
+        return calificacionDTO;
     }
 
     /**
      * Borra el calificacion con el id asociado recibido en la URL.
      *
+     * @param photoId
      * @param calificacionesId Identificador de la calificacion que se desea borrar. Este debe
      * ser una cadena de dígitos.
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
@@ -130,13 +141,12 @@ public class CalificacionResource {
      */
     @DELETE
     @Path("{calificacionesId: \\d+}")
-    public void deleteCalificacion(@PathParam("calificacionesId") Long calificacionesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "CalificacionResource deleteCalificacion: input: {0}", calificacionesId);
-        if (calificacionLogic.getCalificacion(calificacionesId) == null) {
-            throw new WebApplicationException("El recurso /calificaciones/" + calificacionesId + " no existe.", 404);
+    public void deleteCalificacion(@PathParam("photosId") Long photoId, @PathParam("calificacionesId") Long calificacionesId) throws BusinessLogicException {
+        CalificacionEntity entity = calificacionLogic.getCalificacion(photoId, calificacionesId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /books/" + photoId + "/reviews/" + calificacionesId + " no existe.", 404);
         }
-        calificacionLogic.deleteCalificacion(calificacionesId);
-        LOGGER.info("CalificacionResource deleteCalificacion: output: void");
+        calificacionLogic.deleteCalificacion(photoId, calificacionesId);
     }
 
     /**
@@ -145,10 +155,10 @@ public class CalificacionResource {
      * @param entityList Lista de CalificacionEntity a convertir.
      * @return Lista de CalificacionDetailDTO convertida.
      */
-    private List<CalificacionDetailDTO> listEntity2DTO(List<CalificacionEntity> entityList) {
-        List<CalificacionDetailDTO> list = new ArrayList<>();
+    private List<CalificacionDTO> listEntity2DTO(List<CalificacionEntity> entityList) {
+        List<CalificacionDTO> list = new ArrayList<>();
         for (CalificacionEntity entity : entityList) {
-            list.add(new CalificacionDetailDTO(entity));
+            list.add(new CalificacionDTO(entity));
         }
         return list;
     }

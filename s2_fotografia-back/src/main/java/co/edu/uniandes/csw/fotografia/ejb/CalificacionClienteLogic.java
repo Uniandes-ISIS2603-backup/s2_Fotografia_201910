@@ -7,9 +7,11 @@ package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
 import co.edu.uniandes.csw.fotografia.entities.ClienteEntity;
+import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.fotografia.persistence.ClientePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -27,7 +29,7 @@ public class CalificacionClienteLogic {
     private ClientePersistence clientePersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     @Inject
-    private CalificacionPersistence callificacionPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    private CalificacionPersistence calificacionPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
      * Agregar un cliente a un calficacion
@@ -36,10 +38,10 @@ public class CalificacionClienteLogic {
      * @param clientesId El id del cliente al cual se le va a guardar el calficacion.
      * @return El calficacion que fue agregado al cliente.
      */
-    public ClienteEntity addCliente(Long clientesId, Long calificacionesId) {
+    public ClienteEntity addCliente(Long photoId, Long clientesId, Long calificacionesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar el cliente con id = {0} al calficacion con id = " + calificacionesId, clientesId);
         ClienteEntity clienteEntity = clientePersistence.get(clientesId);
-        CalificacionEntity calificacionEntity = callificacionPersistence.find(calificacionesId);
+        CalificacionEntity calificacionEntity = calificacionPersistence.find(photoId, calificacionesId);
         calificacionEntity.setClienteCalificador(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociar el cliente con id = {0} al calficacion con id = " + calificacionesId, clientesId);
         return clientePersistence.get(clientesId);
@@ -52,9 +54,9 @@ public class CalificacionClienteLogic {
      * @param calificacionesId id del calficacion a ser buscado.
      * @return el cliente solicitada por medio de su id.
      */
-    public ClienteEntity getCliente(Long calificacionesId) {
+    public ClienteEntity getCliente(Long photoId,Long calificacionesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente del calficacion con id = {0}", calificacionesId);
-        ClienteEntity clienteEntity = callificacionPersistence.find(calificacionesId).getClienteCalificador();
+        ClienteEntity clienteEntity = calificacionPersistence.find(photoId,calificacionesId).getClienteCalificador();
         LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente del calficacion con id = {0}", calificacionesId);
         return clienteEntity;
     }
@@ -66,13 +68,13 @@ public class CalificacionClienteLogic {
      * @param clientesId El id del nuebo cliente asociado al calficacion.
      * @return el nuevo cliente asociado.
      */
-    public CalificacionEntity replaceCliente(Long calificacionesId, Long clientesId) {
+    public ClienteEntity replaceCliente(Long photoId, Long calificacionesId, Long clientesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el cliente del calficacion calficacion con id = {0}", calificacionesId);
         ClienteEntity clienteEntity = clientePersistence.get(clientesId);
-        CalificacionEntity calificacionEntity = callificacionPersistence.find(calificacionesId);
+        CalificacionEntity calificacionEntity = calificacionPersistence.find(photoId,calificacionesId);
         calificacionEntity.setClienteCalificador(clienteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociar el cliente con id = {0} al calficacion con id = " + calificacionesId, clientesId);
-        return calificacionEntity;
+        return clienteEntity;
     }
 
     /**
@@ -81,9 +83,9 @@ public class CalificacionClienteLogic {
      * @param calificacionesId El calficacion que se desea borrar del cliente.
      * @throws BusinessLogicException si el calficacion no tiene cliente
      */
-    public void removeCliente(Long calificacionesId) throws BusinessLogicException {
+    public void removeCliente(Long photoId, Long calificacionesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente del calficacion con id = {0}", calificacionesId);
-        CalificacionEntity calificacionEntity = callificacionPersistence.find(calificacionesId);
+        CalificacionEntity calificacionEntity = calificacionPersistence.find(photoId,calificacionesId);
         if (calificacionEntity.getClienteCalificador()== null) {
             throw new BusinessLogicException("El calficacion no tiene cliente");
         }
@@ -91,5 +93,18 @@ public class CalificacionClienteLogic {
         calificacionEntity.setClienteCalificador(null);
         //clienteEntity.getCalificaciones().remove(calificacionEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el cliente con id = {0} del calficacion con id = " + calificacionesId, clienteEntity.getId());
+    }
+    
+    /**
+     * Obtiene una colección de instancias de FotografoEntity asociadas a una
+     * instancia de InteresFotografico
+     *
+     * @param interesesFotograficosId Identificador de la instancia de InteresFotografico
+     * @return Colección de instancias de FotografoEntity asociadas a la instancia
+     * de InteresFotografico
+     */
+    public ClienteEntity getClientes(Long photoId, Long calificacionesId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", calificacionesId);
+        return calificacionPersistence.find(photoId, calificacionesId).getClienteCalificador();
     }
 }

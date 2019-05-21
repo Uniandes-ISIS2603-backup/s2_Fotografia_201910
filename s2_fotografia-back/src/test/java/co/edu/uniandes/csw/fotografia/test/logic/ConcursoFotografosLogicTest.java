@@ -5,12 +5,13 @@
  */
 package co.edu.uniandes.csw.fotografia.test.logic;
 
-import co.edu.uniandes.csw.fotografia.ejb.InteresFotograficoFotografosLogic;
+import co.edu.uniandes.csw.fotografia.ejb.ConcursoFotografoLogic;
 import co.edu.uniandes.csw.fotografia.ejb.FotografoLogic;
-import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
+import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
+import co.edu.uniandes.csw.fotografia.persistence.ConcursoPersistence;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.fotografia.persistence.InteresFotograficoPersistence;
+import co.edu.uniandes.csw.fotografia.persistence.ConcursoPersistence;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -29,17 +30,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Pruebas de logica de la relacion InteresFotografico - Fotografos
+ * Pruebas de logica de la relacion Concurso - Fotografos
  *
- * @author s.acostav
+ * @author n.rincond
  */
 @RunWith(Arquillian.class)
-public class InteresFotograficoFotografosLogicTest {
+public class ConcursoFotografosLogicTest {
 
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private InteresFotograficoFotografosLogic interesFotograficoFotografoLogic;
+    private ConcursoFotografoLogic concursoFotografoLogic;
 
     @Inject
     private FotografoLogic fotografoLogic;
@@ -50,7 +51,7 @@ public class InteresFotograficoFotografosLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private InteresFotograficoEntity interesFotografico = new InteresFotograficoEntity();
+    private ConcursoEntity concurso = new ConcursoEntity();
     private List<FotografoEntity> data = new ArrayList<>();
 
     /**
@@ -61,10 +62,10 @@ public class InteresFotograficoFotografosLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(InteresFotograficoEntity.class.getPackage())
+                .addPackage(ConcursoEntity.class.getPackage())
                 .addPackage(FotografoEntity.class.getPackage())
-                .addPackage(InteresFotograficoFotografosLogic.class.getPackage())
-                .addPackage(InteresFotograficoPersistence.class.getPackage())
+                .addPackage(ConcursoFotografoLogic.class.getPackage())
+                .addPackage(ConcursoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -93,7 +94,7 @@ public class InteresFotograficoFotografosLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from InteresFotograficoEntity").executeUpdate();
+        em.createQuery("delete from ConcursoEntity").executeUpdate();
         em.createQuery("delete from FotografoEntity").executeUpdate();
     }
 
@@ -102,57 +103,56 @@ public class InteresFotograficoFotografosLogicTest {
      * pruebas.
      */
     private void insertData() {
-       
 
-        interesFotografico = factory.manufacturePojo(InteresFotograficoEntity.class);
-        interesFotografico.setId(1L);
-        interesFotografico.setFotografos(new ArrayList<>());
-        em.persist(interesFotografico);
+        concurso = factory.manufacturePojo(ConcursoEntity.class);
+        concurso.setId(1L);
+        concurso.setFotosEnConcurso(new ArrayList<>());
+        em.persist(concurso);
 
         for (int i = 0; i < 3; i++) {
             FotografoEntity entity = factory.manufacturePojo(FotografoEntity.class);
-            entity.setIntereses(new ArrayList<>());
-            entity.getIntereses().add(interesFotografico);
+            entity.setConcursos(new ArrayList<>());
+            entity.getConcursos().add(concurso);
             em.persist(entity);
             data.add(entity);
-            interesFotografico.getFotografos().add(entity);
+            concurso.getFotografos().add(entity);
         }
     }
 
     /**
-     * Prueba para asociar un autor a un libro.
+     * Prueba para asociar un concurso a un foto.
      *
      *
-     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void addFotografoTest() throws BusinessLogicException {
         FotografoEntity newFotografo = factory.manufacturePojo(FotografoEntity.class);
         fotografoLogic.createFotografo(newFotografo);
-        FotografoEntity fotografoEntity = interesFotograficoFotografoLogic.addFotografo(interesFotografico.getId(), newFotografo.getId());
+        FotografoEntity fotografoEntity = concursoFotografoLogic.addFotografo(concurso.getId(), newFotografo.getId());
         Assert.assertNotNull(fotografoEntity);
 
         Assert.assertEquals(fotografoEntity.getId(), newFotografo.getId());
         Assert.assertEquals(fotografoEntity.getNombre(), newFotografo.getNombre());
+        Assert.assertEquals(fotografoEntity.getApellido(), newFotografo.getApellido());
         Assert.assertEquals(fotografoEntity.getCorreo(), newFotografo.getCorreo());
-        Assert.assertEquals(fotografoEntity.getLogin(), newFotografo.getLogin());
-        Assert.assertEquals(fotografoEntity.getTelefono(), newFotografo.getTelefono());
+        Assert.assertEquals(fotografoEntity.getEdad(), newFotografo.getEdad());
 
-        FotografoEntity lastFotografo = interesFotograficoFotografoLogic.getFotografo(interesFotografico.getId(), newFotografo.getId());
+        FotografoEntity lastFotografo = concursoFotografoLogic.getFotografo(concurso.getId(), newFotografo.getId());
 
         Assert.assertEquals(lastFotografo.getId(), newFotografo.getId());
         Assert.assertEquals(lastFotografo.getNombre(), newFotografo.getNombre());
-        Assert.assertEquals(lastFotografo.getTelefono(), newFotografo.getTelefono());
-        Assert.assertEquals(lastFotografo.getLogin(), newFotografo.getLogin());
+        Assert.assertEquals(lastFotografo.getApellido(), newFotografo.getApellido());
         Assert.assertEquals(lastFotografo.getCorreo(), newFotografo.getCorreo());
+        Assert.assertEquals(lastFotografo.getEdad(), newFotografo.getEdad());
     }
 
     /**
-     * Prueba para consultar la lista de Fotografos de un autor.
+     * Prueba para consultar la lista de Books de un concurso.
      */
     @Test
     public void getFotografosTest() {
-        List<FotografoEntity> fotografoEntities = interesFotograficoFotografoLogic.getFotografos(interesFotografico.getId());
+        List<FotografoEntity> fotografoEntities = concursoFotografoLogic.getFotografos(concurso.getId());
 
         Assert.assertEquals(data.size(), fotografoEntities.size());
 
@@ -162,54 +162,54 @@ public class InteresFotograficoFotografosLogicTest {
     }
 
     /**
-     * Prueba para cpnsultar un libro de un autor.
+     * Prueba para cpnsultar una fotografo de un concurso.
      *
-     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
     public void getFotografoTest() throws BusinessLogicException {
         FotografoEntity fotografoEntity = data.get(0);
-        FotografoEntity fotografo = interesFotograficoFotografoLogic.getFotografo(interesFotografico.getId(), fotografoEntity.getId());
+        FotografoEntity fotografo = concursoFotografoLogic.getFotografo(concurso.getId(), fotografoEntity.getId());
         Assert.assertNotNull(fotografo);
 
         Assert.assertEquals(fotografoEntity.getId(), fotografo.getId());
         Assert.assertEquals(fotografoEntity.getNombre(), fotografo.getNombre());
+        Assert.assertEquals(fotografoEntity.getApellido(), fotografo.getApellido());
         Assert.assertEquals(fotografoEntity.getCorreo(), fotografo.getCorreo());
-        Assert.assertEquals(fotografoEntity.getTelefono(), fotografo.getTelefono());
-        Assert.assertEquals(fotografoEntity.getLogin(), fotografo.getLogin());
+        Assert.assertEquals(fotografoEntity.getEdad(), fotografo.getEdad());
     }
 
     /**
-     * Prueba para actualizar los libros de un autor.
+     * Prueba para actualizar los fotografos  de un concurso.
      *
-     * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void replaceFotografosTest() throws BusinessLogicException {
+    public void replaceFotografoTest() throws BusinessLogicException {
         List<FotografoEntity> nuevaLista = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             FotografoEntity entity = factory.manufacturePojo(FotografoEntity.class);
-            entity.setIntereses(new ArrayList<>());
-            entity.getIntereses().add(interesFotografico);
+            entity.setConcursos(new ArrayList<>());
+            entity.getConcursos().add(concurso);
             fotografoLogic.createFotografo(entity);
             nuevaLista.add(entity);
         }
-        interesFotograficoFotografoLogic.replaceFotografos(interesFotografico.getId(), nuevaLista);
-        List<FotografoEntity> fotografoEntities = interesFotograficoFotografoLogic.getFotografos(interesFotografico.getId());
+        concursoFotografoLogic.replaceFotografos(concurso.getId(), nuevaLista);
+        List<FotografoEntity> fotografoEntities = concursoFotografoLogic.getFotografos(concurso.getId());
         for (FotografoEntity aNuevaLista : nuevaLista) {
             Assert.assertTrue(fotografoEntities.contains(aNuevaLista));
         }
     }
 
     /**
-     * Prueba desasociar un libro con un autor.
+     * Prueba desasociar una fotografo con un concurso.
      *
      */
     @Test
     public void removeFotografoTest() {
         for (FotografoEntity fotografo : data) {
-            interesFotograficoFotografoLogic.removeFotografo(interesFotografico.getId(), fotografo.getId());
+            concursoFotografoLogic.removeFotografo(concurso.getId(), fotografo.getId());
         }
-        Assert.assertTrue(interesFotograficoFotografoLogic.getFotografos(interesFotografico.getId()).isEmpty());
+        Assert.assertTrue(concursoFotografoLogic.getFotografos(concurso.getId()).isEmpty());
     }
 }

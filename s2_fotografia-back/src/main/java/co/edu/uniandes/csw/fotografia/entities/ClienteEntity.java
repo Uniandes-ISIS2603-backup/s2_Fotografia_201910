@@ -28,10 +28,6 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
-
-    @PodamExclude
-    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
-     private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
     @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
@@ -40,6 +36,10 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
     private List<ConcursoEntity> concursosCliente = new ArrayList<ConcursoEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
+     private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
     
     /**
      * Constructor vacio
@@ -119,20 +119,6 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * @return the calificacionesPorCliente
-     */
-    public List<CalificacionEntity> getCalificacionesPorCliente() {
-        return calificacionesPorCliente;
-    }
-
-    /**
-     * @param calificacionesPorCliente the calificacionesPorCliente to set
-     */
-    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
-        this.calificacionesPorCliente = calificacionesPorCliente;
-    }
-
-    /**
      * @return the formasDePago
      */
     public List<FormaDePagoEntity> getFormasDePago() {
@@ -158,6 +144,20 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     public void setConcursosCliente(List<ConcursoEntity> concursosCliente) {
         this.concursosCliente = concursosCliente;
+    }
+    
+    /**
+     * @return the calificacionesPorCliente
+     */
+    public List<CalificacionEntity> getCalificacionesPorCliente() {
+        return calificacionesPorCliente;
+    }
+
+    /**
+     * @param calificacionesPorCliente the calificacionesPorCliente to set
+     */
+    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
+        this.calificacionesPorCliente = calificacionesPorCliente;
     }
 
 }

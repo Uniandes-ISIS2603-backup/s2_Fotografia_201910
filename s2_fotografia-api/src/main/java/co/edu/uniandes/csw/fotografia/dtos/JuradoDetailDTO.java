@@ -21,7 +21,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class JuradoDetailDTO extends JuradoDTO implements Serializable {
 
     private List<PhotoDTO> fotos;
-    private List<CalificacionDTO> calificaciones;
     
     public JuradoDetailDTO() {
         super();
@@ -43,13 +42,6 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
                 fotos.add(new PhotoDTO(photoEntity));
             }
         }
-        
-        if(juradoEntity.getCalificaciones() !=null){
-            calificaciones = new ArrayList();
-            for ( CalificacionEntity entityCalificacion : juradoEntity.getCalificaciones()) {
-                calificaciones.add(new CalificacionDTO(entityCalificacion));
-            }
-        }
     }
 
     /**
@@ -69,13 +61,7 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
             }
             juradoEntity.setFotos(fotosEntity);
         }
-        if(calificaciones != null){
-            List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
-            for( CalificacionDTO dtoCalificacion: getCalificaciones()){
-                calificacionesEntity.add(dtoCalificacion.toEntity());
-            }
-            juradoEntity.setCalificaciones(calificacionesEntity);
-        }
+        
         return juradoEntity;
     }
 
@@ -95,24 +81,6 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
      */
     public void setFotos(List<PhotoDTO> fotos) {
         this.fotos = fotos;
-    }
-
-    /**
-     * Devuelve las calificaciones del jurado
-     *
-     * @return DTO de Calificaciones
-     */
-    public List<CalificacionDTO> getCalificaciones() {
-        return calificaciones;
-    }
-
-    /**
-     * Modifica los calificaciones del jurado
-     *
-     * @param calificaciones Lista de calificaciones
-     */
-    public void setCalificaciones(List<CalificacionDTO> calificaciones) {
-        this.calificaciones = calificaciones;
     }
     
     @Override

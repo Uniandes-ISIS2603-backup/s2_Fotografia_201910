@@ -102,26 +102,26 @@ public class FacturaDTO implements Serializable
     /**
      * @return the precio
      */
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
     /**
      * @param precio the precio to set
      */
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
     
   
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
     /**
      * @param numero the id to set
      */
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 

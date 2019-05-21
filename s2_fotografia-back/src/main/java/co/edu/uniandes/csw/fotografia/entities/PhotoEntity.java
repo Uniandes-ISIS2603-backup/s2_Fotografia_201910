@@ -55,6 +55,10 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     */
     private Boolean published;
     
+   @PodamExclude
+   @ManyToOne
+   private InteresFotograficoEntity interes;
+    
     /**
      * Relacion con clase Factura de tipo OneToMany
      */
@@ -84,7 +88,7 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      * Relacion con clase Calificacion de tipo OneToMany mapeado por esta clase
      */
    @PodamExclude
-   @OneToMany(mappedBy = "fotoCalificada", fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "fotoCalificada", cascade = CascadeType.PERSIST, orphanRemoval = true)
    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
      /**
      * Relacion con clase Concurso de tipo ManyToMany mapeado por esta clase
@@ -272,5 +276,16 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setRutaFoto(String rutaFoto) {
         this.rutaFoto = rutaFoto;
+    }
+    
+     public InteresFotograficoEntity getInteres() {
+        return interes;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setInteres(InteresFotograficoEntity id) {
+        this.interes = id;
     }
 }

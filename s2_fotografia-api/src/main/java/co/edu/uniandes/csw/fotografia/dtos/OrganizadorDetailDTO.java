@@ -22,6 +22,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * <pre>
  *   {
  *      "id": number,
+ *      "foto": string,
  *      "nombre": string,
  *      "apellido": string,
  *      "edad": number,
@@ -36,6 +37,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  *   {
  *      "id": 1,
+ *      "foto": "asfs",
  *      "nombre": "Jose",
  *      "apellido": "Ramirez",
  *      "edad": 29,

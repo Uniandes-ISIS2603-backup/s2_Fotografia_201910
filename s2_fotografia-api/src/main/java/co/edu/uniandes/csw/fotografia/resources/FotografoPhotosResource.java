@@ -31,6 +31,8 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author s.acostav
  */
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class FotografoPhotosResource {
     private static final Logger LOGGER = Logger.getLogger(FotografoPhotosResource.class.getName());
 
@@ -54,7 +56,7 @@ public class FotografoPhotosResource {
      */
     @POST
     @Path("{photosId: \\d+}")
-    public PhotoDTO addPhoto(@PathParam("fotografosId") Long fotografosId, @PathParam("photosId") Long photosId) {
+    public PhotoDTO addPhoto(@PathParam("FotografosId") Long fotografosId, @PathParam("photosId") Long photosId) {
         LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{fotografosId, photosId});
         if (photoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /photos/" + photosId + " no existe.", 404);
@@ -73,7 +75,7 @@ public class FotografoPhotosResource {
      * fotografo. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<PhotoDetailDTO> getPhotos(@PathParam("fotografosId") Long fotografosId) {
+    public List<PhotoDetailDTO> getPhotos(@PathParam("FotografosId") Long fotografosId) {
         LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: input: {0}", fotografosId);
         List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(fotografoPhotosLogic.getPhotos(fotografosId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: output: {0}", listaDetailDTOs);
@@ -96,7 +98,7 @@ public class FotografoPhotosResource {
      */
     @GET
     @Path("{photosId: \\d+}")
-    public PhotoDetailDTO getPhoto(@PathParam("fotografosId") Long fotografosId, @PathParam("photosId") Long photosId) throws BusinessLogicException {
+    public PhotoDetailDTO getPhoto(@PathParam("FotografosId") Long fotografosId, @PathParam("photosId") Long photosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{fotografosId, photosId});
         if (photoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /fotografos/" + fotografosId + "/photos/" + photosId + " no existe.", 404);
@@ -119,7 +121,7 @@ public class FotografoPhotosResource {
      * Error de lógica que se genera cuando no se encuentra el libro.
      */
     @PUT
-    public List<PhotoDetailDTO> replacePhotos(@PathParam("fotografosId") Long fotografosId, List<PhotoDetailDTO> photos) {
+    public List<PhotoDetailDTO> replacePhotos(@PathParam("FotografosId") Long fotografosId, List<PhotoDetailDTO> photos) {
         LOGGER.log(Level.INFO, "FotografoPhotosResource replacePhotos: input: fotografosId: {0} , photos: {1}", new Object[]{fotografosId, photos});
         for (PhotoDetailDTO photo : photos) {
             if (photoLogic.getFoto(photo.getId()) == null) {

@@ -33,10 +33,7 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany
     private List<PhotoEntity> fotosCalificadas = new ArrayList<PhotoEntity>();
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "juradoCalificador", cascade = CascadeType.PERSIST, orphanRemoval = true )
-    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+  
     
     @PodamExclude
     @ManyToOne
@@ -175,24 +172,6 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     public void setFotos( List<PhotoEntity> fotos)
     {
         this.fotosCalificadas = fotos;
-    }
-    
-    /**
-     * Devuelve las calificaciones del jurado
-     * @return las calificaciones 
-     */
-    public List<CalificacionEntity> getCalificaciones()
-    {
-        return calificaciones;
-    }
-    
-    /**
-     * Modifica las calificaciones del jurado
-     * @param calificaciones las nuevas calificaciones
-     */
-    public void setCalificaciones (List<CalificacionEntity> calificaciones)
-    {
-        this.calificaciones = calificaciones;
     }
     
     /**

@@ -21,6 +21,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class FotografoEntity extends BaseEntity implements Serializable{
     private String nombre;
+    private String hobbies;
+    private String descrip;
     private String apellido;
     private String fechaNacimiento;
     private Integer edad;
@@ -39,9 +41,7 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany(mappedBy="fotografos")
     private List<ConcursoEntity> concursos = new ArrayList<ConcursoEntity>();
-    @PodamExclude
-    @ManyToMany(mappedBy="fotografos")
-    private List<InteresFotograficoEntity> intereses = new ArrayList<InteresFotograficoEntity>();
+
     
     
     public void setFotos(List<PhotoEntity> p){
@@ -63,13 +63,7 @@ public class FotografoEntity extends BaseEntity implements Serializable{
         concursos = p;
     }
      
-    public void setIntereses(List<InteresFotograficoEntity> p){
-        intereses = p;
-    }
-    
-    public List<InteresFotograficoEntity> getIntereses(){
-        return intereses ;
-    }
+
     
     public List<ConcursoEntity> getConcursos
         (){
@@ -140,6 +134,20 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     public String getFoto(){
         
         return foto;
+    }
+    
+     public String getHobbies(){
+        return hobbies;
+    }
+    public void setHobbies(String pH){
+        hobbies = pH;
+    }
+    
+    public String getDescrp(){
+        return descrip;
+    }
+    public void setDescrp(String p){
+        descrip = p;
     }
     
 }

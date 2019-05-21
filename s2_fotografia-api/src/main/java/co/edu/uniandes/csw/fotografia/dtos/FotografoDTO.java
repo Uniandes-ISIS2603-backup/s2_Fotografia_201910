@@ -63,9 +63,11 @@ public class FotografoDTO implements Serializable  {
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
-    private int edad;
+    private Integer edad;
+    private String hobbies;
+    private String descrip;
     private String correo;
-    private int telefono;
+    private Integer telefono;
     private String pais;
     private Long id;
     private String login;
@@ -96,6 +98,8 @@ public class FotografoDTO implements Serializable  {
             this.login = fotografoEntity.getLogin();
             this.password = fotografoEntity.getPassword();
             this.foto = fotografoEntity.getFoto();
+            this.descrip = fotografoEntity.getDescrp();
+            this.hobbies = fotografoEntity.getHobbies();
             
            
         }
@@ -114,6 +118,8 @@ public class FotografoDTO implements Serializable  {
         fotografo.setFechaNacimiento(fechaNacimiento);
         fotografo.setEdad(edad);
         fotografo.setCorreo(correo);
+        fotografo.setHobbies(hobbies);
+        fotografo.setDescrp(descrip);
         fotografo.setTelefono(telefono);
         fotografo.setPais(pais);
         fotografo.setLogin(login);
@@ -150,6 +156,7 @@ public class FotografoDTO implements Serializable  {
     public void setLogin(String log){
         login = log;
     }
+    
     /**
      * Obtiene el atributo nombre
      * @return atributo nombre 
@@ -199,7 +206,7 @@ public class FotografoDTO implements Serializable  {
      * Obtiene el atributo edad
      * @return atributo edad
      */
-    public int getEdad(){
+    public Integer getEdad(){
         return edad;
     }
     
@@ -207,7 +214,7 @@ public class FotografoDTO implements Serializable  {
      * Establece un valor para el atributo edad
      * @param pEdad nuevo valor para el atributo
      */
-    public void setEdad(int pEdad) {
+    public void setEdad(Integer pEdad) {
         edad = pEdad;
     }
     
@@ -232,7 +239,7 @@ public class FotografoDTO implements Serializable  {
      *Obtiene el atributo telefono 
      * @return atributo telefono
      */
-    public int getTelefono(){
+    public Integer getTelefono(){
         return telefono;
     }
     /**
@@ -240,7 +247,7 @@ public class FotografoDTO implements Serializable  {
      * @param tel nuevo valor del atributo 
      */
     
-    public void setTelefono(int tel){
+    public void setTelefono(Integer tel){
         telefono = tel;
     }
         /**
@@ -274,6 +281,19 @@ public class FotografoDTO implements Serializable  {
         return id;
     }
   
+      public String getHobbies(){
+        return hobbies;
+    }
+    public void setHobbies(String pH){
+        hobbies = pH;
+    }
+    
+    public String getDescrip(){
+        return descrip;
+    }
+    public void setDescrip(String p){
+        descrip = p;
+    }
     /**
      * Establece un valor para el atributoid
      * @param pId nuevo valor del atributo 

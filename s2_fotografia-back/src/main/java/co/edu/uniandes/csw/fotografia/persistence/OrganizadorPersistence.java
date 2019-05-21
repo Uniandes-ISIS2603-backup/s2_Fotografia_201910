@@ -29,7 +29,7 @@ public class OrganizadorPersistence {
     public OrganizadorEntity create(OrganizadorEntity organizadorEntity){
         LOGGER.log(Level.INFO,"Creando un organizador nuevo");
         em.persist(organizadorEntity);
-        LOGGER.log(Level.INFO,"Saliendo de crear una editorial nueva");
+        LOGGER.log(Level.INFO,"Saliendo de crear un organizador nuevo");
         return organizadorEntity;
     }
     
