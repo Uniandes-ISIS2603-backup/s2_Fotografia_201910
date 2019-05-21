@@ -16,6 +16,7 @@
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"postman.setGlobalVariable(\"new_id_c\",data.id);",
+							"postman.setGlobalVariable(\"new_login_c\",data.login);",
 							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
 						],
 						"type": "text/javascript"
@@ -346,6 +347,46 @@
 						"api",
 						"clientes",
 						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cliente by login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e91b3870-f00a-43e3-a155-c78fdaa39460",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_fotografia-api/api/clientes/{{new_login_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_fotografia-api",
+						"api",
+						"clientes",
+						"{{new_login_c}}"
 					]
 				}
 			},

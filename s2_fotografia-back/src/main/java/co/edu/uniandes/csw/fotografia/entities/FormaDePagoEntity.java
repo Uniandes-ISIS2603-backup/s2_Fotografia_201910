@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
-
+import javax.persistence.CascadeType;
 /**
  *
  * @author Valentina Duarte
@@ -26,7 +26,7 @@ public class FormaDePagoEntity extends BaseEntity implements Serializable {
 
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private ClienteEntity cliente;
     
     @PodamExclude

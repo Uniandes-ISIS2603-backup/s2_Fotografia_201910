@@ -152,7 +152,5 @@ public class ClienteDTO implements Serializable
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
-    }
-    
-          
+    }         
 }

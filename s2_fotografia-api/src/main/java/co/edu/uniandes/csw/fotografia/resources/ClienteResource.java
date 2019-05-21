@@ -77,6 +77,25 @@ public class ClienteResource
         return detailDTO;
     }
     
+     /**
+     * Busca el cliente con el login ingresado por parametro
+     * @param login el login por el cual se quiere buscar
+     * @return el cliente buscado
+     */
+    @GET
+    @Path ("{login:[a-z A-Z 0-9][a-z A-Z 0-9]*}")
+    public ClienteDetailDTO getClienteByLogin (@PathParam ("login")String login) throws WebApplicationException
+    {
+         LOGGER.log(Level.INFO, "ClienteResource getCliente: input: {0}", login);
+        ClienteEntity clienteEntity = clienteLogic.getClienteByLogin(login);
+        if (clienteEntity == null) {
+            throw new WebApplicationException("El recurso /clientes/" + login + " no existe.", 404);
+        }
+        ClienteDetailDTO detailDTO = new ClienteDetailDTO(clienteEntity);
+        LOGGER.log(Level.INFO, "ClienteResource getCliente: output: {0}", detailDTO);
+        return detailDTO;
+    }
+    
     /**
      * Convierte una lista de ClienteEntity a una lista de ClienteDetailDTO.
      *
