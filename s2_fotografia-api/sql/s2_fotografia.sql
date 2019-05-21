@@ -32,10 +32,10 @@ insert into RondaEntity(id, numRonda) values (302, 1);
 insert into RondaEntity(id, numRonda) values (303, 1);
 insert into RondaEntity(id, numRonda) values (304, 1);
 
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea12211' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr11009' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (2, 'mariana0911', 'Mariana Lozano','ml@yahoo.com','marianalozano12' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (3, 'camilozuluaga', 'Camilo Zuluaga','czulu@gmail.com','cZulu095678' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena, imagen) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea12211' ,'http://es.web.img3.acsta.net/pictures/15/05/15/16/30/134942.jpg');
+insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr11009','https://los40es00.epimg.net/los40/imagenes/2017/01/20/musica/1484908180_629395_1484909260_noticia_normal.jpg' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values (2, 'mariana0911', 'Mariana Lozano','ml@yahoo.com','marianalozano12', 'https://k62.kn3.net/taringa/7/4/D/E/6/8/adriano034/94C.jpg' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values (3, 'camilozuluaga', 'Camilo Zuluaga','czulu@gmail.com','cZulu095678', 'https://pixel.nymag.com/imgs/fashion/daily/2016/01/21/21-chris-martin.w700.h700.jpg' );
 
 
 

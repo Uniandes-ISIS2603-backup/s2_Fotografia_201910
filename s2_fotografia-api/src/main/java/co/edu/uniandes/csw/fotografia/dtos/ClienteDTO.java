@@ -25,6 +25,8 @@ public class ClienteDTO implements Serializable
     
     private String contrasena;
     
+    private String imagen;
+    
      public ClienteDTO()
      {
          
@@ -45,6 +47,7 @@ public class ClienteDTO implements Serializable
             this.correo = clienteEntity.getCorreo();
             this.nombre = clienteEntity.getNombre();
             this.contrasena= clienteEntity.getContrasena();
+            this.imagen = clienteEntity.getImagen();
         }
     }
 
@@ -62,6 +65,7 @@ public class ClienteDTO implements Serializable
         clienteEntity.setLogin(this.getLogin());
         clienteEntity.setCorreo(this.getCorreo());
         clienteEntity.setContrasena(this.getContrasena());
+        clienteEntity.setImagen(this.getImagen());
        
         return clienteEntity;
     } 
@@ -134,6 +138,20 @@ public class ClienteDTO implements Serializable
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
           
