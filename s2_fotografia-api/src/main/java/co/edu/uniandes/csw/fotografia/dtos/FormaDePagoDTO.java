@@ -22,6 +22,7 @@ public class FormaDePagoDTO implements Serializable
     
     private Long id;
     private Long numeroTarjeta;
+    private String nombre;
     private Date fechaVencimiento;
     private Integer numeroVerificacion;
     private String tipoDeTarjeta;
@@ -54,6 +55,7 @@ public class FormaDePagoDTO implements Serializable
             this.tipoDeTarjeta = formaDePagoEntity.getTipoDeTarjeta();
             this.tipoTarjetaDeCredito = formaDePagoEntity.getTipoTarjetaDeCredito();
             this.id = formaDePagoEntity.getId();
+            this.nombre = formaDePagoEntity.getNombre();
         }
     }
 
@@ -71,6 +73,7 @@ public class FormaDePagoDTO implements Serializable
         formaDePagoEntity.setTipoDeTarjeta(this.getTipoDeTarjeta());
         formaDePagoEntity.setTipoTarjetaDeCredito(this.getTipoTarjetaDeCredito());
        formaDePagoEntity.setId(this.getId());
+       formaDePagoEntity.setNombre(this.getNombre());
         
         return formaDePagoEntity;
     } 
@@ -157,6 +160,20 @@ public class FormaDePagoDTO implements Serializable
      */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
    
