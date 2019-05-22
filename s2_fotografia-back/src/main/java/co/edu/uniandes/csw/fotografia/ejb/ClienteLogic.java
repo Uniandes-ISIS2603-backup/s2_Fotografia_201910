@@ -130,6 +130,24 @@ public class ClienteLogic
     }
     
     /**
+     * Se busca el cliente con el login ingresado por parametro
+     * @param login el login del cliente que se quiere consultar
+     * @return el cliente buscado
+     */
+    public ClienteEntity getClienteByLogin(String login)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con login= {0}", login);
+        
+        ClienteEntity cliente = cp.getByLogin(login);
+        if(cliente == null)
+        {
+            LOGGER.log(Level.SEVERE, "El cliente con el login = {0} no existe", login);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con login = {0}", login);
+        return cliente;
+    }
+    
+    /**
      * Devuelve la lista de todos los clientes
      * @return lista de todos los clientes
      */
