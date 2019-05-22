@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.fotografia.dtos.PhotoDetailDTO;
 import co.edu.uniandes.csw.fotografia.ejb.ConcursoPhotoLogic;
 import co.edu.uniandes.csw.fotografia.ejb.PhotoLogic;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
+import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -51,7 +52,7 @@ public class ConcursoPhotosResource {
      */
     @POST
     @Path("{photosId: \\d+}")
-    public PhotoDetailDTO addPhoto(@PathParam("concursosId") Long concursosId, @PathParam("photosId") Long photosId) {
+    public PhotoDetailDTO addPhoto(@PathParam("concursosId") Long concursosId, @PathParam("photosId") Long photosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ConcursoPhotosResource addPhoto: input: concursosId {0} , photosId {1}", new Object[]{concursosId, photosId});
         if (photoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /photos/" + photosId + " no existe.", 404);

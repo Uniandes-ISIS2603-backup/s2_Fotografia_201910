@@ -97,6 +97,13 @@ public class PhotoEntity extends BaseEntity implements Serializable{
    @PodamExclude
     @ManyToMany
     private List<PhotoEntity> clientes = new ArrayList<>();
+   
+     /**
+     * Relacion con clase Concurso de tipo ManyToMany mapeado por esta clase
+     */
+   @PodamExclude
+   @ManyToMany(mappedBy = "fotosEnConcurso")
+   private List<ConcursoEntity> concursos = new ArrayList<>();
 
     /**
      * @return the date
@@ -289,5 +296,17 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      */
     public void setClientes(List<PhotoEntity> clientes) {
         this.clientes = clientes;
+    }
+    /**
+     * @return the concursos
+     */
+    public List<ConcursoEntity> getConcursos(){
+        return this.concursos;
+    }
+    /**
+     * @param concursos the concursos to set
+     */
+    public void setConcusros(List<ConcursoEntity> concursos){
+        this.concursos = concursos;
     }
 }
