@@ -204,4 +204,6 @@ public class ClienteResource
         }
         return ClienteFormasDePagoResource.class;
     }
+    
+
 }
