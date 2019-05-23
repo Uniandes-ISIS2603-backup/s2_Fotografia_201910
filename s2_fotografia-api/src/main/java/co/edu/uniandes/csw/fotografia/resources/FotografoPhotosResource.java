@@ -46,7 +46,7 @@ public class FotografoPhotosResource {
      * Guarda un libro dentro de una fotografo con la informacion que recibe el
      * la URL. Se devuelve el libro que se guarda en la fotografo.
      *
-     * @param fotografosId Identificador de la fotografo que se esta
+     * @param FotografosId Identificador de la fotografo que se esta
      * actualizando. Este debe ser una cadena de dígitos.
      * @param photosId Identificador del libro que se desea guardar. Este debe
      * ser una cadena de dígitos.
@@ -56,12 +56,12 @@ public class FotografoPhotosResource {
      */
     @POST
     @Path("{photosId: \\d+}")
-    public PhotoDTO addPhoto(@PathParam("FotografosId") Long fotografosId, @PathParam("photosId") Long photosId) {
-        LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{fotografosId, photosId});
+    public PhotoDetailDTO addPhoto(@PathParam("FotografosId") Long FotografosId, @PathParam("photosId") Long photosId) {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: input: FotografosId: {0} , photosId: {1}", new Object[]{FotografosId, photosId});
         if (photoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /photos/" + photosId + " no existe.", 404);
         }
-       PhotoDTO photoDTO = new PhotoDTO(fotografoPhotosLogic.addPhoto(photosId, fotografosId));
+       PhotoDetailDTO photoDTO = new PhotoDetailDTO(fotografoPhotosLogic.addPhoto(photosId, FotografosId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: output: {0}", photoDTO);
         return photoDTO;
     }
@@ -69,15 +69,15 @@ public class FotografoPhotosResource {
     /**
      * Busca y devuelve todos los libros que existen en la fotografo.
      *
-     * @param fotografosId Identificador de la fotografo que se esta buscando.
+     * @param FotografosId Identificador de la fotografo que se esta buscando.
      * Este debe ser una cadena de dígitos.
      * @return JSONArray {@link PhotoDetailDTO} - Los libros encontrados en la
      * fotografo. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<PhotoDetailDTO> getPhotos(@PathParam("FotografosId") Long fotografosId) {
-        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: input: {0}", fotografosId);
-        List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(fotografoPhotosLogic.getPhotos(fotografosId));
+    public List<PhotoDetailDTO> getPhotos(@PathParam("FotografosId") Long FotografosId) {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: input: {0}", FotografosId);
+        List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(fotografoPhotosLogic.getPhotos(FotografosId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }
@@ -85,7 +85,7 @@ public class FotografoPhotosResource {
     /**
      * Busca el libro con el id asociado dentro de la fotografo con id asociado.
      *
-     * @param fotografosId Identificador de la fotografo que se esta buscando.
+     * @param FotografosId Identificador de la fotografo que se esta buscando.
      * Este debe ser una cadena de dígitos.
      * @param photosId Identificador del libro que se esta buscando. Este debe
      * ser una cadena de dígitos.
@@ -98,12 +98,12 @@ public class FotografoPhotosResource {
      */
     @GET
     @Path("{photosId: \\d+}")
-    public PhotoDetailDTO getPhoto(@PathParam("FotografosId") Long fotografosId, @PathParam("photosId") Long photosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{fotografosId, photosId});
+    public PhotoDetailDTO getPhoto(@PathParam("FotografosId") Long FotografosId, @PathParam("photosId") Long photosId) {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: input: FotografosId: {0} , photosId: {1}", new Object[]{FotografosId, photosId});
         if (photoLogic.getFoto(photosId) == null) {
-            throw new WebApplicationException("El recurso /fotografos/" + fotografosId + "/photos/" + photosId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /fotografos/" + FotografosId + "/photos/" + photosId + " no existe.", 404);
         }
-        PhotoDetailDTO photoDetailDTO = new PhotoDetailDTO(fotografoPhotosLogic.getPhoto(fotografosId, photosId));
+        PhotoDetailDTO photoDetailDTO = new PhotoDetailDTO(fotografoPhotosLogic.getPhoto(FotografosId, photosId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: output: {0}", photoDetailDTO);
         return photoDetailDTO;
     }
@@ -121,14 +121,14 @@ public class FotografoPhotosResource {
      * Error de lógica que se genera cuando no se encuentra el libro.
      */
     @PUT
-    public List<PhotoDetailDTO> replacePhotos(@PathParam("FotografosId") Long fotografosId, List<PhotoDetailDTO> photos) {
-        LOGGER.log(Level.INFO, "FotografoPhotosResource replacePhotos: input: fotografosId: {0} , photos: {1}", new Object[]{fotografosId, photos});
+    public List<PhotoDetailDTO> replacePhotos(@PathParam("FotografosId") Long FotografosId, List<PhotoDetailDTO> photos) {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource replacePhotos: input: fotografosId: {0} , photos: {1}", new Object[]{FotografosId, photos});
         for (PhotoDetailDTO photo : photos) {
             if (photoLogic.getFoto(photo.getId()) == null) {
                 throw new WebApplicationException("El recurso /photos/" + photo.getId() + " no existe.", 404);
             }
         }
-        List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(fotografoPhotosLogic.replacePhotos(fotografosId, photosListDTO2Entity(photos)));
+        List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(fotografoPhotosLogic.replacePhotos(FotografosId, photosListDTO2Entity(photos)));
         LOGGER.log(Level.INFO, "FotografoPhotosResource replacePhotos: output: {0}", listaDetailDTOs);
         return listaDetailDTOs;
     }

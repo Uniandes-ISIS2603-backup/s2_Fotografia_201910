@@ -100,4 +100,16 @@ public class OrganizadorLogic {
         persistence.delete(organizadorsId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el organizador con id = {0}", organizadorsId);
     }
+
+    public OrganizadorEntity getOrganizadorByLogin(String login) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con login= {0}", login);
+        
+        OrganizadorEntity fotografo = persistence.findByLogin(login);
+        if(fotografo == null)
+        {
+            LOGGER.log(Level.SEVERE, "El organizador con el login = {0} no existe", login);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con login = {0}", login);
+        return fotografo;
+    }
 }

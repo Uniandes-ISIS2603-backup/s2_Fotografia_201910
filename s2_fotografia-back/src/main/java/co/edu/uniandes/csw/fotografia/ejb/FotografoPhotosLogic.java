@@ -45,9 +45,9 @@ public class FotografoPhotosLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la fotografo con id = {0}", fotografosId);
         FotografoEntity fotografoEntity = fotografoPersistence.find(fotografosId);
         PhotoEntity photoEntity = photoPersistence.find(photosId);
-        /**photoEntity.setFotografo(fotografoEntity);**/
+        fotografoEntity.getFotos().add(photoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la fotografo con id = {0}", fotografosId);
-        return photoEntity;
+        return photoPersistence.find(photosId);
     }
 
     /**
@@ -70,7 +70,7 @@ public class FotografoPhotosLogic {
      * @throws BusinessLogicException Si el libro no se encuentra en la
      * fotografo
      */
-    public PhotoEntity getPhoto(Long fotografosId, Long photosId) throws BusinessLogicException {
+    public PhotoEntity getPhoto(Long fotografosId, Long photosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} de la fotografo con id = " + fotografosId, photosId);
         List<PhotoEntity> photos = fotografoPersistence.find(fotografosId).getFotos();
         PhotoEntity photoEntity = photoPersistence.find(photosId);
@@ -79,7 +79,7 @@ public class FotografoPhotosLogic {
         if (index >= 0) {
             return photos.get(index);
         }
-        throw new BusinessLogicException("El libro no está asociado a la fotografo");
+        return null;
     }
 
     /**
@@ -92,15 +92,7 @@ public class FotografoPhotosLogic {
     public List<PhotoEntity> replacePhotos(Long fotografosId, List<PhotoEntity> photos) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar la fotografo con id = {0}", fotografosId);
         FotografoEntity fotografoEntity = fotografoPersistence.find(fotografosId);
-        List<PhotoEntity> photoList = photoPersistence.findAll();
-        for (PhotoEntity photo : photoList) {
-            if (photos.contains(photo)) {
-                /**photo.setFotografo(fotografoEntity);
-            } else if (photo.getFotografo() != null && photo.getFotografo().equals(fotografoEntity)) {
-                photo.setFotografo(null);
-            }*/
-            }
-        }
+        fotografoEntity.setFotos(photos);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar la fotografo con id = {0}", fotografosId);
         return photos;
     }

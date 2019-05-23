@@ -99,11 +99,11 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
     /**
      * Esta lista contiene las fotos que estan asociadad al fotografo 
      */
-    private ArrayList<PhotoDTO> fotos;
+    private List<PhotoDTO> fotos;
     /**
      * Esta lista contiene las fotos del concurso que estan asociadas al fotografo
      */
-    private ArrayList<PhotoDTO> fotosConcurso;
+    private List<PhotoDTO> fotosConcurso;
     /**
      * Esta lista contiene los intereses que estan asociados al fotografo
      */
@@ -111,13 +111,13 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
     /**
      * Esta lista contiene los concursos que estan asociados al fotografo  
      */
-    private ArrayList<ConcursoDTO> concursos;
+    private List<ConcursoDTO> concursos;
     
     /**
      * Constructos vacio por defecto 
      */
     public FotografoDetailDTO(){
-       
+       super();
     }
     /**
      * Constructor para transformar un Entity a un DTO
@@ -127,22 +127,20 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
     public FotografoDetailDTO(FotografoEntity fotografo){
          super(fotografo);
          if(fotografo!=null){
-             if(fotografo.getFotos()!=null){
-                 fotos = new ArrayList();
-                  for (PhotoEntity entity : fotografo.getFotos()) {
-                    fotos.add(new PhotoDTO(entity   ));}
+             fotos = new ArrayList();
+             for (PhotoEntity entity : fotografo.getFotos()) {
+                 fotos.add(new PhotoDTO(entity));
              }
-              if(fotografo.getFotos()!=null){
-                 fotosConcurso = new ArrayList();
-                  for (PhotoEntity entity1 : fotografo.getFotosConcurso()) {
-                    fotosConcurso.add(new PhotoDTO(entity1));}
+
+             fotosConcurso = new ArrayList();
+             for (PhotoEntity entity1 : fotografo.getFotosConcurso()) {
+                 fotosConcurso.add(new PhotoDTO(entity1));
              }
-              if(fotografo.getConcursos()!=null){
-                 concursos = new ArrayList();
-                  for (ConcursoEntity entity2 : fotografo.getConcursos()) {
-                    concursos.add(new ConcursoDTO(entity2));}
+             concursos = new ArrayList();
+             for (ConcursoEntity entity2 : fotografo.getConcursos()) {
+                 concursos.add(new ConcursoDTO(entity2));
              }
-              
+
          }
     }
     /**
@@ -156,14 +154,14 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
         if (fotos != null) {
             List<PhotoEntity> fotosEntity = new ArrayList<>();
             for (PhotoDTO dto : fotos) {
-               /* fotosEntity.add(dto.toEntity());*/
+               fotosEntity.add(dto.toEntity());
             }
             fotografoEntity.setFotos(fotosEntity);
         }
         if (fotosConcurso != null) {
             List<PhotoEntity> fotosEntity = new ArrayList<>();
             for (PhotoDTO dto : fotosConcurso) {
-               /* fotosEntity.add(dto.toEntity());*/
+               fotosEntity.add(dto.toEntity());
             }
             fotografoEntity.setFotosConcurso(fotosEntity);
         }
@@ -182,7 +180,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
      * Metodo que retorna el atributo fotos
      * @return atributo fotos
      */
-    public ArrayList<PhotoDTO> getFotos(){
+    public List<PhotoDTO> getFotos(){
         return fotos;
     } 
     
@@ -190,14 +188,14 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
      * Metodo que retorna el atributo fotos concurso
      * @return atributo fotos concurso
      */
-    public ArrayList<PhotoDTO> getFotosConcurso(){
+    public List<PhotoDTO> getFotosConcurso(){
         return fotosConcurso;
     }
     /**
      * Metodo que retorna el atributo concursos
      * @return atributo concursos
      */
-     public ArrayList<ConcursoDTO> getConcursos(){
+     public List<ConcursoDTO> getConcursos(){
         return concursos;
     }
      /**
@@ -209,7 +207,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
        * Metodo que edita el atributo fotos
        * @param p nuevo valor del atributo fotos
        */
-      public void setFotos(ArrayList<PhotoDTO> p){
+      public void setFotos(List<PhotoDTO> p){
           fotos = p;
       }
       
@@ -217,7 +215,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
        * Metodo que le da un nuevo valor al atributo fotosConcurso
        * @param p nuevo valor del atributo 
        */
-      public void setFotosConcurso(ArrayList<PhotoDTO> p){
+      public void setFotosConcurso(List<PhotoDTO> p){
           fotosConcurso = p;
       }
       
@@ -225,22 +223,10 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
        * Metodo que le da un nuevo valor al atributo concursos
        * @param p nuevo valor del atributo 
        */
-     public void setConcursos(ArrayList<ConcursoDTO> p){
+     public void setConcursos(List<ConcursoDTO> p){
           concursos = p;
       }
      
-     /**
-      * Metodo que le da un nuevo valor al atributo intereses
-      * @param p nuevo valor del atributo
-      */
-   
-     
-     
-    
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
-    
+ 
     
 }

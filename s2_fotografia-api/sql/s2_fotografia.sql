@@ -105,7 +105,7 @@ insert into PHOTOENTITY (id, nombre, date, description, price, winner, published
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (809, 'Amanecer en la nieve','1970-01-01 12:25:06', 'Un lugar maravilloso para sumergirse en la tranquilidad', 80,8,8,'http://cursodefoto-madrid.com/wp-content/uploads/2016/04/fotografia-en-la-nieve.jpg',2,1);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (810, 'Desierto de la tatacoa','1970-01-01 12:25:06', 'Silencioso bosque seco tropical', 80,8,8,'https://1.bp.blogspot.com/-tysBURztce0/WmH8kxdUzkI/AAAAAAAALoc/P6RGtVkJz6stCYhErrBBsmfhIK8AHkYwQCLcBGAs/s1600/desierto-tatacoa.jpg',3,1);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (811, 'Atardecer en el mar','1970-01-01 12:25:06', 'El cielo y el mar', 87,8,8,'https://cdnuploads.aa.com.tr/uploads/Contents/2018/09/24/thumbs_b_c_0970f11a6d81d650d9c47ea21f10a751.jpg?v=231325',5,1);
-insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (8, 'Hombre mayor','1970-01-01 12:25:06', 'Hombre mayor', 87,8,8,'https://s03.s3c.es/imag/_v0/770x420/9/9/4/foto.jpg',5,2);
+insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (888, 'Hombre mayor','1970-01-01 12:25:06', 'Hombre mayor', 87,8,8,'https://s03.s3c.es/imag/_v0/770x420/9/9/4/foto.jpg',5,2);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (812, 'Mirada dice mas que mil palabras','1970-01-01 12:25:06', 'Ojos expresivos', 87,8,8,'https://www.dzoom.org.es/wp-content/uploads/2010/09/mirada-ojos-encuadre-primer-plano-sexy-810x540.jpg',2,2);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (813, 'Africa','1970-01-01 12:25:06', 'Africana ', 87,8,8,'https://i.pinimg.com/originals/d2/71/37/d271376bde9a07209941cf1208e9c77a.jpg',3,2);
 insert into PHOTOENTITY (id, nombre, date, description, price, winner, published, rutaFoto, FOTOGRAFO_ID, INTERES_ID) values (814, 'Zorro en la nieve','1970-01-01 12:25:06', 'Zorro en la nieve', 87,8,8,'https://k16.kn3.net/taringa/6/0/0/4/5/1/9/megustaelpolen/368.jpg',1,3);
@@ -126,11 +126,25 @@ insert into PHOTOENTITY (id, nombre, date, description, price, winner, published
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 801);
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 802);
 insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 803);
-insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 804);
-insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 805);
-insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 807);
-insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 805);
-insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 806);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 804);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 805);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 806);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 807);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 808);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (100, 809);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 810);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 811);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 812);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 813);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 814);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (101, 815);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 816);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 817);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 818);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (102, 819);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 820);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 821);
+insert into CONCURSOENTITY_PHOTOENTITY(CONCURSOS_ID,FOTOSENCONCURSO_ID) VAlUES (103, 888);
 
 
 

@@ -149,4 +149,21 @@ public class JuradoPersistence {
         return bien;
     }
 
+    public JuradoEntity findByLogin(String login) {
+        LOGGER.log(Level.INFO,"Consultando el jurado con login={0}", login);
+        TypedQuery query = em.createQuery("Select f From JuradoEntity f where f.nombre = :login", JuradoEntity.class);
+        query = query.setParameter("login",login);
+         JuradoEntity result;
+         List<JuradoEntity> sameLogin = query.getResultList();
+        if (sameLogin == null) {
+            result = null;
+        } else if (sameLogin.isEmpty()) {
+            result = null;
+        } else {
+            result = sameLogin.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar fotografos por login", login);
+        return result;
+    }
+
 }

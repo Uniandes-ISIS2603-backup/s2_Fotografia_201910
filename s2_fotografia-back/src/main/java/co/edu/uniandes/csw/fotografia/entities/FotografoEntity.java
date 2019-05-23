@@ -42,7 +42,7 @@ public class FotografoEntity extends BaseEntity implements Serializable{
     @ManyToMany(mappedBy="fotografos")
     private List<ConcursoEntity> concursos = new ArrayList<ConcursoEntity>();
 
-    
+    public FotografoEntity(){}
     
     public void setFotos(List<PhotoEntity> p){
         fotos = p;
