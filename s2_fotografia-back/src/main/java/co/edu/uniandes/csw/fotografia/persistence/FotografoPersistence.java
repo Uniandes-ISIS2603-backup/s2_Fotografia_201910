@@ -61,7 +61,7 @@ public class FotografoPersistence {
         } else {
             result = sameLogin.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar libros por isbn ", login);
+        LOGGER.log(Level.INFO, "Saliendo de consultar fotografos por login", login);
         return result;
     }
     

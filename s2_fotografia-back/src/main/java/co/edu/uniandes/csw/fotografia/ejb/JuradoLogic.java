@@ -104,4 +104,16 @@ public class JuradoLogic {
         persistence.delete(juradoId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el jurado con id = {0}", juradoId);
     }
+
+    public JuradoEntity getJuradoByLogin(String login) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con login= {0}", login);
+        
+        JuradoEntity fotografo = persistence.findByLogin(login);
+        if(fotografo == null)
+        {
+            LOGGER.log(Level.SEVERE, "El cliente con el login = {0} no existe", login);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con login = {0}", login);
+        return fotografo;
+    }
 }

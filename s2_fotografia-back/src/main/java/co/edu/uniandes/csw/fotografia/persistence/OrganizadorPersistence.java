@@ -59,6 +59,23 @@ public class OrganizadorPersistence {
         OrganizadorEntity organizadorEntity = em.find(OrganizadorEntity.class, oId);
         em.remove(organizadorEntity);
     }
+
+    public OrganizadorEntity findByLogin(String login) {
+        LOGGER.log(Level.INFO,"Consultando el organizador con login={0}", login);
+        TypedQuery query = em.createQuery("Select f From OrganizadorEntity f where f.nombre = :login", OrganizadorEntity.class);
+        query = query.setParameter("login",login);
+         OrganizadorEntity result;
+         List<OrganizadorEntity> sameLogin = query.getResultList();
+        if (sameLogin == null) {
+            result = null;
+        } else if (sameLogin.isEmpty()) {
+            result = null;
+        } else {
+            result = sameLogin.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar organizador por login", login);
+        return result;
+    }
      
      
 }

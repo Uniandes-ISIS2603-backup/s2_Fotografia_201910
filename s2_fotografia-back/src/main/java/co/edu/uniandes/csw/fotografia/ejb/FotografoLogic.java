@@ -50,6 +50,24 @@ public class FotografoLogic {
         return fotografoEntity;
     }
     
+     /**
+     * Se busca el fotografo con el login ingresado por parametro
+     * @param login el login del cliente que se quiere consultar
+     * @return el fotografo buscado
+     */
+    public FotografoEntity getFotografoByLogin(String login)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el cliente con login= {0}", login);
+        
+        FotografoEntity fotografo = persistence.findByLogin(login);
+        if(fotografo == null)
+        {
+            LOGGER.log(Level.SEVERE, "El cliente con el login = {0} no existe", login);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el cliente con login = {0}", login);
+        return fotografo;
+    }
+    
     public List<FotografoEntity> getFotografos(){
        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los fotografos");
         List<FotografoEntity> lista = persistence.findAll();
