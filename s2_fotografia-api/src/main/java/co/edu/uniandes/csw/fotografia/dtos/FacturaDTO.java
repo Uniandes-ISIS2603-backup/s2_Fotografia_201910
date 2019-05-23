@@ -25,9 +25,7 @@ public class FacturaDTO implements Serializable
     
    
     private ClienteDTO cliente;
-    private FormaDePagoDTO formaDePago;
-    private PhotoDTO foto;
-    
+    private FormaDePagoDTO formaDePago;    
     
     public FacturaDTO()
     {
@@ -60,11 +58,7 @@ public class FacturaDTO implements Serializable
                 facturaEntity.setFormaDePagoFactura(null);
             }
             
-            if (facturaEntity.getFotoComprada()!= null) {
-                this.foto = new PhotoDTO(facturaEntity.getFotoComprada());
-            } else {
-                facturaEntity.setFotoComprada(null);
-            }
+            
             
         }
     }
@@ -89,11 +83,6 @@ public class FacturaDTO implements Serializable
         if(formaDePago!= null)
         {
             facturaEntity.setFormaDePagoFactura(formaDePago.toEntity());
-        }
-        
-        if(foto !=null)
-        {
-            facturaEntity.setFotoComprada(foto.toEntity());
         }
         
         return facturaEntity;
@@ -166,21 +155,6 @@ public class FacturaDTO implements Serializable
     public void setFormaDePago(FormaDePagoDTO formaDePago) {
         this.formaDePago = formaDePago;
     }
-
-    /**
-     * @return the foto
-     */
-    public PhotoDTO getFoto() {
-        return foto;
-    }
-
-    /**
-     * @param foto the foto to set
-     */
-    public void setFoto(PhotoDTO foto) {
-        this.foto = foto;
-    }
-
     /**
      * @return the id
      */

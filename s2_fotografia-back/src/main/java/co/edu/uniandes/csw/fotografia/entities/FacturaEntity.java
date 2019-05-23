@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.fotografia.entities;
 
+import java.util.List;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -43,24 +45,16 @@ public class FacturaEntity extends BaseEntity implements Serializable
     @ManyToOne
     private ClienteEntity cliente;
     
-    /*
-    * Atributo correspondiente la foto comprada
-    */
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.ALL)
-    private PhotoEntity fotoComprada;
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<PhotoEntity> photos = new ArrayList<PhotoEntity>();
+    
     /*
     * Atributo correspondiente a la forma de pago usada.
     */
     @PodamExclude
     @ManyToOne
     private FormaDePagoEntity formaDePagoFactura;
-    
- 
-    
-    public FacturaEntity()
-    {
-    }
 
     /**
      * @return the numero
@@ -119,17 +113,17 @@ public class FacturaEntity extends BaseEntity implements Serializable
     }
 
     /**
-     * @return the fotoComprada
+     * @return the photos
      */
-    public PhotoEntity getFotoComprada() {
-        return fotoComprada;
+    public List<PhotoEntity> getPhotos() {
+        return photos;
     }
 
     /**
-     * @param fotoComprada the fotoComprada to set
+     * @param photos the photos to set
      */
-    public void setFotoComprada(PhotoEntity fotoComprada) {
-        this.fotoComprada = fotoComprada;
+    public void setPhotos(List<PhotoEntity> photos) {
+        this.photos = photos;
     }
 
     /**
@@ -144,8 +138,5 @@ public class FacturaEntity extends BaseEntity implements Serializable
      */
     public void setFormaDePagoFactura(FormaDePagoEntity formaDePagoFactura) {
         this.formaDePagoFactura = formaDePagoFactura;
-    }
-
-
-    
+    }    
 }
