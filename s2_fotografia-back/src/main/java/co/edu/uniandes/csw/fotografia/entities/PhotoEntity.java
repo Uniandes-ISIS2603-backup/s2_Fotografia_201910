@@ -55,12 +55,13 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     */
     private Boolean published;
     
-    /**
-     * Relacion con clase Factura de tipo OneToMany
-     */
+   @PodamExclude
+   @ManyToOne
+   private InteresFotograficoEntity interes;
+    
     @PodamExclude
-    @OneToMany(mappedBy = "fotoComprada", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.LAZY)
-    private List<FacturaEntity> facturasAsociadas = new ArrayList<FacturaEntity>();
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private FacturaEntity factura;
      
     /**
      * Relacion con clase Fotografo de tipo ManyToOne
@@ -84,14 +85,50 @@ public class PhotoEntity extends BaseEntity implements Serializable{
      * Relacion con clase Calificacion de tipo OneToMany mapeado por esta clase
      */
    @PodamExclude
-   @OneToMany(mappedBy = "fotoCalificada", fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "fotoCalificada", cascade = CascadeType.PERSIST, orphanRemoval = true)
    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+
+   /**
+    * Relacion con cliente
+    */
+   @PodamExclude
+    @ManyToMany
+    private List<PhotoEntity> clientes = new ArrayList<>();
+   
      /**
      * Relacion con clase Concurso de tipo ManyToMany mapeado por esta clase
      */
    @PodamExclude
    @ManyToMany(mappedBy = "fotosEnConcurso")
    private List<ConcursoEntity> concursos = new ArrayList<>();
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the rutaFoto
+     */
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
+
+    /**
+     * @param rutaFoto the rutaFoto to set
+     */
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
+    }
 
     /**
      * @return the date
@@ -164,17 +201,31 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the facturasAsociadas
+     * @return the interes
      */
-    public List<FacturaEntity> getFacturasAsociadas() {
-        return facturasAsociadas;
+    public InteresFotograficoEntity getInteres() {
+        return interes;
     }
 
     /**
-     * @param facturasAsociadas the facturasAsociadas to set
+     * @param interes the interes to set
      */
-    public void setFacturasAsociadas(List<FacturaEntity> facturasAsociadas) {
-        this.facturasAsociadas = facturasAsociadas;
+    public void setInteres(InteresFotograficoEntity interes) {
+        this.interes = interes;
+    }
+
+    /**
+     * @return the factura
+     */
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    /**
+     * @param factura the factura to set
+     */
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
     }
 
     /**
@@ -233,44 +284,40 @@ public class PhotoEntity extends BaseEntity implements Serializable{
         this.calificaciones = calificaciones;
     }
 
+     public InteresFotograficoEntity getInteres() {
+        return interes;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setInteres(InteresFotograficoEntity id) {
+        this.interes = id;
+    }
+
+    /**
+     * @return the clientes
+     */
+    public List<PhotoEntity> getClientes() {
+        return clientes;
+    }
+
+    /**
+     * @param clientes the clientes to set
+     */
+    public void setClientes(List<PhotoEntity> clientes) {
+        this.clientes = clientes;
+    }
     /**
      * @return the concursos
      */
-    public List<ConcursoEntity> getConcursos() {
-        return concursos;
+    public List<ConcursoEntity> getConcursos(){
+        return this.concursos;
     }
-
     /**
      * @param concursos the concursos to set
      */
-    public void setConcursos(List<ConcursoEntity> concursos) {
+    public void setConcusros(List<ConcursoEntity> concursos){
         this.concursos = concursos;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-/**
-     * @return the nombre
-     */
-    public String getRutaFoto() {
-        return rutaFoto;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setRutaFoto(String rutaFoto) {
-        this.rutaFoto = rutaFoto;
     }
 }

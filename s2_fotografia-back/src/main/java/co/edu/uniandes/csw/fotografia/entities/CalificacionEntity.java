@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,26 +23,13 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     private String nombre;
     
     @PodamExclude
-    @ManyToOne
-    private ClienteEntity clienteCalificador;
-    
-    @PodamExclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private PhotoEntity fotoCalificada;
     
     @PodamExclude
     @ManyToOne
-    private JuradoEntity juradoCalificador;
-    
-    @PodamExclude
-    @ManyToOne
-    private RondaEntity rondaCalificada;
-
-/**
-* Constructor de la clase
-*/
-    public CalificacionEntity(){}
-    
+    private ClienteEntity clienteCalificador;
+   
  /**
      * Devuelve el puntaje de la calificación.
      *
@@ -78,42 +66,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
         this.comentario = comentario;
     }
     
-     /**
-     * Obtiene el atributo nombre.
-     *
-     * @return atributo nombre.
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Establece el valor del atributo nombre.
-     *
-     * @param nombre nuevo valor del atributo
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    /**
-     * Devuelve el cliente  calificador
-     * @return Un cliente
-     */
-    public ClienteEntity getClienteCalificador()
-    {
-        return clienteCalificador;
-    }
-    
-    /**
-     * Modifica el cliente calificador
-     * @param cliente
-     */
-    public void setClienteCalificador(ClienteEntity cliente)
-    {
-        this.clienteCalificador = cliente;
-    }
-    
     /**
      * Devuelve la foto calificada
      * @return foto calificada
@@ -133,38 +85,20 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     }
     
     /**
-     * Devuelve el jurado calificador
-     * @return jurado calificador
+     * Devuelve el cliente  calificador
+     * @return Un cliente
      */
-    public JuradoEntity getJuradoCalificador()
+    public ClienteEntity getClienteCalificador()
     {
-        return juradoCalificador;
+        return clienteCalificador;
     }
     
     /**
-     * Modifica el jurado calificador
-     * @param jurado el nuevo jurado
+     * Modifica el cliente calificador
+     * @param cliente
      */
-    public void setJuradoCalificador(JuradoEntity jurado)
+    public void setClienteCalificador(ClienteEntity cliente)
     {
-        this.juradoCalificador = jurado;
-    }
-    
-    /**
-     * Devuelve la ronda calificada
-     * @return rondaCalificada
-     */
-    public RondaEntity getRondaCalificada()
-    {
-        return rondaCalificada;
-    }
-    
-    /**
-     * Modifica la ronda calificada
-     * @param ronda la nueva ronda
-     */
-    public void setRondaCalificada(RondaEntity ronda)
-    {
-        this.rondaCalificada = ronda;
+        this.clienteCalificador = cliente;
     }
 }

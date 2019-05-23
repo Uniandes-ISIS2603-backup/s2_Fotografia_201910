@@ -11,7 +11,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.CascadeType;
 
 /**
  *
@@ -24,22 +26,23 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private String login;
     private String correo;
     private String contrasena;
+    private String imagen;
 
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
-
-    @PodamExclude
-    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
-     private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
+    @OneToMany(mappedBy="cliente",cascade = CascadeType.PERSIST, orphanRemoval = true, fetch =FetchType.LAZY)
      private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
      
     @PodamExclude
     @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
     private List<ConcursoEntity> concursosCliente = new ArrayList<ConcursoEntity>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy="clienteCalificador", fetch =FetchType.LAZY)
+     private List<CalificacionEntity> calificacionesPorCliente = new ArrayList<CalificacionEntity>();
     
     /**
      * Constructor vacio
@@ -117,19 +120,19 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-
+    
     /**
-     * @return the calificacionesPorCliente
+     * @return the imagen
      */
-    public List<CalificacionEntity> getCalificacionesPorCliente() {
-        return calificacionesPorCliente;
+    public String getImagen() {
+        return imagen;
     }
 
     /**
-     * @param calificacionesPorCliente the calificacionesPorCliente to set
+     * @param contrasena the contrasena to set
      */
-    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
-        this.calificacionesPorCliente = calificacionesPorCliente;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     /**
@@ -158,6 +161,20 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     public void setConcursosCliente(List<ConcursoEntity> concursosCliente) {
         this.concursosCliente = concursosCliente;
+    }
+    
+    /**
+     * @return the calificacionesPorCliente
+     */
+    public List<CalificacionEntity> getCalificacionesPorCliente() {
+        return calificacionesPorCliente;
+    }
+
+    /**
+     * @param calificacionesPorCliente the calificacionesPorCliente to set
+     */
+    public void setCalificacionesPorCliente(List<CalificacionEntity> calificacionesPorCliente) {
+        this.calificacionesPorCliente = calificacionesPorCliente;
     }
 
 }

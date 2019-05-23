@@ -122,6 +122,14 @@ public class InteresFotograficoResource {
         return detailDTO;
     }
 
+    
+    @Path("{InteresFotograficosId: \\d+}/photos")
+    public Class<InteresFotograficoFotosResource> getInteresFotograficoPhotosResource(@PathParam("InteresFotograficosId") Long interesId) {
+        if (InteresFotograficoLogic.getInteresFotografico(interesId) == null) {
+            throw new WebApplicationException("El recurso /Fotografos/" + interesId + " no existe.", 404);
+        }
+        return InteresFotograficoFotosResource.class;
+    }
 
 
     /**

@@ -7,10 +7,9 @@ package co.edu.uniandes.csw.fotografia.dtos;
 
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
 import java.io.Serializable;
-import java.util.Date;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 
 /**
  *
@@ -20,9 +19,11 @@ public class CalificacionDTO implements Serializable {
     
     private Long id;
     private Double puntaje;
-    private String comentario;  
-    private String nombre;
+    private String comentario;
 
+    private PhotoDTO photo;
+    
+    private ClienteDTO clienteCalificador;
     /**
      * Constructor vacio
      */
@@ -41,7 +42,15 @@ public class CalificacionDTO implements Serializable {
             this.id = calificacionEntity.getId();
             this.puntaje = calificacionEntity.getPuntaje();
             this.comentario = calificacionEntity.getComentario();
-            this.nombre = calificacionEntity.getNombre();
+            if (calificacionEntity.getFotoCalificada()!= null) {
+                this.photo = new PhotoDTO(calificacionEntity.getFotoCalificada());
+            } else {
+                this.photo = null;
+            }
+            if (calificacionEntity.getClienteCalificador()!= null)
+            {
+                this.clienteCalificador = new ClienteDTO(calificacionEntity.getClienteCalificador());
+            } 
         }
     }
 
@@ -56,7 +65,9 @@ public class CalificacionDTO implements Serializable {
         calificacionEntity.setId(this.getId());
         calificacionEntity.setPuntaje(this.getPuntaje());
         calificacionEntity.setComentario(this.getComentario());
-        calificacionEntity.setNombre(this.getNombre());
+        if (this.photo != null) {
+            calificacionEntity.setFotoCalificada(this.photo.toEntity());
+        }
         return calificacionEntity;
     }
 
@@ -120,28 +131,32 @@ public class CalificacionDTO implements Serializable {
         this.comentario = comentario;
     }
     
-    /**
-     * Obtiene el atributo nombre.
-     *
-     * @return atributo nombre.
-     *
-     */
-    public String getNombre() {
-        return nombre;
+    public PhotoDTO getPhoto()
+    {
+        return photo;
     }
-
-    /**
-     * Establece el valor del atributo nombre.
-     *
-     * @param nombre nuevo valor del atributo
-     *
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    
+    public void setPhoto(PhotoDTO photo)
+    {
+        this.photo = photo;
     }
     
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the clienteCalificador
+     */
+    public ClienteDTO getClienteCalificador() {
+        return clienteCalificador;
+    }
+
+    /**
+     * @param clienteCalificador the clienteCalificador to set
+     */
+    public void setClienteCalificador(ClienteDTO clienteCalificador) {
+        this.clienteCalificador = clienteCalificador;
     }
 }

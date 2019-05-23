@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.persistence;
 
 import co.edu.uniandes.csw.fotografia.entities.CalificacionEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,31 +41,45 @@ public class CalificacionPersistence {
     }
 
     /**
-     * Devuelve todas las calificaciones de la base de datos.
+     * Buscar una reseña
      *
-     * @return una lista con todas las calificaciones que encuentre en la base de
-     * datos, "select u from CalificacionEntity u" es como un "select * from
-     * CalificacionEntity;" - "SELECT * FROM table_name" en SQL.
+     * Busca si hay alguna reseña asociada a un libro y con un ID específico
+     *
+     * @param photoId El ID del libro con respecto al cual se busca
+     * @param calificacionId El ID de la reseña buscada
+     * @return La reseña encontrada o null. Nota: Si existe una o más reseñas
+     * devuelve siempre la primera que encuentra
+     */
+    public CalificacionEntity find(Long photosId, Long calificacionId) {
+        LOGGER.log(Level.INFO, "Consultando el review con id = {0} del libro con id = " + photosId, calificacionId);
+        TypedQuery<CalificacionEntity> q = em.createQuery("select p from CalificacionEntity p where (p.fotoCalificada.id = :photoid) and (p.id = :calificacionId)", CalificacionEntity.class);
+        q.setParameter("photoid", photosId);
+        q.setParameter("calificacionId", calificacionId);
+        List<CalificacionEntity> results = q.getResultList();
+        CalificacionEntity review = null;
+        if (results == null) {
+            review = null;
+        } else if (results.isEmpty()) {
+            review = null;
+        } else if (results.size() >= 1) {
+            review = results.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar el review con id = {0} del libro con id =" + photosId, calificacionId);
+        return review;
+    }
+
+     /**
+     * Busca con un query todos los objetos de la base de datos de PhotoEntity
+     * @return Lista de PhotoEntity
      */
     public List<CalificacionEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todas las calificaciones");
-        // Se crea un query para buscar todas las calificaciones en la base de datos.
+        LOGGER.log(Level.INFO, "Consultando todos las fotos");
+        // Se crea un query para buscar todos los fotografos en la base de datos.
         TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de calificaciones.
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de fotografos.
         return query.getResultList();
     }
-
-    /**
-     * Busca si hay alguna calificacion con el id que se envía de argumento
-     *
-     * @param calificacionId: id correspondiente a la calificacion buscada.
-     * @return un calificacion.
-     */
-    public CalificacionEntity find(Long calificacionId) {
-        LOGGER.log(Level.INFO, "Consultando la calificacion con id={0}", calificacionId);
-        return em.find(CalificacionEntity.class, calificacionId);
-    }
-
+    
     /**
      * Actualiza una calificacion.
      *

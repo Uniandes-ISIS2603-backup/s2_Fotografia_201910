@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.fotografia.resources;
 
 import co.edu.uniandes.csw.fotografia.dtos.FacturaDTO;
+import co.edu.uniandes.csw.fotografia.dtos.FacturaDetailDTO;
 import co.edu.uniandes.csw.fotografia.ejb.FacturaLogic;
 import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
@@ -35,8 +36,6 @@ import javax.ws.rs.core.MediaType;
 @Produces (MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
-
-
 public class FacturaResource
 {
     
@@ -52,15 +51,16 @@ public class FacturaResource
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @POST
-    public FacturaDTO createFactura (FacturaDTO factura) throws BusinessLogicException
+    public FacturaDetailDTO createFactura(FacturaDetailDTO factura) throws BusinessLogicException
     {
+        System.out.print("hola");
+
+        System.out.println(factura);
         LOGGER.log(Level.INFO, "FacturaResource createFactura: input: {0}", factura);
-        FacturaDTO nuevaFacturaDTO = new FacturaDTO(facturaLogic.createFactura(factura.toEntity()));
+        FacturaDetailDTO nuevaFacturaDTO = new FacturaDetailDTO(facturaLogic.createFactura(factura.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource createFactura: output: {0}", nuevaFacturaDTO);
         return nuevaFacturaDTO;
-        
     }
-   
     
     /**
      * Devuelve la factura con el numero ingresado por parametro
@@ -69,16 +69,16 @@ public class FacturaResource
      */
     @GET
     @Path ("{facturasId:\\d+}")
-    public FacturaDTO getFactura (@PathParam ("facturasId")Long facturasId)
+    public FacturaDetailDTO getFactura (@PathParam ("facturasId")Long facturasId)
     {
         LOGGER.log(Level.INFO, "FacturaResource getFactura: input: {0}", facturasId);
         FacturaEntity entity = facturaLogic.getFactura(facturasId);
         if (entity == null) {
             throw new WebApplicationException("El recurso /facturas/" + facturasId + " no existe.", 404);
         }
-        FacturaDTO facturaDTO = new FacturaDTO(entity);
-        LOGGER.log(Level.INFO, "FacturaResource getFactura: output: {0}", facturaDTO);
-        return facturaDTO;
+        FacturaDetailDTO facturaDetailDTO = new FacturaDetailDTO(entity);
+        LOGGER.log(Level.INFO, "FacturaResource getFactura: output: {0}", facturaDetailDTO);
+        return facturaDetailDTO;
     }
     
        /**
@@ -87,10 +87,10 @@ public class FacturaResource
      * @param entityList Lista de FacturaEntity a convertir.
      * @return Lista de FacturaDTO convertida.
      */
-    private List<FacturaDTO> listEntityADTO(List<FacturaEntity> listaEntity) {
-        List<FacturaDTO> list = new ArrayList<>();
+    private List<FacturaDetailDTO> listEntityADTO(List<FacturaEntity> listaEntity) {
+        List<FacturaDetailDTO> list = new ArrayList<>();
         for (FacturaEntity entity : listaEntity) {
-            list.add(new FacturaDTO(entity));
+            list.add(new FacturaDetailDTO(entity));
         }
         return list;
     }
@@ -99,11 +99,11 @@ public class FacturaResource
      * Devuelve la lista de todas las facturas
      * @return lista de facturas
      */
-       @GET
-    public List<FacturaDTO> getFacturas ()
+    @GET
+    public List<FacturaDetailDTO> getFacturas ()
     {
         LOGGER.info("ClienteResource getClientes: input: void");
-        List<FacturaDTO> listaFacturas = listEntityADTO(facturaLogic.getFacturas());
+        List<FacturaDetailDTO> listaFacturas = listEntityADTO(facturaLogic.getFacturas());
         LOGGER.log(Level.INFO, "FacturaResource getFacturas: output: {0}", listaFacturas);
         return listaFacturas;
     }

@@ -107,7 +107,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
     /**
      * Esta lista contiene los intereses que estan asociados al fotografo
      */
-    private ArrayList<InteresFotograficoDTO> intereses;
+
     /**
      * Esta lista contiene los concursos que estan asociados al fotografo  
      */
@@ -142,12 +142,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
                   for (ConcursoEntity entity2 : fotografo.getConcursos()) {
                     concursos.add(new ConcursoDTO(entity2));}
              }
-              if(fotografo.getIntereses()!=null){
-                 intereses = new ArrayList();
-                  for (InteresFotograficoEntity entity3: fotografo.getIntereses()) {
-                    intereses.add(new InteresFotograficoDTO(entity3));
-             }
-           }
+              
          }
     }
     /**
@@ -179,13 +174,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
             }
             fotografoEntity.setConcursos(concursosEntity);
         }
-          if (intereses != null) {
-            List<InteresFotograficoEntity> interesesEntity = new ArrayList<>();
-            for (InteresFotograficoDTO dto : intereses) {
-               interesesEntity.add(dto.toEntity());
-            }
-            fotografoEntity.setIntereses(interesesEntity);
-        }
+          
         return fotografoEntity;
     }
       
@@ -215,8 +204,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
       * Metodo que retorna el atributo intereses
       * @return intereses 
       */
-      public ArrayList<InteresFotograficoDTO> getIntereses(){
-        return intereses;}
+    
       /**
        * Metodo que edita el atributo fotos
        * @param p nuevo valor del atributo fotos
@@ -245,9 +233,7 @@ public class FotografoDetailDTO extends FotografoDTO implements Serializable {
       * Metodo que le da un nuevo valor al atributo intereses
       * @param p nuevo valor del atributo
       */
-     public void setIntereses(ArrayList<InteresFotograficoDTO> p){
-          intereses = p;
-      }
+   
      
      
     

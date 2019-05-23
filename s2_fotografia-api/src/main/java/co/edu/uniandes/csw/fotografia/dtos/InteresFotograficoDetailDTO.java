@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.fotografia.dtos;
 
-import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,12 +69,12 @@ public class InteresFotograficoDetailDTO extends InteresFotograficoDTO implement
     /**
      * Esta lista contiene los fotgrafos asociados al interes
      */
-    private ArrayList<FotografoDTO> fotografos;
+    private List<PhotoDTO> fotosInteres;
     /**
      * Constructor vacio por defecto
      */
     public InteresFotograficoDetailDTO(){
-        
+        super();
     }
     /**
      * Constructor para transformar un Entity a un DTO
@@ -84,10 +84,10 @@ public class InteresFotograficoDetailDTO extends InteresFotograficoDTO implement
     public InteresFotograficoDetailDTO(InteresFotograficoEntity entity){
         super(entity);
         if(entity!=null){
-            if(entity.getFotografos()!=null){
-                 fotografos = new ArrayList();
-                  for (FotografoEntity entity1: entity.getFotografos()) {
-                    fotografos.add(new FotografoDTO(entity1));
+            if(entity.getFotosInteres()!=null){
+                 fotosInteres = new ArrayList();
+                  for (PhotoEntity entity1: entity.getFotosInteres()) {
+                    fotosInteres.add(new PhotoDTO(entity1));
                   }
             }
         }
@@ -100,27 +100,28 @@ public class InteresFotograficoDetailDTO extends InteresFotograficoDTO implement
 
     public InteresFotograficoEntity toEntity() {
        InteresFotograficoEntity interesEntity = super.toEntity();
-        if (fotografos != null) {
-            List<FotografoEntity> fotografosEntity = new ArrayList<>();
-            for (FotografoDTO dto : fotografos) {
-               fotografosEntity.add(dto.toEntity());
+        if (getFotosInteres() != null) {
+            List<PhotoEntity> fotosEntity = new ArrayList<>();
+            for (PhotoDTO dto : getFotosInteres()) {
+               fotosEntity.add(dto.toEntity());
             }
-            interesEntity.setFotografos(fotografosEntity);
+            interesEntity.setFotosInteres(fotosEntity);
         }
       return interesEntity;
     }
+
     /**
-     * Metodo que retorna el atributo fotografos
-     * @return atributo fotografos
+     * @return the fotosInteres
      */
-    public List<FotografoDTO> getFotografos(){
-        return fotografos;
+    public List<PhotoDTO> getFotosInteres() {
+        return fotosInteres;
     }
+
     /**
-     * Metodo que modifica el valor del atributo fotografos
-     * @param f nuevo valor del atributo 
+     * @param fotosInteres the fotosInteres to set
      */
-    public void setFotografos(ArrayList<FotografoDTO> f){
-        fotografos = f;
+    public void setFotosInteres(List<PhotoDTO> fotosInteres) {
+        this.fotosInteres = fotosInteres;
     }
+
 }

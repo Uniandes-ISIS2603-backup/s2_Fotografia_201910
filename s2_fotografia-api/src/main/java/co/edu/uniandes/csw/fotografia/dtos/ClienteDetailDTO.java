@@ -24,9 +24,10 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     
     private List<FormaDePagoDTO> formasDePago;
     
+    private List <ConcursoDTO> concursosCliente;    
+    
     private List <CalificacionDTO> calificacionesPorCliente;
     
-    private List <ConcursoDTO> concursosCliente;
     
       public ClienteDetailDTO()
      {
@@ -54,17 +55,17 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
                 formasDePago.add(new FormaDePagoDTO(entityFormaDePago));
             }
             
+            concursosCliente = new ArrayList<>();
+            for(ConcursoEntity entityConcurso: clienteEntity.getConcursosCliente())
+            {
+                concursosCliente.add(new ConcursoDTO(entityConcurso));
+            }
             calificacionesPorCliente = new ArrayList<>();
             for(CalificacionEntity entityCalificacion : clienteEntity.getCalificacionesPorCliente())
             {
                 calificacionesPorCliente.add(new CalificacionDTO(entityCalificacion));
             }
             
-            concursosCliente = new ArrayList<>();
-            for(ConcursoEntity entityConcurso: clienteEntity.getConcursosCliente())
-            {
-                concursosCliente.add(new ConcursoDTO(entityConcurso));
-            }
         }
     }
 
@@ -92,15 +93,6 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             }
             clienteEntity.setFormasDePago(formasDePagoEntity);
         }
-        if(calificacionesPorCliente!=null)
-        {
-            List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
-            for(CalificacionDTO dtoCalificacion : calificacionesPorCliente)
-            {
-                calificacionesEntity.add(dtoCalificacion.toEntity());
-            }
-            clienteEntity.setCalificacionesPorCliente(calificacionesEntity);
-        }
         
         if(concursosCliente != null)
         {
@@ -112,6 +104,17 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             
             clienteEntity.setConcursosCliente(concursosEntity);
         }
+        if(calificacionesPorCliente!=null)
+        {
+            List<CalificacionEntity> calificacionesEntity = new ArrayList<>();
+            for(CalificacionDTO dtoCalificacion : calificacionesPorCliente)
+            {
+                calificacionesEntity.add(dtoCalificacion.toEntity());
+            }
+            clienteEntity.setCalificacionesPorCliente(calificacionesEntity);
+        }
+        
+       
         
         return clienteEntity;
     }
@@ -145,6 +148,20 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     }
 
     /**
+     * @return the concursosCliente
+     */
+    public List <ConcursoDTO> getConcursosCliente() {
+        return concursosCliente;
+    }
+
+    /**
+     * @param concursosCliente the concursosCliente to set
+     */
+    public void setConcursosCliente(List <ConcursoDTO> concursosCliente) {
+        this.concursosCliente = concursosCliente;
+    }
+    
+     /**
      * @return the calificacionesPorCliente
      */
     public List <CalificacionDTO> getCalificacionesPorCliente() {
@@ -158,17 +175,4 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
         this.calificacionesPorCliente = calificacionesPorCliente;
     }
 
-    /**
-     * @return the concursosCliente
-     */
-    public List <ConcursoDTO> getConcursosCliente() {
-        return concursosCliente;
-    }
-
-    /**
-     * @param concursosCliente the concursosCliente to set
-     */
-    public void setConcursosCliente(List <ConcursoDTO> concursosCliente) {
-        this.concursosCliente = concursosCliente;
-    }
 }
