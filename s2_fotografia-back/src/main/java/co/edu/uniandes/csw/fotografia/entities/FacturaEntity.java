@@ -46,7 +46,7 @@ public class FacturaEntity extends BaseEntity implements Serializable
     private ClienteEntity cliente;
     
     @PodamExclude
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "factura")
     private List<PhotoEntity> photos = new ArrayList<PhotoEntity>();
     
     /*

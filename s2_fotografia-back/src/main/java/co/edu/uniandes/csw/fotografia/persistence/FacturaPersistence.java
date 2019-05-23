@@ -34,7 +34,9 @@ public class FacturaPersistence
      */
     public FacturaEntity create(FacturaEntity facturaEntity) {
         LOGGER.log(Level.INFO, "Creando una nueva factura");
+        System.out.println(" En el persist tonto: "+ facturaEntity.getPhotos().get(0).getNombre());
         em.persist(facturaEntity);
+        
         LOGGER.log(Level.INFO, "Saliendo de crear una nueva factura");
         return facturaEntity;
     }
@@ -56,7 +58,7 @@ public class FacturaPersistence
      */
     public List<FacturaEntity> getAll() {
         LOGGER.log(Level.INFO, "Consultando todas las facturas");
-        TypedQuery<FacturaEntity> query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
+        TypedQuery query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
         return query.getResultList();
 
     }
