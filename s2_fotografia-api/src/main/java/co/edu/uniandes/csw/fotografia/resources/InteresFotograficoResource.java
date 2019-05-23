@@ -145,7 +145,9 @@ public class InteresFotograficoResource {
         }
         return list;
     }
+
      @DELETE
+
     @Path("{InteresFotograficosId: \\d+}")
     public void deleteInteresFotografico(@PathParam("InteresFotograficosId") Long InteresFotograficosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "JuradoResourse deleteJurado: input: {0}", InteresFotograficosId);
