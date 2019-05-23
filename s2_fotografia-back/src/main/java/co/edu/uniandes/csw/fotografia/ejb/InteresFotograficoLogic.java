@@ -70,6 +70,7 @@ public class InteresFotograficoLogic {
         if (fotos1 != null && !fotos1.isEmpty()) {
             throw new BusinessLogicException("No se puede borrar el interes con id = " + interesFotograficosId + " porque tiene fotos asociados");
         }
+        persistence.delete(interesFotograficosId);
  }
      
 }
