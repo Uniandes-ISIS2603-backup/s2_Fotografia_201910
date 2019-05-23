@@ -70,8 +70,12 @@ UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;
 
 
 insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (1, 1, 32.0, '8/22/2018', 100);
-insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (2, 2, 32.0, '8/22/2018', 100);
-
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (2, 2, 38.0, '9/24/2018', 100);
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (3, 3, 92.0, '11/05/2017', 1);
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (4, 4, 53.0, '8/25/2018', 1);
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (5, 5, 12.0, '5/13/2016', 2);
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (6, 6, 76.0, '8/28/2018', 3);
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (7, 7, 81.0, '2/02/2018', 3);
 
 insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA',1, 'Juan Rosas');
 insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (1,100326968432156, '10/22/2020',496,'Tarjeta Credito', 'VISA',1,'Juan Rosas' );
