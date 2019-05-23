@@ -4,12 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.fotografia.dtos;
-import co.edu.uniandes.csw.fotografia.adapters.DateAdapter;
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 /**
