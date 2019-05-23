@@ -53,14 +53,10 @@ public class FacturaResource
     @POST
     public FacturaDetailDTO createFactura(FacturaDetailDTO factura) throws BusinessLogicException
     {
-        System.out.print("hola");
-
-        System.out.println(factura);
         LOGGER.log(Level.INFO, "FacturaResource createFactura: input: {0}", factura);
         FacturaDetailDTO nuevaFacturaDTO = new FacturaDetailDTO(facturaLogic.createFactura(factura.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource createFactura: output: {0}", nuevaFacturaDTO);
         
-        System.out.println(nuevaFacturaDTO.getPhotos().size());
         return nuevaFacturaDTO;
         
     }
@@ -93,7 +89,6 @@ public class FacturaResource
     private List<FacturaDetailDTO> listEntity2DTO(List<FacturaEntity> entityList) {
         List<FacturaDetailDTO> list = new ArrayList<>();
         for (FacturaEntity entity : entityList) {
-            System.out.println(entity.getPhotos().size());
             list.add(new FacturaDetailDTO(entity));
         }
         return list;
@@ -173,7 +168,7 @@ public class FacturaResource
 
     @Path("{facturasId: \\d+}/photos")
     public Class<PhotoFacturaResource> getFotografoPhotosResource(@PathParam("facturasId") Long facturasId) {
-        System.out.println("tonto");
+    
         if (facturaLogic.getFactura(facturasId) == null) {
             throw new WebApplicationException("El recurso /Fotografos/" + facturasId + " no existe.", 404);
         }
