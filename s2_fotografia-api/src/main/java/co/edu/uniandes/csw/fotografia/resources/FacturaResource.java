@@ -59,7 +59,10 @@ public class FacturaResource
         LOGGER.log(Level.INFO, "FacturaResource createFactura: input: {0}", factura);
         FacturaDetailDTO nuevaFacturaDTO = new FacturaDetailDTO(facturaLogic.createFactura(factura.toEntity()));
         LOGGER.log(Level.INFO, "FacturaResource createFactura: output: {0}", nuevaFacturaDTO);
+        
+        System.out.println(nuevaFacturaDTO.getPhotos().size());
         return nuevaFacturaDTO;
+        
     }
     
     /**
@@ -87,9 +90,10 @@ public class FacturaResource
      * @param entityList Lista de FacturaEntity a convertir.
      * @return Lista de FacturaDTO convertida.
      */
-    private List<FacturaDetailDTO> listEntityADTO(List<FacturaEntity> listaEntity) {
+    private List<FacturaDetailDTO> listEntity2DTO(List<FacturaEntity> entityList) {
         List<FacturaDetailDTO> list = new ArrayList<>();
-        for (FacturaEntity entity : listaEntity) {
+        for (FacturaEntity entity : entityList) {
+            System.out.println(entity.getPhotos().size());
             list.add(new FacturaDetailDTO(entity));
         }
         return list;
@@ -103,7 +107,7 @@ public class FacturaResource
     public List<FacturaDetailDTO> getFacturas ()
     {
         LOGGER.info("ClienteResource getClientes: input: void");
-        List<FacturaDetailDTO> listaFacturas = listEntityADTO(facturaLogic.getFacturas());
+        List<FacturaDetailDTO> listaFacturas = listEntity2DTO(facturaLogic.getFacturas());
         LOGGER.log(Level.INFO, "FacturaResource getFacturas: output: {0}", listaFacturas);
         return listaFacturas;
     }
@@ -165,5 +169,14 @@ public class FacturaResource
             throw new WebApplicationException("El recurso /facturas/" + facturasId + " no existe.", 404);
         }
         return FacturaFormasDePagoResource.class;
+    }
+
+    @Path("{facturasId: \\d+}/photos")
+    public Class<PhotoFacturaResource> getFotografoPhotosResource(@PathParam("facturasId") Long facturasId) {
+        System.out.println("tonto");
+        if (facturaLogic.getFactura(facturasId) == null) {
+            throw new WebApplicationException("El recurso /Fotografos/" + facturasId + " no existe.", 404);
+        }
+        return PhotoFacturaResource.class;
     }
 }

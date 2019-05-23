@@ -34,7 +34,6 @@ public class FacturaPersistence
      */
     public FacturaEntity create(FacturaEntity facturaEntity) {
         LOGGER.log(Level.INFO, "Creando una nueva factura");
-
         em.persist(facturaEntity);
         LOGGER.log(Level.INFO, "Saliendo de crear una nueva factura");
         return facturaEntity;
@@ -110,5 +109,19 @@ public class FacturaPersistence
         FacturaEntity facturaEntity = em.find(FacturaEntity.class, facturaId);
 
         em.remove(facturaEntity);
+    }
+    
+    public List<FacturaEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos los fotografos");
+        // Se crea un query para buscar todos los fotografos en la base de datos.
+        TypedQuery query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de fotografos.
+        return query.getResultList();
+    }
+    
+    public FacturaEntity find(Long facturaId) {
+        LOGGER.log(Level.INFO, "Consultando el fotografo con id={0}", facturaId);
+       
+        return em.find(FacturaEntity.class, facturaId);
     }
 }
