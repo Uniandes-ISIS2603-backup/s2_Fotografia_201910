@@ -24,6 +24,7 @@ public class JuradoDTO implements Serializable {
     private Long cedula;
     private String pais;
     private String ciudad;
+    private String imagen;
     
     /**
      * Constructor vacio
@@ -45,7 +46,8 @@ public class JuradoDTO implements Serializable {
             this.correo = juradoEntity.getCorreo();
             this.cedula = juradoEntity.getCedula();
             this.pais = juradoEntity.getPais();
-            this.ciudad = juradoEntity.getCiudad();             
+            this.ciudad = juradoEntity.getCiudad();
+            this.imagen = juradoEntity.getImagen();
         }
     }
 
@@ -64,6 +66,7 @@ public class JuradoDTO implements Serializable {
         juradoEntity.setCedula(this.cedula);
         juradoEntity.setPais(this.pais);
         juradoEntity.setCiudad(this.ciudad);
+        juradoEntity.setImagen(this.imagen);
         return juradoEntity;
     }
 
@@ -198,6 +201,14 @@ public class JuradoDTO implements Serializable {
      */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+    
+    public String getImagen(){
+        return imagen;
+    }
+    
+    public void setImagen (String imagen){
+        this.imagen = imagen;
     }
 
     @Override

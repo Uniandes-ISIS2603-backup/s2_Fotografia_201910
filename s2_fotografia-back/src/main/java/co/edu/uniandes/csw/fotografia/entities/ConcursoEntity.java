@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -53,7 +54,7 @@ public class ConcursoEntity extends BaseEntity implements Serializable{
     private List<PhotoEntity> fotosEnConcurso = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "concursoJurado")
+    @OneToMany(mappedBy = "concursoJurado", fetch =FetchType.LAZY)
     private List<JuradoEntity> jurados = new ArrayList<>();
     
 
