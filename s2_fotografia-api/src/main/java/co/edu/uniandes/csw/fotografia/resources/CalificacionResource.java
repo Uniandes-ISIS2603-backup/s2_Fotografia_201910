@@ -48,7 +48,7 @@ public class CalificacionResource {
      * @throws co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException
      */
     @POST
-    public CalificacionDTO createCalificacion(@PathParam("photoId")Long photoId, CalificacionDTO calificacion) throws BusinessLogicException {
+    public CalificacionDTO createCalificacion(@PathParam("photosId")Long photoId, CalificacionDTO calificacion) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: input: {0}", calificacion);
         CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(photoId,calificacion.toEntity()));
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: output: {0}", calificacionDTO);

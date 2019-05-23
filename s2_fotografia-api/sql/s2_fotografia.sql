@@ -40,8 +40,8 @@ insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values 
 
 
 insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (400, 'Pedro', 'Ramirez', 'pedroramirez@yahoo.com', 12345678, 'Colombia', 'Bogota');
-insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (500, 'Luisa', 'Sanchez', 'luisasanchez@hotmail.com', 67348812, 'Argentina', 'Buenos Aires');
-insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad) values (600, 'Iván', 'Camacho', 'ivan.camacho@yahoo.com', 0987656, 'Colombia', 'Medellín');
+insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad, imagen) values (500, 'Luisa', 'Sanchez', 'luisasanchez@hotmail.com', 67348812, 'Argentina', 'Buenos Aires', 'https://static.iris.net.co/semana/upload/images/2018/9/21/583976_1.jpg');
+insert into JuradoEntity(id, nombre, apellido, correo, cedula, pais, ciudad,IMAGEN) values (600, 'Iván', 'Camacho', 'ivan.camacho@yahoo.com', 0987656, 'Colombia', 'Medellín', 'https://lgfstatic.com/2015/conversions/virtudes-de-una-persona-wide.jpg');
 
 
 insert into CONCURSOENTITY(ID, CANTIDADPREMIO, EDADDELAFOTO, FECHA, MAXFOTOS, TEMA, CLIENTE_ID, ORGANIZADOR_ID,RONDA_ID) 
