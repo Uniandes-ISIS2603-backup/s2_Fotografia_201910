@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -20,21 +21,25 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class InteresFotograficoEntity extends BaseEntity implements Serializable{
     
     private String interes;
+    private String foto;
     @PodamExclude
-    @ManyToMany
-    private List<FotografoEntity>fotografos = new ArrayList<FotografoEntity>();
+    @OneToMany(mappedBy = "interes")
+    private List<PhotoEntity> fotosInteres= new ArrayList<PhotoEntity>();
 
     
     public InteresFotograficoEntity(){
         
     }
     
-    public void setFotografos(List<FotografoEntity> f){
-        fotografos = f;
+    public String getFoto(){
+        return foto;
     }
-    public List<FotografoEntity> getFotografos(){
-        return fotografos;
+    public void setFoto(String pFoto){
+        foto = pFoto;
     }
+    
+  
+   
     
     public String getInteres(){
         return interes;
@@ -42,5 +47,19 @@ public class InteresFotograficoEntity extends BaseEntity implements Serializable
     
     public void setInteres(String pInteres){
         interes = pInteres;
+    }
+
+    /**
+     * @return the fotosInteres
+     */
+    public List<PhotoEntity> getFotosInteres() {
+        return fotosInteres;
+    }
+
+    /**
+     * @param fotosInteres the fotosInteres to set
+     */
+    public void setFotosInteres(List<PhotoEntity> fotosInteres) {
+        this.fotosInteres = fotosInteres;
     }
 }

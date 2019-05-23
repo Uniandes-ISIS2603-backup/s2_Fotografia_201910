@@ -3,7 +3,7 @@ package co.edu.uniandes.csw.fotografia.resources;
 import co.edu.uniandes.csw.fotografia.dtos.PhotoDTO;
 import co.edu.uniandes.csw.fotografia.dtos.PhotoDetailDTO;
 import co.edu.uniandes.csw.fotografia.ejb.FacturaLogic;
-import co.edu.uniandes.csw.fotografia.ejb.JuradoPhotosLogic;
+import co.edu.uniandes.csw.fotografia.ejb.FacturaPhotoLogic;
 import co.edu.uniandes.csw.fotografia.ejb.PhotoLogic;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
@@ -40,6 +40,8 @@ public class PhotoFacturaResource {
     @Inject
     private PhotoLogic fotoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    @Inject
+    private FacturaPhotoLogic facturaPhotoLogic;
     /**
      * Guarda una foto dentro de una factura con la informacion que recibe el la
      * URL.
@@ -74,17 +76,39 @@ public class PhotoFacturaResource {
      * Error de lógica que se genera cuando el premio no tiene autor.
      */
     @GET
-    public PhotoDetailDTO getPhoto(@PathParam("facturaId") Long facturaId) {
-        LOGGER.log(Level.INFO, "PrizeAuthorResource getAuthor: input: {0}", facturaId);
-        PhotoEntity fotoEntity = fotoLogic.getFoto(facturaId);
-        if (fotoEntity == null) {
-            throw new WebApplicationException("El recurso /factura/" + facturaId + "/foto no existe.", 404);
+    public List<PhotoDetailDTO> getPhotos(@PathParam("FacturaId") Long facturaId) {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: input: {0}", facturaId);
+        List<PhotoDetailDTO> listaDetailDTOs = photosListEntity2DTO(facturaPhotoLogic.getPhotos(facturaId));
+        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhotos: output: {0}", listaDetailDTOs);
+        return listaDetailDTOs;
+    }
+    /**
+     * Convierte una lista de PhotoEntity a una lista de PhotoDetailDTO.
+     *
+     * @param entityList Lista de PhotoEntity a convertir.
+     * @return Lista de PhotoDTO convertida.
+     */
+    private List<PhotoDetailDTO> photosListEntity2DTO(List<PhotoEntity> entityList) {
+        List<PhotoDetailDTO> list = new ArrayList();
+        for (PhotoEntity entity : entityList) {
+            list.add(new PhotoDetailDTO(entity));
         }
-        PhotoDetailDTO fotoDetailDTO = new PhotoDetailDTO(fotoEntity);
-        LOGGER.log(Level.INFO, "PrizeAuthorResource getAuthor: output: {0}", fotoDetailDTO);
-        return fotoDetailDTO;
+        return list;
     }
 
+    /**
+     * Convierte una lista de PhotoDetailDTO a una lista de PhotoEntity.
+     *
+     * @param dtos Lista de PhotoDetailDTO a convertir.
+     * @return Lista de PhotoEntity convertida.
+     */
+    private List<PhotoEntity> photosListDTO2Entity(List<PhotoDetailDTO> dtos) {
+        List<PhotoEntity> list = new ArrayList<>();
+        for (PhotoDetailDTO dto : dtos) {
+            list.add(dto.toEntity());
+        }
+        return list;
+    }
     /**
      * Remplaza la instancia de fotos asociada a una instancia de factura
      *

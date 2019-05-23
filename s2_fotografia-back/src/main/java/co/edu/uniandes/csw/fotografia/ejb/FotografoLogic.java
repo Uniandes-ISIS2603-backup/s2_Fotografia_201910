@@ -68,16 +68,13 @@ public class FotografoLogic {
          LOGGER.log(Level.INFO, "Inicia proceso de borrar el fotografo con id = {0}", fotografoId);
         List<PhotoEntity> fotos = getFotografo(fotografoId).getFotos();
         List<PhotoEntity> fotos1 = getFotografo(fotografoId).getFotosConcurso();
-        List<InteresFotograficoEntity> intereses = getFotografo(fotografoId).getIntereses();
         if (fotos != null && !fotos.isEmpty()) {
             throw new BusinessLogicException("No se puede borrar el fotografo con id = " + fotografoId + " porque tiene fotos asociados");
         }
         if (fotos1 != null && !fotos1.isEmpty()) {
             throw new BusinessLogicException("No se puede borrar el fotografo con id = " + fotografoId + " porque tiene fotos asociados");
         }
-        if (intereses != null && !intereses.isEmpty()) {
-            throw new BusinessLogicException("No se puede borrar el fotografo con id = " + fotografoId + " porque tiene intereses asociados");
-        }
+        
         persistence.delete(fotografoId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el fotografo con id = {0}", fotografoId);
      }

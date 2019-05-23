@@ -130,14 +130,7 @@ public class FotografoResource {
     }
 
     
-    @Path("{FotografosId: \\d+}/InteresFotograficos")
-    public Class<FotografoInteresesFotograficosResource> getFotografoInteresResource(@PathParam("FotografosId") Long fotografosId) {
-        if (FotografoLogic.getFotografo(fotografosId) == null) {
-            throw new WebApplicationException("El recurso /Fotografos/" + fotografosId + " no existe.", 404);
-        }
-        return FotografoInteresesFotograficosResource.class;
-    }
-
+   
 
     /**
      * Convierte una lista de FotografoEntity a una lista de FotografoDetailDTO.

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.fotografia.dtos;
 
 import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -39,6 +40,7 @@ public class InteresFotograficoDTO implements Serializable{
     
     private Long id;
     private String interes;
+    private String foto;
     /**
      * Constructor vacio
      */
@@ -54,6 +56,7 @@ public class InteresFotograficoDTO implements Serializable{
         if (interesEntity != null) {
             this.id = interesEntity.getId();
             this.interes = interesEntity.getInteres();
+            this.foto = interesEntity.getFoto();
         }
     }
     
@@ -66,6 +69,7 @@ public class InteresFotograficoDTO implements Serializable{
         InteresFotograficoEntity interes = new InteresFotograficoEntity();
         interes.setId(id);
         interes.setInteres(this.interes);
+        interes.setFoto(foto);
     return interes;
 }
     
@@ -75,6 +79,13 @@ public class InteresFotograficoDTO implements Serializable{
      */
     public Long getId(){
         return id;
+    }
+    
+    public String getFoto(){
+        return foto;
+    }
+    public void setFoto(String pFoto){
+        foto = pFoto;
     }
     
     /**

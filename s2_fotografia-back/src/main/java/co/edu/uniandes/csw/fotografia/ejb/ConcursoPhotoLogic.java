@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.fotografia.ejb;
 
 import co.edu.uniandes.csw.fotografia.entities.ConcursoEntity;
+import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
+import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.persistence.ConcursoPersistence;
 import co.edu.uniandes.csw.fotografia.persistence.PhotoPersistance;
 import java.util.List;
@@ -36,10 +38,21 @@ public class ConcursoPhotoLogic {
      * @param photosId Identificador de la instancia de Photo
      * @return Instancia de PhotoEntity que fue asociada a Concurso
      */
-    public PhotoEntity addPhoto(Long concursosId, Long photosId) {
+    public PhotoEntity addPhoto(Long concursosId, Long photosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle una foto al concurso con id = {0}", concursosId);
         PhotoEntity photoEntity = photoPersistence.find(photosId);
         ConcursoEntity concursoEntity = concursoPersistence.find(concursosId);
+        List<FotografoEntity> fotografos =  concursoEntity.getFotografos();
+        int num = 0;
+        for(FotografoEntity fotografo: fotografos){
+            if(fotografo.getId() == photoEntity.getFotografo().getId()) num++;
+        }
+        fotografos = null;
+        List<PhotoEntity> fotos = concursoEntity.getFotosEnConcurso();
+        for(PhotoEntity foto: fotos){
+            if(foto.getFotografo().getId() == photoEntity.getFotografo().getId()) num++;
+        }
+        if(num > concursoEntity.getMaxFotos()) throw new BusinessLogicException("Se excedio la cantidad de fotos que pudes ingresar al concurso");
         concursoEntity.getFotosEnConcurso().add(photoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle una foto al concurso con id = {0}", concursosId);
         return photoPersistence.find(photosId);
