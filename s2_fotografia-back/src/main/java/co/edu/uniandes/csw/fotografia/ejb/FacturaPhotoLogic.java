@@ -42,9 +42,10 @@ public class FacturaPhotoLogic {
      */
     public PhotoEntity addPhoto(Long photosId, Long facturaId) {
         LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la fotografo con id = {0}", facturaId);
+        System.out.println("dany MIT");
         FacturaEntity facturaEntity = facturaPersistence.get(facturaId);
         PhotoEntity photoEntity = photoPersistence.find(photosId);
-        
+        facturaEntity.getPhotos().add(photoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la fotografo con id = {0}", facturaId);
         return photoEntity;
     }

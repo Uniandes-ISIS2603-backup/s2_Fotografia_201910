@@ -58,12 +58,12 @@ public class PhotoFacturaResource {
      */
     @POST
     @Path("{photosId: \\d+}")
-    public PhotoDTO addPhoto(@PathParam("FotografosId") Long facturaId, @PathParam("photosId") Long photosId) {
+    public PhotoDTO addPhoto(@PathParam("facturaId") Long facturaId, @PathParam("photosId") Long photosId) {
         LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{facturaId, photosId});
         if (fotoLogic.getFoto(photosId) == null) {
             throw new WebApplicationException("El recurso /photos/" + photosId + " no existe.", 404);
         }
-       PhotoDTO photoDTO = new PhotoDTO(facturaPhotoLogic.addPhoto(photosId, facturaId));
+        PhotoDTO photoDTO = new PhotoDTO(facturaPhotoLogic.addPhoto(photosId, facturaId));
         LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: output: {0}", photoDTO);
         return photoDTO;
     }
