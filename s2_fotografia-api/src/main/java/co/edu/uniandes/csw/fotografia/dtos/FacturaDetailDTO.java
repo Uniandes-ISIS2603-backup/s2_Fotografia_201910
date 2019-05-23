@@ -54,9 +54,10 @@ public class FacturaDetailDTO extends FacturaDTO implements Serializable {
             for (PhotoDTO dtoPhoto : getPhotos()) {
                 photosEntity.add(dtoPhoto.toEntity());
             }
-            System.out.println("añadiendo fotos al entity");
+            System.out.println("añadiendo fotos al entity: " + photosEntity.size());
             facturaEntity.setPhotos(photosEntity);
         }
+        System.out.println(facturaEntity.getPhotos().size());
         return facturaEntity;
     }
 
