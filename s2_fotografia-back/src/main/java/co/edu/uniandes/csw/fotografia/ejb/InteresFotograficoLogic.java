@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.fotografia.ejb;
 import co.edu.uniandes.csw.fotografia.entities.InteresFotograficoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.fotografia.ejb.InteresFotograficoFotosLogic;
+import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.persistence.InteresFotograficoPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -64,7 +65,11 @@ public class InteresFotograficoLogic {
      }
 
      
-   public void deleteInteresFotografico(Long interesFotograficosId){
+   public void deleteInteresFotografico(Long interesFotograficosId) throws BusinessLogicException{
+        List<PhotoEntity> fotos1 = getInteresFotografico(interesFotograficosId).getFotosInteres();
+        if (fotos1 != null && !fotos1.isEmpty()) {
+            throw new BusinessLogicException("No se puede borrar el interes con id = " + interesFotograficosId + " porque tiene fotos asociados");
+        }
           persistence.delete(interesFotograficosId);
      }
      
