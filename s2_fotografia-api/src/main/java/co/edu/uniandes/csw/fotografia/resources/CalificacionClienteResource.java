@@ -104,8 +104,7 @@ public class CalificacionClienteResource {
      */
     @PUT
     public ClienteDetailDTO replaceCliente(@PathParam("photosId")Long photoId,@PathParam("calificacionesId") Long calificacionesId, @PathParam("clientesId")Long clienteId) {
-        LOGGER.log(Level.INFO, "BookClienteResource replaceCliente: input: calificacionesId{0} , Cliente:{1}", new Object[]{calificacionesId});
-        if (clienteLogic.getCliente(clienteId) == null) {
+       if (clienteLogic.getCliente(clienteId) == null) {
             throw new WebApplicationException("El recurso /calificacion/" + calificacionesId + " no existe.", 404);
         }
         ClienteDetailDTO clienteDetailDTO = new ClienteDetailDTO(calificacionClienteLogic.replaceCliente(photoId,calificacionesId, clienteId));
