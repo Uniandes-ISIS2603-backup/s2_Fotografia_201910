@@ -32,10 +32,10 @@ insert into RondaEntity(id, numRonda) values (302, 1);
 insert into RondaEntity(id, numRonda) values (303, 1);
 insert into RondaEntity(id, numRonda) values (304, 1);
 
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea12211' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr11009' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (2, 'mariana0911', 'Mariana Lozano','ml@yahoo.com','marianalozano12' );
-insert into ClienteEntity (id, login, nombre, correo, contrasena) values (3, 'camilozuluaga', 'Camilo Zuluaga','czulu@gmail.com','cZulu095678' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena, imagen) values (100, 'Andrea', 'Andrea Lopez','andreLopez@hotmail.com','andrea12211' ,'http://es.web.img3.acsta.net/pictures/15/05/15/16/30/134942.jpg');
+insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values (1, 'JuanD', 'Juan David Rosas','jdrosas@hotmail.com','juandr11009','https://los40es00.epimg.net/los40/imagenes/2017/01/20/musica/1484908180_629395_1484909260_noticia_normal.jpg' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values (2, 'mariana0911', 'Mariana Lozano','ml@yahoo.com','marianalozano12', 'https://k62.kn3.net/taringa/7/4/D/E/6/8/adriano034/94C.jpg' );
+insert into ClienteEntity (id, login, nombre, correo, contrasena,imagen) values (3, 'camilozuluaga', 'Camilo Zuluaga','czulu@gmail.com','cZulu095678', 'https://pixel.nymag.com/imgs/fashion/daily/2016/01/21/21-chris-martin.w700.h700.jpg' );
 
 
 
@@ -69,13 +69,13 @@ UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 100 WHERE ID = 500;
 UPDATE JURADOENTITY SET CONCURSOJURADO_ID = 102 WHERE ID = 600;    
 
 
-insert into FacturaEntity(id, numero, precio, fechaCompra) values (1, 1, 32.0, '8/22/2018');
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA',1);
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (1,100326968432156, '10/22/2020',496,'Tarjeta Credito', 'VISA',1);
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (2,109984268432222, '11/22/2028',123,'Tarjeta Credito', 'MASTERCARD',100);
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (3,1001832155432, '2/22/2024',431,'Tarjeta Credito', 'VISA',2);
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (4,1990985122340, '6/22/2022',994,'Tarjeta Credito', 'MASTERCARD',2);
-insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id) values (5,101987651989211, '1/22/2027',502,'Tarjeta Credito', 'VISA',3);
+insert into FacturaEntity(id, numero, precio, fechaCompra, cliente_id) values (1, 1, 32.0, '8/22/2018', 100);
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (22,123453268432156, '8/22/2020',456,'Tarjeta Credito', 'VISA',1, 'Juan Rosas');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (1,100326968432156, '10/22/2020',496,'Tarjeta Credito', 'VISA',1,'Juan Rosas' );
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (2,109984268432222, '11/22/2028',123,'Tarjeta Credito', 'MASTERCARD',100, 'Andrea Lopez');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (3,1001832155432, '2/22/2024',431,'Tarjeta Credito', 'VISA',2, 'Andres Lozano');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (4,1990985122340, '6/22/2022',994,'Tarjeta Credito', 'MASTERCARD',2, 'Mariana Lozano');
+insert into FormaDePagoEntity(id, numeroTarjeta, fechaVencimiento, numeroVerificacion, tipoDeTarjeta, tipoTarjetaDeCredito,cliente_id,nombre) values (5,101987651989211, '1/22/2027',502,'Tarjeta Credito', 'VISA',3, 'Camilo Zuluaga');
 
 
 insert into ClienteEntity_FormaDePagoEntity (clienteentity_id, formasDePago_id) values (1,22);

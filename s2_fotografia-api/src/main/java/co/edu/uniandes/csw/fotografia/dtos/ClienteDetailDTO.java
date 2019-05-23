@@ -28,6 +28,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     
     private List <CalificacionDTO> calificacionesPorCliente;
     
+    
       public ClienteDetailDTO()
      {
         super(); 
@@ -64,6 +65,7 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             {
                 calificacionesPorCliente.add(new CalificacionDTO(entityCalificacion));
             }
+            
         }
     }
 
@@ -111,6 +113,8 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
             }
             clienteEntity.setCalificacionesPorCliente(calificacionesEntity);
         }
+        
+       
         
         return clienteEntity;
     }
@@ -170,4 +174,5 @@ public class ClienteDetailDTO extends ClienteDTO implements Serializable
     public void setCalificacionesPorCliente(List <CalificacionDTO> calificacionesPorCliente) {
         this.calificacionesPorCliente = calificacionesPorCliente;
     }
+
 }

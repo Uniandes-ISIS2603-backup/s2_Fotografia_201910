@@ -11,7 +11,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.CascadeType;
 
 /**
  *
@@ -24,13 +26,14 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private String login;
     private String correo;
     private String contrasena;
+    private String imagen;
 
     @PodamExclude
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas = new ArrayList<FacturaEntity>();
     
     @PodamExclude
-    @OneToMany(mappedBy="cliente", fetch =FetchType.LAZY)
+    @OneToMany(mappedBy="cliente",cascade = CascadeType.PERSIST, orphanRemoval = true, fetch =FetchType.LAZY)
      private List<FormaDePagoEntity> formasDePago= new ArrayList<>();
      
     @PodamExclude
@@ -116,6 +119,20 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+    
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param contrasena the contrasena to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     /**
