@@ -22,6 +22,8 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
 
     private List<PhotoDTO> fotos;
     
+    private ConcursoDTO concursoJurado;
+    
     public JuradoDetailDTO() {
         super();
     }
@@ -42,6 +44,9 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
                 fotos.add(new PhotoDTO(photoEntity));
             }
         }
+        if(juradoEntity.getConcursoJurado() != null){
+            this.concursoJurado = new ConcursoDTO(juradoEntity.getConcursoJurado());
+        }
     }
 
     /**
@@ -60,6 +65,10 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
                 fotosEntity.add(dtoFoto.toEntity());
             }
             juradoEntity.setFotos(fotosEntity);
+        }
+        if(concursoJurado != null)
+        {
+            juradoEntity.setConcursoJurado(this.concursoJurado.toEntity());
         }
         
         return juradoEntity;
@@ -81,6 +90,16 @@ public class JuradoDetailDTO extends JuradoDTO implements Serializable {
      */
     public void setFotos(List<PhotoDTO> fotos) {
         this.fotos = fotos;
+    }
+    
+    public ConcursoDTO getConcursoJurado()
+    {
+        return concursoJurado;
+    }
+    
+    public void setConcursoJurado(ConcursoDTO concurso)
+    {
+        this.concursoJurado = concurso;
     }
     
     @Override

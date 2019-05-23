@@ -138,6 +138,11 @@ public class JuradoResource {
         juradoLogic.deleteJurado(juradosId);
         LOGGER.info("JuradoResourse deleteJurado: output: void");
     }
+    
+     @Path("{juradosId: \\d+}/concursos")
+    public Class<JuradoConcursoResource> getJuradoConcursoResource(@PathParam("juradosId") Long juradosId) {
+        return JuradoConcursoResource.class;
+    }
 
     /**
      * Convierte una lista de JuradoEntity a una lista de JuradoDetailDTO.

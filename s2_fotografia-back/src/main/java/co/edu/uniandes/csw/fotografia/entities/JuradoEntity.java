@@ -29,6 +29,7 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     private Long cedula;
     private String pais;
     private String ciudad;
+    private String imagen;
     
     @PodamExclude
     @ManyToMany
@@ -184,12 +185,12 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     }
     
     /**
-     * Modifica el concurso del jurado
-     * @param concurso el nuevo concurso del jurado
+     * Devuelve el concurso del jurado
+     * @param concurso
      */
-    public void setConcurso(ConcursoEntity concurso)
+    public  void setConcursoJurado(ConcursoEntity concurso)
     {
-        this.concursoJurado = concurso;
+         this.concursoJurado = concurso;
     }
     
     /**
@@ -208,5 +209,15 @@ public class JuradoEntity extends BaseEntity implements Serializable{
     public void setRonda(RondaEntity ronda)
     {
         this.ronda = ronda;
+    }
+    
+    public String getImagen()
+    {
+        return imagen;
+    }
+    
+    public void setImagen(String imagen)
+    {
+        this.imagen = imagen;
     }
 }

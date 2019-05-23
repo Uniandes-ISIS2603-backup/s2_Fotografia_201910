@@ -171,6 +171,29 @@ public class ConcursoResource {
         }
         return ConcursoFotografosResource.class;
     }
+    
+    /**
+     * Conexión con el servicio de concursos para un fotografo.
+     * {@link ConcursoFotografosResource}
+     *
+     * Este método conecta la ruta de /concursos con las rutas de /fotografos que
+     * dependen del concurso, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las reseñas.
+     *
+     * @param concursosId El ID del concurso con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de concursos para ese fotografo en paricular.\
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el concurso.
+     */
+    @Path("{concursosId: \\d+}/jurados")
+    public Class<JuradoConcursoResource> getJuradoConcursoResource(@PathParam("concursosId") Long concursosId) {
+        if (ConcursoLogic.getConcurso(concursosId) == null) {
+            throw new WebApplicationException("El recurso /concursos/" + concursosId + " no existe.", 404);
+        }
+        return JuradoConcursoResource.class;
+    }
+
 
     /**
      * Convierte una lista de ConcursoEntity a una lista de ConcursoDetailDTO.
