@@ -284,16 +284,6 @@ public class PhotoEntity extends BaseEntity implements Serializable{
         this.calificaciones = calificaciones;
     }
 
-     public InteresFotograficoEntity getInteres() {
-        return interes;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setInteres(InteresFotograficoEntity id) {
-        this.interes = id;
-    }
 
     /**
      * @return the clientes
@@ -317,7 +307,7 @@ public class PhotoEntity extends BaseEntity implements Serializable{
     /**
      * @param concursos the concursos to set
      */
-    public void setConcusros(List<ConcursoEntity> concursos){
+    public void setConcursos(List<ConcursoEntity> concursos){
         this.concursos = concursos;
     }
 }
