@@ -34,7 +34,7 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class FormaDePagoClientesResource 
 {
-     private static final Logger LOGGER = Logger.getLogger(FormaDePagoClientesResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(FormaDePagoClientesResource.class.getName());
 
     @Inject
     private FormaDePagoClientesLogic formaDePagoClientesLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
