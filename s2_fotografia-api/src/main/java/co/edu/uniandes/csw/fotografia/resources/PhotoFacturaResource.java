@@ -28,10 +28,12 @@ import javax.ws.rs.core.MediaType;
  *
  * @author dany y valentina
  */
+@Path("facturas/{facturaId: \\d+}/photo")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PhotoFacturaResource {
 
+    
     private static final Logger LOGGER = Logger.getLogger(PhotoFacturaResource.class.getName());
 
     @Inject
@@ -55,14 +57,14 @@ public class PhotoFacturaResource {
      * Error de lógica que se genera cuando no se encuentra la factura.
      */
     @POST
-    @Path("{fotosId: \\d+}")
-    public PhotoDTO addPhoto(@PathParam("facturasId") Long facturasId, @PathParam("fotosId") Long fotosId) {
-        LOGGER.log(Level.INFO, "PhotoFacturaResource addPhoto: input: facturasId: {0} , fotosId: {1}", new Object[]{facturasId, fotosId});
-        if (fotoLogic.getFoto(facturasId) == null) {
-            throw new WebApplicationException("El recurso /facturas/" + facturasId + " no existe.", 404);
+    @Path("{photosId: \\d+}")
+    public PhotoDTO addPhoto(@PathParam("FotografosId") Long facturaId, @PathParam("photosId") Long photosId) {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{facturaId, photosId});
+        if (fotoLogic.getFoto(photosId) == null) {
+            throw new WebApplicationException("El recurso /photos/" + photosId + " no existe.", 404);
         }
-        PhotoDTO photoDTO = new PhotoDTO(fotoLogic.getFoto(facturasId));
-        LOGGER.log(Level.INFO, "PrizeAuthorResource addAuthor: output: {0}", photoDTO);
+       PhotoDTO photoDTO = new PhotoDTO(facturaPhotoLogic.addPhoto(photosId, facturaId));
+        LOGGER.log(Level.INFO, "FotografoPhotosResource addPhoto: output: {0}", photoDTO);
         return photoDTO;
     }
 
@@ -94,6 +96,18 @@ public class PhotoFacturaResource {
             list.add(new PhotoDetailDTO(entity));
         }
         return list;
+    }
+    
+    @GET
+    @Path("{photosId: \\d+}")
+    public PhotoDetailDTO getPhoto(@PathParam("facturaId") Long facturaId, @PathParam("photosId") Long photosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: input: fotografosID: {0} , photosId: {1}", new Object[]{facturaId, photosId});
+        if (fotoLogic.getFoto(photosId) == null) {
+            throw new WebApplicationException("El recurso /fotografos/" + facturaId + "/photos/" + photosId + " no existe.", 404);
+        }
+        PhotoDetailDTO photoDetailDTO = new PhotoDetailDTO(facturaPhotoLogic.getPhoto(facturaId, photosId));
+        LOGGER.log(Level.INFO, "FotografoPhotosResource getPhoto: output: {0}", photoDetailDTO);
+        return photoDetailDTO;
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.fotografia.ejb;
 
+import co.edu.uniandes.csw.fotografia.entities.FacturaEntity;
 import co.edu.uniandes.csw.fotografia.entities.FotografoEntity;
 import co.edu.uniandes.csw.fotografia.entities.PhotoEntity;
 import co.edu.uniandes.csw.fotografia.exceptions.BusinessLogicException;
@@ -39,14 +40,14 @@ public class FacturaPhotoLogic {
      * libro.
      * @return El libro creado.
      */
-  //  public PhotoEntity addPhoto(Long photosId, Long fotografosId) {
-  //      LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la fotografo con id = {0}", fotografosId);
-  //      FotografoEntity fotografoEntity = fotografoPersistence.find(fotografosId);
-  //      PhotoEntity photoEntity = photoPersistence.find(photosId);
-  //      /**photoEntity.setFotografo(fotografoEntity);**/
-  //      LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la fotografo con id = {0}", fotografosId);
-  //      return photoEntity;
-  //  }
+    public PhotoEntity addPhoto(Long photosId, Long facturaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de agregarle un libro a la fotografo con id = {0}", facturaId);
+        FacturaEntity facturaEntity = facturaPersistence.get(facturaId);
+        PhotoEntity photoEntity = photoPersistence.find(photosId);
+        
+        LOGGER.log(Level.INFO, "Termina proceso de agregarle un libro a la fotografo con id = {0}", facturaId);
+        return photoEntity;
+    }
 
     /**
      * Retorna todos los photos asociados a una fotografo
@@ -57,6 +58,27 @@ public class FacturaPhotoLogic {
     public List<PhotoEntity> getPhotos(Long facturaId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar los libros asociados a la fotografo con id = {0}", facturaId);
         return facturaPersistence.find(facturaId).getPhotos();
+    }
+    
+     /**
+     * Retorna un photo asociado a una fotografo
+     *
+     * @param fotografosId El id de la fotografo a buscar.
+     * @param photosId El id del libro a buscar
+     * @return El libro encontrado dentro de la fotografo.
+     * @throws BusinessLogicException Si el libro no se encuentra en la
+     * fotografo
+     */
+    public PhotoEntity getPhoto(Long facturaId, Long photosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} de la fotografo con id = " + facturaId, photosId);
+        List<PhotoEntity> photos = facturaPersistence.find(facturaId).getPhotos();
+        PhotoEntity photoEntity = photoPersistence.find(photosId);
+        int index = photos.indexOf(photoEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} de la fotografo con id = " + facturaId, photosId);
+        if (index >= 0) {
+            return photos.get(index);
+        }
+        throw new BusinessLogicException("El libro no está asociado a la fotografo");
     }
 
     /**
