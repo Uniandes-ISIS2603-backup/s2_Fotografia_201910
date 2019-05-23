@@ -81,7 +81,6 @@ public class JuradoConcursoResource {
      */
     @GET
     public ConcursoDTO getConcurso(@PathParam("juradosId") Long juradosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "FotografoConcursosResource getConcurso: input: juradosId {0} , concursosId {1}", juradosId);
         ConcursoEntity concursoEntity = juradoConcursoLogic.getConcurso(juradosId);
         if (concursoEntity == null) {
             throw new WebApplicationException("El recurso /prizes/" + juradosId + "/author no existe.", 404);
