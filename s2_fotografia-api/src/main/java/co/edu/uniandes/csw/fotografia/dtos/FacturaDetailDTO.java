@@ -33,7 +33,8 @@ public class FacturaDetailDTO extends FacturaDTO implements Serializable {
     public FacturaDetailDTO(FacturaEntity facturaEntity) {
         super(facturaEntity);
         if (facturaEntity.getPhotos() != null) {
-            photos = new ArrayList<>();
+            System.out.println("parece que si persistio la asociacion: " + facturaEntity.getPhotos().size());
+            photos = new ArrayList();
             for (PhotoEntity entityPhoto : facturaEntity.getPhotos()) {
                 photos.add(new PhotoDTO(entityPhoto));
             }
@@ -53,6 +54,7 @@ public class FacturaDetailDTO extends FacturaDTO implements Serializable {
             for (PhotoDTO dtoPhoto : getPhotos()) {
                 photosEntity.add(dtoPhoto.toEntity());
             }
+            System.out.println("añadiendo fotos al entity");
             facturaEntity.setPhotos(photosEntity);
         }
         return facturaEntity;
