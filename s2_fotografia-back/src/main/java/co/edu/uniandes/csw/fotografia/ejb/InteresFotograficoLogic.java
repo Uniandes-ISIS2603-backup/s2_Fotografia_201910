@@ -65,6 +65,7 @@ public class InteresFotograficoLogic {
 
      
      public void deleteInteresFotografico(Long interesFotograficosId){
+          persistence.delete(interesFotograficosId);
      }
      
 }
